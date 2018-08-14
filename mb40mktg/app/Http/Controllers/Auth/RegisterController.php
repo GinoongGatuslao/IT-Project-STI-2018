@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use App\User;
 
 class RegisterController extends Controller
 {
@@ -92,7 +94,8 @@ class RegisterController extends Controller
             ?: redirect($this->redirectPath());
     }
 
-    protected function registered(Request $request, $user) {
+    protected function registered(Request $request, $user)
+    {
         $user->generateToken();
         return response()->json(['data' => $user->toArray()], 201);
     }
