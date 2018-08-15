@@ -42,7 +42,6 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $this->validateLogin($request);
-
         if ($this->attemptLogin($request)) {
             $user = $this->guard()->user();
             $user->generateToken();
@@ -50,9 +49,11 @@ class LoginController extends Controller
             return response()->json([
                 'data' => $user->toArray(),
             ]);
+        } else {
+            return response()->json([
+                "error" => "Failed to login."
+            ], 401);
         }
-
-        return $this->sendFailedLoginResponse($request);
     }
 
     public function logout(Request $request)

@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
                 $table->increments('id');
                 $table->text('name');
                 $table->text('price');
-                $table->integer('count');
+                $table->integer('stock_count');
                 $table->integer('reorder_point');
                 $table->text('status');
                 $table->text('batch_number');

@@ -55,12 +55,16 @@ class ProductController extends Controller
         return response()->json($product, 200);
     }
 
-    public function delete(Request $request, $id) {
-        $request->delete();
-        return response()->json(null, 204);
+    public function delete($id) {
+        Product::where('id', $id)->delete();
+        return $this->returnSuccess();
     }
 
     private function returnEmpty() {
         return response()->json([], 204, ["reason"=>"No result"]);
+    }
+
+    private function returnSuccess() {
+        return response()->json(["success"=>true], 200);
     }
 }
