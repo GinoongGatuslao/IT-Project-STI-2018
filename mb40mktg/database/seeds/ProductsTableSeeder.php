@@ -24,9 +24,9 @@ class ProductsTableSeeder extends Seeder
                 // 'body' => $faker->paragraph,
 				'name' => $faker->domainWord,
 				'price' => $faker->numberBetween($min = 500, $max = 10000),
-				'reorder_point' => $faker->randomElement($array = array('1','2','3')),
-                'stock_count' => $faker->numberBetween($min = 1, $max = 50),
-				'status' => $faker->randomElement($array = array ('1','2','3')),
+				'reorder_point' => $faker->numberBetween($min = 10, $max = 100),
+                'stock_count' => $faker->numberBetween($min = 10, $max = 1000),
+				'status' => $faker->randomElement($array = array ('1','2','3','4')),
 				'batch_number' => $faker->creditCardNumber, //this is just a dummy representation of random large number combination
 				'returned' => $faker->boolean($chanceOfGettingTrue = 15),
 				'defective' => $faker->boolean($chanceOfGettingTrue = 5)

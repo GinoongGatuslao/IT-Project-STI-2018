@@ -23,7 +23,9 @@ class UsersTableSeeder extends Seeder
 		User::create([
             // 'title' => $faker->sentence,
             // 'body' => $faker->paragraph,
-			'name' => "John Doe",
+			'first_name' => "John",
+			'middle_name' => "Freakin",
+			'last_name' => "doe",
 			'email' => "root@root.com",
 			'password' => $password
         ]);
@@ -33,7 +35,9 @@ class UsersTableSeeder extends Seeder
             User::create([
                 // 'title' => $faker->sentence,
                 // 'body' => $faker->paragraph,
-				'name' => $faker->firstName($gender = 'male'|'female') . ' ' . $faker->lastName,
+                'first_name' => $faker->firstName($gender = 'male'|'female'),
+                'middle_name' =>  $faker->lastName,
+                'last_name' => $faker->lastName,
 				'email' => $faker->email,
 				'password' => $password
             ]);

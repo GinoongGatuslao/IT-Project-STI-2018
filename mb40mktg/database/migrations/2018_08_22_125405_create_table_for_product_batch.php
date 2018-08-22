@@ -4,8 +4,9 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProductsTable extends Migration
+class CreateTableForProductBatch extends Migration
 {
+    protected $tableName = "tbl_product_batch";
     /**
      * Run the migrations.
      *
@@ -13,17 +14,11 @@ class CreateProductsTable extends Migration
      */
     public function up()
     {
-        if(!Schema::hasTable('products')){
-            Schema::create('products', function (Blueprint $table) {
+        if(!Schema::hasTable($this->tableName)){
+            Schema::create($this->tableName, function (Blueprint $table) {
                 $table->increments('id');
-                $table->text('name');
-                $table->text('price');
-                $table->integer('stock_count');
-                $table->integer('reorder_point');
-                $table->text('status');
+                $table->text('batch_name');
                 $table->text('batch_number');
-                $table->boolean('returned');
-                $table->boolean('defective');
                 $table->timestamps();
             });
         }
@@ -36,6 +31,6 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists($this->tableName);
     }
 }
