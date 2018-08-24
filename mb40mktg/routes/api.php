@@ -23,11 +23,16 @@ Route::post('logout',                           'Auth\LoginController@logout');
 Route::post('register',                         'Auth\RegisterController@register');
 
 Route::group(['middleware' => 'auth:api'], function() {
-    Route::get('product',                           'ProductController@index');
-    Route::get('product/id/{id}',                   'ProductController@filterId');
-    Route::get('product/bn/{batch_number}',         'ProductController@filterBatchNumber');
-    Route::get('product/status/{status}',           'ProductController@filterStatus');
-    Route::put('product/{id}',                      'ProductController@update');
-    Route::post('product',                          'ProductController@store');
-    Route::delete('product/{id}',                   'ProductController@delete');
+    Route::get('product/item','ProductController@getAllProductItem');
+    Route::get('product/batch','ProductController@getAllProductBatch');
+    Route::get('product/itemById/{id}','ProductController@filterItemId');
+    Route::get('product/itemByBatch/{batch_number}','ProductController@filterItemBatchNumber');
+    Route::get('product/batch/{batch_number}','ProductController@filterBatchNumber');
+    Route::get('product/status/{status}','ProductController@filterStatus');
+    Route::put('product/{id}', 'ProductController@update');
+    Route::post('product/price','ProductController@storePrice');
+    Route::post('product/item','ProductController@storeItem');
+    Route::post('product/batch','ProductController@storeBatch');
+    Route::delete('product/item/{id}','ProductController@deleteItem');
+    Route::delete('product/batch/{id}','ProductController@deleteBatch');
 });
