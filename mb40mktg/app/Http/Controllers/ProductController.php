@@ -5,12 +5,11 @@ namespace App\Http\Controllers;
 use App\ProductBatch;
 use App\ProductItem;
 use App\Price;
-use function Couchbase\defaultDecoder;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    //product/item
+    //GET product/item
     //DONE
     public function getAllProductItem() {
         return ProductItem::all();
@@ -107,30 +106,37 @@ class ProductController extends Controller
     }
 
     //todo pending
-    public function update(Request $request, $id) {
-        $product = Product::findOrFail($id);
+    public function updateItem(Request $request, $id) {
+        $product = ProductItem::findOrFail($id);
         $product->update($request->all());
         return response()->json($product, 200);
     }
 
     //todo pending
+    public function updateBatch(Request $request, $id) {
+        $product = ProductBatch::findOrFail($id);
+        $product->update($request->all());
+        return response()->json($product, 200);
+    }
+
+    //product/item/{id}
+    //DONE
     public function deleteItem($id) {
-        Product::where('id', $id)->delete();
+        ProductItem::where('id', $id)->delete();
         return $this->returnSuccess();
     }
 
-    //todo pending
+    //product/batch/{id}
+    //DONE
     public function deleteBatch($id) {
-        Product::where('id', $id)->delete();
+        ProductBatch::where('id', $id)->delete();
         return $this->returnSuccess();
     }
 
-    //todo pending
     private function returnEmpty() {
         return response()->json([], 204, ["reason"=>"No result"]);
     }
 
-    //todo pending
     private function returnSuccess() {
         return response()->json(["success"=>true], 200);
     }
