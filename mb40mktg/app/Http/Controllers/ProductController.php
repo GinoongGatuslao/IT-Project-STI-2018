@@ -6,23 +6,27 @@ use App\ProductBatch;
 use App\ProductItem;
 use App\Price;
 use Illuminate\Http\Request;
+use App\Config\StatusEnum;
 
 class ProductController extends Controller
 {
+
+    //GET product/statuslist
+    public function getStatusList() {
+        return StatusEnum::getStatus();
+    }
+
     //GET product/item
-    //DONE
     public function getAllProductItem() {
         return ProductItem::all();
     }
 
-    //product/batch
-    //DONE
+    //GET product/batch
     public function getAllProductBatch() {
         return ProductBatch::all();
     }
 
-    //product/itemById/{id}
-    //DONE
+    //GET product/itembyid/{id}
     public function filterItemId($id) {
         $productResult = ProductItem::where('id', $id);
 
@@ -35,8 +39,7 @@ class ProductController extends Controller
         }
     }
 
-    //product/item/{batch_number}
-    //DONE
+    //GET product/itembybatch/{batch_number}
     public function filterItemBatchNumber($batch_number) {
         $productResult = ProductItem::select(
             'tbl_product_item.id as product_id', 'item_name', 'stock_count',
@@ -57,8 +60,7 @@ class ProductController extends Controller
         }
     }
 
-    //product/batch/{batch_number}
-    //DONE
+    //GET product/batch/{batch_number}
     public function filterBatchNumber($batch_number) {
         $productResult = ProductBatch::where('batch_number', $batch_number);
 
@@ -71,8 +73,7 @@ class ProductController extends Controller
         }
     }
 
-    //product/status/{status}
-    //DONE
+    //GET product/status/{status}
     public function filterStatus($status) {
         $productResult = ProductItem::where('status', $status);
 
@@ -84,52 +85,60 @@ class ProductController extends Controller
                 ->get());
     }
 
-    //product/item
-    //DONE
+    //POST product/item
     public function storeItem(Request $request) {
         $newProduct = ProductItem::create($request->all());
         return response()->json($newProduct, 201);
     }
 
-    //product/batch
-    //DONE
+    //POST product/batch
     public function storeBatch(Request $request) {
         $newProduct = ProductBatch::create($request->all());
         return response()->json($newProduct, 201);
     }
 
-    //product/price
-    //DONE
+    //POST product/price
     public function storePrice(Request $request) {
         $newProduct = Price::create($request->all());
         return response()->json($newProduct, 201);
     }
 
-    //todo pending
+    //PUT product/item
     public function updateItem(Request $request, $id) {
         $product = ProductItem::findOrFail($id);
         $product->update($request->all());
         return response()->json($product, 200);
     }
 
-    //todo pending
+    //PUT product/batch
     public function updateBatch(Request $request, $id) {
         $product = ProductBatch::findOrFail($id);
         $product->update($request->all());
         return response()->json($product, 200);
     }
 
-    //product/item/{id}
-    //DONE
+    //PUT product/price
+    public function updatePrice(Request $request, $id) {
+        $product = Price::findOrFail($id);
+        $product->update($request->all());
+        return response()->json($product, 200);
+    }
+
+    //DELETE product/item/{id}
     public function deleteItem($id) {
         ProductItem::where('id', $id)->delete();
         return $this->returnSuccess();
     }
 
-    //product/batch/{id}
-    //DONE
+    //DELETE product/batch/{id}
     public function deleteBatch($id) {
         ProductBatch::where('id', $id)->delete();
+        return $this->returnSuccess();
+    }
+
+    //DELETE product/price/{id}
+    public function deletePrice($id) {
+        Price::where('id', $id)->delete();
         return $this->returnSuccess();
     }
 
