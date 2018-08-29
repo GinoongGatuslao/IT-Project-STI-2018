@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\ProductBatch;
 use App\ProductItem;
-use App\Price;
 use Illuminate\Http\Request;
 use App\Config\StatusEnum;
 
@@ -97,12 +96,6 @@ class ProductController extends Controller
         return response()->json($newProduct, 201);
     }
 
-    //POST product/price
-    public function storePrice(Request $request) {
-        $newProduct = Price::create($request->all());
-        return response()->json($newProduct, 201);
-    }
-
     //PUT product/item
     public function updateItem(Request $request, $id) {
         $product = ProductItem::findOrFail($id);
@@ -117,13 +110,6 @@ class ProductController extends Controller
         return response()->json($product, 200);
     }
 
-    //PUT product/price
-    public function updatePrice(Request $request, $id) {
-        $product = Price::findOrFail($id);
-        $product->update($request->all());
-        return response()->json($product, 200);
-    }
-
     //DELETE product/item/{id}
     public function deleteItem($id) {
         ProductItem::where('id', $id)->delete();
@@ -134,19 +120,5 @@ class ProductController extends Controller
     public function deleteBatch($id) {
         ProductBatch::where('id', $id)->delete();
         return $this->returnSuccess();
-    }
-
-    //DELETE product/price/{id}
-    public function deletePrice($id) {
-        Price::where('id', $id)->delete();
-        return $this->returnSuccess();
-    }
-
-    private function returnEmpty() {
-        return response()->json([], 204, ["reason"=>"No result"]);
-    }
-
-    private function returnSuccess() {
-        return response()->json(["success"=>true], 200);
     }
 }

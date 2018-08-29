@@ -10,4 +10,12 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public function returnEmpty() {
+        return response()->json([], 204, ["reason"=>"No result"]);
+    }
+
+    public function returnSuccess() {
+        return response()->json(["success"=>true], 200);
+    }
 }

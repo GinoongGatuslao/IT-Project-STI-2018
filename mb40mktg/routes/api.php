@@ -1,6 +1,5 @@
 <?php
 
-use App\Product;
 use Illuminate\Http\Request;
 
 /*
@@ -34,14 +33,34 @@ Route::group(['middleware' => 'auth:api'], function() {
 
     Route::post('product/item','ProductController@storeItem');
     Route::post('product/batch','ProductController@storeBatch');
-    Route::post('product/price','ProductController@storePrice');
 
     Route::put('product/updateitem/{id}', 'ProductController@updateItem');
     Route::put('product/updatebatch/{id}', 'ProductController@updateBatch');
-    Route::put('product/updateprice/{id}', 'ProductController@updatePrice');
 
     Route::delete('product/item/{id}','ProductController@deleteItem');
     Route::delete('product/batch/{id}','ProductController@deleteBatch');
-    Route::delete('product/price/{id}','ProductController@deletePrice');
-    //lacking update for prices...
+
+    /**
+     * PRICE
+     */
+    Route::post('price/price','PriceController@storePrice');
+    Route::put('price/updateprice/{id}', 'PriceController@updatePrice');
+    Route::delete('price/price/{id}','PriceController@deletePrice');
+
+    /**
+     * LOAN
+     */
+    Route::post('loan/loan', 'LoanController@storeLoan');
+    Route::put('loan/updateloan', 'LoanController@updateLoan');
+    Route::delete('loan/deleteloan', 'LoanController@deleteLoan');
+
+    /**
+     * TRANSACTION
+     */
+    Route::get('transaction', 'TransactionController@getAll');
+    Route::get('transaction/id/{id}', 'TransactionController@findId');
+    Route::get('transaction/account/{id}', 'TransactionController@getTransactionByAccount');
+    Route::get('transaction/collector/{id}', 'TransactionController@getTransactionByCollector');
+    Route::get('transaction/loan/{id}', 'TransactionController@getTransactionByLoan');
+    Route::get('transaction/range', 'TransactionController@getTransactionByRange');
 });
