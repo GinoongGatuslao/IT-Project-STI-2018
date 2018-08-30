@@ -26,7 +26,7 @@ class UsersTableSeeder extends Seeder
 			'first_name' => "John",
 			'middle_name' => "Freakin",
 			'last_name' => "doe",
-			'email' => "root@root.com",
+			'username' => "root@root.com",
 			'password' => $password
         ]);
 
@@ -38,7 +38,7 @@ class UsersTableSeeder extends Seeder
                 'first_name' => $faker->firstName($gender = 'male'|'female'),
                 'middle_name' =>  $faker->lastName,
                 'last_name' => $faker->lastName,
-				'email' => $faker->email,
+				'username' => $faker->email,
 				'password' => $password
             ]);
         }

@@ -1,0 +1,42 @@
+apply plugin: 'com.android.application'
+apply from: 'dependencies.gradle'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.android.itproj.mb40marketing"
+        minSdkVersion 22
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "host", "\"https://05bb7b95.ngrok.io\"")
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation junit
+    implementation androidSupport
+    implementation retrofit
+    implementation io
+    implementation picasso
+    implementation greenDAO
+    implementation apache
+    implementation recyclerView
+    implementation butterKnife
+    annotationProcessor butterKnifeAnnotation
+    implementation lombok
+    annotationProcessor lombokAnnotation
+    implementation stetho
+    implementation dagger
+    annotationProcessor daggerAnnotation
+    implementation rxjava
+}
