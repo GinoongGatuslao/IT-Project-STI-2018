@@ -39,14 +39,14 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.accountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.inventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addLoanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editLoanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.archiveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.accountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addStaffAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewCollectorAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewClientAccountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.inventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addItemByBatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -122,24 +122,24 @@
             // confirmClientInfoToolStripMenuItem
             // 
             this.confirmClientInfoToolStripMenuItem.Name = "confirmClientInfoToolStripMenuItem";
-            this.confirmClientInfoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.confirmClientInfoToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.confirmClientInfoToolStripMenuItem.Text = "Confirm Client Info";
             // 
             // dashboardToolStripMenuItem
             // 
             this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
-            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.dashboardToolStripMenuItem.Text = "Dashboard";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(173, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // loanToolStripMenuItem
@@ -152,6 +152,25 @@
             this.loanToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
             this.loanToolStripMenuItem.Text = "Loan";
             // 
+            // addLoanToolStripMenuItem
+            // 
+            this.addLoanToolStripMenuItem.Name = "addLoanToolStripMenuItem";
+            this.addLoanToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.addLoanToolStripMenuItem.Text = "Add Loan";
+            // 
+            // editLoanToolStripMenuItem
+            // 
+            this.editLoanToolStripMenuItem.Name = "editLoanToolStripMenuItem";
+            this.editLoanToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.editLoanToolStripMenuItem.Text = "View Loan";
+            this.editLoanToolStripMenuItem.Click += new System.EventHandler(this.editLoanToolStripMenuItem_Click);
+            // 
+            // archiveToolStripMenuItem
+            // 
+            this.archiveToolStripMenuItem.Name = "archiveToolStripMenuItem";
+            this.archiveToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.archiveToolStripMenuItem.Text = "Archive";
+            // 
             // accountsToolStripMenuItem
             // 
             this.accountsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -161,35 +180,6 @@
             this.accountsToolStripMenuItem.Name = "accountsToolStripMenuItem";
             this.accountsToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.accountsToolStripMenuItem.Text = "Accounts";
-            // 
-            // inventoryToolStripMenuItem
-            // 
-            this.inventoryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addItemToolStripMenuItem,
-            this.addItemByBatchToolStripMenuItem,
-            this.viewItemsToolStripMenuItem});
-            this.inventoryToolStripMenuItem.Name = "inventoryToolStripMenuItem";
-            this.inventoryToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
-            this.inventoryToolStripMenuItem.Text = "Inventory";
-            // 
-            // addLoanToolStripMenuItem
-            // 
-            this.addLoanToolStripMenuItem.Name = "addLoanToolStripMenuItem";
-            this.addLoanToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.addLoanToolStripMenuItem.Text = "Add Loan";
-            // 
-            // editLoanToolStripMenuItem
-            // 
-            this.editLoanToolStripMenuItem.Name = "editLoanToolStripMenuItem";
-            this.editLoanToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.editLoanToolStripMenuItem.Text = "View Loan";
-            this.editLoanToolStripMenuItem.Click += new System.EventHandler(this.editLoanToolStripMenuItem_Click);
-            // 
-            // archiveToolStripMenuItem
-            // 
-            this.archiveToolStripMenuItem.Name = "archiveToolStripMenuItem";
-            this.archiveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.archiveToolStripMenuItem.Text = "Archive";
             // 
             // addStaffAccountToolStripMenuItem
             // 
@@ -209,22 +199,32 @@
             this.viewClientAccountsToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
             this.viewClientAccountsToolStripMenuItem.Text = "View Client Accounts";
             // 
+            // inventoryToolStripMenuItem
+            // 
+            this.inventoryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addItemToolStripMenuItem,
+            this.addItemByBatchToolStripMenuItem,
+            this.viewItemsToolStripMenuItem});
+            this.inventoryToolStripMenuItem.Name = "inventoryToolStripMenuItem";
+            this.inventoryToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
+            this.inventoryToolStripMenuItem.Text = "Inventory";
+            // 
             // addItemToolStripMenuItem
             // 
             this.addItemToolStripMenuItem.Name = "addItemToolStripMenuItem";
-            this.addItemToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addItemToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.addItemToolStripMenuItem.Text = "Add Item";
             // 
             // addItemByBatchToolStripMenuItem
             // 
             this.addItemByBatchToolStripMenuItem.Name = "addItemByBatchToolStripMenuItem";
-            this.addItemByBatchToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addItemByBatchToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.addItemByBatchToolStripMenuItem.Text = "Add Item by Batch";
             // 
             // viewItemsToolStripMenuItem
             // 
             this.viewItemsToolStripMenuItem.Name = "viewItemsToolStripMenuItem";
-            this.viewItemsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewItemsToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.viewItemsToolStripMenuItem.Text = "View Items";
             // 
             // MainForm
