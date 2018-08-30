@@ -2,16 +2,22 @@ package com.android.itproj.mb40marketing.helper.interfaces;
 
 import com.android.itproj.mb40marketing.model.UserModel;
 
-public interface AuthenticationCallback {
-    void onRegisterSuccess(UserModel model);
+public class AuthenticationCallback {
+    public interface AuthLoginCallback {
+        void onLoginSuccess(UserModel model);
 
-    void onRegisterFailed(Throwable e);
+        void onLoginFailed(Throwable e);
+    }
 
-    void onLoginSuccess(UserModel model);
+    public interface AuthLogoutCallback {
+        void onLogoutSuccess();
 
-    void onLoginFailed(Throwable e);
+        void onLogoutFailed(Throwable e);
+    }
 
-    void onLogoutSuccess();
+    public interface AuthRegisterCallback {
+        void onRegisterSuccess(UserModel model);
 
-    void onLogoutFailed(Throwable e);
+        void onRegisterFailed(Throwable e);
+    }
 }

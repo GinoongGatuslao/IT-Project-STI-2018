@@ -3,6 +3,8 @@ package com.android.itproj.mb40marketing.view.activities;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -31,7 +33,7 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends FragmentActivity implements AuthenticationCallback{
+public class LoginActivity extends Activity implements AuthenticationCallback.AuthLoginCallback{
 
     private static final String TAG = "LoginActivity";
 
@@ -74,6 +76,8 @@ public class LoginActivity extends FragmentActivity implements AuthenticationCal
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+                mEmailView.setText("test_admin");
+                mPasswordView.setText("try123");
                 attemptLogin();
             }
         });
@@ -81,24 +85,16 @@ public class LoginActivity extends FragmentActivity implements AuthenticationCal
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
 
-        authController = new AuthenticationController(this, this);
-    }
-
-
-
-    @Override
-    public void onRegisterSuccess(UserModel model) {
-
-    }
-
-    @Override
-    public void onRegisterFailed(Throwable e) {
-
+        authController = new AuthenticationController(this);
     }
 
     @Override
     public void onLoginSuccess(UserModel model) {
-        Log.d(TAG, "onLoginSuccess: " + model.toString());
+        showProgress(false);
+        Log.d(TAG, "onLoginSuccess: " + model);
+        Intent goToHome = new Intent(this, HomeActivity.class);
+        startActivity(goToHome);
+        finish();
     }
 
     @Override
@@ -106,16 +102,6 @@ public class LoginActivity extends FragmentActivity implements AuthenticationCal
         Log.e(TAG, "onLoginFailed: ", e);
         mPasswordView.setError(getString(R.string.error_incorrect_password));
         mPasswordView.requestFocus();
-    }
-
-    @Override
-    public void onLogoutSuccess() {
-
-    }
-
-    @Override
-    public void onLogoutFailed(Throwable e) {
-
     }
 
     private void populateAutoComplete() {
@@ -206,7 +192,7 @@ public class LoginActivity extends FragmentActivity implements AuthenticationCal
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            authController.login(email, password);
+            authController.login(email, password, this);
             /*mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);*/
         }

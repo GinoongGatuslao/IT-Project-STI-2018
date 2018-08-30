@@ -2,6 +2,7 @@ package com.android.itproj.mb40marketing.controller;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.android.itproj.mb40marketing.BuildConfig;
 import com.android.itproj.mb40marketing.Constants;
@@ -18,7 +19,8 @@ import java.io.IOException;
 
 import javax.inject.Inject;
 
-import okhttp3.Response;
+import okhttp3.ResponseBody;
+import retrofit2.Response;
 import rx.Observer;
 import rx.subscriptions.CompositeSubscription;
 
@@ -32,7 +34,7 @@ public class AuthenticationController {
     private SharedPreferences preferences;
     private AuthenticationCallback authCallback;
 
-    public AuthenticationController(Context context, AuthenticationCallback authCallback) {
+    public AuthenticationController(Context context) {
         this.preferences = context.getSharedPreferences(Constants.SHARED_PREFS_TABLE, Context.MODE_PRIVATE);
         this.compositeSubscription = new CompositeSubscription();
         this.authCallback = authCallback;
@@ -47,7 +49,7 @@ public class AuthenticationController {
     ///////////////////////////////////////////////////////////////////////////
     // PUBLIC METHODS
     ///////////////////////////////////////////////////////////////////////////
-    public void login(String username, String password) {
+    public void login(final String username, final String password, final AuthenticationCallback.AuthLoginCallback authCallback) {
         compositeSubscription.add(
                 restAPICalls
                         .login(
@@ -65,16 +67,23 @@ public class AuthenticationController {
 
                             @Override
                             public void onNext(UserModel userModel) {
-                                authCallback.onLoginSuccess(userModel);
+                                if (preferences != null) {
+                                    preferences
+                                            .edit().putString(Constants.SHARED_PREFS_KEY_TOKEN, userModel.getApi_token())
+                                            .apply();
+                                    authCallback.onLoginSuccess(userModel);
+                                } else {
+                                    authCallback.onLoginFailed(new Throwable("App Error! Unable to save on preference."));
+                                }
                             }
                         })
         );
     }
 
-    public void logout() {
+    public void logout(final AuthenticationCallback.AuthLogoutCallback authCallback) {
         compositeSubscription.add(restAPICalls
                 .logout()
-                .subscribe(new Observer<Response>() {
+                .subscribe(new Observer<Response<ResponseBody>>() {
                     @Override
                     public void onCompleted() {
 
@@ -86,9 +95,16 @@ public class AuthenticationController {
                     }
 
                     @Override
-                    public void onNext(Response response) {
+                    public void onNext(Response<ResponseBody> response) {
                         if (response.code() == HttpStatus.SC_OK) {
-                            authCallback.onLogoutSuccess();
+                            if (preferences != null) {
+                                preferences
+                                        .edit().remove(Constants.SHARED_PREFS_KEY_TOKEN)
+                                        .apply();
+                                authCallback.onLogoutSuccess();
+                            } else {
+                                authCallback.onLogoutFailed(new Throwable("Warning! Unable to clear preference."));
+                            }
                         } else {
                             try {
                                 authCallback.onLogoutFailed(new Throwable(response.body().string()));

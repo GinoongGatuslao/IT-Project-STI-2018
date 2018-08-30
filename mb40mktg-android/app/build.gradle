@@ -11,7 +11,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "host", "\"https://05bb7b95.ngrok.io\"")
+        buildConfigField("String", "host", "\"https://05bb7b95.ngrok.io/api/\"")
     }
     buildTypes {
         release {
@@ -32,6 +32,7 @@ dependencies {
     implementation apache
     implementation recyclerView
     implementation butterKnife
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     annotationProcessor butterKnifeAnnotation
     implementation lombok
     annotationProcessor lombokAnnotation

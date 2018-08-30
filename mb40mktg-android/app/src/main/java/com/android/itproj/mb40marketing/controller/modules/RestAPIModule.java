@@ -49,7 +49,7 @@ public class RestAPIModule {
                 Request authenticatedRequest =
                         chain.request()
                                 .newBuilder()
-                                .header("Authorization", "Basic " + sharedPreferences.getString(Constants.SHARED_TOKEN, "").trim())
+                                .header("Authorization", "Bearer " + sharedPreferences.getString(Constants.SHARED_PREFS_KEY_TOKEN, "").trim())
                                 .build();
                 Response originalResponse = chain.proceed(authenticatedRequest);
                 int trycount = 0;
