@@ -4,7 +4,8 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.android.itproj.mb40marketing.Constants;
-import com.android.itproj.mb40marketing.helper.restservice.RestAPICalls;
+import com.android.itproj.mb40marketing.controller.scope.UserComponentScope;
+import com.android.itproj.mb40marketing.helper.restservice.RestAPI;
 import com.android.itproj.mb40marketing.helper.restservice.RestAPIService;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 
@@ -27,22 +28,20 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
-@Module
+@Module(includes = PreferenceModule.class)
 public class RestAPIModule {
 
     File cacheFile;
-    SharedPreferences sharedPreferences;
     String baseUrl;
 
-    public RestAPIModule(SharedPreferences sharedPreferences, File cacheFile, String baseUrl) {
+    public RestAPIModule(File cacheFile, String baseUrl) {
         this.cacheFile = cacheFile;
-        this.sharedPreferences = sharedPreferences;
         this.baseUrl = baseUrl;
     }
 
+    @UserComponentScope
     @Provides
-    @Singleton
-    Retrofit providesRetrofitCall() {
+    Retrofit providesRetrofitCall(final SharedPreferences sharedPreferences) {
         Interceptor interceptor = new Interceptor() {
             @Override
             public Response intercept(Chain chain) throws IOException {
@@ -64,13 +63,13 @@ public class RestAPIModule {
             }
         };
 
-        Cache cache = new Cache(cacheFile, 10*1024*1024);
+        Cache cache = new Cache(cacheFile, 10 * 1024 * 1024);
         Dispatcher dispatcher = new Dispatcher();
         dispatcher.setMaxRequests(3);
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .connectTimeout(30, TimeUnit.SECONDS )
-                .readTimeout(30, TimeUnit.SECONDS )
-                .writeTimeout(30, TimeUnit.SECONDS )
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS)
                 .addInterceptor(interceptor)
                 .addNetworkInterceptor(new StethoInterceptor())
                 .cache(cache)
@@ -86,17 +85,17 @@ public class RestAPIModule {
                 .build();
     }
 
+    @UserComponentScope
     @Provides
-    @Singleton
     @SuppressWarnings("unused")
     public RestAPIService providesRESTService(Retrofit retrofit) {
         return retrofit.create(RestAPIService.class);
     }
 
+    @UserComponentScope
     @Provides
-    @Singleton
     @SuppressWarnings("unused")
-    public RestAPICalls providesRESTCalls(RestAPIService service) {
-        return new RestAPICalls(service);
+    public RestAPI providesRESTCalls(RestAPIService service) {
+        return new RestAPI(service);
     }
 }

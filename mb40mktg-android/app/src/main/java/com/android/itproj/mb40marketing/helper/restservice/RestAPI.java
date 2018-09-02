@@ -9,12 +9,12 @@ import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class RestAPICalls {
+public class RestAPI {
 
     private final RestAPIService restService;
-    private static final String TAG = "RestAPICalls";
+    private static final String TAG = "RestAPI";
 
-    public RestAPICalls(RestAPIService restService) {
+    public RestAPI(RestAPIService restService) {
         this.restService = restService;
     }
 

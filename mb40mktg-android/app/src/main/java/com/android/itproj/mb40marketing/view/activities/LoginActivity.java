@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.itproj.mb40marketing.CoreApp;
 import com.android.itproj.mb40marketing.R;
 import com.android.itproj.mb40marketing.controller.AuthenticationController;
 import com.android.itproj.mb40marketing.helper.interfaces.AuthenticationCallback;
@@ -49,13 +50,25 @@ public class LoginActivity extends Activity implements AuthenticationCallback.Au
     private View mProgressView;
     private View mLoginFormView;
 
-    //controller
-    private AuthenticationController authController;
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if (((CoreApp)getApplication()).getAuthState().isAuthenticated()) {
+            Intent startHome = new Intent(this, HomeActivity.class);
+            startActivity(startHome);
+            finish();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        //authentication controller
+
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -84,8 +97,6 @@ public class LoginActivity extends Activity implements AuthenticationCallback.Au
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
-
-        authController = new AuthenticationController(this);
     }
 
     @Override
@@ -192,7 +203,9 @@ public class LoginActivity extends Activity implements AuthenticationCallback.Au
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            authController.login(email, password, this);
+            ((CoreApp)getApplication())
+                    .getAuthenticationController()
+                    .login(email, password, this);
             /*mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);*/
         }

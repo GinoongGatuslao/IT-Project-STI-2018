@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.android.itproj.mb40marketing.CoreApp;
 import com.android.itproj.mb40marketing.R;
 import com.android.itproj.mb40marketing.controller.AuthenticationController;
 import com.android.itproj.mb40marketing.helper.interfaces.AuthenticationCallback;
@@ -21,8 +22,6 @@ public class HomeActivity extends FragmentActivity implements
 
     private Button logoutBtn;
 
-    private AuthenticationController authController;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,8 +29,6 @@ public class HomeActivity extends FragmentActivity implements
 
         logoutBtn = (Button) findViewById(R.id.logoutBtn);
         logoutBtn.setOnClickListener(this);
-
-        authController = new AuthenticationController(this);
     }
 
     @Override
@@ -50,7 +47,8 @@ public class HomeActivity extends FragmentActivity implements
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.logoutBtn:
-                authController
+                ((CoreApp)getApplication())
+                        .getAuthenticationController()
                         .logout(this);
                 break;
         }
