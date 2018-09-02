@@ -12,6 +12,7 @@ namespace WindowsFormsApp1
 {
     public partial class MainForm : Form
     {
+        List<Panel> listPanel = new List<Panel>();
     
         public static class Constants
         {
@@ -45,6 +46,29 @@ namespace WindowsFormsApp1
         private void editLoanToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void addStaffAccount_btn_Click(object sender, EventArgs e)
+        {
+            listPanel[0].BringToFront();
+        }
+
+        private void viewCollectors_btn_Click(object sender, EventArgs e)
+        {
+            listPanel[1].BringToFront();
+        }
+
+        private void viewClients_btn_Click(object sender, EventArgs e)
+        {
+            listPanel[2].BringToFront();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            listPanel.Add(addstaff_panel);
+            listPanel.Add(viewcollectors_panel);
+            listPanel.Add(viewclients_panel);
+            listPanel[0].BringToFront();
         }
     }
 }

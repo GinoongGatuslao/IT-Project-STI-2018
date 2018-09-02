@@ -20,49 +20,40 @@ namespace WindowsFormsApp1
 
         private void login_btn_Click(object sender, EventArgs e)
         {
-            /**RestClient restClient = new RestClient();
-            restClient.endPoint = "https://05bb7b95.ngrok.io/api/login?"
-                + "username=" + username_tb.Text
-                + "password=" + password_tb.Text;
-
-            Debug.WriteLine("Rest Client Created.");
-
-            string response = string.Empty;
-
-            response = restClient.LoginRequest();
-
-            Debug.WriteLine(response.ToString());**/
-
-            if (username_tb.Text != string.Empty && password_tb.Text != string.Empty)
+            //uncomment on final
+            /**if (username_tb.Text != string.Empty && password_tb.Text != string.Empty)
             {
                 RestClient restClient = new RestClient();
-                restClient.endPoint = "https://05bb7b95.ngrok.io/api/login?"
+                restClient.endPoint = "https://4cd9a60f.ngrok.io/api/login?"
                     + "username=" + username_tb.Text
                     + "&password=" + password_tb.Text;
 
                 Debug.WriteLine("Rest Client Created");
 
                 string response = string.Empty;
-                response = restClient.LoginRequest();
+                response = restClient.PostRequest();
                 string[] res = response.Split('|');
 
                 if (res[0].Equals("OK"))
-                {
+                {**/
                     this.Hide();
                     var dashboard = new MainForm();
                     dashboard.Closed += (s, args) => this.Close();
                     dashboard.Show();
-
+            /**
                     Debug.WriteLine(res[0].ToString() + "\n" + res[1].ToString());
                 } else
                 {
-                    //error message
                     Debug.WriteLine("error login");
+                    MessageBox.Show("Invalid username or password.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             } else
             {
-                //add error dialog
-            }
+                MessageBox.Show("Username and password cannot be empty", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }**/
         }
 
         private void Login_Load(object sender, EventArgs e)

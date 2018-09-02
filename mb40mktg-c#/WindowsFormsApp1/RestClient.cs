@@ -17,11 +17,11 @@ namespace WindowsFormsApp1
             endPoint = string.Empty;
         }
 
-        public string LoginRequest()
+        public string PostRequest()
         {
             string responseValue = string.Empty;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(endPoint);
-            request.Method = "POST"; //change in the future
+            request.Method = "POST";
 
             //String authHeader = System.Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes(username + ":" + password));
             //request.Headers.Add("Authorizationasic " + authHeader);
@@ -83,6 +83,44 @@ namespace WindowsFormsApp1
                     }
                 }
             }**/
+
+            return responseValue;
+        }
+
+        public string GetRequest()
+        {
+            string responseValue = string.Empty;
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(endPoint);
+            request.Method = "GET";
+
+            HttpWebResponse response = null;
+
+            try
+            {
+                response = (HttpWebResponse)request.GetResponse();
+                using (Stream responseStream = response.GetResponseStream())
+                {
+                    if (responseStream != null)
+                    {
+                        using (StreamReader reader = new StreamReader(responseStream))
+                        {
+                            responseValue = reader.ReadToEnd();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //We catch non Http 200 responses here.
+                responseValue = "{\"errorMessages\":[\"" + ex.Message.ToString() + "\"],\"errors\":{}}";
+            }
+            finally
+            {
+                if (response != null)
+                {
+                    ((IDisposable)response).Dispose();
+                }
+            }
 
             return responseValue;
         }
