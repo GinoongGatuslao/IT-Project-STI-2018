@@ -17,12 +17,18 @@ class TransactionTableSeeder extends Seeder
         $faker = \Faker\Factory::create();
 
         for ($i = 0; $i < 20; $i++) {
-            Transaction::create([
-                'account_id' => $faker->numberBetween(1, 10),
-                'loan_id' => $faker->numberBetween(1, 10),
-                'collector_id' => $faker->numberBetween(1, 10),
-                'payment' => $faker->randomElement(array(1399, 1299, 2500, 995))
-            ]);
+            $accntId = $faker->numberBetween(1, 10);
+            $loanId = $faker->unique()->numberBetween(1, 20);
+            $fakeLoanPayments = $faker->numberBetween(1, 10);
+            $paymentMade = $faker->randomElement(array(1399, 1299, 2500, 995));
+            for ($x = 0; $x < $fakeLoanPayments; $x++) {
+                Transaction::create([
+                    'account_id' => $accntId,
+                    'loan_id' => $loanId,
+                    'collector_id' => $faker->numberBetween(1, 10),
+                    'payment' => $paymentMade
+                ]);
+            }
         }
     }
 }
