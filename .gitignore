@@ -12,3 +12,14 @@ npm-debug.log
 yarn-error.log
 .env
 .phpunit.result.cache
+
+mb40mktg-android/*.iml
+mb40mktg-android/.gradle
+mb40mktg-android/local.properties
+mb40mktg-android/.idea/libraries
+mb40mktg-android/.idea/modules.xml
+mb40mktg-android/.idea/workspace.xml
+mb40mktg-android/.DS_Store
+mb40mktg-android/build
+mb40mktg-android/captures
+mb40mktg-android/.externalNativeBuild
