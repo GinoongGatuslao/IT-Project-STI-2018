@@ -1,10 +1,13 @@
 package com.android.itproj.mb40marketing.helper.restservice;
 
+import com.android.itproj.mb40marketing.model.LoanModel;
+import com.android.itproj.mb40marketing.model.PriceModel;
 import com.android.itproj.mb40marketing.model.ProductBatchModel;
 import com.android.itproj.mb40marketing.model.ProductItemModel;
 import com.android.itproj.mb40marketing.model.TransactionModel;
 import com.android.itproj.mb40marketing.model.UserLogin;
 import com.android.itproj.mb40marketing.model.UserModel;
+import com.google.gson.JsonObject;
 
 import java.util.List;
 import java.util.Map;
@@ -30,6 +33,22 @@ public interface RestAPIService {
 
     @POST("logout")
     Observable<Response<ResponseBody>> doLogout();
+
+    @Headers("Content-Type:application/json")
+    @POST("product/item")
+    Observable<ProductItemModel> storeItem(@Body JsonObject jsonRequest);
+
+    @Headers("Content-Type:application/json")
+    @POST("product/batch")
+    Observable<ProductBatchModel> storeBatch(@Body JsonObject jsonRequest);
+
+    @Headers("Content-Type:application/json")
+    @POST("price/price")
+    Observable<PriceModel> storePrice(@Body JsonObject jsonRequest);
+
+    @Headers("Content-Type:application/json")
+    @POST("loan/loan")
+    Observable<LoanModel> storeLoan(@Body JsonObject jsonRequest);
 
     ///////////////////////////////////////////////////////////////////////////
     // GET
