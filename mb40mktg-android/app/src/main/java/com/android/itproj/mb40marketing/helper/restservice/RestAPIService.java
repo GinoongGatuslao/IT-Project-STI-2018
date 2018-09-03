@@ -1,21 +1,72 @@
 package com.android.itproj.mb40marketing.helper.restservice;
 
+import com.android.itproj.mb40marketing.model.ProductBatchModel;
+import com.android.itproj.mb40marketing.model.ProductItemModel;
+import com.android.itproj.mb40marketing.model.TransactionModel;
 import com.android.itproj.mb40marketing.model.UserLogin;
 import com.android.itproj.mb40marketing.model.UserModel;
+
+import java.util.List;
+import java.util.Map;
 
 import okhttp3.ResponseBody;
 import retrofit2.Response;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.HeaderMap;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import rx.Observable;
 
 public interface RestAPIService {
 
+    ///////////////////////////////////////////////////////////////////////////
+    // POST
+    ///////////////////////////////////////////////////////////////////////////
     @POST("login")
     Observable<UserModel> doLogin(@Body UserLogin userLogin);
 
     @POST("logout")
     Observable<Response<ResponseBody>> doLogout();
 
+    ///////////////////////////////////////////////////////////////////////////
+    // GET
+    ///////////////////////////////////////////////////////////////////////////
+    @GET("product/item")
+    Observable<List<ProductItemModel>> getAllItems();
 
+    @GET("product/batch")
+    Observable<List<ProductBatchModel>> getAllBatch();
+
+    @GET("product/itembyid/{id}")
+    Observable<ProductItemModel> getItemById(@Path("id") String itemId);
+
+    @GET("product/itemsbybatch/{batch_number}")
+    Observable<List<ProductItemModel>> getItemsByBatchNumber(@Path("batch_number") String batchNumber);
+
+    @GET("product/batch/{batch_number}")
+    Observable<ProductBatchModel> getBatchNumber();
+
+    @GET("product/status/{status}")
+    Observable<List<ProductItemModel>> getItemsByStatus(@Path("status") String status);
+
+    @GET("transaction")
+    Observable<List<TransactionModel>> getAllTransactions();
+
+    @GET("transaction/id/{trans_id}")
+    Observable<TransactionModel> getTransactionById(@Path("trans_id") String trans_id);
+
+    @GET("transaction/account/{accnt_id}")
+    Observable<List<TransactionModel>> getTransactionsByAccountId(@Path("accnt_id") String accnt_id);
+
+    @GET("transaction/collector/{collector_id}")
+    Observable<List<TransactionModel>> getTransactionsByCollector(@Path("collector_id") String collector_id);
+
+    @GET("transaction/loan/{loan_id}")
+    Observable<List<TransactionModel>> getTransactionsByLoan(@Path("loan_id") String loan_id);
+
+    @GET("transaction/pay_range")
+    Observable<List<TransactionModel>> getTransactionsWithinRange(@HeaderMap Map<String, String> headers);
 }
