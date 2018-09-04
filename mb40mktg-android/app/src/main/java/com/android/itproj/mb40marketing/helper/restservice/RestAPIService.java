@@ -26,7 +26,7 @@ import rx.Observable;
 public interface RestAPIService {
 
     ///////////////////////////////////////////////////////////////////////////
-    // POST
+    // AUTH
     ///////////////////////////////////////////////////////////////////////////
     @POST("login")
     Observable<UserModel> doLogin(@Body UserLogin userLogin);
@@ -34,30 +34,12 @@ public interface RestAPIService {
     @POST("logout")
     Observable<Response<ResponseBody>> doLogout();
 
-    @Headers("Content-Type:application/json")
-    @POST("product/item")
-    Observable<ProductItemModel> storeItem(@Body JsonObject jsonRequest);
-
-    @Headers("Content-Type:application/json")
-    @POST("product/batch")
-    Observable<ProductBatchModel> storeBatch(@Body JsonObject jsonRequest);
-
-    @Headers("Content-Type:application/json")
-    @POST("price/price")
-    Observable<PriceModel> storePrice(@Body JsonObject jsonRequest);
-
-    @Headers("Content-Type:application/json")
-    @POST("loan/loan")
-    Observable<LoanModel> storeLoan(@Body JsonObject jsonRequest);
-
     ///////////////////////////////////////////////////////////////////////////
-    // GET
+    // PRODUCT
     ///////////////////////////////////////////////////////////////////////////
+
     @GET("product/item")
     Observable<List<ProductItemModel>> getAllItems();
-
-    @GET("product/batch")
-    Observable<List<ProductBatchModel>> getAllBatch();
 
     @GET("product/itembyid/{id}")
     Observable<ProductItemModel> getItemById(@Path("id") String itemId);
@@ -65,12 +47,44 @@ public interface RestAPIService {
     @GET("product/itemsbybatch/{batch_number}")
     Observable<List<ProductItemModel>> getItemsByBatchNumber(@Path("batch_number") String batchNumber);
 
-    @GET("product/batch/{batch_number}")
-    Observable<ProductBatchModel> getBatchNumber();
-
     @GET("product/status/{status}")
     Observable<List<ProductItemModel>> getItemsByStatus(@Path("status") String status);
 
+    @Headers("Content-Type:application/json")
+    @POST("product/item")
+    Observable<ProductItemModel> storeItem(@Body JsonObject jsonRequest);
+
+    ///////////////////////////////////////////////////////////////////////////
+    // BATCH
+    ///////////////////////////////////////////////////////////////////////////
+
+    @GET("product/batch")
+    Observable<List<ProductBatchModel>> getAllBatch();
+
+    @GET("product/batch/{batch_number}")
+    Observable<ProductBatchModel> getBatchNumber();
+
+    @Headers("Content-Type:application/json")
+    @POST("product/batch")
+    Observable<ProductBatchModel> storeBatch(@Body JsonObject jsonRequest);
+
+    ///////////////////////////////////////////////////////////////////////////
+    // PRICE
+    ///////////////////////////////////////////////////////////////////////////
+    @Headers("Content-Type:application/json")
+    @POST("price/price")
+    Observable<PriceModel> storePrice(@Body JsonObject jsonRequest);
+
+    ///////////////////////////////////////////////////////////////////////////
+    // LOAN
+    ///////////////////////////////////////////////////////////////////////////
+    @Headers("Content-Type:application/json")
+    @POST("loan/loan")
+    Observable<LoanModel> storeLoan(@Body JsonObject jsonRequest);
+
+    ///////////////////////////////////////////////////////////////////////////
+    // TRANSACTION
+    ///////////////////////////////////////////////////////////////////////////
     @GET("transaction")
     Observable<List<TransactionModel>> getAllTransactions();
 
