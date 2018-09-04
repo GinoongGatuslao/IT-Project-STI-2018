@@ -24,8 +24,8 @@ Route::post('logout',                           'Auth\LoginController@logout');
 Route::post('register',                         'Auth\RegisterController@register');
 
 Route::group(['middleware' => 'auth:api'], function() {
-    Route::get('product/item','ProductController@getAllProductItem');
-    Route::get('product/batch','ProductController@getAllProductBatch');
+    Route::get('product/additem','ProductController@getAllProductItem');
+    Route::get('product/addbatch','ProductController@getAllProductBatch');
     Route::get('product/itembyid/{id}','ProductController@filterItemId');
     Route::get('product/itemsbybatch/{batch_number}','ProductController@filterItemBatchNumber');
     Route::get('product/batch/{batch_number}','ProductController@filterBatchNumber');
@@ -43,19 +43,20 @@ Route::group(['middleware' => 'auth:api'], function() {
     /**
      * PRICE
      */
-    Route::post('price/price','PriceController@storePrice');
+    Route::post('price/addprice','PriceController@storePrice');
     Route::put('price/updateprice/{id}', 'PriceController@updatePrice');
     Route::delete('price/price/{id}','PriceController@deletePrice');
 
     /**
      * LOAN
      */
-    Route::post('loan/loan', 'LoanController@storeLoan');
+    Route::post('loan/addloan', 'LoanController@storeLoan');
     Route::put('loan/updateloan', 'LoanController@updateLoan');
     Route::delete('loan/deleteloan', 'LoanController@deleteLoan');
 
     /**
      * TRANSACTION
+     * lacking adding of transaction record
      */
     Route::get('transaction', 'TransactionController@getAll');
     Route::get('transaction/id/{id}', 'TransactionController@findId');
