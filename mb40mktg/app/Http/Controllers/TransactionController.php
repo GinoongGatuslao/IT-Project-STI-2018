@@ -36,7 +36,7 @@ class TransactionController extends Controller
         return response()->json($transaction->get(), 200);
     }
 
-    public function getTransactionByRange(Request $request)
+    public function getTransactionByPaymentRange(Request $request)
     {
         $min = $request->header('min');
         $max = $request->header('max');

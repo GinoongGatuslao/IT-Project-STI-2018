@@ -27,7 +27,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('product/item','ProductController@getAllProductItem');
     Route::get('product/batch','ProductController@getAllProductBatch');
     Route::get('product/itembyid/{id}','ProductController@filterItemId');
-    Route::get('product/itembybatch/{batch_number}','ProductController@filterItemBatchNumber');
+    Route::get('product/itemsbybatch/{batch_number}','ProductController@filterItemBatchNumber');
     Route::get('product/batch/{batch_number}','ProductController@filterBatchNumber');
     Route::get('product/status/{status}','ProductController@filterStatus');
 
@@ -62,5 +62,5 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('transaction/account/{id}', 'TransactionController@getTransactionByAccount');
     Route::get('transaction/collector/{id}', 'TransactionController@getTransactionByCollector');
     Route::get('transaction/loan/{id}', 'TransactionController@getTransactionByLoan');
-    Route::get('transaction/range', 'TransactionController@getTransactionByRange');
+    Route::get('transaction/pay_range', 'TransactionController@getTransactionByPaymentRange');
 });
