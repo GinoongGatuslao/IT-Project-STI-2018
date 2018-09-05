@@ -38,12 +38,14 @@ public class AuthStateModule {
         }
 
         public void saveKey(String key) {
+            isAuthenticated = true;
             sharedPreferences
                     .edit().putString(Constants.SHARED_PREFS_KEY_TOKEN, key)
                     .apply();
         }
 
         public void destroyKey() {
+            isAuthenticated = false;
             sharedPreferences
                     .edit().remove(Constants.SHARED_PREFS_KEY_TOKEN)
                     .apply();

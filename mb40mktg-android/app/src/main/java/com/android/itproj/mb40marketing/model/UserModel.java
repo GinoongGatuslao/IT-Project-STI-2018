@@ -24,13 +24,33 @@ public class UserModel {
     @Getter
     private String last_name;
 
-    @SerializedName("email")
+    @SerializedName("address")
     @Getter
-    private String email;
+    private String address;
 
-    @SerializedName("password")
+    @SerializedName("contact")
     @Getter
-    private String password;
+    private String contact;
+
+    @SerializedName("birth")
+    @Getter
+    private String birth;
+
+    @SerializedName("occupation")
+    @Getter
+    private String occupation;
+
+    @SerializedName("income")
+    @Getter
+    private String income;
+
+    @SerializedName("est_monthly_expenses")
+    @Getter
+    private String est_monthly_expenses;
+
+    @SerializedName("username")
+    @Getter
+    private String username;
 
     @SerializedName("api_token")
     @Getter
