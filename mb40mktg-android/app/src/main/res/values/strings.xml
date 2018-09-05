@@ -2,7 +2,7 @@
     <string name="app_name">MB40 Marketing</string>
 
     <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
+    <string name="prompt_username">Username</string>
     <string name="prompt_password">Password</string>
     <string name="retype_password">Retype Password</string>
     <string name="action_sign_in">Sign in or register</string>
@@ -13,6 +13,16 @@
     <string name="error_unmatched_password">Password doesn\'t match</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Storage permissions is required for accessing your uploadable files."
-    </string>
+    <string name="permission_rationale">"Storage permissions is required for accessing your uploadable files."</string>
+
+    <!-- Strings related to registration -->
+    <string name="prompt_given_name">Given Name</string>
+    <string name="prompt_middle_name">Middle Name</string>
+    <string name="prompt_last_name">Family Name</string>
+    <string name="prompt_address">Address</string>
+    <string name="prompt_contact">Contact</string>
+    <string name="prompt_birth">Birth date(mm/dd/yyyy)</string>
+    <string name="prompt_occupation">Occupation</string>
+    <string name="prompt_income">Income</string>
+    <string name="prompt_est_monthly_expenses">Est. Monthly Expenses</string>
 </resources>

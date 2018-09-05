@@ -27,8 +27,13 @@ public class HomeActivity extends FragmentActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        Log.d(TAG, "onCreate: " + ((CoreApp) getApplication()).getAuthState());
+
         logoutBtn = (Button) findViewById(R.id.logoutBtn);
         logoutBtn.setOnClickListener(this);
+
+        Log.d(TAG, "is Auth: " + ((CoreApp)getApplication()).getAuthState().isAuthenticated()
+                + "Auth String: " + ((CoreApp) getApplication()).getAuthState().getAuthString());
     }
 
     @Override
