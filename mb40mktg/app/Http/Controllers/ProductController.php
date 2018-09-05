@@ -10,11 +10,6 @@ use App\Config\StatusEnum;
 class ProductController extends Controller
 {
 
-    //GET product/statuslist
-    public function getStatusList() {
-        return StatusEnum::getStatus();
-    }
-
     //GET product/item
     public function getAllProductItem() {
         return ProductItem::all();

@@ -17,7 +17,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('statuslist', 'ProductController@getStatusList');
+Route::get('statuslist', 'Controller@getStatusList');
+Route::get('usertypes', 'Controller@getUserTypes');
 
 Route::post('login',                            'Auth\LoginController@login');
 Route::post('logout',                           'Auth\LoginController@logout');
