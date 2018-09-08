@@ -52,9 +52,6 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'username' => 'required|string|max:255|unique:users',
-            'first_name' => 'required|string|max:255|unique:users',
-            'middle_name' => 'required|string|max:255|unique:users',
-            'last_name' => 'required|string|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -69,10 +66,8 @@ class RegisterController extends Controller
     {
         return User::create([
             'username' => $data['username'],
-            'first_name' => $data['first_name'],
-            'middle_name' => $data['middle_name'],
-            'last_name' => $data['last_name'],
             'password' => Hash::make($data['password']),
+            'user_type' => $data['user_type'],
         ]);
     }
 
@@ -101,7 +96,7 @@ class RegisterController extends Controller
     protected function registered(Request $request, $user)
     {
         $user->generateToken();
-        return response()->json(['data' => $user->toArray()], 201);
+        return response()->json($user, 201);
     }
 
 }
