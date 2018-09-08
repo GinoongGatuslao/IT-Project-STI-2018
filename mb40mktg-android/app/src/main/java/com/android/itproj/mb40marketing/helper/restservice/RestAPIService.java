@@ -4,10 +4,13 @@ import com.android.itproj.mb40marketing.model.LoanModel;
 import com.android.itproj.mb40marketing.model.PriceModel;
 import com.android.itproj.mb40marketing.model.ProductBatchModel;
 import com.android.itproj.mb40marketing.model.ProductItemModel;
+import com.android.itproj.mb40marketing.model.ProfileModel;
 import com.android.itproj.mb40marketing.model.TransactionModel;
 import com.android.itproj.mb40marketing.model.UserLogin;
 import com.android.itproj.mb40marketing.model.UserModel;
 import com.google.gson.JsonObject;
+
+import org.json.JSONObject;
 
 import java.util.List;
 import java.util.Map;
@@ -20,6 +23,7 @@ import retrofit2.http.Header;
 import retrofit2.http.HeaderMap;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import rx.Observable;
 
@@ -33,6 +37,26 @@ public interface RestAPIService {
 
     @POST("logout")
     Observable<Response<ResponseBody>> doLogout();
+
+    @Headers("Content-Type: application/json")
+    @POST("register")
+    Observable<JsonObject> registerUser(@Body JsonObject newUserModel);
+
+    ///////////////////////////////////////////////////////////////////////////
+    // PROFILE
+    ///////////////////////////////////////////////////////////////////////////
+
+    @GET("profile/get/{id}")
+    Observable<ProfileModel> getProfile(@Path("id") int id);
+
+    @GET("profile/user/{id}")
+    Observable<ProfileModel> getUserProfile(@Path("id") int id);
+
+    @POST("profile/createprofile")
+    Observable<ProfileModel> createProfile(@Body ProfileModel profileModel);
+
+    @PUT("profile/updateprofile")
+    Observable<ProfileModel> updateProfile(@Body ProfileModel profileModel);
 
     ///////////////////////////////////////////////////////////////////////////
     // PRODUCT

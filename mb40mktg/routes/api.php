@@ -17,13 +17,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('statuslist', 'ProductController@getStatusList');
+Route::get('statuslist', 'Controller@getStatusList');
+Route::get('usertypes', 'Controller@getUserTypes');
 
 Route::post('login',                            'Auth\LoginController@login');
 Route::post('logout',                           'Auth\LoginController@logout');
 Route::post('register',                         'Auth\RegisterController@register');
 
 Route::group(['middleware' => 'auth:api'], function() {
+    Route::get('userinfo', 'Controller@getUserInfo');
+
     Route::get('product/additem','ProductController@getAllProductItem');
     Route::get('product/addbatch','ProductController@getAllProductBatch');
     Route::get('product/itembyid/{id}','ProductController@filterItemId');
@@ -39,6 +42,14 @@ Route::group(['middleware' => 'auth:api'], function() {
 
     Route::delete('product/item/{id}','ProductController@deleteItem');
     Route::delete('product/batch/{id}','ProductController@deleteBatch');
+
+    /**
+     * PROFILE
+     */
+    Route::get('profile/get/{id}', 'ProfileController@getProfile');
+    Route::get('profile/user/{id}', 'ProfileController@getUserProfile');
+    Route::post('profile/createprofile', 'ProfileController@createProfile');
+    Route::put('profile/updateprofile', 'ProfileController@updateProfile');
 
     /**
      * PRICE

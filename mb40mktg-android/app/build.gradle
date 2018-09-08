@@ -2,16 +2,16 @@ apply plugin: 'com.android.application'
 apply from: 'dependencies.gradle'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.android.itproj.mb40marketing"
         minSdkVersion 22
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "host", "\"https://4cd9a60f.ngrok.io/api/\"")
+        buildConfigField("String", "host", "\"https://03c0beb5.ngrok.io/api/\"")
     }
     buildTypes {
         release {
@@ -32,12 +32,12 @@ dependencies {
     implementation apache
     implementation recyclerView
     implementation butterKnife
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
-    annotationProcessor butterKnifeAnnotation
     implementation lombok
-    annotationProcessor lombokAnnotation
     implementation stetho
     implementation dagger
-    annotationProcessor daggerAnnotation
     implementation rxjava
+    implementation saripaar
+    annotationProcessor butterKnifeAnnotation
+    annotationProcessor lombokAnnotation
+    annotationProcessor daggerAnnotation
 }

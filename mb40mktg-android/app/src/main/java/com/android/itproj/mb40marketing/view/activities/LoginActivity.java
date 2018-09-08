@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentActivity;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -27,14 +28,19 @@ import com.android.itproj.mb40marketing.CoreApp;
 import com.android.itproj.mb40marketing.R;
 import com.android.itproj.mb40marketing.controller.AuthenticationController;
 import com.android.itproj.mb40marketing.helper.interfaces.AuthenticationCallback;
+import com.android.itproj.mb40marketing.helper.interfaces.ProfileCallbacks;
+import com.android.itproj.mb40marketing.model.ProfileModel;
 import com.android.itproj.mb40marketing.model.UserModel;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends Activity implements AuthenticationCallback.AuthLoginCallback{
+public class LoginActivity extends AppCompatActivity implements AuthenticationCallback.AuthLoginCallback, ProfileCallbacks.ProfileRequest {
 
     private static final String TAG = "LoginActivity";
 
@@ -44,36 +50,87 @@ public class LoginActivity extends Activity implements AuthenticationCallback.Au
     private static final int REQUEST_STORAGE_PERMISSION = 0;
 
     // UI references.
-    private AutoCompleteTextView mEmailView;
-    private EditText mPasswordView;
-    private EditText mConfirmPasswordView;
-    private View mProgressView;
-    private View mLoginFormView;
-
+    @BindView(R.id.email)
+    public AutoCompleteTextView mEmailView;
+    @BindView(R.id.password)
+    public EditText mPasswordView;
+    @BindView(R.id.email_sign_in_button)
+    public Button signInButton;
+    @BindView(R.id.login_form)
+    public View mLoginFormView;
+    @BindView(R.id.login_progress)
+    public View mProgressView;
+    @BindView(R.id.createAccntText)
+    public View mCreateAccntTextView;
 
 
     @Override
     protected void onStart() {
         super.onStart();
+        Log.d(TAG, "onStart: " + ((CoreApp) getApplication()).getAuthState());
+        if (((CoreApp) getApplication()).getAuthState().isAuthenticated()) {
+            ((CoreApp)getApplication())
+                    .getProfileController()
+                    .getSavedProfile(new ProfileCallbacks.ProfileRequest() {
+                        @Override
+                        public void onProfileFetch(ProfileModel model) {
+                            Intent startHome = new Intent(LoginActivity.this, HomeActivity.class);
+                            startActivity(startHome);
+                            finish();
+                        }
 
-        if (((CoreApp)getApplication()).getAuthState().isAuthenticated()) {
-            Intent startHome = new Intent(this, HomeActivity.class);
-            startActivity(startHome);
-            finish();
+                        @Override
+                        public void onProfileFetchFailed(Throwable throwable) {
+                            Log.e(TAG, "onProfileFetchFailed: ", throwable);
+                        }
+                    });
         }
+
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        //authentication controller
+        ButterKnife.bind(this);
 
-        // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-        populateAutoComplete();
+        mayRequestPermissions();
 
-        mPasswordView = (EditText) findViewById(R.id.password);
+        initialize();
+    }
+
+    @Override
+    public void onLoginSuccess(UserModel model) {
+        Log.d(TAG, "onLoginSuccess: " + model);
+
+        ((CoreApp)getApplication())
+                .getProfileController()
+                .getUserProfile(model.getId(), this);
+    }
+
+    @Override
+    public void onLoginFailed(Throwable e) {
+        Log.e(TAG, "onLoginFailed: ", e);
+        showProgress(false);
+        mPasswordView.setError(getString(R.string.error_incorrect_password));
+        mPasswordView.requestFocus();
+    }
+
+    @Override
+    public void onProfileFetch(ProfileModel model) {
+        showProgress(false);
+        Intent goToHome = new Intent(this, HomeActivity.class);
+        startActivity(goToHome);
+        finish();
+    }
+
+    @Override
+    public void onProfileFetchFailed(Throwable throwable) {
+        showProgress(false);
+        Log.e(TAG, "onProfileFetchFailed: ", throwable);
+    }
+
+    private void initialize() {
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -85,40 +142,20 @@ public class LoginActivity extends Activity implements AuthenticationCallback.Au
             }
         });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
+        signInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                mEmailView.setText("test_admin");
-                mPasswordView.setText("try123");
                 attemptLogin();
             }
         });
 
-        mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
-    }
-
-    @Override
-    public void onLoginSuccess(UserModel model) {
-        showProgress(false);
-        Log.d(TAG, "onLoginSuccess: " + model);
-        Intent goToHome = new Intent(this, HomeActivity.class);
-        startActivity(goToHome);
-        finish();
-    }
-
-    @Override
-    public void onLoginFailed(Throwable e) {
-        Log.e(TAG, "onLoginFailed: ", e);
-        mPasswordView.setError(getString(R.string.error_incorrect_password));
-        mPasswordView.requestFocus();
-    }
-
-    private void populateAutoComplete() {
-        if (!mayRequestPermissions()) {
-            return;
-        }
+        mCreateAccntTextView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent registerIntent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(registerIntent);
+            }
+        });
     }
 
     private boolean mayRequestPermissions() {
@@ -151,7 +188,7 @@ public class LoginActivity extends Activity implements AuthenticationCallback.Au
                                            @NonNull int[] grantResults) {
         if (requestCode == REQUEST_STORAGE_PERMISSION) {
             if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                populateAutoComplete();
+                mayRequestPermissions();
             }
         }
     }
@@ -168,21 +205,18 @@ public class LoginActivity extends Activity implements AuthenticationCallback.Au
         mEmailView.setError(null);
         mPasswordView.setError(null);
 
-        // Store values at the time of the login attempt.
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
 
-        // Check for a valid password, if the user entered one.
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
         }
 
-        // Check for a valid email address.
         if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
             if (TextUtils.isEmpty(email)) {
                 mEmailView.setError(getString(R.string.error_field_required));
@@ -196,18 +230,12 @@ public class LoginActivity extends Activity implements AuthenticationCallback.Au
         }
 
         if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
             focusView.requestFocus();
         } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
             showProgress(true);
-            ((CoreApp)getApplication())
+            ((CoreApp) getApplication())
                     .getAuthenticationController()
                     .login(email, password, this);
-            /*mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);*/
         }
     }
 
@@ -250,117 +278,6 @@ public class LoginActivity extends Activity implements AuthenticationCallback.Au
             mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
             mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
-    }/*
-
-    @Override
-    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-        return new CursorLoader(this,
-                // Retrieve data rows for the device user's 'profile' contact.
-                Uri.withAppendedPath(ContactsContract.Profile.CONTENT_URI,
-                        ContactsContract.Contacts.Data.CONTENT_DIRECTORY), ProfileQuery.PROJECTION,
-
-                // Select only email addresses.
-                ContactsContract.Contacts.Data.MIMETYPE +
-                        " = ?", new String[]{ContactsContract.CommonDataKinds.Email
-                .CONTENT_ITEM_TYPE},
-
-                // Show primary email addresses first. Note that there won't be
-                // a primary email address if the user hasn't specified one.
-                ContactsContract.Contacts.Data.IS_PRIMARY + " DESC");
     }
-
-    @Override
-    public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
-        List<String> emails = new ArrayList<>();
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            emails.add(cursor.getString(ProfileQuery.ADDRESS));
-            cursor.moveToNext();
-        }
-
-        addEmailsToAutoComplete(emails);
-    }
-
-    @Override
-    public void onLoaderReset(Loader<Cursor> cursorLoader) {
-
-    }*/
-
-    /*private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
-        //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
-        ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(LoginActivity.this,
-                        android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
-
-        mEmailView.setAdapter(adapter);
-    }
-
-
-    private interface ProfileQuery {
-        String[] PROJECTION = {
-                ContactsContract.CommonDataKinds.Email.ADDRESS,
-                ContactsContract.CommonDataKinds.Email.IS_PRIMARY,
-        };
-
-        int ADDRESS = 0;
-        int IS_PRIMARY = 1;
-    }*/
-
-    /**
-     * Represents an asynchronous login/registration task used to authenticate
-     * the user.
-     */
-    /*public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
-
-        private final String mEmail;
-        private final String mPassword;
-
-        UserLoginTask(String email, String password) {
-            mEmail = email;
-            mPassword = password;
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
-
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
-
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
-            }
-
-            // TODO: register the new account here.
-            return true;
-        }
-
-        @Override
-        protected void onPostExecute(final Boolean success) {
-            mAuthTask = null;
-            showProgress(false);
-
-            if (success) {
-                finish();
-            } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
-            }
-        }
-
-        @Override
-        protected void onCancelled() {
-            mAuthTask = null;
-            showProgress(false);
-        }
-    }*/
 }
 
