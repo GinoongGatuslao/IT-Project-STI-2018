@@ -28,6 +28,8 @@ import com.android.itproj.mb40marketing.CoreApp;
 import com.android.itproj.mb40marketing.R;
 import com.android.itproj.mb40marketing.controller.AuthenticationController;
 import com.android.itproj.mb40marketing.helper.interfaces.AuthenticationCallback;
+import com.android.itproj.mb40marketing.helper.interfaces.ProfileCallbacks;
+import com.android.itproj.mb40marketing.model.ProfileModel;
 import com.android.itproj.mb40marketing.model.UserModel;
 
 import butterknife.BindView;
@@ -38,7 +40,7 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements AuthenticationCallback.AuthLoginCallback {
+public class LoginActivity extends AppCompatActivity implements AuthenticationCallback.AuthLoginCallback, ProfileCallbacks.ProfileRequest {
 
     private static final String TAG = "LoginActivity";
 
@@ -67,9 +69,21 @@ public class LoginActivity extends AppCompatActivity implements AuthenticationCa
         super.onStart();
         Log.d(TAG, "onStart: " + ((CoreApp) getApplication()).getAuthState());
         if (((CoreApp) getApplication()).getAuthState().isAuthenticated()) {
-            Intent startHome = new Intent(this, HomeActivity.class);
-            startActivity(startHome);
-            finish();
+            ((CoreApp)getApplication())
+                    .getProfileController()
+                    .getSavedProfile(new ProfileCallbacks.ProfileRequest() {
+                        @Override
+                        public void onProfileFetch(ProfileModel model) {
+                            Intent startHome = new Intent(LoginActivity.this, HomeActivity.class);
+                            startActivity(startHome);
+                            finish();
+                        }
+
+                        @Override
+                        public void onProfileFetchFailed(Throwable throwable) {
+                            Log.e(TAG, "onProfileFetchFailed: ", throwable);
+                        }
+                    });
         }
 
     }
@@ -87,11 +101,11 @@ public class LoginActivity extends AppCompatActivity implements AuthenticationCa
 
     @Override
     public void onLoginSuccess(UserModel model) {
-        showProgress(false);
         Log.d(TAG, "onLoginSuccess: " + model);
-        Intent goToHome = new Intent(this, HomeActivity.class);
-        startActivity(goToHome);
-        finish();
+
+        ((CoreApp)getApplication())
+                .getProfileController()
+                .getUserProfile(model.getId(), this);
     }
 
     @Override
@@ -100,6 +114,20 @@ public class LoginActivity extends AppCompatActivity implements AuthenticationCa
         showProgress(false);
         mPasswordView.setError(getString(R.string.error_incorrect_password));
         mPasswordView.requestFocus();
+    }
+
+    @Override
+    public void onProfileFetch(ProfileModel model) {
+        showProgress(false);
+        Intent goToHome = new Intent(this, HomeActivity.class);
+        startActivity(goToHome);
+        finish();
+    }
+
+    @Override
+    public void onProfileFetchFailed(Throwable throwable) {
+        showProgress(false);
+        Log.e(TAG, "onProfileFetchFailed: ", throwable);
     }
 
     private void initialize() {
@@ -251,6 +279,5 @@ public class LoginActivity extends AppCompatActivity implements AuthenticationCa
             mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
     }
-
 }
 

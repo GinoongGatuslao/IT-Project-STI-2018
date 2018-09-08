@@ -1,7 +1,6 @@
 package com.android.itproj.mb40marketing.controller;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 
 import com.android.itproj.mb40marketing.Constants;
 import com.android.itproj.mb40marketing.CoreApp;
@@ -9,6 +8,8 @@ import com.android.itproj.mb40marketing.controller.modules.AuthStateModule;
 import com.android.itproj.mb40marketing.helper.interfaces.AuthenticationCallback;
 import com.android.itproj.mb40marketing.model.UserLogin;
 import com.android.itproj.mb40marketing.model.UserModel;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import org.apache.http.HttpStatus;
 
@@ -62,6 +63,7 @@ public class AuthenticationController {
                             public void onNext(UserModel userModel) {
                                 if (authState != null) {
                                     authState.saveKey(userModel.getApi_token());
+                                    Constants.API_TOKEN = userModel.getApi_token();
                                     authCallback.onLoginSuccess(userModel);
                                 } else {
                                     authCallback.onLoginFailed(new Throwable("Error! Unable to save on preference."));
@@ -91,6 +93,7 @@ public class AuthenticationController {
                                 if (response.code() == HttpStatus.SC_OK) {
                                     if (authState != null) {
                                         authState.destroyKey();
+                                        Constants.API_TOKEN = "";
                                         authCallback.onLogoutSuccess();
                                     } else {
                                         authCallback.onLogoutFailed(new Throwable("Warning! Unable to clear preference."));
@@ -105,6 +108,36 @@ public class AuthenticationController {
                                 }
                             }
                         })
+        );
+    }
+
+    public void registerUser(final JsonObject userModel, final AuthenticationCallback.AuthRegisterCallback registerCallback) {
+        compositeSubscription.add(
+                ((CoreApp)context).getRestAPI()
+                .registerUser(userModel)
+                .subscribe(new Observer<JsonObject>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        registerCallback.onRegisterFailed(e);
+                    }
+
+                    @Override
+                    public void onNext(JsonObject model) {
+                        UserModel userModel = new Gson().fromJson(model, UserModel.class);
+                        if (userModel != null) {
+                            authState.saveKey(userModel.getApi_token());
+                            Constants.API_TOKEN = userModel.getApi_token();
+                            registerCallback.onRegisterSuccess(userModel);
+                        } else {
+                            registerCallback.onRegisterFailed(new Throwable("Failed to register user!"));
+                        }
+                    }
+                })
         );
     }
 }
