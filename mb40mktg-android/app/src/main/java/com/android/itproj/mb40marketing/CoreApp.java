@@ -3,6 +3,7 @@ package com.android.itproj.mb40marketing;
 import android.app.Application;
 
 import com.android.itproj.mb40marketing.controller.AuthenticationController;
+import com.android.itproj.mb40marketing.controller.ProfileController;
 import com.android.itproj.mb40marketing.controller.component.DaggerUserComponent;
 import com.android.itproj.mb40marketing.controller.component.UserComponent;
 import com.android.itproj.mb40marketing.controller.modules.AuthStateModule;
@@ -28,24 +29,36 @@ public class CoreApp extends Application {
     @Getter
     AuthenticationController authenticationController;
 
+    @Getter
+    ProfileController profileController;
+
+    @Getter
+    RestAPIModule restAPIModule;
+
     @Override
     public void onCreate() {
         super.onCreate();
 
+        restAPIModule = new RestAPIModule(this.getCacheDir(), BuildConfig.host);
         UserComponent userComponent = DaggerUserComponent
                 .builder()
                 .authStateModule(new AuthStateModule())
                 .contextModule(new ContextModule(this))
                 .preferenceModule(new PreferenceModule())
-                .restAPIModule(new RestAPIModule(this.getCacheDir(), BuildConfig.host))
+                .restAPIModule(restAPIModule)
                 .build();
 
         authenticationController = new AuthenticationController(this);
         userComponent.inject(authenticationController);
+        profileController = new ProfileController(this);
+        userComponent.inject(profileController);
 
         restAPI = userComponent.getRestAPICall();
         authState = userComponent.getAuthState();
     }
 
+    public void updateRestAPIToken() {
+        restAPIModule.updateToken(authState.getAuthString());
+    }
 
 }

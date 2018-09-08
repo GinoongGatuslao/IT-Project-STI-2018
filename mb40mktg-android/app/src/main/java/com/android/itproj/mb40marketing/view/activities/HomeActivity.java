@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.android.itproj.mb40marketing.CoreApp;
 import com.android.itproj.mb40marketing.R;
@@ -14,26 +15,33 @@ import com.android.itproj.mb40marketing.controller.AuthenticationController;
 import com.android.itproj.mb40marketing.helper.interfaces.AuthenticationCallback;
 import com.android.itproj.mb40marketing.model.UserModel;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class HomeActivity extends FragmentActivity implements
-        AuthenticationCallback.AuthLogoutCallback,
-        View.OnClickListener{
+        AuthenticationCallback.AuthLogoutCallback{
 
     private static final String TAG = "HomeActivity";
 
-    private Button logoutBtn;
+    @BindView(R.id.logoutBtn)
+    public Button logoutBtn;
+
+    @BindView(R.id.userInfo)
+    public TextView userInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        ButterKnife.bind(this);
 
-        Log.d(TAG, "onCreate: " + ((CoreApp) getApplication()).getAuthState());
-
-        logoutBtn = (Button) findViewById(R.id.logoutBtn);
-        logoutBtn.setOnClickListener(this);
-
-        Log.d(TAG, "is Auth: " + ((CoreApp)getApplication()).getAuthState().isAuthenticated()
-                + "Auth String: " + ((CoreApp) getApplication()).getAuthState().getAuthString());
+        userInfo.setText(
+                ((CoreApp)getApplication())
+                        .getProfileController()
+                        .getProfile()
+                        .toString()
+        );
     }
 
     @Override
@@ -48,14 +56,10 @@ public class HomeActivity extends FragmentActivity implements
         Log.e(TAG, "onLogoutFailed: ", e);
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.logoutBtn:
-                ((CoreApp)getApplication())
-                        .getAuthenticationController()
-                        .logout(this);
-                break;
-        }
+    @OnClick(R.id.logoutBtn)
+    public void logout() {
+        ((CoreApp)getApplication())
+                .getAuthenticationController()
+                .logout(this);
     }
 }

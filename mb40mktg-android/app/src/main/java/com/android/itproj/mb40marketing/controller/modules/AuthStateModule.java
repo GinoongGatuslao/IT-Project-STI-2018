@@ -4,6 +4,9 @@ import android.content.SharedPreferences;
 
 import com.android.itproj.mb40marketing.Constants;
 import com.android.itproj.mb40marketing.controller.scope.UserComponentScope;
+import com.android.itproj.mb40marketing.model.ProfileModel;
+import com.android.itproj.mb40marketing.model.UserModel;
+import com.google.gson.Gson;
 
 import dagger.Module;
 import dagger.Provides;
@@ -39,6 +42,7 @@ public class AuthStateModule {
 
         public void saveKey(String key) {
             isAuthenticated = true;
+            setAuthString(key);
             sharedPreferences
                     .edit().putString(Constants.SHARED_PREFS_KEY_TOKEN, key)
                     .apply();
@@ -46,6 +50,7 @@ public class AuthStateModule {
 
         public void destroyKey() {
             isAuthenticated = false;
+            setAuthString("");
             sharedPreferences
                     .edit().remove(Constants.SHARED_PREFS_KEY_TOKEN)
                     .apply();
