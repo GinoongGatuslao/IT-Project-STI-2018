@@ -15,8 +15,9 @@ class UserType
         return [
             'types' => [
                 '0' => "Administrator",
-                '1' => "Collector",
-                '2' => "Client"
+                '1' => "Staff",
+                '2' => "Collector",
+                '3' => "Client"
             ]
         ];
     }

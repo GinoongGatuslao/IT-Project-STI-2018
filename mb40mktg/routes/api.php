@@ -27,8 +27,8 @@ Route::post('register',                         'Auth\RegisterController@registe
 Route::group(['middleware' => 'auth:api'], function() {
     Route::get('userinfo', 'Controller@getUserInfo');
 
-    Route::get('product/additem','ProductController@getAllProductItem');
-    Route::get('product/addbatch','ProductController@getAllProductBatch');
+    Route::get('product/getitems','ProductController@getAllProductItem');
+    Route::get('product/getbatches','ProductController@getAllProductBatch');
     Route::get('product/itembyid/{id}','ProductController@filterItemId');
     Route::get('product/itemsbybatch/{batch_number}','ProductController@filterItemBatchNumber');
     Route::get('product/batch/{batch_number}','ProductController@filterBatchNumber');
@@ -60,6 +60,7 @@ Route::group(['middleware' => 'auth:api'], function() {
 
     /**
      * LOAN
+     * todo: add specific filtering like transactions except by collector and by loan
      */
     Route::post('loan/addloan', 'LoanController@storeLoan');
     Route::put('loan/updateloan', 'LoanController@updateLoan');
