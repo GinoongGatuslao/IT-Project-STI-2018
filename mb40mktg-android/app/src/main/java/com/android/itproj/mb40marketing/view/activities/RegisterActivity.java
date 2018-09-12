@@ -130,7 +130,7 @@ public class RegisterActivity extends AppCompatActivity implements
 
         JsonObject newUser = new JsonObject();
         newUser.addProperty("username", usernameEditText.getText().toString());
-        newUser.addProperty("user_type", 2);//as ONLY CLIENT WILL BE USING THIS REGISTRATION FORMS, COLLECTOR'S PROFILE ARE CREATED VIA THE DESKTOP APP
+        newUser.addProperty("user_type", 3);//as ONLY CLIENT WILL BE USING THIS REGISTRATION FORMS, COLLECTOR'S PROFILE ARE CREATED VIA THE DESKTOP APP
         newUser.addProperty("password", passwordEditText.getText().toString());
         newUser.addProperty("password_confirmation", confirm_passwordEditText.getText().toString());
 

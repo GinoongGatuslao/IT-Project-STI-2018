@@ -10,6 +10,7 @@ class ProductBatch extends Model {
 
     protected $fillable = [
         'batch_name',
-        'batch_number'
+        'batch_number',
+        'date_rcv'
     ];
 }

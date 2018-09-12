@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ProductBatch;
+use App\ProductBatchItem;
 use App\ProductItem;
 use Illuminate\Http\Request;
 use App\Config\StatusEnum;
@@ -87,8 +88,31 @@ class ProductController extends Controller
 
     //POST product/batch
     public function storeBatch(Request $request) {
-        $newProduct = ProductBatch::create($request->all());
-        return response()->json($newProduct, 201);
+        $productBatch = ProductBatch::create([
+            "batch_name" => $request->get("batch_name"),
+            "batch_number" => $request->get("batch_number"),
+            "date_rcv"=>$request->get("date_rcv")]);
+
+        $updatedProducts = Array();
+        foreach ($request->get("items_rcv") as $item) {
+            ProductBatchItem::create([
+                "product_item_id" => $item["item_id"],
+                "batch_id" => $productBatch->id,
+                "quantity" => $item["quantity"]
+            ]);
+
+            $prodItem = ProductItem::findOrFail($item["item_id"]);
+            $prodItem->stock_count = ($prodItem->stock_count + intval($item["quantity"]));
+            $prodItem->update();
+
+            $updatedProducts[] = $prodItem;
+        }
+
+        return response()->json($updatedProducts, 201);
+
+        //old code
+        /*$newProduct = ProductBatch::create($request->all());
+        return response()->json($newProduct, 201);*/
     }
 
     //PUT product/item
