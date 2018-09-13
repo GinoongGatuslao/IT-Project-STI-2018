@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.accountsmgt_btn = new System.Windows.Forms.Button();
             this.inventorymgt_btn = new System.Windows.Forms.Button();
             this.loanmgt_btn = new System.Windows.Forms.Button();
@@ -67,10 +68,6 @@
             this.firstname_lbl = new System.Windows.Forms.Label();
             this.viewclients_panel = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
-            this.side_panel = new System.Windows.Forms.Panel();
-            this.viewClients_btn = new System.Windows.Forms.Button();
-            this.viewCollectors_btn = new System.Windows.Forms.Button();
-            this.addStaffAccount_btn = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dashboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -112,6 +109,51 @@
             this.label13 = new System.Windows.Forms.Label();
             this.addloan_panel = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
+            this.transactionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.collectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.applicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label15 = new System.Windows.Forms.Label();
+            this.client_name_tb = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.user_id_tb = new System.Windows.Forms.TextBox();
+            this.address_tb = new System.Windows.Forms.TextBox();
+            this.contactnum_tb = new System.Windows.Forms.TextBox();
+            this.loanItem = new System.Windows.Forms.GroupBox();
+            this.client_search_btn = new System.Windows.Forms.Button();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.total_amount_tb = new System.Windows.Forms.TextBox();
+            this.loan_status_tb = new System.Windows.Forms.TextBox();
+            this.length_tb = new System.Windows.Forms.TextBox();
+            this.amortization_tb = new System.Windows.Forms.TextBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.item_id_tb = new System.Windows.Forms.TextBox();
+            this.item_name_tb = new System.Windows.Forms.TextBox();
+            this.description_tb = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.price_tb = new System.Windows.Forms.TextBox();
+            this.interest_tb = new System.Windows.Forms.TextBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.status_tb = new System.Windows.Forms.ComboBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.loan_items_fp = new System.Windows.Forms.FlowLayoutPanel();
             this.main_panel.SuspendLayout();
             this.profile_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.prof_pic_pbx)).BeginInit();
@@ -119,7 +161,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.addstaff_panel.SuspendLayout();
             this.viewclients_panel.SuspendLayout();
-            this.side_panel.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.profile_sidepanel.SuspendLayout();
             this.viewloan_panel.SuspendLayout();
@@ -127,6 +168,8 @@
             this.loansfilter_gb.SuspendLayout();
             this.search_gb.SuspendLayout();
             this.addloan_panel.SuspendLayout();
+            this.loanItem.SuspendLayout();
+            this.loan_items_fp.SuspendLayout();
             this.SuspendLayout();
             // 
             // accountsmgt_btn
@@ -166,13 +209,12 @@
             // 
             this.main_panel.Controls.Add(this.addloan_panel);
             this.main_panel.Controls.Add(this.viewloan_panel);
-            this.main_panel.Controls.Add(this.loan_sidepanel);
             this.main_panel.Controls.Add(this.profile_panel);
             this.main_panel.Controls.Add(this.viewcollectors_panel);
             this.main_panel.Controls.Add(this.addstaff_panel);
             this.main_panel.Controls.Add(this.viewclients_panel);
-            this.main_panel.Controls.Add(this.side_panel);
             this.main_panel.Controls.Add(this.menuStrip1);
+            this.main_panel.Controls.Add(this.loan_sidepanel);
             this.main_panel.Controls.Add(this.profile_sidepanel);
             this.main_panel.Location = new System.Drawing.Point(1, 1);
             this.main_panel.Name = "main_panel";
@@ -515,54 +557,14 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "VIEW CLIENTS ACCOUNT";
             // 
-            // side_panel
-            // 
-            this.side_panel.BackColor = System.Drawing.Color.DarkGray;
-            this.side_panel.Controls.Add(this.viewClients_btn);
-            this.side_panel.Controls.Add(this.viewCollectors_btn);
-            this.side_panel.Controls.Add(this.addStaffAccount_btn);
-            this.side_panel.Location = new System.Drawing.Point(3, 27);
-            this.side_panel.Name = "side_panel";
-            this.side_panel.Size = new System.Drawing.Size(200, 420);
-            this.side_panel.TabIndex = 1;
-            // 
-            // viewClients_btn
-            // 
-            this.viewClients_btn.Location = new System.Drawing.Point(3, 90);
-            this.viewClients_btn.Name = "viewClients_btn";
-            this.viewClients_btn.Size = new System.Drawing.Size(194, 39);
-            this.viewClients_btn.TabIndex = 2;
-            this.viewClients_btn.Text = "View Clients Account";
-            this.viewClients_btn.UseVisualStyleBackColor = true;
-            this.viewClients_btn.Click += new System.EventHandler(this.viewClients_btn_Click);
-            // 
-            // viewCollectors_btn
-            // 
-            this.viewCollectors_btn.Location = new System.Drawing.Point(3, 46);
-            this.viewCollectors_btn.Name = "viewCollectors_btn";
-            this.viewCollectors_btn.Size = new System.Drawing.Size(194, 39);
-            this.viewCollectors_btn.TabIndex = 1;
-            this.viewCollectors_btn.Text = "View Collectors Account";
-            this.viewCollectors_btn.UseVisualStyleBackColor = true;
-            this.viewCollectors_btn.Click += new System.EventHandler(this.viewCollectors_btn_Click);
-            // 
-            // addStaffAccount_btn
-            // 
-            this.addStaffAccount_btn.Location = new System.Drawing.Point(3, 3);
-            this.addStaffAccount_btn.Name = "addStaffAccount_btn";
-            this.addStaffAccount_btn.Size = new System.Drawing.Size(194, 39);
-            this.addStaffAccount_btn.TabIndex = 0;
-            this.addStaffAccount_btn.Text = "Add Staff Account";
-            this.addStaffAccount_btn.UseVisualStyleBackColor = true;
-            this.addStaffAccount_btn.Click += new System.EventHandler(this.addStaffAccount_btn_Click);
-            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.loanToolStripMenuItem,
             this.accountsToolStripMenuItem,
-            this.inventoryToolStripMenuItem});
+            this.inventoryToolStripMenuItem,
+            this.transactionToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(799, 24);
@@ -678,25 +680,25 @@
             this.addItemByBatchToolStripMenuItem,
             this.viewItemsToolStripMenuItem});
             this.inventoryToolStripMenuItem.Name = "inventoryToolStripMenuItem";
-            this.inventoryToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
-            this.inventoryToolStripMenuItem.Text = "Transaction";
+            this.inventoryToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
+            this.inventoryToolStripMenuItem.Text = "Inventory";
             // 
             // addItemToolStripMenuItem
             // 
             this.addItemToolStripMenuItem.Name = "addItemToolStripMenuItem";
-            this.addItemToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.addItemToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.addItemToolStripMenuItem.Text = "Add Item";
             // 
             // addItemByBatchToolStripMenuItem
             // 
             this.addItemByBatchToolStripMenuItem.Name = "addItemByBatchToolStripMenuItem";
-            this.addItemByBatchToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.addItemByBatchToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.addItemByBatchToolStripMenuItem.Text = "Add Item by Batch";
             // 
             // viewItemsToolStripMenuItem
             // 
             this.viewItemsToolStripMenuItem.Name = "viewItemsToolStripMenuItem";
-            this.viewItemsToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.viewItemsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.viewItemsToolStripMenuItem.Text = "View Items";
             // 
             // profile_sidepanel
@@ -832,6 +834,8 @@
             // 
             // search_gb
             // 
+            this.search_gb.Controls.Add(this.button6);
+            this.search_gb.Controls.Add(this.button5);
             this.search_gb.Controls.Add(this.label13);
             this.search_gb.Controls.Add(this.label12);
             this.search_gb.Controls.Add(this.textBox5);
@@ -856,23 +860,23 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(17, 48);
+            this.textBox3.Location = new System.Drawing.Point(16, 48);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(152, 20);
+            this.textBox3.Size = new System.Drawing.Size(127, 20);
             this.textBox3.TabIndex = 1;
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(106, 105);
+            this.textBox4.Location = new System.Drawing.Point(88, 105);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(63, 20);
+            this.textBox4.Size = new System.Drawing.Size(55, 20);
             this.textBox4.TabIndex = 2;
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(17, 105);
+            this.textBox5.Location = new System.Drawing.Point(16, 105);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(63, 20);
+            this.textBox5.Size = new System.Drawing.Size(55, 20);
             this.textBox5.TabIndex = 3;
             // 
             // label12
@@ -887,7 +891,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(86, 108);
+            this.label13.Location = new System.Drawing.Point(72, 108);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(16, 13);
             this.label13.TabIndex = 5;
@@ -896,6 +900,30 @@
             // addloan_panel
             // 
             this.addloan_panel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.addloan_panel.Controls.Add(this.loan_items_fp);
+            this.addloan_panel.Controls.Add(this.button4);
+            this.addloan_panel.Controls.Add(this.button3);
+            this.addloan_panel.Controls.Add(this.button2);
+            this.addloan_panel.Controls.Add(this.label31);
+            this.addloan_panel.Controls.Add(this.label30);
+            this.addloan_panel.Controls.Add(this.amortization_tb);
+            this.addloan_panel.Controls.Add(this.length_tb);
+            this.addloan_panel.Controls.Add(this.loan_status_tb);
+            this.addloan_panel.Controls.Add(this.total_amount_tb);
+            this.addloan_panel.Controls.Add(this.label29);
+            this.addloan_panel.Controls.Add(this.label28);
+            this.addloan_panel.Controls.Add(this.label27);
+            this.addloan_panel.Controls.Add(this.label26);
+            this.addloan_panel.Controls.Add(this.label25);
+            this.addloan_panel.Controls.Add(this.client_search_btn);
+            this.addloan_panel.Controls.Add(this.contactnum_tb);
+            this.addloan_panel.Controls.Add(this.address_tb);
+            this.addloan_panel.Controls.Add(this.user_id_tb);
+            this.addloan_panel.Controls.Add(this.label18);
+            this.addloan_panel.Controls.Add(this.label17);
+            this.addloan_panel.Controls.Add(this.label16);
+            this.addloan_panel.Controls.Add(this.client_name_tb);
+            this.addloan_panel.Controls.Add(this.label15);
             this.addloan_panel.Controls.Add(this.label14);
             this.addloan_panel.Location = new System.Drawing.Point(209, 27);
             this.addloan_panel.Name = "addloan_panel";
@@ -911,6 +939,398 @@
             this.label14.Size = new System.Drawing.Size(116, 22);
             this.label14.TabIndex = 6;
             this.label14.Text = "ADD LOAN";
+            // 
+            // transactionToolStripMenuItem
+            // 
+            this.transactionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.collectionToolStripMenuItem,
+            this.applicationToolStripMenuItem});
+            this.transactionToolStripMenuItem.Name = "transactionToolStripMenuItem";
+            this.transactionToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
+            this.transactionToolStripMenuItem.Text = "Transaction";
+            // 
+            // collectionToolStripMenuItem
+            // 
+            this.collectionToolStripMenuItem.Name = "collectionToolStripMenuItem";
+            this.collectionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.collectionToolStripMenuItem.Text = "Collection";
+            // 
+            // applicationToolStripMenuItem
+            // 
+            this.applicationToolStripMenuItem.Name = "applicationToolStripMenuItem";
+            this.applicationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.applicationToolStripMenuItem.Text = "Application";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(7, 45);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(67, 13);
+            this.label15.TabIndex = 7;
+            this.label15.Text = "Client Name:";
+            // 
+            // client_name_tb
+            // 
+            this.client_name_tb.Location = new System.Drawing.Point(79, 42);
+            this.client_name_tb.Name = "client_name_tb";
+            this.client_name_tb.Size = new System.Drawing.Size(221, 20);
+            this.client_name_tb.TabIndex = 8;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(339, 45);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(46, 13);
+            this.label16.TabIndex = 9;
+            this.label16.Text = "User ID:";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(7, 71);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(48, 13);
+            this.label17.TabIndex = 10;
+            this.label17.Text = "Address:";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(339, 71);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(87, 13);
+            this.label18.TabIndex = 11;
+            this.label18.Text = "Contact Number:";
+            // 
+            // user_id_tb
+            // 
+            this.user_id_tb.Location = new System.Drawing.Point(435, 42);
+            this.user_id_tb.Name = "user_id_tb";
+            this.user_id_tb.Size = new System.Drawing.Size(135, 20);
+            this.user_id_tb.TabIndex = 12;
+            // 
+            // address_tb
+            // 
+            this.address_tb.Location = new System.Drawing.Point(79, 68);
+            this.address_tb.Multiline = true;
+            this.address_tb.Name = "address_tb";
+            this.address_tb.Size = new System.Drawing.Size(221, 46);
+            this.address_tb.TabIndex = 13;
+            // 
+            // contactnum_tb
+            // 
+            this.contactnum_tb.Location = new System.Drawing.Point(435, 68);
+            this.contactnum_tb.Name = "contactnum_tb";
+            this.contactnum_tb.Size = new System.Drawing.Size(135, 20);
+            this.contactnum_tb.TabIndex = 14;
+            // 
+            // loanItem
+            // 
+            this.loanItem.Controls.Add(this.status_tb);
+            this.loanItem.Controls.Add(this.label33);
+            this.loanItem.Controls.Add(this.label32);
+            this.loanItem.Controls.Add(this.interest_tb);
+            this.loanItem.Controls.Add(this.price_tb);
+            this.loanItem.Controls.Add(this.button1);
+            this.loanItem.Controls.Add(this.description_tb);
+            this.loanItem.Controls.Add(this.item_name_tb);
+            this.loanItem.Controls.Add(this.item_id_tb);
+            this.loanItem.Controls.Add(this.label24);
+            this.loanItem.Controls.Add(this.label23);
+            this.loanItem.Controls.Add(this.label22);
+            this.loanItem.Controls.Add(this.label21);
+            this.loanItem.Controls.Add(this.label20);
+            this.loanItem.Controls.Add(this.label19);
+            this.loanItem.Location = new System.Drawing.Point(3, 3);
+            this.loanItem.Name = "loanItem";
+            this.loanItem.Size = new System.Drawing.Size(550, 114);
+            this.loanItem.TabIndex = 15;
+            this.loanItem.TabStop = false;
+            this.loanItem.Text = "Loan Item 1";
+            // 
+            // client_search_btn
+            // 
+            this.client_search_btn.Image = ((System.Drawing.Image)(resources.GetObject("client_search_btn.Image")));
+            this.client_search_btn.Location = new System.Drawing.Point(304, 40);
+            this.client_search_btn.Name = "client_search_btn";
+            this.client_search_btn.Size = new System.Drawing.Size(25, 25);
+            this.client_search_btn.TabIndex = 16;
+            this.client_search_btn.UseVisualStyleBackColor = true;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(15, 19);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(44, 13);
+            this.label19.TabIndex = 0;
+            this.label19.Text = "Item ID:";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(15, 46);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(61, 13);
+            this.label20.TabIndex = 1;
+            this.label20.Text = "Item Name:";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(15, 71);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(63, 13);
+            this.label21.TabIndex = 2;
+            this.label21.Text = "Description:";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(370, 46);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(34, 13);
+            this.label22.TabIndex = 3;
+            this.label22.Text = "Price:";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(370, 71);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(45, 13);
+            this.label23.TabIndex = 4;
+            this.label23.Text = "Interest:";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(370, 19);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(40, 13);
+            this.label24.TabIndex = 5;
+            this.label24.Text = "Status:";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(7, 131);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(73, 13);
+            this.label25.TabIndex = 17;
+            this.label25.Text = "Total Amount:";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(7, 158);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(67, 13);
+            this.label26.TabIndex = 18;
+            this.label26.Text = "Loan Status:";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(339, 131);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(43, 13);
+            this.label27.TabIndex = 19;
+            this.label27.Text = "Length:";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(528, 131);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(42, 13);
+            this.label28.TabIndex = 20;
+            this.label28.Text = "Months";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(339, 158);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(67, 13);
+            this.label29.TabIndex = 21;
+            this.label29.Text = "Amortization:";
+            // 
+            // total_amount_tb
+            // 
+            this.total_amount_tb.Location = new System.Drawing.Point(79, 128);
+            this.total_amount_tb.Name = "total_amount_tb";
+            this.total_amount_tb.Size = new System.Drawing.Size(221, 20);
+            this.total_amount_tb.TabIndex = 22;
+            // 
+            // loan_status_tb
+            // 
+            this.loan_status_tb.Location = new System.Drawing.Point(79, 155);
+            this.loan_status_tb.Name = "loan_status_tb";
+            this.loan_status_tb.Size = new System.Drawing.Size(221, 20);
+            this.loan_status_tb.TabIndex = 23;
+            // 
+            // length_tb
+            // 
+            this.length_tb.Location = new System.Drawing.Point(435, 128);
+            this.length_tb.Name = "length_tb";
+            this.length_tb.Size = new System.Drawing.Size(87, 20);
+            this.length_tb.TabIndex = 24;
+            // 
+            // amortization_tb
+            // 
+            this.amortization_tb.Location = new System.Drawing.Point(435, 155);
+            this.amortization_tb.Name = "amortization_tb";
+            this.amortization_tb.Size = new System.Drawing.Size(87, 20);
+            this.amortization_tb.TabIndex = 25;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(528, 158);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(41, 13);
+            this.label30.TabIndex = 26;
+            this.label30.Text = "/month";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(421, 158);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(14, 13);
+            this.label31.TabIndex = 27;
+            this.label31.Text = "P";
+            // 
+            // item_id_tb
+            // 
+            this.item_id_tb.Location = new System.Drawing.Point(81, 16);
+            this.item_id_tb.Name = "item_id_tb";
+            this.item_id_tb.Size = new System.Drawing.Size(247, 20);
+            this.item_id_tb.TabIndex = 6;
+            // 
+            // item_name_tb
+            // 
+            this.item_name_tb.Location = new System.Drawing.Point(81, 42);
+            this.item_name_tb.Name = "item_name_tb";
+            this.item_name_tb.Size = new System.Drawing.Size(247, 20);
+            this.item_name_tb.TabIndex = 7;
+            // 
+            // description_tb
+            // 
+            this.description_tb.Location = new System.Drawing.Point(81, 67);
+            this.description_tb.Multiline = true;
+            this.description_tb.Name = "description_tb";
+            this.description_tb.Size = new System.Drawing.Size(247, 39);
+            this.description_tb.TabIndex = 8;
+            // 
+            // button1
+            // 
+            this.button1.Image = global::WindowsFormsApp1.Properties.Resources.search__1_;
+            this.button1.Location = new System.Drawing.Point(332, 14);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(25, 25);
+            this.button1.TabIndex = 9;
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // price_tb
+            // 
+            this.price_tb.Location = new System.Drawing.Point(424, 43);
+            this.price_tb.Name = "price_tb";
+            this.price_tb.Size = new System.Drawing.Size(93, 20);
+            this.price_tb.TabIndex = 11;
+            // 
+            // interest_tb
+            // 
+            this.interest_tb.Location = new System.Drawing.Point(424, 68);
+            this.interest_tb.Name = "interest_tb";
+            this.interest_tb.Size = new System.Drawing.Size(93, 20);
+            this.interest_tb.TabIndex = 12;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(410, 46);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(14, 13);
+            this.label32.TabIndex = 27;
+            this.label32.Text = "P";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(517, 71);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(15, 13);
+            this.label33.TabIndex = 27;
+            this.label33.Text = "%";
+            // 
+            // status_tb
+            // 
+            this.status_tb.FormattingEnabled = true;
+            this.status_tb.Location = new System.Drawing.Point(424, 16);
+            this.status_tb.Name = "status_tb";
+            this.status_tb.Size = new System.Drawing.Size(93, 21);
+            this.status_tb.TabIndex = 28;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(339, 389);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 28;
+            this.button2.Text = "Add Item";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(420, 389);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 29;
+            this.button3.Text = "Save";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(501, 389);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 30;
+            this.button4.Text = "Cancel";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Image = global::WindowsFormsApp1.Properties.Resources.search__1_;
+            this.button5.Location = new System.Drawing.Point(144, 46);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(25, 25);
+            this.button5.TabIndex = 6;
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            this.button6.Image = global::WindowsFormsApp1.Properties.Resources.search__1_;
+            this.button6.Location = new System.Drawing.Point(144, 103);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(25, 25);
+            this.button6.TabIndex = 7;
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // loan_items_fp
+            // 
+            this.loan_items_fp.AutoScroll = true;
+            this.loan_items_fp.BackColor = System.Drawing.Color.DarkGray;
+            this.loan_items_fp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.loan_items_fp.Controls.Add(this.loanItem);
+            this.loan_items_fp.Location = new System.Drawing.Point(4, 191);
+            this.loan_items_fp.Name = "loan_items_fp";
+            this.loan_items_fp.Size = new System.Drawing.Size(575, 192);
+            this.loan_items_fp.TabIndex = 31;
             // 
             // MainForm
             // 
@@ -939,7 +1359,6 @@
             this.addstaff_panel.PerformLayout();
             this.viewclients_panel.ResumeLayout(false);
             this.viewclients_panel.PerformLayout();
-            this.side_panel.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.profile_sidepanel.ResumeLayout(false);
@@ -952,6 +1371,9 @@
             this.search_gb.PerformLayout();
             this.addloan_panel.ResumeLayout(false);
             this.addloan_panel.PerformLayout();
+            this.loanItem.ResumeLayout(false);
+            this.loanItem.PerformLayout();
+            this.loan_items_fp.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -978,15 +1400,11 @@
         private System.Windows.Forms.ToolStripMenuItem addItemToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addItemByBatchToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewItemsToolStripMenuItem;
-        private System.Windows.Forms.Panel side_panel;
         private System.Windows.Forms.Panel addstaff_panel;
         private System.Windows.Forms.TextBox lastname_tb;
         private System.Windows.Forms.Label lastname_lbl;
         private System.Windows.Forms.TextBox firstname_tb;
         private System.Windows.Forms.Label firstname_lbl;
-        private System.Windows.Forms.Button viewClients_btn;
-        private System.Windows.Forms.Button viewCollectors_btn;
-        private System.Windows.Forms.Button addStaffAccount_btn;
         private System.Windows.Forms.Label middlename_lbl;
         private System.Windows.Forms.Label addStaffAccount_lbl;
         private System.Windows.Forms.TextBox middlename_tb;
@@ -1042,5 +1460,50 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Panel addloan_panel;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.ToolStripMenuItem transactionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem collectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem applicationToolStripMenuItem;
+        private System.Windows.Forms.TextBox user_id_tb;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox client_name_tb;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button client_search_btn;
+        private System.Windows.Forms.GroupBox loanItem;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox contactnum_tb;
+        private System.Windows.Forms.TextBox address_tb;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.TextBox amortization_tb;
+        private System.Windows.Forms.TextBox length_tb;
+        private System.Windows.Forms.TextBox loan_status_tb;
+        private System.Windows.Forms.TextBox total_amount_tb;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.TextBox item_id_tb;
+        private System.Windows.Forms.TextBox description_tb;
+        private System.Windows.Forms.TextBox item_name_tb;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.TextBox interest_tb;
+        private System.Windows.Forms.TextBox price_tb;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ComboBox status_tb;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.FlowLayoutPanel loan_items_fp;
     }
 }
