@@ -11,6 +11,13 @@ class LoanController extends Controller
     public function getAllLoan() {
         return Loan::all();
     }
+
+    public function getLoan($id)
+    {
+        $loan = Loan::where('id', $id);
+        return response()->json($loan->get(), 200);
+    }
+
     //POST loan/loan
     public function storeLoan(Request $request) {
         $newLoan = Loan::create($request->all());

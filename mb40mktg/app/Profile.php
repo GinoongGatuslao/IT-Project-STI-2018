@@ -18,6 +18,8 @@ class Profile extends Model
         'bday',
         'occupation',
         'mo_income',
-        'mo_expense'
+        'mo_expense',
+        'path_id_pic',
+        'path_house_sketch_pic'
     ];
 }

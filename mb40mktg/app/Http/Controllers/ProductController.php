@@ -36,14 +36,10 @@ class ProductController extends Controller
 
     //GET product/itembybatch/{batch_number}
     public function filterItemBatchNumber($batch_number) {
-        $productResult = ProductItem::select(
-            'tbl_product_item.id as product_id', 'item_name', 'stock_count',
-            'reorder_point', 'batch_name', 'batch_number')
-            ->join('tbl_product_batch', 'tbl_product_item.batch_number_id', '=', 'tbl_product_batch.id')
+        $productResult = ProductBatchItem::select('tbl_product_item.*')
+            ->join('tbl_product_batch', 'tbl_product_batch_item.batch_id', '=', 'tbl_product_batch.id')
+            ->join('tbl_product_item', 'tbl_product_batch_item.product_item_id', '=', 'tbl_product_item.id')
             ->where('tbl_product_batch.batch_number', $batch_number);
-        /*$productResult = ProductItem::whereHas('productBatch', function ($query) use ($batch_number){
-            $query->where('batch_number', $batch_number);
-        });*/
 
         if ($productResult->count() == 0) {
 

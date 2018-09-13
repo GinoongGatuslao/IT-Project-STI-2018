@@ -13,6 +13,8 @@ class ProductItem extends Model {
         "item_name",
         "price_id",
         "stock_count",
+        "repossessed",
+        "damaged",
         "reorder_point",
         "description"
     ];
