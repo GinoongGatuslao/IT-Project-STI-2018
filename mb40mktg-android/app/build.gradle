@@ -11,7 +11,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "host", "\"https://03c0beb5.ngrok.io/api/\"")
+        buildConfigField("String", "host", "\"https://6e12a697.ngrok.io/api/\"")
     }
     buildTypes {
         release {
@@ -37,6 +37,7 @@ dependencies {
     implementation dagger
     implementation rxjava
     implementation saripaar
+    implementation cloudinary
     annotationProcessor butterKnifeAnnotation
     annotationProcessor lombokAnnotation
     annotationProcessor daggerAnnotation

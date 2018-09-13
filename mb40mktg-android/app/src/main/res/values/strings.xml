@@ -25,6 +25,10 @@
     <string name="prompt_occupation">Occupation</string>
     <string name="prompt_income">Income</string>
     <string name="prompt_est_monthly_expenses">Est. Monthly Expenses</string>
-    <string name="label_field_reminder">*ALL fields are required</string>
+    <string name="label_required_fields">Required Fields</string>
+    <string name="label_optional_fields">Optional</string>
+    <string name="label_valid_id">Photo of Valid ID</string>
+    <string name="label_home_sketch">Photo of residence sketch</string>
+    <string name="button_select">Select</string>
     <string name="button_register">Register</string>
 </resources>

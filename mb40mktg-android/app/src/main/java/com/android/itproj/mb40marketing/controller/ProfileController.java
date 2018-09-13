@@ -95,9 +95,9 @@ public class ProfileController {
         );
     }
 
-    public void getSavedProfile(ProfileCallbacks.ProfileRequest profileRequest) {
+    public void getCachedProfile(ProfileCallbacks.ProfileRequest profileRequest) {
         String userProfile = preferences.getString(Constants.SHARED_PREFS_KEY_USER_INFO, "");
-        Log.d("saveProfile", "getSavedProfile: " + userProfile);
+        Log.d("getCachedProfile", "getCachedProfile: " + userProfile);
         if (userProfile.isEmpty()) {
             profileRequest.onProfileFetchFailed(new Throwable("Empty user profile!"));
         } else {

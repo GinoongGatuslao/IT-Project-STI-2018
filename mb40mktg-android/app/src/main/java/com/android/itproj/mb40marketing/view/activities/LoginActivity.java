@@ -3,12 +3,10 @@ package com.android.itproj.mb40marketing.view.activities;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentActivity;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -26,7 +24,6 @@ import android.widget.TextView;
 
 import com.android.itproj.mb40marketing.CoreApp;
 import com.android.itproj.mb40marketing.R;
-import com.android.itproj.mb40marketing.controller.AuthenticationController;
 import com.android.itproj.mb40marketing.helper.interfaces.AuthenticationCallback;
 import com.android.itproj.mb40marketing.helper.interfaces.ProfileCallbacks;
 import com.android.itproj.mb40marketing.model.ProfileModel;
@@ -71,7 +68,7 @@ public class LoginActivity extends AppCompatActivity implements AuthenticationCa
         if (((CoreApp) getApplication()).getAuthState().isAuthenticated()) {
             ((CoreApp)getApplication())
                     .getProfileController()
-                    .getSavedProfile(new ProfileCallbacks.ProfileRequest() {
+                    .getCachedProfile(new ProfileCallbacks.ProfileRequest() {
                         @Override
                         public void onProfileFetch(ProfileModel model) {
                             Intent startHome = new Intent(LoginActivity.this, HomeActivity.class);

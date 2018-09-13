@@ -17,6 +17,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="CLOUDINARY_URL"
+            android:value="cloudinary://872388742584913:hKJRyPNQUS7JnHDJ1TlAQzLFN7E@horbordidorp" />
         <activity
             android:name=".view.activities.LoginActivity"
             android:label="@string/app_name">
