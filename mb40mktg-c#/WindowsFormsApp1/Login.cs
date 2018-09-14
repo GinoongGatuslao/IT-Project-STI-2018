@@ -21,10 +21,11 @@ namespace WindowsFormsApp1
         private void login_btn_Click(object sender, EventArgs e)
         {
             //uncomment on final
-            /**if (username_tb.Text != string.Empty && password_tb.Text != string.Empty)
+            if (username_tb.Text != string.Empty && password_tb.Text != string.Empty)
             {
                 RestClient restClient = new RestClient();
-                restClient.endPoint = "https://4cd9a60f.ngrok.io/api/login?"
+                restClient.endPoint = Settings.baseURL.ToString()
+                    + "/api/login?"
                     + "username=" + username_tb.Text
                     + "&password=" + password_tb.Text;
 
@@ -35,12 +36,12 @@ namespace WindowsFormsApp1
                 string[] res = response.Split('|');
 
                 if (res[0].Equals("OK"))
-                {**/
+                {
                     this.Hide();
-                    var dashboard = new MainForm();
+                    MainForm dashboard = new MainForm();
                     dashboard.Closed += (s, args) => this.Close();
                     dashboard.Show();
-            /**
+            
                     Debug.WriteLine(res[0].ToString() + "\n" + res[1].ToString());
                 } else
                 {
@@ -53,7 +54,7 @@ namespace WindowsFormsApp1
                 MessageBox.Show("Username and password cannot be empty", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-            }**/
+            }
         }
 
         private void Login_Load(object sender, EventArgs e)

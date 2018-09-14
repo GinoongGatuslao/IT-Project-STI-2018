@@ -226,5 +226,11 @@ namespace WindowsFormsApp1
 
             loan_items_fp.Controls.Add(gb);
         }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Settings settings = new Settings();
+            settings.Show();
+        }
     }
 }

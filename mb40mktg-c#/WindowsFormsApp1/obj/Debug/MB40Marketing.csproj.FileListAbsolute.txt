@@ -9,3 +9,4 @@ C:\Users\patdl\Documents\Davao\IT-Project-STI-2018\mb40mktg-c#\WindowsFormsApp1\
 C:\Users\patdl\Documents\Davao\IT-Project-STI-2018\mb40mktg-c#\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 C:\Users\patdl\Documents\Davao\IT-Project-STI-2018\mb40mktg-c#\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
 C:\Users\patdl\Documents\Davao\IT-Project-STI-2018\mb40mktg-c#\WindowsFormsApp1\obj\Debug\MB40Marketing.csprojAssemblyReference.cache
+C:\Users\patdl\Documents\Davao\IT-Project-STI-2018\mb40mktg-c#\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Settings.resources
