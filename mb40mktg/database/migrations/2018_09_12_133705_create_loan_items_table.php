@@ -19,7 +19,7 @@ class CreateLoanItemsTable extends Migration
             $table->integer('loan_id');
             $table->integer('item_id');
             $table->integer('item_status');
-            $table->decimal('interest');
+            $table->float('interest');
             $table->timestamps();
         });
     }

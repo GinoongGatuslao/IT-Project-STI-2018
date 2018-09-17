@@ -32,7 +32,7 @@ class ModifyLoanTable extends Migration
         if (Schema::hasTable($this->tableName)) {
             Schema::table($this->tableName, function (Blueprint $table) {
                 $table->integer("item_id");
-                $table->integer("interest_rt");
+                $table->float("interest_rt");
             });
         }
     }

@@ -10,10 +10,9 @@ class Loan extends Model
 
     protected $fillable = [
         'account_id',
-        'length	',
+        'term_length',
         'loan_value',
         'amortization',
-        'interest_rt',
         'status'
     ];
 }
