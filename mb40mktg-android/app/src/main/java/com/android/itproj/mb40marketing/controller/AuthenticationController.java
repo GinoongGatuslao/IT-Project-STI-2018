@@ -22,6 +22,7 @@ import lombok.Setter;
 import okhttp3.ResponseBody;
 import retrofit2.Response;
 import rx.Observer;
+import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
 public class AuthenticationController {
@@ -46,8 +47,7 @@ public class AuthenticationController {
     public void login(final String username, final String password, final AuthenticationCallback.AuthLoginCallback authCallback) {
         compositeSubscription.add(
                 ((CoreApp) context).getRestAPI()
-                        .login(
-                                UserLogin.initialize(username, password))
+                        .login(UserLogin.initialize(username, password))
                         .subscribe(new Observer<UserModel>() {
                             @Override
                             public void onCompleted() {
@@ -57,6 +57,7 @@ public class AuthenticationController {
                             @Override
                             public void onError(Throwable e) {
                                 authCallback.onLoginFailed(e);
+                                compositeSubscription.unsubscribe();
                             }
 
                             @Override
@@ -68,6 +69,7 @@ public class AuthenticationController {
                                 } else {
                                     authCallback.onLoginFailed(new Throwable("Error! Unable to save on preference."));
                                 }
+                                compositeSubscription.unsubscribe();
                             }
                         })
         );
@@ -86,6 +88,7 @@ public class AuthenticationController {
                             @Override
                             public void onError(Throwable e) {
                                 authCallback.onLogoutFailed(e);
+                                compositeSubscription.unsubscribe();
                             }
 
                             @Override
@@ -106,6 +109,7 @@ public class AuthenticationController {
                                         e.printStackTrace();
                                     }
                                 }
+                                compositeSubscription.unsubscribe();
                             }
                         })
         );
@@ -124,6 +128,7 @@ public class AuthenticationController {
                     @Override
                     public void onError(Throwable e) {
                         registerCallback.onRegisterFailed(e);
+                        compositeSubscription.unsubscribe();
                     }
 
                     @Override
@@ -136,6 +141,7 @@ public class AuthenticationController {
                         } else {
                             registerCallback.onRegisterFailed(new Throwable("Failed to register user!"));
                         }
+                        compositeSubscription.unsubscribe();
                     }
                 })
         );

@@ -49,6 +49,7 @@ public class ProfileController {
                             @Override
                             public void onError(Throwable e) {
                                 profileRegister.onProfileRegisterFailed(e);
+                                compositeSubscription.unsubscribe();
                             }
 
                             @Override
@@ -60,6 +61,7 @@ public class ProfileController {
                                 } else {
                                     profileRegister.onProfileRegisterFailed(new Throwable("Failed to update profile!"));
                                 }
+                                compositeSubscription.unsubscribe();
                             }
                         })
         );
@@ -79,6 +81,7 @@ public class ProfileController {
                             @Override
                             public void onError(Throwable e) {
                                 profileRequest.onProfileFetchFailed(e);
+                                compositeSubscription.unsubscribe();
                             }
 
                             @Override
@@ -90,6 +93,7 @@ public class ProfileController {
                                 } else {
                                     profileRequest.onProfileFetchFailed(new Throwable("Failed to fetch User profile"));
                                 }
+                                compositeSubscription.unsubscribe();
                             }
                         })
         );

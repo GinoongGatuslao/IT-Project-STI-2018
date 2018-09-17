@@ -1,65 +1,94 @@
 package com.android.itproj.mb40marketing.view.activities;
 
 import android.content.Intent;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.itproj.mb40marketing.CoreApp;
 import com.android.itproj.mb40marketing.R;
-import com.android.itproj.mb40marketing.controller.AuthenticationController;
+import com.android.itproj.mb40marketing.helper.interfaces.AccountCallback;
 import com.android.itproj.mb40marketing.helper.interfaces.AuthenticationCallback;
-import com.android.itproj.mb40marketing.model.UserModel;
+import com.android.itproj.mb40marketing.model.AccountModel;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
-public class HomeActivity extends FragmentActivity implements
-        AuthenticationCallback.AuthLogoutCallback{
-
-    private static final String TAG = "HomeActivity";
-
-    @BindView(R.id.logoutBtn)
-    public Button logoutBtn;
-
-    @BindView(R.id.userInfo)
-    public TextView userInfo;
+public class HomeActivity extends AppCompatActivity implements
+        AuthenticationCallback.AuthLogoutCallback,
+        AccountCallback{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        ButterKnife.bind(this);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
+    }
 
-        userInfo.setText(
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_profile:
+                break;
+            case R.id.menu_logout:
                 ((CoreApp)getApplication())
-                        .getProfileController()
-                        .getProfile()
-                        .toString()
-        );
+                        .getAuthenticationController()
+                        .logout(this);
+                break;
+        }
+        return true;
     }
 
     @Override
     public void onLogoutSuccess() {
-        Intent backToLogin = new Intent(this, LoginActivity.class);
-        startActivity(backToLogin);
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
         finish();
     }
 
     @Override
     public void onLogoutFailed(Throwable e) {
-        Log.e(TAG, "onLogoutFailed: ", e);
+        Toast.makeText(this, "Failed to logout", Toast.LENGTH_LONG).show();
     }
 
-    @OnClick(R.id.logoutBtn)
-    public void logout() {
+    @Override
+    public void onAccountRequest(AccountModel accountModel) {
+        checkIfProfileVerified();
+    }
+
+    @Override
+    public void onError(Throwable throwable) {
+        Toast.makeText(this, throwable.getMessage(), Toast.LENGTH_LONG).show();
+    }
+
+    private void getAccountDetail() {
         ((CoreApp)getApplication())
-                .getAuthenticationController()
-                .logout(this);
+                .getAccountController()
+                .getAccountDetail(((CoreApp) getApplication()).getProfileController().getProfile(), this);
+
+    }
+
+    private void checkIfProfileVerified() {
+        if (!((CoreApp) getApplication()).getProfileController().getProfile().isVerified()) {
+            showVerifictionNotice();
+        } else {
+
+        }
+    }
+
+    private void showVerifictionNotice() {
     }
 }

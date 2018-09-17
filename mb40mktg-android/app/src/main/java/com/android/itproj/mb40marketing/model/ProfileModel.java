@@ -59,5 +59,7 @@ public class ProfileModel {
     @Getter @Setter
     private String path_house_sketch_pic = "";
 
-
+    @SerializedName("verified")
+    @Getter
+    public boolean verified;
 }

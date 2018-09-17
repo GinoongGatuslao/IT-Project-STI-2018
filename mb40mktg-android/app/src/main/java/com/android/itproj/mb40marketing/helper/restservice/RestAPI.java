@@ -1,5 +1,6 @@
 package com.android.itproj.mb40marketing.helper.restservice;
 
+import com.android.itproj.mb40marketing.model.AccountModel;
 import com.android.itproj.mb40marketing.model.ProfileModel;
 import com.android.itproj.mb40marketing.model.UserLogin;
 import com.android.itproj.mb40marketing.model.UserModel;
@@ -72,5 +73,15 @@ public class RestAPI {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io());
 
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Create new account
+    ///////////////////////////////////////////////////////////////////////////
+    public Observable<AccountModel> createAccount(AccountModel model) {
+        return restService
+                .newAccount(model)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io());
     }
 }

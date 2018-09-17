@@ -1,5 +1,6 @@
 package com.android.itproj.mb40marketing.helper.restservice;
 
+import com.android.itproj.mb40marketing.model.AccountModel;
 import com.android.itproj.mb40marketing.model.LoanModel;
 import com.android.itproj.mb40marketing.model.PriceModel;
 import com.android.itproj.mb40marketing.model.ProductBatchModel;
@@ -59,6 +60,18 @@ public interface RestAPIService {
     Observable<ProfileModel> updateProfile(@Body ProfileModel profileModel);
 
     ///////////////////////////////////////////////////////////////////////////
+    // ACCOUNT
+    ///////////////////////////////////////////////////////////////////////////
+    @POST("account/newaccount")
+    Observable<AccountModel> newAccount(@Body AccountModel accountModel);
+
+    @GET("account/getaccount/{id}")
+    Observable<AccountModel> getAccount(@Path("id") int id);
+
+    @GET("account/getaccountbyprofile/{id}")
+    Observable<AccountModel> getAccountByProfile(@Path("id") int id);
+
+    ///////////////////////////////////////////////////////////////////////////
     // PRODUCT
     ///////////////////////////////////////////////////////////////////////////
 
@@ -103,7 +116,7 @@ public interface RestAPIService {
     // LOAN
     ///////////////////////////////////////////////////////////////////////////
     @Headers("Content-Type:application/json")
-    @POST("loan/loan")
+    @POST("loan/addloan")
     Observable<LoanModel> storeLoan(@Body JsonObject jsonRequest);
 
     ///////////////////////////////////////////////////////////////////////////
