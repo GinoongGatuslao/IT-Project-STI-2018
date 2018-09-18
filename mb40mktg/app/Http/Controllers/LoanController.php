@@ -7,6 +7,8 @@ use App\Price;
 use Illuminate\Http\Request;
 use App\LoanItem;
 use App\ProductItem;
+use App\Account;
+use Illuminate\Support\Facades\DB;
 
 class LoanController extends Controller
 {
@@ -22,6 +24,26 @@ class LoanController extends Controller
         return response()->json($loan->get(), 200);
     }
 
+    public function getLoanItems($loan_id)
+    {
+        $loanitems = DB::select(DB::raw(
+            "SELECT DISTINCT t2.item_name, t2.price, t1.interest
+                    FROM tbl_loan_items t1
+                    INNER JOIN
+                    ( SELECT pr.price, pitm.item_name, pitm.id 
+                    FROM tbl_product_price pr 
+                    INNER JOIN tbl_product_item pitm ON pr.id = pitm.price_id ) 
+                    t2 ON t1.item_id = t2.id 
+                    WHERE t1.loan_id = :loanid"), array('loanid' => $loan_id));
+//        var_dump($loanitems);
+            /*$categories = \DB::table('dental_support_categories AS c')
+                ->select(\DB::raw('c.*, (SELECT COUNT(t.id) FROM dental_support_tickets t WHERE t.category_id=c.id AND t.status=0) AS num_tickets, (SELECT COUNT(a.id) FROM dental_support_category_admin a WHERE a.category_id=c.id) AS num_admins'))
+                ->where('c.status', 0)
+                ->orderBy('c.title')
+                ->get();*/
+        return response()->json($loanitems, 200);
+    }
+
     //POST loan/loan
     public function storeLoan(Request $request)
     {
@@ -35,10 +57,13 @@ class LoanController extends Controller
         }
 
         $amortztn = $totalValue / $request["term_length"];
-        /*var_dump([
-            "t_value"=>$totalValue,
-            "amortization" => $amortztn
-        ]);*/
+
+        //check first if still below credit limit
+        $valueWithExisting = $this->getTotalExistingLoans($request->get("account_id")) + $totalValue;
+        $account = Account::where("id", $request->get("account_id"))->first();
+        if ($account->credit_limit < $valueWithExisting) {
+            return response()->json(["message"=>"Exceeds Credit Limit"], 406);
+        }
 
         $loanItems = Array();
         $newLoan = Loan::create([
@@ -65,6 +90,15 @@ class LoanController extends Controller
         /*$newProduct = ProductBatch::create($request->all());
         return response()->json($newProduct, 201);*/
     }
+
+    public function getTotalExistingLoans($account_id) {
+    $loans = Loan::where("account_id", $account_id)->get();
+    $t_val = 0;
+    foreach ($loans as $loan) {
+        $t_val += $loan["loan_value"];
+    }
+    return $t_val;
+}
 
     //PUT loan/updateloan
     public function updateloan(Request $request, $id)
