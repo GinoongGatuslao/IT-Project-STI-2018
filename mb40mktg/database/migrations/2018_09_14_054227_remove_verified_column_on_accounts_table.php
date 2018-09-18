@@ -4,9 +4,9 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ModifyLoanTable extends Migration
+class RemoveVerifiedColumnOnAccountsTable extends Migration
 {
-    protected $tableName = "tbl_loans";
+    protected $tableName = 'tbl_accounts';
     /**
      * Run the migrations.
      *
@@ -16,8 +16,7 @@ class ModifyLoanTable extends Migration
     {
         if (Schema::hasTable($this->tableName)) {
             Schema::table($this->tableName, function (Blueprint $table) {
-                $table->dropColumn("item_id");
-                $table->dropColumn("interest_rt");
+                $table->dropColumn("verified");
             });
         }
     }
@@ -31,8 +30,7 @@ class ModifyLoanTable extends Migration
     {
         if (Schema::hasTable($this->tableName)) {
             Schema::table($this->tableName, function (Blueprint $table) {
-                $table->integer("item_id");
-                $table->float("interest_rt");
+                $table->string("verified");
             });
         }
     }

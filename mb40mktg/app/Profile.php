@@ -20,6 +20,7 @@ class Profile extends Model
         'mo_income',
         'mo_expense',
         'path_id_pic',
-        'path_house_sketch_pic'
+        'path_house_sketch_pic',
+        'verified'
     ];
 }
