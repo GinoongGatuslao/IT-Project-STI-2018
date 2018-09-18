@@ -50,4 +50,11 @@ public class AccountController{
                         })
         );
     }
+
+    public void getLoans(int accountId, final AccountCallback callback) {
+        compositeSubscription.add(
+                ((CoreApp)context)
+        .getRestAPI()
+        .);
+    }
 }

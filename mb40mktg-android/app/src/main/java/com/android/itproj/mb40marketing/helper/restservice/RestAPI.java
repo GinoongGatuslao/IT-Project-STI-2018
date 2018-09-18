@@ -1,12 +1,15 @@
 package com.android.itproj.mb40marketing.helper.restservice;
 
 import com.android.itproj.mb40marketing.model.AccountModel;
+import com.android.itproj.mb40marketing.model.LoanModel;
 import com.android.itproj.mb40marketing.model.ProfileModel;
 import com.android.itproj.mb40marketing.model.UserLogin;
 import com.android.itproj.mb40marketing.model.UserModel;
 import com.google.gson.JsonObject;
 
 import org.json.JSONObject;
+
+import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Response;
@@ -65,6 +68,16 @@ public class RestAPI {
     }
 
     ///////////////////////////////////////////////////////////////////////////
+    // Create new account
+    ///////////////////////////////////////////////////////////////////////////
+    public Observable<AccountModel> createAccount(AccountModel model) {
+        return restService
+                .newAccount(model)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io());
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
     // Get User Profile
     ///////////////////////////////////////////////////////////////////////////
     public Observable<ProfileModel> getUserProfile(int userId) {
@@ -76,12 +89,10 @@ public class RestAPI {
     }
 
     ///////////////////////////////////////////////////////////////////////////
-    // Create new account
+    // Get Loans by account id
     ///////////////////////////////////////////////////////////////////////////
-    public Observable<AccountModel> createAccount(AccountModel model) {
+    public Observable<List<LoanModel>> getLoanList(int accountId) {
         return restService
-                .newAccount(model)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io());
+                .get
     }
 }

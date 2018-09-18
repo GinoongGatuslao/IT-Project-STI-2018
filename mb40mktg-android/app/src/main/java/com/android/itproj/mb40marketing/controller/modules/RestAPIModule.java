@@ -53,7 +53,7 @@ public class RestAPIModule {
                 Request authenticatedRequest =
                         chain.request()
                                 .newBuilder()
-                                .header("Authorization", "Bearer " + Constants.API_TOKEN)
+                                .header("Authorization", "Bearer " + apiToken)
                                 .build();
                 Response originalResponse = chain.proceed(authenticatedRequest);
                 int trycount = 0;

@@ -61,5 +61,5 @@ public class ProfileModel {
 
     @SerializedName("verified")
     @Getter
-    public boolean verified;
+    public int verified;
 }

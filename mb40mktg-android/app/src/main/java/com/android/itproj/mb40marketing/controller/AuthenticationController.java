@@ -57,7 +57,6 @@ public class AuthenticationController {
                             @Override
                             public void onError(Throwable e) {
                                 authCallback.onLoginFailed(e);
-                                compositeSubscription.unsubscribe();
                             }
 
                             @Override
@@ -69,7 +68,6 @@ public class AuthenticationController {
                                 } else {
                                     authCallback.onLoginFailed(new Throwable("Error! Unable to save on preference."));
                                 }
-                                compositeSubscription.unsubscribe();
                             }
                         })
         );
@@ -88,7 +86,6 @@ public class AuthenticationController {
                             @Override
                             public void onError(Throwable e) {
                                 authCallback.onLogoutFailed(e);
-                                compositeSubscription.unsubscribe();
                             }
 
                             @Override
@@ -109,7 +106,6 @@ public class AuthenticationController {
                                         e.printStackTrace();
                                     }
                                 }
-                                compositeSubscription.unsubscribe();
                             }
                         })
         );
@@ -128,7 +124,6 @@ public class AuthenticationController {
                     @Override
                     public void onError(Throwable e) {
                         registerCallback.onRegisterFailed(e);
-                        compositeSubscription.unsubscribe();
                     }
 
                     @Override
@@ -141,7 +136,6 @@ public class AuthenticationController {
                         } else {
                             registerCallback.onRegisterFailed(new Throwable("Failed to register user!"));
                         }
-                        compositeSubscription.unsubscribe();
                     }
                 })
         );

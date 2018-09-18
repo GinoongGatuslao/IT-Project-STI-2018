@@ -44,4 +44,8 @@
 
     <!--Home Activity-->
     <string name="button_request_account">Request an account</string>
+    <string name="text_notice">No records found.</string>
+    <string name="text_pull_down_refresh">Pull down to refresh</string>
+    <string name="text_or_pull_down_refresh">or Pull down to refresh</string>
+    <string name="text_not_verified">Your account hasn\'t been verified.\nContact us to follow up verification process.</string>
 </resources>
