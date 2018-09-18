@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.android.itproj.mb40marketing.CoreApp;
 import com.android.itproj.mb40marketing.R;
+import com.android.itproj.mb40marketing.adapter.LoanListAdapter;
 import com.android.itproj.mb40marketing.helper.interfaces.AccountCallback;
 import com.android.itproj.mb40marketing.helper.interfaces.AuthenticationCallback;
 import com.android.itproj.mb40marketing.helper.interfaces.ProfileCallbacks;
@@ -27,6 +28,7 @@ import com.android.itproj.mb40marketing.model.AccountModel;
 import com.android.itproj.mb40marketing.model.LoanModel;
 import com.android.itproj.mb40marketing.model.ProfileModel;
 
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -58,12 +60,16 @@ public class HomeActivity extends AppCompatActivity implements
     @BindView(R.id.swipe_container)
     public SwipeRefreshLayout swipeRefreshLayout;
 
+    AccountModel accountModel;
+
+    List<LoanModel> loanModelList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("");
+        toolbar.setTitle(getString(R.string.app_page_account));
         setSupportActionBar(toolbar);
 
         ButterKnife.bind(this);
@@ -113,16 +119,26 @@ public class HomeActivity extends AppCompatActivity implements
 
     @Override
     public void onAccountRequest(AccountModel accountModel) {
-
+        this.accountModel = accountModel;
+        ((CoreApp) getApplication())
+                .getAccountController()
+                .getLoans(this.accountModel.getId(), this);
     }
 
     @Override
     public void onLoanListRequest(List<LoanModel> loanModelList) {
-
+        Log.d(TAG, "onLoanListRequest: " + Arrays.deepToString(loanModelList.toArray()));
+        if (loanModelList.size() > 0) {
+            swipeRefreshLayout.setRefreshing(false);
+            setVisibility(View.GONE, noticeFrame);
+            setVisibility(View.VISIBLE, loanListView);
+            setFieldDetails(loanModelList);
+        }
     }
 
     @Override
     public void onError(Throwable throwable) {
+        Log.e(TAG, "onError: ", throwable);
         Toast.makeText(this, throwable.getMessage(), Toast.LENGTH_LONG).show();
     }
 
@@ -142,13 +158,17 @@ public class HomeActivity extends AppCompatActivity implements
     @Override
     public void onProfileFetch(ProfileModel model) {
         Log.d(TAG, "onProfileFetch: " + model.toString());
-        swipeRefreshLayout.setRefreshing(false);
         checkIfProfileVerified();
     }
 
     @Override
     public void onProfileFetchFailed(Throwable throwable) {
         Toast.makeText(this, throwable.getMessage(), Toast.LENGTH_LONG).show();
+    }
+
+    private void setFieldDetails(List<LoanModel> loanModelList) {
+        LoanListAdapter loanListAdapter = new LoanListAdapter(getApplication(), loanModelList);
+        loanListView.setAdapter(loanListAdapter);
     }
 
     private void getAccountDetail() {
@@ -160,6 +180,7 @@ public class HomeActivity extends AppCompatActivity implements
 
     private void checkIfProfileVerified() {
         if (((CoreApp) getApplication()).getProfileController().getProfile().getVerified() != 1) {
+            swipeRefreshLayout.setRefreshing(false);
             showVerificationNotice();
         } else {
             getAccountDetail();

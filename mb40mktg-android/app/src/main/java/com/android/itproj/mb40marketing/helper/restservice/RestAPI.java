@@ -7,8 +7,6 @@ import com.android.itproj.mb40marketing.model.UserLogin;
 import com.android.itproj.mb40marketing.model.UserModel;
 import com.google.gson.JsonObject;
 
-import org.json.JSONObject;
-
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -78,6 +76,16 @@ public class RestAPI {
     }
 
     ///////////////////////////////////////////////////////////////////////////
+    // Get Account Record
+    ///////////////////////////////////////////////////////////////////////////
+    public Observable<AccountModel> getAccount(int profileId) {
+        return restService
+                .getAccountByProfile(profileId)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io());
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
     // Get User Profile
     ///////////////////////////////////////////////////////////////////////////
     public Observable<ProfileModel> getUserProfile(int userId) {
@@ -93,6 +101,9 @@ public class RestAPI {
     ///////////////////////////////////////////////////////////////////////////
     public Observable<List<LoanModel>> getLoanList(int accountId) {
         return restService
-                .get
+                .getLoans(accountId)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io());
+
     }
 }

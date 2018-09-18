@@ -2,6 +2,7 @@ package com.android.itproj.mb40marketing.model;
 
 import android.accounts.Account;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import lombok.Getter;
@@ -14,6 +15,10 @@ public class AccountModel {
     public AccountModel(int profile_id) {
         setProfile_id(profile_id);
     }
+
+    @Expose(deserialize = false)
+    @Getter
+    public int id;
 
     @SerializedName("profile_id")
     @Setter

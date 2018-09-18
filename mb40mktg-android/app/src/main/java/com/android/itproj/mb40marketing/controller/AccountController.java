@@ -1,21 +1,19 @@
 package com.android.itproj.mb40marketing.controller;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 
 import com.android.itproj.mb40marketing.CoreApp;
 import com.android.itproj.mb40marketing.helper.interfaces.AccountCallback;
 import com.android.itproj.mb40marketing.model.AccountModel;
+import com.android.itproj.mb40marketing.model.LoanModel;
 import com.android.itproj.mb40marketing.model.ProfileModel;
 
-import javax.inject.Inject;
+import java.util.List;
 
-import lombok.Getter;
-import lombok.Setter;
 import rx.Observer;
 import rx.subscriptions.CompositeSubscription;
 
-public class AccountController{
+public class AccountController {
 
     private CompositeSubscription compositeSubscription;
     private Context context;
@@ -27,7 +25,7 @@ public class AccountController{
         this.compositeSubscription = new CompositeSubscription();
     }
 
-    public void getAccountDetail(final ProfileModel model, final AccountCallback callback) {
+    public void createAccount(final ProfileModel model, final AccountCallback callback) {
         compositeSubscription.add(
                 ((CoreApp) context)
                         .getRestAPI()
@@ -40,7 +38,31 @@ public class AccountController{
 
                             @Override
                             public void onError(Throwable e) {
+                                callback.onError(e);
+                            }
 
+                            @Override
+                            public void onNext(AccountModel accountModel) {
+                                callback.onAccountRequest(accountModel);
+                            }
+                        })
+        );
+    }
+
+    public void getAccountDetail(final ProfileModel model, final AccountCallback callback) {
+        compositeSubscription.add(
+                ((CoreApp) context)
+                        .getRestAPI()
+                        .getAccount(model.getId())
+                        .subscribe(new Observer<AccountModel>() {
+                            @Override
+                            public void onCompleted() {
+
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                callback.onError(e);
                             }
 
                             @Override
@@ -53,8 +75,24 @@ public class AccountController{
 
     public void getLoans(int accountId, final AccountCallback callback) {
         compositeSubscription.add(
-                ((CoreApp)context)
-        .getRestAPI()
-        .);
+                ((CoreApp) context)
+                        .getRestAPI()
+                        .getLoanList(accountId)
+                        .subscribe(new Observer<List<LoanModel>>() {
+                            @Override
+                            public void onCompleted() {
+
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                callback.onError(e);
+                            }
+
+                            @Override
+                            public void onNext(List<LoanModel> loanModelList) {
+                                callback.onLoanListRequest(loanModelList);
+                            }
+                        }));
     }
 }

@@ -1,5 +1,6 @@
 package com.android.itproj.mb40marketing.model;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import lombok.Getter;
@@ -8,6 +9,11 @@ import lombok.ToString;
 
 @ToString
 public class ProfileModel {
+
+    @Expose(deserialize = false)
+    @Getter
+    @Setter
+    private int id;
 
     @SerializedName("user_id")
     @Getter

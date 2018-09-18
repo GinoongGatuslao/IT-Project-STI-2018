@@ -11,8 +11,6 @@ import com.android.itproj.mb40marketing.model.UserLogin;
 import com.android.itproj.mb40marketing.model.UserModel;
 import com.google.gson.JsonObject;
 
-import org.json.JSONObject;
-
 import java.util.List;
 import java.util.Map;
 
@@ -20,7 +18,6 @@ import okhttp3.ResponseBody;
 import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.Header;
 import retrofit2.http.HeaderMap;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
@@ -63,13 +60,13 @@ public interface RestAPIService {
     // ACCOUNT
     ///////////////////////////////////////////////////////////////////////////
     @POST("account/newaccount")
-    Observable<AccountModel> newAccount(@Body AccountModel accountModel);
+    Observable<AccountModel> newAccount(@Body AccountModel accountRequest);
 
     @GET("account/getaccount/{id}")
     Observable<AccountModel> getAccount(@Path("id") int id);
 
-    @GET("account/getaccountbyprofile/{id}")
-    Observable<AccountModel> getAccountByProfile(@Path("id") int id);
+    @GET("account/getaccountbyprofile/{profile_id}")
+    Observable<AccountModel> getAccountByProfile(@Path("profile_id") int id);
 
     ///////////////////////////////////////////////////////////////////////////
     // PRODUCT
@@ -118,6 +115,9 @@ public interface RestAPIService {
     @Headers("Content-Type:application/json")
     @POST("loan/addloan")
     Observable<LoanModel> storeLoan(@Body JsonObject jsonRequest);
+
+    @GET("loan/getloan/{account_id}")
+    Observable<List<LoanModel>> getLoans(@Path("account_id") int accountId);
 
     ///////////////////////////////////////////////////////////////////////////
     // TRANSACTION
