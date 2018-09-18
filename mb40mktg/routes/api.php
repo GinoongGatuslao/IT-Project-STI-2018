@@ -63,6 +63,7 @@ Route::group(['middleware' => 'auth:api'], function () {
      * todo: add specific filtering like transactions except by collector and by loan
      */
     Route::get('loan/getloan/{account_id}', 'LoanController@getLoan');
+    Route::get('loan/getloanitems/{loan_id}', 'LoanController@getLoanItems');
     Route::post('loan/addloan', 'LoanController@storeLoan');
     Route::put('loan/updateloan', 'LoanController@updateLoan');
     Route::delete('loan/deleteloan', 'LoanController@deleteLoan');
