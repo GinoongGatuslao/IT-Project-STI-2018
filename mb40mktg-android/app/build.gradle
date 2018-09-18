@@ -11,7 +11,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "host", "\"https://6e12a697.ngrok.io/api/\"")
+        buildConfigField("String", "host", "\"https://2e7418b3.ngrok.io/api/\"")
     }
     buildTypes {
         release {
@@ -38,6 +38,7 @@ dependencies {
     implementation rxjava
     implementation saripaar
     implementation cloudinary
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     annotationProcessor butterKnifeAnnotation
     annotationProcessor lombokAnnotation
     annotationProcessor daggerAnnotation

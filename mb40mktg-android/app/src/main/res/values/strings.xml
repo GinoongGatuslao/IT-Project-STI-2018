@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">MB40 Marketing</string>
 
+    <string name="app_page_account">My Account</string>
+
+    <!-- Menus-->
+    <string name="menu_profile">[x]Profile</string>
+    <string name="menu_logout">Logout</string>
+
     <!-- Strings related to login -->
     <string name="prompt_username">Username</string>
     <string name="prompt_password">Password</string>
@@ -31,4 +37,22 @@
     <string name="label_home_sketch">Photo of residence sketch</string>
     <string name="button_select">Select</string>
     <string name="button_register">Register</string>
+
+    <!-- Register dialog strings -->
+    <string name="progress_register">Registering&#8230;</string>
+    <string name="progress_create_profile">Creating profile&#8230;</string>
+    <string name="progress_upload">Uploading images&#8230;</string>
+    <string name="title_activity_home">HomeActivity</string>
+
+    <!--Home Activity-->
+    <string name="button_request_account">Request an account</string>
+    <string name="text_notice">No records found.</string>
+    <string name="text_pull_down_refresh">Pull down to refresh</string>
+    <string name="text_or_pull_down_refresh">or Pull down to refresh</string>
+    <string name="text_not_verified">Your account hasn\'t been verified.\nContact us to follow up verification process.</string>
+
+    <!--Loan List item-->
+    <string name="loan_list_term_label">Term</string>
+    <string name="loan_list_total_value">Amount</string>
+    <string name="loan_list_status">Status</string>
 </resources>

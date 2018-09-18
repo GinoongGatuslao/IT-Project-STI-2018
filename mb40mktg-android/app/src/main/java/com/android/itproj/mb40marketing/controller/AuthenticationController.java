@@ -22,6 +22,7 @@ import lombok.Setter;
 import okhttp3.ResponseBody;
 import retrofit2.Response;
 import rx.Observer;
+import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
 public class AuthenticationController {
@@ -46,8 +47,7 @@ public class AuthenticationController {
     public void login(final String username, final String password, final AuthenticationCallback.AuthLoginCallback authCallback) {
         compositeSubscription.add(
                 ((CoreApp) context).getRestAPI()
-                        .login(
-                                UserLogin.initialize(username, password))
+                        .login(UserLogin.initialize(username, password))
                         .subscribe(new Observer<UserModel>() {
                             @Override
                             public void onCompleted() {

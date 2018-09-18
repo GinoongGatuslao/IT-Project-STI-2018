@@ -53,17 +53,19 @@ public class RestAPIModule {
                 Request authenticatedRequest =
                         chain.request()
                                 .newBuilder()
-                                .header("Authorization", "Bearer " + Constants.API_TOKEN)
+                                .header("Authorization", "Bearer " + apiToken)
                                 .build();
                 Response originalResponse = chain.proceed(authenticatedRequest);
                 int trycount = 0;
 
                 while (!originalResponse.isSuccessful() && trycount < 1) {
                     trycount++;
-                    Log.d("retroFitCall", "intercept[attempt " + trycount + "/ " + 3 + "]: " + authenticatedRequest.url());
+                    Log.d("retroFitCall",
+                            "intercept[attempt " + trycount + "/ " + 3 + "]: " + authenticatedRequest.url()
+                                    + " code: " + originalResponse.code());
                     originalResponse = chain.proceed(authenticatedRequest);
                 }
-                Log.d("call", "intercept: " + originalResponse.request().url());
+                Log.d("call", "intercept: " + originalResponse.request().url() + " code: " + originalResponse.code());
                 return originalResponse;
             }
         };

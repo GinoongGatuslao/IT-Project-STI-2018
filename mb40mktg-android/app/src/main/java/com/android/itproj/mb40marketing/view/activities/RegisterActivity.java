@@ -1,6 +1,8 @@
 package com.android.itproj.mb40marketing.view.activities;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -119,6 +121,8 @@ public class RegisterActivity extends AppCompatActivity implements
     @BindView(R.id.selectHomeSketch)
     public Button selectHomeSketch;
 
+    private ProgressDialog alertDialog;
+
     private Validator validator;
 
     private UploadEntry validIdEntry;
@@ -146,7 +150,7 @@ public class RegisterActivity extends AppCompatActivity implements
         Random rand = new Random();
         int rInt = rand.nextInt(10000);
 
-        givenNameEditText.setText("givenName" + rInt);
+        /*givenNameEditText.setText("givenName" + rInt);
         middleNameEditText.setText("middleName" + rInt);
         familyNameEditText.setText("familyName" + rInt);
         addressEditText.setText("address" + rInt);
@@ -157,13 +161,16 @@ public class RegisterActivity extends AppCompatActivity implements
         est_monthly_expensesEditText.setText(String.valueOf(rInt));
         usernameEditText.setText("username" + rInt);
         passwordEditText.setText("password" + rInt);
-        confirm_passwordEditText.setText("password" + rInt);
+        confirm_passwordEditText.setText("password" + rInt);*/
 
+        //initialize alert dialog
+        alertDialog = new ProgressDialog(this, ProgressDialog.STYLE_SPINNER);
+        alertDialog.setCancelable(false);
+        alertDialog.setCanceledOnTouchOutside(false);
     }
 
     @OnClick(R.id.registerBtn)
     public void registerNewAccount() {
-        //VALIDATE FIRST THE FORM FIELDS
         validator.validate();
     }
 
@@ -229,22 +236,24 @@ public class RegisterActivity extends AppCompatActivity implements
         //AFTER VALIDATION, UPLOAD THE IMAGES
         if (!validIdSelected && !homeSketchSelected) {
             registerUserDetails();
-        }
+        } else {
+            updateAlertDialog(true, this.getString(R.string.progress_upload));
+            if (validIdSelected) {
+                validIdEntry.setRequestId(validIdEntry.uploadRequest.dispatch(this));
+                Log.d(TAG, "uploadimage: " + validIdEntry.toString());
+            }
 
-        if (validIdSelected) {
-            validIdEntry.setRequestId(validIdEntry.uploadRequest.dispatch(this));
-            Log.d(TAG, "uploadimage: " + validIdEntry.toString());
-        }
-
-        if (homeSketchSelected) {
-            homeSketchEntry.setRequestId(homeSketchEntry.uploadRequest.dispatch(this));
-            Log.d(TAG, "uploadimage: " + homeSketchEntry.toString());
+            if (homeSketchSelected) {
+                homeSketchEntry.setRequestId(homeSketchEntry.uploadRequest.dispatch(this));
+                Log.d(TAG, "uploadimage: " + homeSketchEntry.toString());
+            }
         }
 
     }
 
     @Override
     public void onValidationFailed(List<ValidationError> errors) {
+        updateAlertDialog(false, "");
         for (ValidationError error : errors) {
             View view = error.getView();
             String message = error.getCollatedErrorMessage(this);
@@ -260,6 +269,7 @@ public class RegisterActivity extends AppCompatActivity implements
 
     @Override
     public void onRegisterSuccess(UserModel model) {
+        updateAlertDialog(true, this.getString(R.string.progress_create_profile));
         //now we create profile for the client as filled-in on forms
 
         //create the model for POST body
@@ -287,11 +297,13 @@ public class RegisterActivity extends AppCompatActivity implements
 
     @Override
     public void onRegisterFailed(Throwable e) {
+        updateAlertDialog(false, "");
         Log.e(TAG, "onRegisterFailed: ", e);
     }
 
     @Override
     public void onProfileRegisterSuccess(ProfileModel model) {
+        updateAlertDialog(false, "");
         Log.d(TAG, "onProfileRegisterSuccess: " + model.toString());
         ((CoreApp) getApplication()).getProfileController().setProfile(model);
 
@@ -302,12 +314,13 @@ public class RegisterActivity extends AppCompatActivity implements
 
     @Override
     public void onProfileRegisterFailed(Throwable throwable) {
+        updateAlertDialog(false, "");
         Log.e(TAG, "onProfileRegisterFailed: ", throwable);
     }
 
     @Override
     public void onStart(String requestId) {
-
+        updateAlertDialog(true, this.getString(R.string.progress_upload));
     }
 
     @Override
@@ -335,6 +348,7 @@ public class RegisterActivity extends AppCompatActivity implements
                 Log.d(TAG, "waiting for other upload entry...");
             }
         } else {
+            updateAlertDialog(true, this.getString(R.string.progress_register));
             registerUserDetails();
         }
 
@@ -342,12 +356,14 @@ public class RegisterActivity extends AppCompatActivity implements
 
     @Override
     public void onError(String requestId, ErrorInfo error) {
-
+        updateAlertDialog(false, "");
+        Toast.makeText(this, error.getDescription(), Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onReschedule(String requestId, ErrorInfo error) {
-
+        updateAlertDialog(false, "");
+        Toast.makeText(this, error.getDescription(), Toast.LENGTH_LONG).show();
     }
 
     private void startIntentForChooseImage(Intent intent, int REQUEST_CODE) {
@@ -355,6 +371,8 @@ public class RegisterActivity extends AppCompatActivity implements
     }
 
     private void registerUserDetails() {
+        updateAlertDialog(true, this.getString(R.string.progress_register));
+
         UserModel model = new UserModel();
         model.setUsername(usernameEditText.getText().toString());
         model.setPassword(passwordEditText.getText().toString());
@@ -372,6 +390,22 @@ public class RegisterActivity extends AppCompatActivity implements
                 .registerUser(newUser, this);
     }
 
+    private void updateAlertDialog(boolean showDialog, String message) {
+        if (alertDialog != null) {
+            if (showDialog) {
+                if (!alertDialog.isShowing()) {
+                    alertDialog.show();
+                }
+                alertDialog.setMessage(message);
+            } else {
+                alertDialog.dismiss();
+            }
+        }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // CUSTOM CLASS
+    ///////////////////////////////////////////////////////////////////////////
     @ToString
     public class UploadEntry {
 
