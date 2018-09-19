@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using Newtonsoft.Json;
 
 namespace WindowsFormsApp1
 {
     public partial class Login : Form
     {
+        public static String api_token = string.Empty;
+
         public Login()
         {
             InitializeComponent();
@@ -20,23 +16,31 @@ namespace WindowsFormsApp1
 
         private void login_btn_Click(object sender, EventArgs e)
         {
-            //uncomment on final
             if (username_tb.Text != string.Empty && password_tb.Text != string.Empty)
             {
                 RestClient restClient = new RestClient();
-                restClient.endPoint = Settings.baseURL.ToString()
-                    + "/api/login?"
-                    + "username=" + username_tb.Text
-                    + "&password=" + password_tb.Text;
+                restClient.endPoint = Settings.baseUrl.ToString()
+                    + "/api/login?";
 
-                Debug.WriteLine("Rest Client Created");
+                restClient.postJSON = "{\"password\": \"" + password_tb.Text
+                    + "\",\"username\":\"" + username_tb.Text
+                    + "\"}";
+
+                restClient.login = true;
+                    
+                Debug.WriteLine("Rest Client Created\n" + restClient.postJSON + "\n" + restClient.endPoint);
 
                 string response = string.Empty;
                 response = restClient.PostRequest();
+                Console.WriteLine("response : " + response);
                 string[] res = response.Split('|');
 
                 if (res[0].Equals("OK"))
                 {
+                    User user = JsonConvert.DeserializeObject<User>(res[1]);
+                    api_token = user.api_token;
+                    Console.WriteLine("api_token: " + user.api_token);
+
                     this.Hide();
                     MainForm dashboard = new MainForm();
                     dashboard.Closed += (s, args) => this.Close();
@@ -53,7 +57,6 @@ namespace WindowsFormsApp1
             {
                 MessageBox.Show("Username and password cannot be empty", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
-
             }
         }
 

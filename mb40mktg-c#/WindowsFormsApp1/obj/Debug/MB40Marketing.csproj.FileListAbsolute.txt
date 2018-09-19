@@ -9,4 +9,8 @@ C:\Users\patdl\Documents\Davao\IT-Project-STI-2018\mb40mktg-c#\WindowsFormsApp1\
 C:\Users\patdl\Documents\Davao\IT-Project-STI-2018\mb40mktg-c#\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 C:\Users\patdl\Documents\Davao\IT-Project-STI-2018\mb40mktg-c#\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
 C:\Users\patdl\Documents\Davao\IT-Project-STI-2018\mb40mktg-c#\WindowsFormsApp1\obj\Debug\MB40Marketing.csprojAssemblyReference.cache
+C:\Users\patdl\Documents\Davao\IT-Project-STI-2018\mb40mktg-c#\WindowsFormsApp1\bin\Debug\Newtonsoft.Json.dll
+C:\Users\patdl\Documents\Davao\IT-Project-STI-2018\mb40mktg-c#\WindowsFormsApp1\bin\Debug\Newtonsoft.Json.xml
+C:\Users\patdl\Documents\Davao\IT-Project-STI-2018\mb40mktg-c#\WindowsFormsApp1\obj\Debug\MB40Marketing.csproj.CopyComplete
 C:\Users\patdl\Documents\Davao\IT-Project-STI-2018\mb40mktg-c#\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Settings.resources
+C:\Users\patdl\Documents\Davao\IT-Project-STI-2018\mb40mktg-c#\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.ItemSearch.resources

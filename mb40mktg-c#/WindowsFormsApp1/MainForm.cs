@@ -1,22 +1,23 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
+using WindowsFormsApp1;
 
 namespace WindowsFormsApp1
 {
     public partial class MainForm : Form
     {
-        List<Panel> rightPanel = new List<Panel>();
-        List<Panel> leftPanel = new List<Panel>();
-        List<TextBox> profileTbs = new List<TextBox>();
-        int item_index = 1;
-       
+        private List<Panel> rightPanel = new List<Panel>();
+        private List<Panel> leftPanel = new List<Panel>();
+        private List<TextBox> profileTbs = new List<TextBox>();
+        private int item_index = 0;
+        private int search_index = 0;
+        private Loan loan = new Loan();
+        private RestClient restClient = new RestClient();
+
         public MainForm()
         {
             InitializeComponent();
@@ -32,10 +33,12 @@ namespace WindowsFormsApp1
             rightPanel.Add(profile_panel); //3
             rightPanel.Add(addloan_panel); //4
             rightPanel.Add(viewloan_panel); //5
+            rightPanel.Add(confirmclient_panel); //6
             rightPanel[0].BringToFront();
 
-            leftPanel.Add(profile_sidepanel);
-            leftPanel.Add(loan_sidepanel);
+            leftPanel.Add(profile_sidepanel); //0
+            leftPanel.Add(loan_sidepanel); //1
+            leftPanel.Add(confirmclient_sidepanel); //2
             leftPanel[0].BringToFront();
 
             profileTbs.Add(prof_fn_tb);
@@ -59,6 +62,7 @@ namespace WindowsFormsApp1
             this.Text = "Account Management";
             this.Refresh();
             main_panel.Visible = true;
+            confirmClientAccountToolStripMenuItem_Click(sender, e);
         }
 
         private void inventorymgt_btn_Click(object sender, EventArgs e)
@@ -74,6 +78,18 @@ namespace WindowsFormsApp1
             leftPanel[1].BringToFront();
             loansfilter_gb.Enabled = true;
             search_gb.Enabled = true;
+
+            restClient.endPoint = Settings.baseUrl
+                + "/api/loan/getloans";
+
+            string response = string.Empty;
+            response = restClient.GetRequest();
+            Console.WriteLine("response : " + response);
+
+            var loans = JsonConvert.DeserializeObject<List<Loan>>(response);
+
+            loan_data.DataSource = loans;
+
         }
 
         private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
@@ -133,11 +149,68 @@ namespace WindowsFormsApp1
             editLoanToolStripMenuItem_Click(sender, e);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Settings settings = new Settings();
+            settings.Show();
+        }
+
+        private void confirmClientAccountToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rightPanel[6].BringToFront();
+            leftPanel[2].BringToFront();
+        }
+
+        private void save_loan_btn_Click(object sender, EventArgs e)
+        {
+            //TODO: add error catching for empty fields and wrong input
+            loan.account_id = Int32.Parse(account_id_tb.Text);
+            loan.term_length = Int32.Parse(length_tb.Text);
+            //loan.status = loan_status_cb.SelectedIndex;
+            loan.status = 1;
+            loan.loan_items = new List<LoanItem>();
+
+            int index = 0;
+            foreach (Control c in loan_items_fp.Controls)
+            {
+                if (loan_items_fp.Controls.ContainsKey("loanitem" + Convert.ToString(index)))
+                {
+                    GroupBox gb = (GroupBox)loan_items_fp.Controls[index];
+
+                    TextBox id_tb = (TextBox)gb.Controls["item_id_tb"];
+                    ComboBox stat_cb = (ComboBox)gb.Controls["item_stat_cb"];
+                    TextBox interest_tb = (TextBox)gb.Controls["item_int_tb"];
+
+                    LoanItem loanItem = new LoanItem();
+                    loanItem.item_id = Convert.ToInt32(id_tb.Text);
+                    loanItem.item_status = 1;
+                    loanItem.interest = Convert.ToDouble(interest_tb.Text);
+                    loan.loan_items.Add(loanItem);
+
+                }
+                index++;
+            }
+
+            restClient.endPoint = Settings.baseUrl.ToString()
+                + "/api/loan/addloan";
+
+            string jsonResult = JsonConvert.SerializeObject(loan);
+            Console.WriteLine(jsonResult.ToString());
+
+            restClient.postJSON = jsonResult;
+            restClient.login = false;
+
+            string response = string.Empty;
+            response = restClient.PostRequest();
+            Console.WriteLine("response : " + response);
+        }
+
+        private void add_item_btn_Click(object sender, EventArgs e)
         {
             GroupBox gb = new GroupBox();
-            gb.Text = "Loan Item " + ++item_index;
             gb.Size = new Size(550, 114);
+            gb.Name = "loanitem" + Convert.ToString(++item_index);
+            gb.Text = "Loan Item " + (item_index + 1);
 
             Label item_id_lbl = new Label();
             item_id_lbl.Text = "Item ID:";
@@ -190,47 +263,70 @@ namespace WindowsFormsApp1
             TextBox item_id_tb = new TextBox();
             item_id_tb.Size = new Size(247, 20);
             item_id_tb.Location = new Point(81, 16);
+            item_id_tb.Name = "item_id_tb";
             gb.Controls.Add(item_id_tb);
 
             TextBox item_name_tb = new TextBox();
             item_name_tb.Size = new Size(247, 20);
             item_name_tb.Location = new Point(81, 42);
+            item_name_tb.Name = "item_name_tb";
             gb.Controls.Add(item_name_tb);
 
             TextBox item_desc_tb = new TextBox();
             item_desc_tb.Size = new Size(247, 39);
             item_desc_tb.Location = new Point(81, 67);
             item_desc_tb.Multiline = true;
+            item_desc_tb.Name = "item_desc_tb";
             gb.Controls.Add(item_desc_tb);
 
             ComboBox item_stat_cb = new ComboBox();
             item_stat_cb.Size = new Size(93, 21);
             item_stat_cb.Location = new Point(424, 16);
+            item_stat_cb.Name = "item_stat_cb";
             gb.Controls.Add(item_stat_cb);
 
             TextBox item_price_tb = new TextBox();
             item_price_tb.Size = new Size(93, 20);
             item_price_tb.Location = new Point(424, 43);
+            item_price_tb.Name = "item_price_tb";
             gb.Controls.Add(item_price_tb);
 
-            TextBox item_interest_tb = new TextBox();
-            item_interest_tb.Size = new Size(93, 20);
-            item_interest_tb.Location = new Point(424, 68);
-            gb.Controls.Add(item_interest_tb);
+            TextBox item_int_tb = new TextBox();
+            item_int_tb.Size = new Size(93, 20);
+            item_int_tb.Location = new Point(424, 68);
+            item_int_tb.Name = "item_int_tb";
+            gb.Controls.Add(item_int_tb);
 
             Button search_btn = new Button();
             search_btn.Size = new Size(25, 25);
             search_btn.Location = new Point(332, 14);
+            search_btn.Name = "search_item" + item_index;
+            search_btn.Click += new EventHandler(search_item0_Click);
             //search_btn.Image = new Bitmap("search(1).png");
             gb.Controls.Add(search_btn);
 
             loan_items_fp.Controls.Add(gb);
         }
 
-        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void cancel_loan_btn_Click(object sender, EventArgs e)
         {
-            Settings settings = new Settings();
-            settings.Show();
+            addLoanToolStripMenuItem_Click(sender, e);
+        }
+
+        private void ItemSearch_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            
+        }
+
+        private void search_item0_Click(object sender, EventArgs e)
+        {
+            ItemSearch itemSearch = new ItemSearch();
+            itemSearch.Show();
+
+            using (ItemSearch itemSrch = new ItemSearch())
+            {
+                itemSrch.FormClosed += new FormClosedEventHandler(ItemSearch_FormClosed);
+            }
         }
     }
 }

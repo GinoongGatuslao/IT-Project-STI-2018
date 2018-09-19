@@ -12,25 +12,29 @@ namespace WindowsFormsApp1
 {
     public partial class Settings : Form
     {
-        public static string baseURL = "";
+        public static string baseUrl;
 
         public Settings()
         {
             InitializeComponent();
         }
 
+        private void ok_btn_Click(object sender, EventArgs e)
+        {
+            if (baseurl_lbl.Text != string.Empty)
+            {
+                baseUrl = baseurl_tb.Text;
+
+                this.Hide();
+                Login login = new Login();
+                login.Closed += (s, args) => this.Close();
+                login.Show();
+            }
+        }
+
         private void cancel_btn_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void ok_btn_Click(object sender, EventArgs e)
-        {
-            baseURL = baseurl_tb.Text;
-
-            this.Hide();
-            Login login = new Login();
-            login.Show();
         }
     }
 }

@@ -9,6 +9,7 @@ namespace WindowsFormsApp1
     {
         public string endPoint { get; set; }
         public string postJSON { get; set; }
+        public bool login { get; set; }
         //public string username { get; set; }
         //public string password { get; set; }
 
@@ -22,6 +23,11 @@ namespace WindowsFormsApp1
             string responseValue = string.Empty;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(endPoint);
             request.Method = "POST";
+
+            if (!login)
+            {
+                request.Headers.Add("Authorization", "Bearer " + Login.api_token);
+            }
 
             //String authHeader = System.Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes(username + ":" + password));
             //request.Headers.Add("Authorizationasic " + authHeader);
@@ -92,6 +98,7 @@ namespace WindowsFormsApp1
             string responseValue = string.Empty;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(endPoint);
             request.Method = "GET";
+            request.Headers.Add("Authorization", "Bearer " + Login.api_token);
 
             HttpWebResponse response = null;
 
