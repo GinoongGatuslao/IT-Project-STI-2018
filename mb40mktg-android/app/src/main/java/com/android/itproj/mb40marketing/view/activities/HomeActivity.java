@@ -3,8 +3,6 @@ package com.android.itproj.mb40marketing.view.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -13,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -21,10 +20,11 @@ import android.widget.Toast;
 import com.android.itproj.mb40marketing.CoreApp;
 import com.android.itproj.mb40marketing.R;
 import com.android.itproj.mb40marketing.adapter.LoanListAdapter;
-import com.android.itproj.mb40marketing.helper.interfaces.AccountCallback;
+import com.android.itproj.mb40marketing.helper.interfaces.Accounts;
 import com.android.itproj.mb40marketing.helper.interfaces.AuthenticationCallback;
 import com.android.itproj.mb40marketing.helper.interfaces.ProfileCallbacks;
 import com.android.itproj.mb40marketing.model.AccountModel;
+import com.android.itproj.mb40marketing.model.LoanItemSummaryModel;
 import com.android.itproj.mb40marketing.model.LoanModel;
 import com.android.itproj.mb40marketing.model.ProfileModel;
 
@@ -35,13 +35,13 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit2.HttpException;
 
 public class HomeActivity extends AppCompatActivity implements
         AuthenticationCallback.AuthLogoutCallback,
         SwipeRefreshLayout.OnRefreshListener,
         ProfileCallbacks.ProfileRequest,
-        AccountCallback {
+        Accounts.UserAccountCallback,
+        Accounts.UserLoanCallback {
 
     private static final String TAG = "HomeActivity";
 
@@ -175,8 +175,17 @@ public class HomeActivity extends AppCompatActivity implements
     }
 
     private void setFieldDetails(List<LoanModel> loanModelList) {
-        LoanListAdapter loanListAdapter = new LoanListAdapter(getApplication(), loanModelList);
+        final LoanListAdapter loanListAdapter = new LoanListAdapter(getApplication(), loanModelList);
         loanListView.setAdapter(loanListAdapter);
+        loanListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                List<LoanItemSummaryModel> loanItemSummaryModels = loanListAdapter.getItem(i).getLoanItemSummary();
+                LoanItemDialogFragment loanItemDialogFragment = new LoanItemDialogFragment();
+                loanItemDialogFragment.setLoanItemSummaryModels(loanItemSummaryModels);
+                loanItemDialogFragment.show(getSupportFragmentManager(), "loan_items");
+            }
+        });
     }
 
     private void getAccountDetail() {

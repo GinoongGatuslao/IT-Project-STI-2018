@@ -52,7 +52,9 @@
     <string name="text_not_verified">Your account hasn\'t been verified.\nContact us to follow up verification process.</string>
 
     <!--Loan List item-->
+    <string name="loaned_items">Loaned items</string>
     <string name="loan_list_term_label">Term</string>
     <string name="loan_list_total_value">Amount</string>
     <string name="loan_list_status">Status</string>
+    <string name="loan_list_interest">Interest</string>
 </resources>

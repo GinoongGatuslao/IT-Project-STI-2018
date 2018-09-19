@@ -1,6 +1,7 @@
 package com.android.itproj.mb40marketing.helper.restservice;
 
 import com.android.itproj.mb40marketing.model.AccountModel;
+import com.android.itproj.mb40marketing.model.LoanItemSummaryModel;
 import com.android.itproj.mb40marketing.model.LoanModel;
 import com.android.itproj.mb40marketing.model.PriceModel;
 import com.android.itproj.mb40marketing.model.ProductBatchModel;
@@ -118,6 +119,9 @@ public interface RestAPIService {
 
     @GET("loan/getloan/{account_id}")
     Observable<List<LoanModel>> getLoans(@Path("account_id") int accountId);
+
+    @GET("loan/getloanitems/{loan_id}")
+    Observable<List<LoanItemSummaryModel>> getLoanItems(@Path("loan_id") int loan_id);
 
     ///////////////////////////////////////////////////////////////////////////
     // TRANSACTION

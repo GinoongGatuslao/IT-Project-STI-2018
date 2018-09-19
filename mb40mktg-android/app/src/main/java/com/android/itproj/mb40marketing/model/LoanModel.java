@@ -3,7 +3,10 @@ package com.android.itproj.mb40marketing.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 import lombok.Getter;
+import lombok.Setter;
 
 public class LoanModel {
 
@@ -26,6 +29,11 @@ public class LoanModel {
     @SerializedName("amortization")
     @Getter
     private float amortization;
+
+    @Expose(deserialize = false, serialize = false)
+    @Getter
+    @Setter
+    private List<LoanItemSummaryModel> loanItemSummary;
 
     @SerializedName("status")
     @Getter

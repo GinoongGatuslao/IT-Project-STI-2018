@@ -1,6 +1,7 @@
 package com.android.itproj.mb40marketing.helper.restservice;
 
 import com.android.itproj.mb40marketing.model.AccountModel;
+import com.android.itproj.mb40marketing.model.LoanItemSummaryModel;
 import com.android.itproj.mb40marketing.model.LoanModel;
 import com.android.itproj.mb40marketing.model.ProfileModel;
 import com.android.itproj.mb40marketing.model.UserLogin;
@@ -105,5 +106,15 @@ public class RestAPI {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io());
 
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Get Loaned items by loan id
+    ///////////////////////////////////////////////////////////////////////////
+    public Observable<List<LoanItemSummaryModel>> getLoanItems(int loan_id) {
+        return restService
+                .getLoanItems(loan_id)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io());
     }
 }

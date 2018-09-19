@@ -3,8 +3,9 @@ package com.android.itproj.mb40marketing.controller;
 import android.content.Context;
 
 import com.android.itproj.mb40marketing.CoreApp;
-import com.android.itproj.mb40marketing.helper.interfaces.AccountCallback;
+import com.android.itproj.mb40marketing.helper.interfaces.Accounts;
 import com.android.itproj.mb40marketing.model.AccountModel;
+import com.android.itproj.mb40marketing.model.LoanItemSummaryModel;
 import com.android.itproj.mb40marketing.model.LoanModel;
 import com.android.itproj.mb40marketing.model.ProfileModel;
 
@@ -26,7 +27,7 @@ public class AccountController {
         this.compositeSubscription = new CompositeSubscription();
     }
 
-    public void createAccount(final ProfileModel model, final AccountCallback callback) {
+    public void createAccount(final ProfileModel model, final Accounts.UserAccountCallback callback) {
         compositeSubscription.add(
                 ((CoreApp) context)
                         .getRestAPI()
@@ -50,7 +51,7 @@ public class AccountController {
         );
     }
 
-    public void getAccountDetail(final ProfileModel model, final AccountCallback callback) {
+    public void getAccountDetail(final ProfileModel model, final Accounts.UserAccountCallback callback) {
         compositeSubscription.add(
                 ((CoreApp) context)
                         .getRestAPI()
@@ -74,7 +75,7 @@ public class AccountController {
         );
     }
 
-    public void getLoans(int accountId, final AccountCallback callback) {
+    public void getLoans(int accountId, final Accounts.UserLoanCallback callback) {
         compositeSubscription.add(
                 ((CoreApp) context)
                         .getRestAPI()
@@ -95,5 +96,29 @@ public class AccountController {
                                 callback.onLoanListRequest(loanModelList);
                             }
                         }));
+    }
+
+    public void getLoanItems(int loan_id, final Accounts.UserLoanItemsCallback callback) {
+        compositeSubscription.add(
+                ((CoreApp)context)
+                .getRestAPI()
+                .getLoanItems(loan_id)
+                .subscribe(new Observer<List<LoanItemSummaryModel>>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callback.onError(e, ((HttpException)e).code());
+                    }
+
+                    @Override
+                    public void onNext(List<LoanItemSummaryModel> loanItemSummaryModels) {
+                        callback.onLoanItemListRequest(loanItemSummaryModels);
+                    }
+                })
+        );
     }
 }
