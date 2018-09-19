@@ -7,13 +7,13 @@ public class ProfileCallbacks {
     public interface ProfileRegister {
         void onProfileRegisterSuccess(ProfileModel model);
 
-        void onProfileRegisterFailed(Throwable throwable);
+        void onProfileRegisterFailed(Throwable throwable, int code);
     }
 
     public interface ProfileRequest {
         void onProfileFetch(ProfileModel model);
 
-        void onProfileFetchFailed(Throwable throwable);
+        void onProfileFetchFailed(Throwable throwable, int code);
     }
 
 }

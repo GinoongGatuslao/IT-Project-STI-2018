@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity implements AuthenticationCa
                         }
 
                         @Override
-                        public void onProfileFetchFailed(Throwable throwable) {
+                        public void onProfileFetchFailed(Throwable throwable, int code) {
                             Log.e(TAG, "onProfileFetchFailed: ", throwable);
                         }
                     });
@@ -106,7 +106,7 @@ public class LoginActivity extends AppCompatActivity implements AuthenticationCa
     }
 
     @Override
-    public void onLoginFailed(Throwable e) {
+    public void onLoginFailed(Throwable e, int code) {
         Log.e(TAG, "onLoginFailed: ", e);
         showProgress(false);
         mPasswordView.setError(getString(R.string.error_incorrect_password));
@@ -122,7 +122,7 @@ public class LoginActivity extends AppCompatActivity implements AuthenticationCa
     }
 
     @Override
-    public void onProfileFetchFailed(Throwable throwable) {
+    public void onProfileFetchFailed(Throwable throwable, int code) {
         showProgress(false);
         Log.e(TAG, "onProfileFetchFailed: ", throwable);
     }

@@ -296,7 +296,7 @@ public class RegisterActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onRegisterFailed(Throwable e) {
+    public void onRegisterFailed(Throwable e, int code) {
         updateAlertDialog(false, "");
         Log.e(TAG, "onRegisterFailed: ", e);
     }
@@ -313,7 +313,7 @@ public class RegisterActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onProfileRegisterFailed(Throwable throwable) {
+    public void onProfileRegisterFailed(Throwable throwable, int code) {
         updateAlertDialog(false, "");
         Log.e(TAG, "onProfileRegisterFailed: ", throwable);
     }

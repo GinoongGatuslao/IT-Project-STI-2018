@@ -11,5 +11,5 @@ public interface AccountCallback {
 
     void onLoanListRequest(List<LoanModel> loanModelList);
 
-    void onError(Throwable throwable);
+    void onError(Throwable throwable, int code);
 }

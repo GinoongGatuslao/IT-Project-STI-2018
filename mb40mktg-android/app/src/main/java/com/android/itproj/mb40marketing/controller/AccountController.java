@@ -10,6 +10,7 @@ import com.android.itproj.mb40marketing.model.ProfileModel;
 
 import java.util.List;
 
+import retrofit2.HttpException;
 import rx.Observer;
 import rx.subscriptions.CompositeSubscription;
 
@@ -38,7 +39,7 @@ public class AccountController {
 
                             @Override
                             public void onError(Throwable e) {
-                                callback.onError(e);
+                                callback.onError(e, ((HttpException)e).code());
                             }
 
                             @Override
@@ -62,7 +63,7 @@ public class AccountController {
 
                             @Override
                             public void onError(Throwable e) {
-                                callback.onError(e);
+                                callback.onError(e,((HttpException)e).code());
                             }
 
                             @Override
@@ -86,7 +87,7 @@ public class AccountController {
 
                             @Override
                             public void onError(Throwable e) {
-                                callback.onError(e);
+                                callback.onError(e, ((HttpException)e).code());
                             }
 
                             @Override

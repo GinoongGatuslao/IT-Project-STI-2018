@@ -28,11 +28,14 @@ import com.android.itproj.mb40marketing.model.AccountModel;
 import com.android.itproj.mb40marketing.model.LoanModel;
 import com.android.itproj.mb40marketing.model.ProfileModel;
 
+import org.apache.http.HttpStatus;
+
 import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.HttpException;
 
 public class HomeActivity extends AppCompatActivity implements
         AuthenticationCallback.AuthLogoutCallback,
@@ -113,7 +116,7 @@ public class HomeActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onLogoutFailed(Throwable e) {
+    public void onLogoutFailed(Throwable e, int code) {
         Toast.makeText(this, "Failed to logout", Toast.LENGTH_LONG).show();
     }
 
@@ -137,7 +140,7 @@ public class HomeActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onError(Throwable throwable) {
+    public void onError(Throwable throwable, int code) {
         Log.e(TAG, "onError: ", throwable);
         Toast.makeText(this, throwable.getMessage(), Toast.LENGTH_LONG).show();
     }
@@ -162,8 +165,13 @@ public class HomeActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onProfileFetchFailed(Throwable throwable) {
+    public void onProfileFetchFailed(Throwable throwable, int code) {
         Toast.makeText(this, throwable.getMessage(), Toast.LENGTH_LONG).show();
+        if (code == HttpStatus.SC_UNAUTHORIZED) {
+            ((CoreApp)getApplication())
+                    .getAuthenticationController()
+                    .forceLogout(this);
+        }
     }
 
     private void setFieldDetails(List<LoanModel> loanModelList) {

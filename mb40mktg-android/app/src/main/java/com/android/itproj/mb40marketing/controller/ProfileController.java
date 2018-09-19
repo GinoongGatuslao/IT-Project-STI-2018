@@ -10,10 +10,13 @@ import com.android.itproj.mb40marketing.helper.interfaces.ProfileCallbacks;
 import com.android.itproj.mb40marketing.model.ProfileModel;
 import com.google.gson.Gson;
 
+import org.apache.http.HttpStatus;
+
 import javax.inject.Inject;
 
 import lombok.Getter;
 import lombok.Setter;
+import retrofit2.HttpException;
 import rx.Observer;
 import rx.subscriptions.CompositeSubscription;
 
@@ -48,7 +51,7 @@ public class ProfileController {
 
                             @Override
                             public void onError(Throwable e) {
-                                profileRegister.onProfileRegisterFailed(e);
+                                profileRegister.onProfileRegisterFailed(e, ((HttpException)e).code());
                             }
 
                             @Override
@@ -58,7 +61,7 @@ public class ProfileController {
                                     setProfile(model);
                                     profileRegister.onProfileRegisterSuccess(model);
                                 } else {
-                                    profileRegister.onProfileRegisterFailed(new Throwable("Failed to update profile!"));
+                                    profileRegister.onProfileRegisterFailed(new Throwable("Failed to update profile!"), HttpStatus.SC_METHOD_FAILURE);
                                 }
                             }
                         })
@@ -78,7 +81,7 @@ public class ProfileController {
 
                             @Override
                             public void onError(Throwable e) {
-                                profileRequest.onProfileFetchFailed(e);
+                                profileRequest.onProfileFetchFailed(e, ((HttpException) e).code());
                             }
 
                             @Override
@@ -88,7 +91,7 @@ public class ProfileController {
                                     setProfile(model);
                                     profileRequest.onProfileFetch(model);
                                 } else {
-                                    profileRequest.onProfileFetchFailed(new Throwable("Failed to fetch User profile"));
+                                    profileRequest.onProfileFetchFailed(new Throwable("Failed to fetch User profile"), HttpStatus.SC_METHOD_FAILURE);
                                 }
                             }
                         })
@@ -99,7 +102,7 @@ public class ProfileController {
         String userProfile = preferences.getString(Constants.SHARED_PREFS_KEY_USER_INFO, "");
         Log.d("getCachedProfile", "getCachedProfile: " + userProfile);
         if (userProfile.isEmpty()) {
-            profileRequest.onProfileFetchFailed(new Throwable("Empty user profile!"));
+            profileRequest.onProfileFetchFailed(new Throwable("Empty user profile!"), HttpStatus.SC_METHOD_FAILURE);
         } else {
             ProfileModel profileModel = new Gson().fromJson(userProfile, ProfileModel.class);
             setProfile(profileModel);

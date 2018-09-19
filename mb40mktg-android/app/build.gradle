@@ -11,7 +11,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "host", "\"https://2e7418b3.ngrok.io/api/\"")
+        buildConfigField("String", "host", "\"https://63e0c3f8.ngrok.io/api/\"")
     }
     buildTypes {
         release {
