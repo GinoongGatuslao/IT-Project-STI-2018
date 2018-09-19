@@ -59,10 +59,16 @@ class LoanController extends Controller
         $amortztn = $totalValue / $request["term_length"];
 
         //check first if still below credit limit
-        $valueWithExisting = $this->getTotalExistingLoans($request->get("account_id")) + $totalValue;
+        $previousLoan = $this->getTotalExistingLoans($request->get("account_id"));
+        $valueWithExisting = $previousLoan + $totalValue;
         $account = Account::where("id", $request->get("account_id"))->first();
         if ($account->credit_limit < $valueWithExisting) {
-            return response()->json(["message"=>"Exceeds Credit Limit"], 406);
+            return response()->json([
+                "requested_loan_amount" => $totalValue,
+                "previous_loan_amount" => $previousLoan,
+                "credit_limit" => $account->credit_limit,
+                "message"=>"Exceeds Credit Limit"
+            ], 406);
         }
 
         $loanItems = Array();
@@ -95,7 +101,11 @@ class LoanController extends Controller
     $loans = Loan::where("account_id", $account_id)->get();
     $t_val = 0;
     foreach ($loans as $loan) {
-        $t_val += $loan["loan_value"];
+        if ($loan["status"] == 1) {
+            $t_val += $loan["loan_value"];
+        } else {
+            continue;
+        }
     }
     return $t_val;
 }

@@ -7,6 +7,11 @@ use App\Price;
 
 class PriceController extends Controller
 {
+    public function getPriceList()
+    {
+        return Price::all();
+    }
+
     //POST product/price
     public function storePrice(Request $request) {
         $newProduct = Price::create($request->all());

@@ -54,6 +54,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     /**
      * PRICE
      */
+    Route::get('price/getpricelist', 'PriceController@getPriceList');
     Route::post('price/addprice', 'PriceController@storePrice');
     Route::put('price/updateprice/{id}', 'PriceController@updatePrice');
     Route::delete('price/price/{id}', 'PriceController@deletePrice');
@@ -62,6 +63,7 @@ Route::group(['middleware' => 'auth:api'], function () {
      * LOAN
      * todo: add specific filtering like transactions except by collector and by loan
      */
+    Route::get('loan/getloans', 'LoanController@getAllLoan');
     Route::get('loan/getloan/{account_id}', 'LoanController@getLoan');
     Route::get('loan/getloanitems/{loan_id}', 'LoanController@getLoanItems');
     Route::post('loan/addloan', 'LoanController@storeLoan');
