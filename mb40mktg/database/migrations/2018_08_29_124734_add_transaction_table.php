@@ -20,7 +20,7 @@ class AddTransactionTable extends Migration
                 $table->integer('account_id');
                 $table->integer('loan_id');
                 $table->integer('collector_id');
-                $table->integer('payment');
+                $table->float('payment');
                 $table->timestamps();
             });
         }

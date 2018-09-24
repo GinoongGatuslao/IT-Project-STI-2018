@@ -64,18 +64,6 @@ class ProductController extends Controller
         }
     }
 
-    //GET product/status/{status}
-    public function filterStatus($status) {
-        $productResult = ProductItem::where('status', $status);
-
-        if ($productResult->count() == 0) {
-            return $this->returnEmpty();
-        }
-        return response()
-            ->json(ProductItem::where('status', $status)
-                ->get());
-    }
-
     //POST product/item
     public function storeItem(Request $request) {
         $newProduct = ProductItem::create($request->all());
