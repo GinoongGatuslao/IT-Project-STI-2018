@@ -13,7 +13,8 @@ class ProductController extends Controller
 
     //GET product/item
     public function getAllProductItem() {
-        return ProductItem::all();
+        return ProductItem::select('*')
+            ->join('tbl_product_price', 'tbl_product_item.price_id', '=', 'tbl_product_price.id')->get();
     }
 
     //GET product/batch

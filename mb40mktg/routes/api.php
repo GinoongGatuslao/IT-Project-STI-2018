@@ -48,6 +48,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     /**
      * PROFILE
      */
+    Route::get("profile", "ProfileController@getAllProfiles");
+    Route::get('profile/get', 'ProfileController@getAccountProfileByName');
     Route::get('profile/get/{id}', 'ProfileController@getProfile');
     Route::get('profile/user/{id}', 'ProfileController@getUserProfile');
     Route::post('profile/createprofile', 'ProfileController@createProfile');
