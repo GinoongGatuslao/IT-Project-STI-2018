@@ -7,6 +7,9 @@ import android.util.Log;
 import com.android.itproj.mb40marketing.Constants;
 import com.android.itproj.mb40marketing.CoreApp;
 import com.android.itproj.mb40marketing.helper.interfaces.ProfileCallbacks;
+import com.android.itproj.mb40marketing.model.AccountModel;
+import com.android.itproj.mb40marketing.model.LoanItemSummaryModel;
+import com.android.itproj.mb40marketing.model.LoanModel;
 import com.android.itproj.mb40marketing.model.ProfileModel;
 import com.google.gson.Gson;
 
@@ -146,5 +149,52 @@ public class ProfileController {
                 .edit()
                 .putString(Constants.SHARED_PREFS_KEY_USER_INFO, new Gson().toJson(model))
                 .apply();
+    }
+
+    public void getLoans(int accountId, final ProfileCallbacks.UserLoanCallback callback) {
+        compositeSubscription.add(
+                ((CoreApp) context)
+                        .getRestAPI()
+                        .getLoanList(accountId)
+                        .subscribe(new Observer<List<LoanModel>>() {
+                            @Override
+                            public void onCompleted() {
+
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                callback.onError(e, ((HttpException)e).code());
+                            }
+
+                            @Override
+                            public void onNext(List<LoanModel> loanModelList) {
+                                callback.onLoanListRequest(loanModelList);
+                            }
+                        }));
+    }
+
+    public void getLoanItems(int loan_id, final ProfileCallbacks.UserLoanItemsCallback callback) {
+        compositeSubscription.add(
+                ((CoreApp)context)
+                        .getRestAPI()
+                        .getLoanItems(loan_id)
+                        .subscribe(new Observer<List<LoanItemSummaryModel>>() {
+                            @Override
+                            public void onCompleted() {
+
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                callback.onError(e, ((HttpException)e).code());
+                            }
+
+                            @Override
+                            public void onNext(List<LoanItemSummaryModel> loanItemSummaryModels) {
+                                callback.onLoanItemListRequest(loanItemSummaryModels);
+                            }
+                        })
+        );
     }
 }

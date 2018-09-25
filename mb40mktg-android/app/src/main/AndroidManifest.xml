@@ -30,13 +30,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".view.activities.RegisterActivity"
-            android:parentActivityName=".view.activities.ClientActivity" />
-        <activity
-            android:name=".view.activities.ClientActivity"
-            android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".view.activities.CollectorActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
     </application>

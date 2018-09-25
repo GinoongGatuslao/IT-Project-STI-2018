@@ -317,21 +317,9 @@ public class RegisterActivity extends AppCompatActivity implements
         Log.d(TAG, "onProfileRegisterSuccess: " + model.toString());
         ((CoreApp) getApplication()).getProfileController().setProfile(model);
 
-        if (userModel != null) {
-            Intent intent = null;
-            switch (userModel.getUser_type()) {
-                case 3:
-                    intent = new Intent(this, ClientActivity.class);
-                    break;
-                case 2:
-                    intent = new Intent(this, CollectorActivity.class);
-                    break;
-            }
-            if (intent != null) {
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-            }
-        }
+        Intent intent = new Intent(this, CollectorActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
     @Override

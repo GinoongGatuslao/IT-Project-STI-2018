@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.android.itproj.mb40marketing.CoreApp;
 import com.android.itproj.mb40marketing.R;
-import com.android.itproj.mb40marketing.helper.interfaces.Accounts;
+import com.android.itproj.mb40marketing.helper.interfaces.ProfileCallbacks;
 import com.android.itproj.mb40marketing.model.LoanItemSummaryModel;
 import com.android.itproj.mb40marketing.model.LoanModel;
 
@@ -64,8 +64,8 @@ public class LoanListAdapter extends BaseAdapter {
         viewHolder.valueAmount.setText(String.valueOf(loanModel.getLoan_value()));
 
         ((CoreApp) this.context)
-                .getAccountController()
-                .getLoanItems(loanModel.getId(), new Accounts.UserLoanItemsCallback() {
+                .getProfileController()
+                .getLoanItems(loanModel.getId(), new ProfileCallbacks.UserLoanItemsCallback() {
                     @Override
                     public void onLoanItemListRequest(List<LoanItemSummaryModel> loanItemSummaryModels) {
                         loanModelList.get(i).setLoanItemSummary(loanItemSummaryModels);

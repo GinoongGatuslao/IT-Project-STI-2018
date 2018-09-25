@@ -68,26 +68,6 @@ public class RestAPI {
     }
 
     ///////////////////////////////////////////////////////////////////////////
-    // Create new account
-    ///////////////////////////////////////////////////////////////////////////
-    public Observable<AccountModel> createAccount(AccountModel model) {
-        return restService
-                .newAccount(model)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io());
-    }
-
-    ///////////////////////////////////////////////////////////////////////////
-    // Get Account Record
-    ///////////////////////////////////////////////////////////////////////////
-    public Observable<AccountModel> getAccount(int profileId) {
-        return restService
-                .getAccountByProfile(profileId)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io());
-    }
-
-    ///////////////////////////////////////////////////////////////////////////
     // Get User Profile
     ///////////////////////////////////////////////////////////////////////////
     public Observable<ProfileModel> getUserProfile(int userId) {

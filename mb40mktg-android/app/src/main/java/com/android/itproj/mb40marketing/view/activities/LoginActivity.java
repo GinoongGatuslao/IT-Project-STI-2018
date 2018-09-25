@@ -69,26 +69,16 @@ public class LoginActivity extends AppCompatActivity implements AuthenticationCa
         super.onStart();
         Log.d(TAG, "onStart: " + ((CoreApp) getApplication()).getAuthState());
         if (((CoreApp) getApplication()).getAuthState().isAuthenticated()) {
-            ((CoreApp)getApplication())
+            ((CoreApp) getApplication())
                     .getProfileController()
                     .getCachedProfile(new ProfileCallbacks.ProfileRequest() {
                         @Override
                         public void onProfileFetch(ProfileModel model) {
                             AuthStateModule.AuthState authState = ((CoreApp) getApplication()).getAuthState();
-                            if (authState!= null) {
-                                Intent intent = null;
-                                switch (authState.getUserType()) {
-                                    case 3:
-                                        intent = new Intent(LoginActivity.this, ClientActivity.class);
-                                        break;
-                                    case 2:
-                                        intent = new Intent(LoginActivity.this, CollectorActivity.class);
-                                        break;
-                                }
-                                if (intent != null) {
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    startActivity(intent);
-                                }
+                            if (authState != null) {
+                                Intent intent = new Intent(LoginActivity.this, CollectorActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
                             }
                         }
 
@@ -121,7 +111,7 @@ public class LoginActivity extends AppCompatActivity implements AuthenticationCa
     public void onLoginSuccess(UserModel model) {
         Log.d(TAG, "onLoginSuccess: " + model);
 
-        ((CoreApp)getApplication())
+        ((CoreApp) getApplication())
                 .getProfileController()
                 .getUserProfile(model.getId(), this);
     }
@@ -137,7 +127,7 @@ public class LoginActivity extends AppCompatActivity implements AuthenticationCa
     @Override
     public void onProfileFetch(ProfileModel model) {
         showProgress(false);
-        Intent goToHome = new Intent(this, ClientActivity.class);
+        Intent goToHome = new Intent(this, CollectorActivity.class);
         startActivity(goToHome);
         finish();
     }

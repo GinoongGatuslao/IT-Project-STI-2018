@@ -1,7 +1,9 @@
 package com.android.itproj.mb40marketing.view.activities;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,13 +11,20 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.itproj.mb40marketing.CoreApp;
 import com.android.itproj.mb40marketing.R;
+import com.android.itproj.mb40marketing.adapter.ProfileListViewAdapter;
+import com.android.itproj.mb40marketing.helper.interfaces.AuthenticationCallback;
 import com.android.itproj.mb40marketing.helper.interfaces.ProfileCallbacks;
 import com.android.itproj.mb40marketing.model.ProfileModel;
 
@@ -29,7 +38,8 @@ import butterknife.OnTextChanged;
 public class CollectorActivity extends AppCompatActivity implements
         SwipeRefreshLayout.OnRefreshListener,
         TextWatcher,
-        ProfileCallbacks.ProfileRequest{
+        ProfileCallbacks.ProfileRequest,
+        AuthenticationCallback.AuthLogoutCallback{
 
     private static final String TAG = "CollectorActivity";
 
@@ -54,8 +64,13 @@ public class CollectorActivity extends AppCompatActivity implements
     @BindView(R.id.noticeFrame)
     public ConstraintLayout noticeFrame;
 
+    @BindView(R.id.noticeText)
+    public TextView noticeText;
+
     private Runnable oldRunnable;
     private Handler handler = new Handler();
+
+    private ProfileListViewAdapter profileListViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +88,40 @@ public class CollectorActivity extends AppCompatActivity implements
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_profile:
+                break;
+            case R.id.menu_logout:
+                ((CoreApp) getApplication())
+                        .getAuthenticationController()
+                        .logout(this);
+                break;
+        }
+        return true;
+    }
+
+    @Override
+    public void onLogoutSuccess() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void onLogoutFailed(Throwable e, int code) {
+        Toast.makeText(this, "Failed to logout", Toast.LENGTH_LONG).show();
+        setErrorMessage(getString(R.string.err_server_unavailable), code);
+    }
+
+    @Override
     public void onProfileFetch(ProfileModel model) {
         swipeRefreshLayout.setRefreshing(false);
         Log.d(TAG, "onProfileFetch: " + model.toString());
@@ -82,7 +131,8 @@ public class CollectorActivity extends AppCompatActivity implements
     @Override
     public void onProfileFetch(List<ProfileModel> models) {
         Log.d(TAG, "onProfileFetch: " + Arrays.deepToString(models.toArray()));
-
+        profileListViewAdapter = new ProfileListViewAdapter(this, models);
+        searchResultList.setAdapter(profileListViewAdapter);
     }
 
     @Override
@@ -162,6 +212,13 @@ public class CollectorActivity extends AppCompatActivity implements
             view.setVisibility(visibility);
             view.invalidate();
         }
+    }
+
+    private void setErrorMessage(String message, int code) {
+        setVisibility(View.VISIBLE, noticeFrame);
+        noticeText.setText(message);
+        noticeText.setTextColor(ContextCompat.getColor(this, R.color.colorLightRed));
+        swipeRefreshLayout.setRefreshing(false);
     }
 
 }

@@ -61,18 +61,6 @@ public interface RestAPIService {
     Observable<ProfileModel> updateProfile(@Body ProfileModel profileModel);
 
     ///////////////////////////////////////////////////////////////////////////
-    // ACCOUNT
-    ///////////////////////////////////////////////////////////////////////////
-    @POST("account/newaccount")
-    Observable<AccountModel> newAccount(@Body AccountModel accountRequest);
-
-    @GET("account/getaccount/{id}")
-    Observable<AccountModel> getAccount(@Path("id") int id);
-
-    @GET("account/getaccountbyprofile/{profile_id}")
-    Observable<AccountModel> getAccountByProfile(@Path("profile_id") int id);
-
-    ///////////////////////////////////////////////////////////////////////////
     // PRODUCT
     ///////////////////////////////////////////////////////////////////////////
 
