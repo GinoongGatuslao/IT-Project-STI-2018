@@ -49,11 +49,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ItemSearch.cs">
+    <Compile Include="LoanType.cs" />
+    <Compile Include="Profile.cs" />
+    <Compile Include="Search.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ItemSearch.Designer.cs">
-      <DependentUpon>ItemSearch.cs</DependentUpon>
+    <Compile Include="Search.Designer.cs">
+      <DependentUpon>Search.cs</DependentUpon>
     </Compile>
     <Compile Include="Loan.cs" />
     <Compile Include="LoanItem.cs" />
@@ -84,9 +86,10 @@
     <Compile Include="Settings.Designer.cs">
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
+    <Compile Include="StatusList.cs" />
     <Compile Include="User.cs" />
-    <EmbeddedResource Include="ItemSearch.resx">
-      <DependentUpon>ItemSearch.cs</DependentUpon>
+    <EmbeddedResource Include="Search.resx">
+      <DependentUpon>Search.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

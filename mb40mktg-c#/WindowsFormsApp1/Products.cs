@@ -10,7 +10,7 @@ namespace WindowsFormsApp1
     {
         public int id { get; set; }
         public string item_name { get; set; }
-        public int price_id { get; set; }
+        public int price { get; set; }
         public int stock_count { get; set; }
         public int repossessed { get; set; }
         public int damaged { get; set; }
