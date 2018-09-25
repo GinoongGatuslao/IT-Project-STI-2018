@@ -23,8 +23,8 @@ class Profile extends Model
         'occupation',
         'mo_income',
         'mo_expense',
-        'path_id_pic',
-        'path_house_sketch_pic',
-        'verified'
+        'verified',
+        'credit_limit',
+        'account_status'
     ];
 }

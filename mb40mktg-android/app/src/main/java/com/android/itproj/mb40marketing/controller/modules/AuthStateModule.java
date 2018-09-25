@@ -24,7 +24,8 @@ public class AuthStateModule {
         this.sharedPreferences = sharedPreferences;
         return new AuthState(
                 !sharedPreferences.getString(Constants.SHARED_PREFS_KEY_TOKEN, "").isEmpty(),
-                sharedPreferences.getString(Constants.SHARED_PREFS_KEY_TOKEN, ""));
+                sharedPreferences.getString(Constants.SHARED_PREFS_KEY_TOKEN, ""),
+                sharedPreferences.getInt(Constants.SHARED_PREFS_KEY_USER_TYPE, 0));
     }
 
     public class AuthState {
@@ -35,24 +36,34 @@ public class AuthStateModule {
         @Getter @Setter
         String authString = "";
 
-        public AuthState(boolean isAuthenticated, String authString) {
+        @Getter @Setter
+        int userType;
+
+        public AuthState(boolean isAuthenticated, String authString, int userType) {
             setAuthenticated(isAuthenticated);
             setAuthString(authString);
+            setUserType(userType);
         }
 
-        public void saveKey(String key) {
+        public void saveKeyAndType(String key, int userType) {
             isAuthenticated = true;
             setAuthString(key);
+            setUserType(userType);
             sharedPreferences
-                    .edit().putString(Constants.SHARED_PREFS_KEY_TOKEN, key)
+                    .edit()
+                    .putString(Constants.SHARED_PREFS_KEY_TOKEN, key)
+                    .putInt(Constants.SHARED_PREFS_KEY_USER_TYPE, userType)
                     .apply();
         }
 
         public void destroyKey() {
             isAuthenticated = false;
             setAuthString("");
+            setUserType(0);
             sharedPreferences
-                    .edit().remove(Constants.SHARED_PREFS_KEY_TOKEN)
+                    .edit()
+                    .remove(Constants.SHARED_PREFS_KEY_TOKEN)
+                    .remove(Constants.SHARED_PREFS_KEY_USER_TYPE)
                     .apply();
         }
     }

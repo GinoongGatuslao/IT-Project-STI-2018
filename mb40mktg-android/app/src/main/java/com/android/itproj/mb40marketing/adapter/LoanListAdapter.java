@@ -1,16 +1,22 @@
 package com.android.itproj.mb40marketing.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.android.itproj.mb40marketing.CoreApp;
 import com.android.itproj.mb40marketing.R;
+import com.android.itproj.mb40marketing.helper.interfaces.ProfileCallbacks;
+import com.android.itproj.mb40marketing.model.LoanItemSummaryModel;
 import com.android.itproj.mb40marketing.model.LoanModel;
 
 import java.util.List;
+
+import lombok.Getter;
 
 public class LoanListAdapter extends BaseAdapter {
 
@@ -29,7 +35,7 @@ public class LoanListAdapter extends BaseAdapter {
 
     @Override
     public LoanModel getItem(int i) {
-        return null;
+        return this.loanModelList.get(i);
     }
 
     @Override
@@ -38,16 +44,16 @@ public class LoanListAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(final int i, View view, ViewGroup viewGroup) {
         LoanModel loanModel = this.loanModelList.get(i);
-        ViewHolder viewHolder;
+        final ViewHolder viewHolder;
         if (view == null) {
             viewHolder = new ViewHolder();
-            view = LayoutInflater.from(this.context).inflate(R.layout.listview_loan_item_list, null);
-            viewHolder.loanTitle = (TextView)view.findViewById(R.id.loanTitle);
-            viewHolder.loanStatusValue = (TextView)view.findViewById(R.id.loanStatusValue);
-            viewHolder.valueTerm = (TextView)view.findViewById(R.id.valueTerm);
-            viewHolder.valueAmount = (TextView)view.findViewById(R.id.valueAmount);
+            view = LayoutInflater.from(this.context).inflate(R.layout.listview_loan_item, null);
+            viewHolder.loanTitle = (TextView) view.findViewById(R.id.loanTitle);
+            viewHolder.loanStatusValue = (TextView) view.findViewById(R.id.loanStatusValue);
+            viewHolder.valueTerm = (TextView) view.findViewById(R.id.valueTerm);
+            viewHolder.valueAmount = (TextView) view.findViewById(R.id.valueAmount);
             view.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) view.getTag();
@@ -57,6 +63,19 @@ public class LoanListAdapter extends BaseAdapter {
         viewHolder.valueTerm.setText(loanModel.getTerm_length() + " @ " + loanModel.getAmortization());
         viewHolder.valueAmount.setText(String.valueOf(loanModel.getLoan_value()));
 
+        ((CoreApp) this.context)
+                .getProfileController()
+                .getLoanItems(loanModel.getId(), new ProfileCallbacks.UserLoanItemsCallback() {
+                    @Override
+                    public void onLoanItemListRequest(List<LoanItemSummaryModel> loanItemSummaryModels) {
+                        loanModelList.get(i).setLoanItemSummary(loanItemSummaryModels);
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable, int code) {
+                        Log.e("LoanItemsErr", "onError: " + throwable.getMessage(), throwable);
+                    }
+                });
         return view;
     }
 
@@ -65,5 +84,8 @@ public class LoanListAdapter extends BaseAdapter {
         private TextView loanStatusValue;
         private TextView valueTerm;
         private TextView valueAmount;
+
+        @Getter
+        private List<LoanItemSummaryModel> loanItemSummaryModelList;
     }
 }

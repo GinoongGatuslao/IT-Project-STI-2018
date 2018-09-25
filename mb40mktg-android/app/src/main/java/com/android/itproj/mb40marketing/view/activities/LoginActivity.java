@@ -24,10 +24,13 @@ import android.widget.TextView;
 
 import com.android.itproj.mb40marketing.CoreApp;
 import com.android.itproj.mb40marketing.R;
+import com.android.itproj.mb40marketing.controller.modules.AuthStateModule;
 import com.android.itproj.mb40marketing.helper.interfaces.AuthenticationCallback;
 import com.android.itproj.mb40marketing.helper.interfaces.ProfileCallbacks;
 import com.android.itproj.mb40marketing.model.ProfileModel;
 import com.android.itproj.mb40marketing.model.UserModel;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -66,18 +69,26 @@ public class LoginActivity extends AppCompatActivity implements AuthenticationCa
         super.onStart();
         Log.d(TAG, "onStart: " + ((CoreApp) getApplication()).getAuthState());
         if (((CoreApp) getApplication()).getAuthState().isAuthenticated()) {
-            ((CoreApp)getApplication())
+            ((CoreApp) getApplication())
                     .getProfileController()
                     .getCachedProfile(new ProfileCallbacks.ProfileRequest() {
                         @Override
                         public void onProfileFetch(ProfileModel model) {
-                            Intent startHome = new Intent(LoginActivity.this, HomeActivity.class);
-                            startActivity(startHome);
-                            finish();
+                            AuthStateModule.AuthState authState = ((CoreApp) getApplication()).getAuthState();
+                            if (authState != null) {
+                                Intent intent = new Intent(LoginActivity.this, CollectorActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                            }
                         }
 
                         @Override
-                        public void onProfileFetchFailed(Throwable throwable) {
+                        public void onProfileFetch(List<ProfileModel> models) {
+
+                        }
+
+                        @Override
+                        public void onProfileFetchFailed(Throwable throwable, int code) {
                             Log.e(TAG, "onProfileFetchFailed: ", throwable);
                         }
                     });
@@ -100,29 +111,34 @@ public class LoginActivity extends AppCompatActivity implements AuthenticationCa
     public void onLoginSuccess(UserModel model) {
         Log.d(TAG, "onLoginSuccess: " + model);
 
-        ((CoreApp)getApplication())
+        ((CoreApp) getApplication())
                 .getProfileController()
                 .getUserProfile(model.getId(), this);
     }
 
     @Override
-    public void onLoginFailed(Throwable e) {
+    public void onLoginFailed(Throwable e, int code) {
         Log.e(TAG, "onLoginFailed: ", e);
         showProgress(false);
-        mPasswordView.setError(getString(R.string.error_incorrect_password));
+        mPasswordView.setError(getString(R.string.err_incorrect_password));
         mPasswordView.requestFocus();
     }
 
     @Override
     public void onProfileFetch(ProfileModel model) {
         showProgress(false);
-        Intent goToHome = new Intent(this, HomeActivity.class);
+        Intent goToHome = new Intent(this, CollectorActivity.class);
         startActivity(goToHome);
         finish();
     }
 
     @Override
-    public void onProfileFetchFailed(Throwable throwable) {
+    public void onProfileFetch(List<ProfileModel> models) {
+
+    }
+
+    @Override
+    public void onProfileFetchFailed(Throwable throwable, int code) {
         showProgress(false);
         Log.e(TAG, "onProfileFetchFailed: ", throwable);
     }
@@ -209,18 +225,18 @@ public class LoginActivity extends AppCompatActivity implements AuthenticationCa
         View focusView = null;
 
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
+            mPasswordView.setError(getString(R.string.err_invalid_password));
             focusView = mPasswordView;
             cancel = true;
         }
 
         if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
             if (TextUtils.isEmpty(email)) {
-                mEmailView.setError(getString(R.string.error_field_required));
+                mEmailView.setError(getString(R.string.err_field_required));
                 focusView = mEmailView;
                 cancel = true;
             } else if (TextUtils.isEmpty(password)) {
-                mPasswordView.setError(getString(R.string.error_field_required));
+                mPasswordView.setError(getString(R.string.err_field_required));
                 focusView = mPasswordView;
                 cancel = true;
             }

@@ -17,9 +17,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <meta-data
-            android:name="CLOUDINARY_URL"
-            android:value="cloudinary://872388742584913:hKJRyPNQUS7JnHDJ1TlAQzLFN7E@horbordidorp" />
 
         <activity
             android:name=".view.activities.LoginActivity"
@@ -30,13 +27,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".view.activities.RegisterActivity"
-            android:parentActivityName=".view.activities.HomeActivity" />
-        <activity
-            android:name=".view.activities.HomeActivity"
-            android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".view.activities.CollectorActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

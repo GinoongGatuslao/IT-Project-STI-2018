@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Config\AccountStatus;
 use App\Config\LoanStatus;
 use App\Config\UserType;
 use App\Config\StatusEnum;
@@ -33,9 +34,14 @@ class Controller extends BaseController
         return UserType::getUserTypes();
     }
 
-    //GET usertypes
+    //GET loanstatus
     public function getLoanStatus() {
         return LoanStatus::getLoanStatus();
+    }
+
+    //GET account status
+    public function getAccountStatus() {
+        return AccountStatus::getAccountStatus();
     }
 
     public function getUserInfo(Request $request){

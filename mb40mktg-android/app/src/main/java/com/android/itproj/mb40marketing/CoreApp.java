@@ -2,7 +2,6 @@ package com.android.itproj.mb40marketing;
 
 import android.app.Application;
 
-import com.android.itproj.mb40marketing.controller.AccountController;
 import com.android.itproj.mb40marketing.controller.AuthenticationController;
 import com.android.itproj.mb40marketing.controller.ProfileController;
 import com.android.itproj.mb40marketing.controller.component.DaggerUserComponent;
@@ -12,10 +11,6 @@ import com.android.itproj.mb40marketing.controller.modules.ContextModule;
 import com.android.itproj.mb40marketing.controller.modules.PreferenceModule;
 import com.android.itproj.mb40marketing.controller.modules.RestAPIModule;
 import com.android.itproj.mb40marketing.helper.restservice.RestAPI;
-import com.cloudinary.android.MediaManager;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -40,9 +35,6 @@ public class CoreApp extends Application {
     @Getter
     RestAPIModule restAPIModule;
 
-    @Getter
-    AccountController accountController;
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -60,16 +52,9 @@ public class CoreApp extends Application {
         userComponent.inject(authenticationController);
         profileController = new ProfileController(this);
         userComponent.inject(profileController);
-        accountController = new AccountController(this);
 
         restAPI = userComponent.getRestAPICall();
         authState = userComponent.getAuthState();
-
-        Map<String, String> config = new HashMap<>();
-        config.put("cloud_name", "horbordidorp");
-        config.put("api_key", "872388742584913");
-        config.put("api_secret", "hKJRyPNQUS7JnHDJ1TlAQzLFN7E");
-        MediaManager.init(this, config);
     }
 
 }

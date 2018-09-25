@@ -1,6 +1,7 @@
 package com.android.itproj.mb40marketing.helper.restservice;
 
 import com.android.itproj.mb40marketing.model.AccountModel;
+import com.android.itproj.mb40marketing.model.LoanItemSummaryModel;
 import com.android.itproj.mb40marketing.model.LoanModel;
 import com.android.itproj.mb40marketing.model.PriceModel;
 import com.android.itproj.mb40marketing.model.ProductBatchModel;
@@ -50,23 +51,14 @@ public interface RestAPIService {
     @GET("profile/user/{id}")
     Observable<ProfileModel> getUserProfile(@Path("id") int id);
 
+    @GET("profile/get")
+    Observable<List<ProfileModel>> getUserProfileByName(@HeaderMap Map<String, String> headers);
+
     @POST("profile/createprofile")
     Observable<ProfileModel> createProfile(@Body ProfileModel profileModel);
 
     @PUT("profile/updateprofile")
     Observable<ProfileModel> updateProfile(@Body ProfileModel profileModel);
-
-    ///////////////////////////////////////////////////////////////////////////
-    // ACCOUNT
-    ///////////////////////////////////////////////////////////////////////////
-    @POST("account/newaccount")
-    Observable<AccountModel> newAccount(@Body AccountModel accountRequest);
-
-    @GET("account/getaccount/{id}")
-    Observable<AccountModel> getAccount(@Path("id") int id);
-
-    @GET("account/getaccountbyprofile/{profile_id}")
-    Observable<AccountModel> getAccountByProfile(@Path("profile_id") int id);
 
     ///////////////////////////////////////////////////////////////////////////
     // PRODUCT
@@ -118,6 +110,9 @@ public interface RestAPIService {
 
     @GET("loan/getloan/{account_id}")
     Observable<List<LoanModel>> getLoans(@Path("account_id") int accountId);
+
+    @GET("loan/getloanitems/{loan_id}")
+    Observable<List<LoanItemSummaryModel>> getLoanItems(@Path("loan_id") int loan_id);
 
     ///////////////////////////////////////////////////////////////////////////
     // TRANSACTION
