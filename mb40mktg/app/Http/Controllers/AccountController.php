@@ -24,7 +24,7 @@ class AccountController extends Controller
     {
         $checkAccount = Account::where('profile_id', $request->get("profile_id"));
         if ($checkAccount->first() != null) {
-            return response()->json(["reason"=>"Existing account"], Response::HTTP_CONFLICT);
+            return response()->json(["reason" => "Existing account"], Response::HTTP_CONFLICT);
         } else {
             $account = Account::create($request->all());
             return response($account, 200);

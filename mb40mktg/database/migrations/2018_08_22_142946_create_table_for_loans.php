@@ -24,7 +24,7 @@ class CreateTableForLoans extends Migration
                 //length of amortization
                 $table->integer('term_length'); // 30, 90, 180
                 //loan value of current loan record
-                $table->integer('loan_value');
+                $table->float('loan_value');
                 //daily amortization value - this is calculated upon entry and approval
                 $table->float('amortization');
                 //if this loan is active OR inactive on client's account

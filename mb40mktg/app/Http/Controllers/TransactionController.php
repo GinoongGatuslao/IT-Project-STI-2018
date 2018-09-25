@@ -12,6 +12,11 @@ class TransactionController extends Controller
         return Transaction::all();
     }
 
+    public function storeTransaction(Request $request) {
+        $newTransaction = Transaction::create($request->all());
+        return response()->json($newTransaction, 200);
+    }
+
     public function findId($id)
     {
         $transaction = Transaction::where('id', $id);

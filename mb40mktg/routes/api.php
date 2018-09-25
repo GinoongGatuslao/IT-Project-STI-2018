@@ -19,20 +19,24 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('statuslist', 'Controller@getStatusList');
 Route::get('usertypes', 'Controller@getUserTypes');
+Route::get('loanstatus', 'Controller@getLoanStatus');
 
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout');
 Route::post('register', 'Auth\RegisterController@register');
 
 Route::group(['middleware' => 'auth:api'], function () {
+    Route::get('users', "Controller@getAllUsers");
     Route::get('userinfo', 'Controller@getUserInfo');
 
+    /**
+     * PRODUCT
+     */
     Route::get('product/getitems', 'ProductController@getAllProductItem');
     Route::get('product/getbatches', 'ProductController@getAllProductBatch');
     Route::get('product/itembyid/{id}', 'ProductController@filterItemId');
     Route::get('product/itemsbybatch/{batch_number}', 'ProductController@filterItemBatchNumber');
     Route::get('product/batch/{batch_number}', 'ProductController@filterBatchNumber');
-    Route::get('product/status/{status}', 'ProductController@filterStatus');
 
     Route::post('product/item', 'ProductController@storeItem');
     Route::post('product/batch', 'ProductController@storeBatch');
@@ -46,6 +50,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     /**
      * PROFILE
      */
+    Route::get("profile", "ProfileController@getAllProfiles");
+    Route::get('profile/get', 'ProfileController@getAccountProfileByName');
     Route::get('profile/get/{id}', 'ProfileController@getProfile');
     Route::get('profile/user/{id}', 'ProfileController@getUserProfile');
     Route::post('profile/createprofile', 'ProfileController@createProfile');
@@ -54,6 +60,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     /**
      * PRICE
      */
+    Route::get('price/getpricelist', 'PriceController@getPriceList');
     Route::post('price/addprice', 'PriceController@storePrice');
     Route::put('price/updateprice/{id}', 'PriceController@updatePrice');
     Route::delete('price/price/{id}', 'PriceController@deletePrice');
@@ -62,6 +69,7 @@ Route::group(['middleware' => 'auth:api'], function () {
      * LOAN
      * todo: add specific filtering like transactions except by collector and by loan
      */
+    Route::get('loan/getloans', 'LoanController@getAllLoan');
     Route::get('loan/getloan/{account_id}', 'LoanController@getLoan');
     Route::get('loan/getloanitems/{loan_id}', 'LoanController@getLoanItems');
     Route::post('loan/addloan', 'LoanController@storeLoan');
@@ -72,6 +80,7 @@ Route::group(['middleware' => 'auth:api'], function () {
      * TRANSACTION
      * lacking adding of transaction record
      */
+    Route::post('transaction/newtransaction', 'TransactionController@storeTransaction');
     Route::get('transaction', 'TransactionController@getAll');
     Route::get('transaction/id/{id}', 'TransactionController@findId');
     Route::get('transaction/account/{id}', 'TransactionController@getTransactionByAccount');

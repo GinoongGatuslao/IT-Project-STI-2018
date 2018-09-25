@@ -13,7 +13,8 @@ class ProductController extends Controller
 
     //GET product/item
     public function getAllProductItem() {
-        return ProductItem::all();
+        return ProductItem::select('*')
+            ->join('tbl_product_price', 'tbl_product_item.price_id', '=', 'tbl_product_price.id')->get();
     }
 
     //GET product/batch
@@ -62,18 +63,6 @@ class ProductController extends Controller
                 ->json($productResult
                     ->get(), 200);
         }
-    }
-
-    //GET product/status/{status}
-    public function filterStatus($status) {
-        $productResult = ProductItem::where('status', $status);
-
-        if ($productResult->count() == 0) {
-            return $this->returnEmpty();
-        }
-        return response()
-            ->json(ProductItem::where('status', $status)
-                ->get());
     }
 
     //POST product/item
