@@ -63,7 +63,7 @@ public class AuthenticationController {
                             @Override
                             public void onNext(UserModel userModel) {
                                 if (authState != null) {
-                                    authState.saveKey(userModel.getApi_token());
+                                    authState.saveKeyAndType(userModel.getApi_token(), userModel.getUser_type());
                                     Constants.API_TOKEN = userModel.getApi_token();
                                     authCallback.onLoginSuccess(userModel);
                                 } else {
@@ -138,7 +138,7 @@ public class AuthenticationController {
                     public void onNext(JsonObject model) {
                         UserModel userModel = new Gson().fromJson(model, UserModel.class);
                         if (userModel != null) {
-                            authState.saveKey(userModel.getApi_token());
+                            authState.saveKeyAndType(userModel.getApi_token(), userModel.getUser_type());
                             Constants.API_TOKEN = userModel.getApi_token();
                             registerCallback.onRegisterSuccess(userModel);
                         } else {

@@ -2,6 +2,7 @@
     <string name="app_name">MB40 Marketing</string>
 
     <string name="app_page_account">My Account</string>
+    <string name="app_page_collection">Collection</string>
 
     <!-- Menus-->
     <string name="menu_profile">[x]Profile</string>
@@ -14,11 +15,6 @@
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="action_log_out">Log out</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_unmatched_password">Password doesn\'t match</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Storage permissions is required for accessing your uploadable files."</string>
 
     <!-- Strings related to registration -->
@@ -44,12 +40,16 @@
     <string name="progress_upload">Uploading images&#8230;</string>
     <string name="title_activity_home">HomeActivity</string>
 
-    <!--Home Activity-->
+    <!--CLient Activity-->
     <string name="button_request_account">Request an account</string>
-    <string name="text_notice">No records found.</string>
     <string name="text_pull_down_refresh">Pull down to refresh</string>
     <string name="text_or_pull_down_refresh">or Pull down to refresh</string>
     <string name="text_not_verified">Your account hasn\'t been verified.\nContact us to follow up verification process.</string>
+
+    <!--Collector Activity-->
+    <string name="label_search_customer">Search Customer</string>
+    <string name="label_search_loan">Search Loan ID</string>
+    <string name="prompt_loan_id">Loan ID</string>
 
     <!--Loan List item-->
     <string name="loaned_items">Loaned items</string>
@@ -57,4 +57,14 @@
     <string name="loan_list_total_value">Amount</string>
     <string name="loan_list_status">Status</string>
     <string name="loan_list_interest">Interest</string>
+
+    <!--Errors-->
+    <string name="err_invalid_email">This email address is invalid</string>
+    <string name="err_invalid_password">This password is too short</string>
+    <string name="err_unmatched_password">Password doesn\'t match</string>
+    <string name="err_incorrect_password">This password is incorrect</string>
+    <string name="err_field_required">This field is required</string>
+    <string name="err_server_unavailable">Unable to contact server</string>
+    <string name="err_no_record">No records found.</string>
+    <string name="err_placeholder">%1$s: %2$s</string>
 </resources>

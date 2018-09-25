@@ -3,6 +3,7 @@ package com.android.itproj.mb40marketing.view.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -30,20 +31,19 @@ import com.android.itproj.mb40marketing.model.ProfileModel;
 
 import org.apache.http.HttpStatus;
 
-import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HomeActivity extends AppCompatActivity implements
+public class ClientActivity extends AppCompatActivity implements
         AuthenticationCallback.AuthLogoutCallback,
         SwipeRefreshLayout.OnRefreshListener,
         ProfileCallbacks.ProfileRequest,
         Accounts.UserAccountCallback,
         Accounts.UserLoanCallback {
 
-    private static final String TAG = "HomeActivity";
+    private static final String TAG = "ClientActivity";
 
     @BindView(R.id.accountRequestBtn)
     public Button accountRequestBtn;
@@ -65,18 +65,17 @@ public class HomeActivity extends AppCompatActivity implements
 
     AccountModel accountModel;
 
-    List<LoanModel> loanModelList;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_client);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.app_page_account));
         setSupportActionBar(toolbar);
 
         ButterKnife.bind(this);
 
+        setVisibility(View.GONE, noticeFrame);
         swipeRefreshLayout.setOnRefreshListener(this);
     }
 
@@ -118,6 +117,7 @@ public class HomeActivity extends AppCompatActivity implements
     @Override
     public void onLogoutFailed(Throwable e, int code) {
         Toast.makeText(this, "Failed to logout", Toast.LENGTH_LONG).show();
+        setErrorMessage(getString(R.string.err_server_unavailable), code);
     }
 
     @Override
@@ -130,7 +130,6 @@ public class HomeActivity extends AppCompatActivity implements
 
     @Override
     public void onLoanListRequest(List<LoanModel> loanModelList) {
-        Log.d(TAG, "onLoanListRequest: " + Arrays.deepToString(loanModelList.toArray()));
         if (loanModelList.size() > 0) {
             swipeRefreshLayout.setRefreshing(false);
             setVisibility(View.GONE, noticeFrame);
@@ -142,20 +141,21 @@ public class HomeActivity extends AppCompatActivity implements
     @Override
     public void onError(Throwable throwable, int code) {
         Log.e(TAG, "onError: ", throwable);
-        Toast.makeText(this, throwable.getMessage(), Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, throwable.getMessage(), Toast.LENGTH_LONG).show();
+        setErrorMessage(throwable.getMessage(), code);
     }
 
     @Override
     public void onRefresh() {
         Log.d(TAG, "refreshing...");
-        ((CoreApp)getApplication())
+        ((CoreApp) getApplication())
                 .getProfileController()
                 .getUserProfile(
-                        ((CoreApp)getApplication())
+                        ((CoreApp) getApplication())
                                 .getProfileController()
                                 .getProfile()
                                 .getUser_id()
-                ,this);
+                        , this);
     }
 
     @Override
@@ -165,12 +165,18 @@ public class HomeActivity extends AppCompatActivity implements
     }
 
     @Override
+    public void onProfileFetch(List<ProfileModel> models) {
+
+    }
+
+    @Override
     public void onProfileFetchFailed(Throwable throwable, int code) {
-        Toast.makeText(this, throwable.getMessage(), Toast.LENGTH_LONG).show();
         if (code == HttpStatus.SC_UNAUTHORIZED) {
-            ((CoreApp)getApplication())
+            ((CoreApp) getApplication())
                     .getAuthenticationController()
                     .forceLogout(this);
+        } else {
+            setErrorMessage(throwable.getMessage(), code);
         }
     }
 
@@ -217,5 +223,12 @@ public class HomeActivity extends AppCompatActivity implements
             view.setVisibility(visibility);
             view.invalidate();
         }
+    }
+
+    private void setErrorMessage(String message, int code) {
+        setVisibility(View.VISIBLE, noticeFrame);
+        noticeText.setText(message);
+        noticeText.setTextColor(ContextCompat.getColor(this, R.color.colorLightRed));
+        swipeRefreshLayout.setRefreshing(false);
     }
 }

@@ -9,6 +9,7 @@ import com.android.itproj.mb40marketing.model.UserModel;
 import com.google.gson.JsonObject;
 
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.ResponseBody;
 import retrofit2.Response;
@@ -95,6 +96,16 @@ public class RestAPI {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io());
 
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Get User Profile By Name
+    ///////////////////////////////////////////////////////////////////////////
+    public Observable<List<ProfileModel>> getUserProfileByName(Map<String, String> headers) {
+        return restService
+                .getUserProfileByName(headers)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io());
     }
 
     ///////////////////////////////////////////////////////////////////////////

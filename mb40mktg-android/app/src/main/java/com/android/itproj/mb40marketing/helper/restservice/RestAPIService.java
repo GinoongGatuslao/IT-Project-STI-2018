@@ -51,6 +51,9 @@ public interface RestAPIService {
     @GET("profile/user/{id}")
     Observable<ProfileModel> getUserProfile(@Path("id") int id);
 
+    @GET("profile/get")
+    Observable<List<ProfileModel>> getUserProfileByName(@HeaderMap Map<String, String> headers);
+
     @POST("profile/createprofile")
     Observable<ProfileModel> createProfile(@Body ProfileModel profileModel);
 

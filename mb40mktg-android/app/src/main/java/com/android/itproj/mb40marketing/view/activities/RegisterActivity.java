@@ -1,12 +1,8 @@
 package com.android.itproj.mb40marketing.view.activities;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -59,6 +55,10 @@ public class RegisterActivity extends AppCompatActivity implements
     private final int REQUEST_CHOOSE_VALID_ID = 1000;
 
     private final int REQUEST_CHOOSE_HOME_SKETCH = 1001;
+
+    private int USER_TYPE = 3;
+
+    private UserModel userModel;
 
     @NotEmpty
     @BindView(R.id.givenName)
@@ -150,18 +150,18 @@ public class RegisterActivity extends AppCompatActivity implements
         Random rand = new Random();
         int rInt = rand.nextInt(10000);
 
-        /*givenNameEditText.setText("givenName" + rInt);
-        middleNameEditText.setText("middleName" + rInt);
-        familyNameEditText.setText("familyName" + rInt);
-        addressEditText.setText("address" + rInt);
-        contactEditText.setText("contact" + rInt);
+        givenNameEditText.setText("Collector" + rInt);
+        middleNameEditText.setText("Collector" + rInt);
+        familyNameEditText.setText("Collector" + rInt);
+        addressEditText.setText("Collector" + rInt);
+        contactEditText.setText("Collector" + rInt);
         birthEditText.setText("01/03/1990");
         occupationEditText.setText("occupation" + rInt);
         incomeEditText.setText(String.valueOf(rInt * 10));
         est_monthly_expensesEditText.setText(String.valueOf(rInt));
-        usernameEditText.setText("username" + rInt);
-        passwordEditText.setText("password" + rInt);
-        confirm_passwordEditText.setText("password" + rInt);*/
+        usernameEditText.setText("/c" + rInt);
+        passwordEditText.setText("pass" + rInt);
+        confirm_passwordEditText.setText("pass" + rInt);
 
         //initialize alert dialog
         alertDialog = new ProgressDialog(this, ProgressDialog.STYLE_SPINNER);
@@ -171,6 +171,15 @@ public class RegisterActivity extends AppCompatActivity implements
 
     @OnClick(R.id.registerBtn)
     public void registerNewAccount() {
+        //in-line hack for registering user as Collector
+        String username = usernameEditText.getText().toString();
+        if (username.charAt(0) == '/') {
+            usernameEditText.setText(
+                    username.substring(1, username.length()));
+            USER_TYPE = 2;
+        } else {
+            USER_TYPE = 3;
+        }
         validator.validate();
     }
 
@@ -269,6 +278,7 @@ public class RegisterActivity extends AppCompatActivity implements
 
     @Override
     public void onRegisterSuccess(UserModel model) {
+        userModel = model;
         updateAlertDialog(true, this.getString(R.string.progress_create_profile));
         //now we create profile for the client as filled-in on forms
 
@@ -307,9 +317,21 @@ public class RegisterActivity extends AppCompatActivity implements
         Log.d(TAG, "onProfileRegisterSuccess: " + model.toString());
         ((CoreApp) getApplication()).getProfileController().setProfile(model);
 
-        Intent intent = new Intent(this, HomeActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
+        if (userModel != null) {
+            Intent intent = null;
+            switch (userModel.getUser_type()) {
+                case 3:
+                    intent = new Intent(this, ClientActivity.class);
+                    break;
+                case 2:
+                    intent = new Intent(this, CollectorActivity.class);
+                    break;
+            }
+            if (intent != null) {
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        }
     }
 
     @Override
@@ -381,7 +403,7 @@ public class RegisterActivity extends AppCompatActivity implements
 
         JsonObject newUser = new JsonObject();
         newUser.addProperty("username", usernameEditText.getText().toString());
-        newUser.addProperty("user_type", 3);//as ONLY CLIENT WILL BE USING THIS REGISTRATION FORMS, COLLECTOR'S PROFILE ARE CREATED VIA THE DESKTOP APP
+        newUser.addProperty("user_type", USER_TYPE);//as ONLY CLIENT WILL BE USING THIS REGISTRATION FORMS, COLLECTOR'S PROFILE ARE CREATED VIA THE DESKTOP APP
         newUser.addProperty("password", passwordEditText.getText().toString());
         newUser.addProperty("password_confirmation", confirm_passwordEditText.getText().toString());
 

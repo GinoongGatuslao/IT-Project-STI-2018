@@ -27,7 +27,7 @@
                 android:id="@+id/noticeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/text_notice"
+                android:text="@string/err_no_record"
                 android:textColor="@color/colorMaterialGrey600"
                 android:textSize="@dimen/font_size_20sp"
                 android:gravity="center_horizontal|center_vertical"

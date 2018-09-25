@@ -12,6 +12,10 @@ import com.google.gson.Gson;
 
 import org.apache.http.HttpStatus;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import lombok.Getter;
@@ -95,6 +99,33 @@ public class ProfileController {
                                 }
                             }
                         })
+        );
+    }
+
+    public void getUserProfileByName(final String firstName, final String lastName, final ProfileCallbacks.ProfileRequest profileRequest) {
+        compositeSubscription.add(
+                ((CoreApp)context)
+                .getRestAPI()
+                .getUserProfileByName(new HashMap<String, String>() {{
+                    put("fname", firstName);
+                    put("lname", lastName);
+                }})
+                .subscribe(new Observer<List<ProfileModel>>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        profileRequest.onProfileFetchFailed(e, ((HttpException)e).code());
+                    }
+
+                    @Override
+                    public void onNext(List<ProfileModel> profileModels) {
+                        profileRequest.onProfileFetch(profileModels);
+                    }
+                })
         );
     }
 

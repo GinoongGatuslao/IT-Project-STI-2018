@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="15dp">
+
+    <TextView
+        android:id="@+id/productName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/colorLink"
+        android:textSize="@dimen/font_size_18sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/priceLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/productName"
+        app:layout_constraintRight_toLeftOf="@id/priceValue"
+        android:textColor="@color/colorMaterialGrey400"
+        android:textSize="@dimen/font_size_15sp"
+        android:text="@string/loan_list_total_value"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/priceValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintLeft_toRightOf="@id/priceLabel"
+        app:layout_constraintTop_toBottomOf="@id/productName"
+        app:layout_constraintRight_toLeftOf="@id/interestLabel"
+        android:textColor="@color/colorMaterialGrey800"
+        android:textSize="@dimen/font_size_14sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/interestLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toRightOf="@id/priceValue"
+        app:layout_constraintTop_toBottomOf="@id/productName"
+        app:layout_constraintRight_toLeftOf="@id/interestValue"
+        android:textColor="@color/colorMaterialGrey400"
+        android:textSize="@dimen/font_size_15sp"
+        android:text="@string/loan_list_interest"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/interestValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintLeft_toRightOf="@id/interestLabel"
+        app:layout_constraintTop_toBottomOf="@id/productName"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textColor="@color/colorMaterialGrey800"
+        android:textSize="@dimen/font_size_14sp"
+        android:textStyle="bold"/>
+
+</android.support.constraint.ConstraintLayout>
