@@ -65,16 +65,6 @@ public class ProfileModel {
     @Setter
     private String est_monthly_expenses;
 
-    @SerializedName("path_id_pic")
-    @Getter
-    @Setter
-    private String path_id_pic = "";
-
-    @SerializedName("path_house_sketch_pic")
-    @Getter
-    @Setter
-    private String path_house_sketch_pic = "";
-
     @SerializedName("verified")
     @Getter
     public int verified;

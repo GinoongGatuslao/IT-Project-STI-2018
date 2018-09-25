@@ -37,7 +37,6 @@ dependencies {
     implementation dagger
     implementation rxjava
     implementation saripaar
-    implementation cloudinary
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     annotationProcessor butterKnifeAnnotation
     annotationProcessor lombokAnnotation

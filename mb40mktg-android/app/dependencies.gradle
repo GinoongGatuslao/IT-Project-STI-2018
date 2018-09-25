@@ -87,7 +87,3 @@ ext.rxjava = [
 ext.saripaar = [
         "com.mobsandgeeks:android-saripaar:2.0.3"
 ]
-
-ext.cloudinary = [
-        'com.cloudinary:cloudinary-android:1.24.0'
-]

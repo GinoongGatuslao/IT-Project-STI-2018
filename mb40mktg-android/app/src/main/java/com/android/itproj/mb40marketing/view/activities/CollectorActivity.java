@@ -130,6 +130,7 @@ public class CollectorActivity extends AppCompatActivity implements
 
     @Override
     public void onProfileFetch(List<ProfileModel> models) {
+        swipeRefreshLayout.setRefreshing(false);
         Log.d(TAG, "onProfileFetch: " + Arrays.deepToString(models.toArray()));
         profileListViewAdapter = new ProfileListViewAdapter(this, models);
         searchResultList.setAdapter(profileListViewAdapter);
@@ -143,7 +144,6 @@ public class CollectorActivity extends AppCompatActivity implements
 
     @Override
     public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-        Log.d(TAG, "beforeTextChanged: " + charSequence);
         if (oldRunnable != null) {
             handler.removeCallbacks(oldRunnable);
         }
@@ -151,7 +151,6 @@ public class CollectorActivity extends AppCompatActivity implements
 
     @Override
     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-        Log.d(TAG, "onTextChanged: " + charSequence);
     }
 
     @Override
@@ -163,7 +162,7 @@ public class CollectorActivity extends AppCompatActivity implements
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Log.d(TAG, "run: call to API");
+                        swipeRefreshLayout.setRefreshing(true);
                         ((CoreApp) getApplication())
                                 .getProfileController()
                                 .getUserProfileByName(
@@ -179,7 +178,6 @@ public class CollectorActivity extends AppCompatActivity implements
 
     @Override
     public void onRefresh() {
-        Log.d(TAG, "refreshing...");
         ((CoreApp) getApplication())
                 .getProfileController()
                 .getUserProfile(

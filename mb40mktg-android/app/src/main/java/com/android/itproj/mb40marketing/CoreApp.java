@@ -11,10 +11,6 @@ import com.android.itproj.mb40marketing.controller.modules.ContextModule;
 import com.android.itproj.mb40marketing.controller.modules.PreferenceModule;
 import com.android.itproj.mb40marketing.controller.modules.RestAPIModule;
 import com.android.itproj.mb40marketing.helper.restservice.RestAPI;
-import com.cloudinary.android.MediaManager;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -59,12 +55,6 @@ public class CoreApp extends Application {
 
         restAPI = userComponent.getRestAPICall();
         authState = userComponent.getAuthState();
-
-        Map<String, String> config = new HashMap<>();
-        config.put("cloud_name", "horbordidorp");
-        config.put("api_key", "872388742584913");
-        config.put("api_secret", "hKJRyPNQUS7JnHDJ1TlAQzLFN7E");
-        MediaManager.init(this, config);
     }
 
 }

@@ -304,63 +304,6 @@
 
         </android.support.design.widget.TextInputLayout>
 
-        <TextView
-            android:id="@+id/optionalReminder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="@string/label_optional_fields"
-            android:textColor="@color/colorRed"
-            android:textSize="18sp"
-            app:layout_constraintTop_toBottomOf="@id/til11" />
-
-        <TextView
-            android:id="@+id/validIdLabel"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="@string/label_valid_id"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="15sp"
-            app:layout_constraintHorizontal_weight="1"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/homeSketchLabel"
-            app:layout_constraintTop_toBottomOf="@id/optionalReminder" />
-
-        <TextView
-            android:id="@+id/homeSketchLabel"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="@string/label_home_sketch"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toTopOf="@id/selectHomeSketch"
-            app:layout_constraintHorizontal_weight="1"
-            app:layout_constraintLeft_toRightOf="@id/validIdLabel"
-            app:layout_constraintTop_toBottomOf="@id/optionalReminder"
-            app:layout_constraintRight_toRightOf="parent"/>
-
-        <Button
-            android:id="@+id/selectValidIdBtn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/button_select"
-            app:layout_constraintHorizontal_weight="1"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/selectHomeSketch"
-            app:layout_constraintTop_toBottomOf="@id/validIdLabel" />
-
-        <Button
-            android:id="@+id/selectHomeSketch"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/button_select"
-            app:layout_constraintHorizontal_weight="1"
-            app:layout_constraintLeft_toRightOf="@id/selectValidIdBtn"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/homeSketchLabel" />
-
         <Button
             android:id="@+id/registerBtn"
             android:layout_width="match_parent"
@@ -370,7 +313,7 @@
             android:text="@string/button_register"
             android:textColor="@android:color/white"
             android:textSize="15sp"
-            app:layout_constraintTop_toBottomOf="@id/selectValidIdBtn" />
+            app:layout_constraintTop_toBottomOf="@id/til12" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

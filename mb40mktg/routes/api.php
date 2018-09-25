@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('statuslist', 'Controller@getStatusList');
 Route::get('usertypes', 'Controller@getUserTypes');
 Route::get('loanstatus', 'Controller@getLoanStatus');
+Route::get('accountstatus', 'Controller@getAccountStatus');
 
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout');
@@ -87,11 +88,4 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('transaction/collector/{id}', 'TransactionController@getTransactionByCollector');
     Route::get('transaction/loan/{id}', 'TransactionController@getTransactionByLoan');
     Route::get('transaction/pay_range', 'TransactionController@getTransactionByPaymentRange');
-
-    /**
-     * ACCOUNT
-     */
-    Route::post('account/newaccount', 'AccountController@newAccount');
-    Route::get('account/getaccount/{id}', 'AccountController@getAccount');
-    Route::get('account/getaccountbyprofile/{id}', 'AccountController@getAccountByProfile');
 });
