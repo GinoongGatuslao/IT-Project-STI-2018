@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\DB;
 class ProfileController extends Controller
 {
     public function getAllProfiles() {
-        return Profile::all();
+        return Profile::select("*")
+            ->join('users', 'tbl_profiles.user_id', '=', 'users.id')->get();
     }
 
     public function getProfile($id)

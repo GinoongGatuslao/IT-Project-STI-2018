@@ -8,6 +8,10 @@ class Profile extends Model
 {
     protected $table = "tbl_profiles";
 
+    protected $hidden = [
+        'password'
+    ];
+
     protected $fillable = [
         'user_id',
         'first_name',

@@ -19,12 +19,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('statuslist', 'Controller@getStatusList');
 Route::get('usertypes', 'Controller@getUserTypes');
+Route::get('loanstatus', 'Controller@getLoanStatus');
 
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout');
 Route::post('register', 'Auth\RegisterController@register');
 
 Route::group(['middleware' => 'auth:api'], function () {
+    Route::get('users', "Controller@getAllUsers");
     Route::get('userinfo', 'Controller@getUserInfo');
 
     /**

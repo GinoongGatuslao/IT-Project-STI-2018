@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Config\LoanStatus;
 use App\Config\UserType;
 use App\Config\StatusEnum;
 use App\User;
@@ -32,8 +33,18 @@ class Controller extends BaseController
         return UserType::getUserTypes();
     }
 
+    //GET usertypes
+    public function getLoanStatus() {
+        return LoanStatus::getLoanStatus();
+    }
+
     public function getUserInfo(Request $request){
         $user = User::where('api_token', $request->header('token'));
         return response()->json($user, 200);
+    }
+
+    public function getAllUsers()
+    {
+        return User::all();
     }
 }
