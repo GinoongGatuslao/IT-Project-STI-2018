@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Loan;
-use App\Price;
-use Illuminate\Http\Request;
-use App\LoanItem;
-use App\ProductItem;
 use App\Account;
+use App\Loan;
+use App\LoanItem;
+use App\Price;
+use App\ProductItem;
+use App\Profile;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class LoanController extends Controller
@@ -61,7 +62,7 @@ class LoanController extends Controller
         //check first if still below credit limit
         $previousLoan = $this->getTotalExistingLoans($request->get("account_id"));
         $valueWithExisting = $previousLoan + $totalValue;
-        $account = Account::where("id", $request->get("account_id"))->first();
+        $account = Profile::where("id", $request->get("account_id"))->first();
         if ($account->credit_limit < $valueWithExisting) {
             return response()->json([
                 "requested_loan_amount" => $totalValue,
