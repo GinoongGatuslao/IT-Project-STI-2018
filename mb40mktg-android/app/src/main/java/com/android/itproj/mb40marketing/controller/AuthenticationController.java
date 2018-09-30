@@ -102,7 +102,7 @@ public class AuthenticationController {
                                 } else {
                                     try {
                                         authCallback.onLogoutFailed(new Throwable(response.body().string()), HttpStatus.SC_METHOD_FAILURE);
-                                    } catch (IOException e) {
+                                    } catch (Exception e) {
                                         authCallback.onLogoutFailed(new Throwable("Generic Failure"), HttpStatus.SC_METHOD_FAILURE);
                                         e.printStackTrace();
                                     }

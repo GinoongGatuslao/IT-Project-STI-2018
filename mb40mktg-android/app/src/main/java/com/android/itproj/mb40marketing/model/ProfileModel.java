@@ -3,12 +3,14 @@ package com.android.itproj.mb40marketing.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 @ToString
-public class ProfileModel {
+public class ProfileModel implements Serializable{
 
     @Expose(deserialize = false)
     @Getter

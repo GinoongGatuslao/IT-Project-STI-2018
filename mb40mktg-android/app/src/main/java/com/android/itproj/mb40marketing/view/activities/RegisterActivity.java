@@ -10,10 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.itproj.mb40marketing.Constants;
 import com.android.itproj.mb40marketing.CoreApp;
 import com.android.itproj.mb40marketing.R;
 import com.android.itproj.mb40marketing.helper.interfaces.AuthenticationCallback;
-import com.android.itproj.mb40marketing.helper.interfaces.ProfileCallbacks;
+import com.android.itproj.mb40marketing.helper.interfaces.ProfileCallback;
 import com.android.itproj.mb40marketing.model.ProfileModel;
 import com.android.itproj.mb40marketing.model.UserModel;
 import com.google.gson.JsonObject;
@@ -34,7 +35,7 @@ import butterknife.OnClick;
 public class RegisterActivity extends AppCompatActivity implements
         Validator.ValidationListener,
         AuthenticationCallback.AuthRegisterCallback,
-        ProfileCallbacks.ProfileRegister {
+        ProfileCallback.ProfileRegister {
 
     private static final String TAG = "RegisterActivity";
 
@@ -101,11 +102,17 @@ public class RegisterActivity extends AppCompatActivity implements
 
     private Validator validator;
 
+    //created for mocking
+    private List<Constants.Mock.MockObject> mockList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
+
+        Constants.Mock mock = new Constants().new Mock();
+        mockList = mock.createMock();
 
         initialize();
     }
@@ -116,20 +123,20 @@ public class RegisterActivity extends AppCompatActivity implements
 
         //CREATING DUMMY VALUES
         Random rand = new Random();
-        int rInt = rand.nextInt(10000);
+        int rInt = rand.nextInt(mockList.size());
 
-        givenNameEditText.setText("Collector" + rInt);
-        middleNameEditText.setText("Collector" + rInt);
-        familyNameEditText.setText("Collector" + rInt);
-        addressEditText.setText("Collector" + rInt);
-        contactEditText.setText("Collector" + rInt);
-        birthEditText.setText("01/03/1990");
-        occupationEditText.setText("occupation" + rInt);
-        incomeEditText.setText(String.valueOf(rInt * 10));
-        est_monthly_expensesEditText.setText(String.valueOf(rInt));
-        usernameEditText.setText("/c" + rInt);
-        passwordEditText.setText("pass" + rInt);
-        confirm_passwordEditText.setText("pass" + rInt);
+        givenNameEditText.setText(mockList.get(rInt).fname);
+        middleNameEditText.setText(mockList.get(rInt).mname);
+        familyNameEditText.setText(mockList.get(rInt).lname);
+        addressEditText.setText(mockList.get(rInt).address);
+        contactEditText.setText(mockList.get(rInt).contact);
+        birthEditText.setText(mockList.get(rInt).bday);
+        occupationEditText.setText(mockList.get(rInt).occupation);
+        incomeEditText.setText(mockList.get(rInt).salary);
+        est_monthly_expensesEditText.setText(mockList.get(rInt).expenses);
+        usernameEditText.setText(mockList.get(rInt).username);
+        passwordEditText.setText("test123");
+        confirm_passwordEditText.setText("test123");
 
         //initialize alert dialog
         alertDialog = new ProgressDialog(this, ProgressDialog.STYLE_SPINNER);

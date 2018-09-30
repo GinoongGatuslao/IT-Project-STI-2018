@@ -7,7 +7,7 @@ import com.android.itproj.mb40marketing.model.ProfileModel;
 
 import java.util.List;
 
-public class ProfileCallbacks {
+public class ProfileCallback {
 
     public interface ProfileRegister {
         void onProfileRegisterSuccess(ProfileModel model);
