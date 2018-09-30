@@ -22,7 +22,7 @@ namespace WindowsFormsApp1
         public string path_id_pic { get; set; }
         public string path_house_sketch_pic { get; set; }
         public double credit_limit { get; set; }
-        public int account_status { get; set; }
+        public int verified { get; set; }
         public string username { get; set; }
         public int user_type { get; set; }
     }

@@ -10,8 +10,6 @@ namespace WindowsFormsApp1
         public string endPoint { get; set; }
         public string postJSON { get; set; }
         public bool login { get; set; }
-        //public string username { get; set; }
-        //public string password { get; set; }
 
         public RestClient()
         {
@@ -29,12 +27,9 @@ namespace WindowsFormsApp1
                 request.Headers.Add("Authorization", "Bearer " + Login.api_token);
             }
 
-            //String authHeader = System.Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes(username + ":" + password));
-            //request.Headers.Add("Authorizationasic " + authHeader);
-
             if (request.Method == "POST" && postJSON != string.Empty)
             {
-                request.ContentType = "application/json"; //Really Important
+                request.ContentType = "application/json";
                 using (StreamWriter swJSONPayload = new StreamWriter(request.GetRequestStream()))
                 {
                     swJSONPayload.Write(postJSON);
@@ -70,26 +65,7 @@ namespace WindowsFormsApp1
                     ((IDisposable)response).Dispose();
                 }
             }
-
-            /**using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-            {
-                if (response.StatusCode != HttpStatusCode.OK)
-                {
-                    throw new ApplicationException("error code: " + response.StatusCode.ToString());
-                }
-                //process the response string
-                using (Stream responseStream = response.GetResponseStream())
-                {
-                    if (responseStream != null)
-                    {
-                        using(StreamReader reader = new StreamReader(responseStream))
-                        {
-                            responseValue = reader.ReadToEnd();
-                        }
-                    }
-                }
-            }**/
-
+            
             return responseValue;
         }
 
@@ -118,7 +94,6 @@ namespace WindowsFormsApp1
             }
             catch (Exception ex)
             {
-                //We catch non Http 200 responses here.
                 responseValue = "{\"errorMessages\":[\"" + ex.Message.ToString() + "\"],\"errors\":{}}";
             }
             finally

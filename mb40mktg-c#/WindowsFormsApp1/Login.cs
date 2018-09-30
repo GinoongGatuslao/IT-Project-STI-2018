@@ -7,7 +7,8 @@ namespace WindowsFormsApp1
 {
     public partial class Login : Form
     {
-        public static String api_token = string.Empty;
+        public static string api_token = string.Empty;
+        public static int user_type = 0;
 
         public Login()
         {
@@ -39,6 +40,7 @@ namespace WindowsFormsApp1
                 {
                     User user = JsonConvert.DeserializeObject<User>(res[1]);
                     api_token = user.api_token;
+                    user_type = user.user_type;
                     Console.WriteLine("api_token: " + user.api_token);
 
                     this.Hide();
@@ -58,11 +60,6 @@ namespace WindowsFormsApp1
                 MessageBox.Show("Username and password cannot be empty", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void Login_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

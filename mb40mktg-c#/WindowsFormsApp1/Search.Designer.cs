@@ -42,6 +42,7 @@
             this.datagrid.Location = new System.Drawing.Point(0, 0);
             this.datagrid.Name = "datagrid";
             this.datagrid.ReadOnly = true;
+            this.datagrid.RowHeadersVisible = false;
             this.datagrid.Size = new System.Drawing.Size(597, 277);
             this.datagrid.TabIndex = 0;
             this.datagrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagrid_CellDoubleClick);
@@ -62,8 +63,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(597, 277);
-            this.Controls.Add(this.nodata_lbl);
             this.Controls.Add(this.datagrid);
+            this.Controls.Add(this.nodata_lbl);
             this.MaximizeBox = false;
             this.Name = "Search";
             this.Text = "Item Search";

@@ -11,7 +11,7 @@ namespace WindowsFormsApp1
         public static int itemId = 0;
         public static string itemName = string.Empty;
         public static string itemDesc = string.Empty;
-        public static string itemPrice = string.Empty;
+        public static double itemPrice = 0;
         public static string prof_fullname = string.Empty;
         public static int prof_id = 0;
         public static string prof_add = string.Empty;
@@ -97,21 +97,13 @@ namespace WindowsFormsApp1
                             datagrid.DataSource = prof;
 
                             datagrid.Columns[0].HeaderText = "Client ID";
-                            datagrid.Columns[1].HeaderText = "User ID";
                             datagrid.Columns[2].HeaderText = "First Name";
                             datagrid.Columns[3].HeaderText = "Middle Name";
                             datagrid.Columns[4].HeaderText = "Last Name";
                             datagrid.Columns[5].HeaderText = "Address";
                             datagrid.Columns[6].HeaderText = "Contact No";
-                            datagrid.Columns[7].HeaderText = "Birthdate";
-                            datagrid.Columns[8].HeaderText = "Occupation";
-                            datagrid.Columns[9].HeaderText = "Montly Income";
-                            datagrid.Columns[10].HeaderText = "Montly Expense";
-                            datagrid.Columns[11].HeaderText = "ID Path";
-                            datagrid.Columns[12].HeaderText = "Sketch Path";
                             datagrid.Columns[13].HeaderText = "Credit Limit";
                             datagrid.Columns[14].HeaderText = "Status";
-                            datagrid.Columns[15].HeaderText = "Username";
                             datagrid.Columns[16].HeaderText = "User Type";
 
                             datagrid.Columns[1].Visible = false;
@@ -143,31 +135,27 @@ namespace WindowsFormsApp1
                 switch (tag.ToString())
                 {
                     case "ITEM":
-                        {
-                            datagrid.CurrentRow.Selected = true;
-                            itemId = Convert.ToInt32(datagrid.Rows[e.RowIndex].Cells["id"].Value.ToString());
-                            itemName = datagrid.Rows[e.RowIndex].Cells["item_name"].Value.ToString();
-                            itemDesc = datagrid.Rows[e.RowIndex].Cells["description"].Value.ToString();
-                            itemPrice = datagrid.Rows[e.RowIndex].Cells["price"].Value.ToString();
+                        datagrid.CurrentRow.Selected = true;
+                        itemId = Convert.ToInt32(datagrid.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                        itemName = datagrid.Rows[e.RowIndex].Cells["item_name"].Value.ToString();
+                        itemDesc = datagrid.Rows[e.RowIndex].Cells["description"].Value.ToString();
+                        itemPrice = Convert.ToDouble(datagrid.Rows[e.RowIndex].Cells["price"].Value.ToString());
 
-                            break;
-                        }
+                        break;
                     case "CLIENT":
-                        {
-                            Console.WriteLine("hello world");
+                        Console.WriteLine("hello world");
 
-                            datagrid.CurrentRow.Selected = true;
-                            prof_id = Convert.ToInt32(datagrid.Rows[e.RowIndex].Cells["id"].Value.ToString());
-                            prof_fullname = datagrid.Rows[e.RowIndex].Cells["first_name"].Value.ToString()
-                                + " " + datagrid.Rows[e.RowIndex].Cells["middle_name"].Value.ToString()
-                                + " " + datagrid.Rows[e.RowIndex].Cells["last_name"].Value.ToString();
-                            prof_cn = datagrid.Rows[e.RowIndex].Cells["contact_num"].Value.ToString();
-                            prof_cred_limit = Convert.ToDouble(datagrid.Rows[e.RowIndex].Cells["credit_limit"].Value.ToString());
-                            prof_add = datagrid.Rows[e.RowIndex].Cells["address"].Value.ToString();
-                            prof_stat = Convert.ToInt32(datagrid.Rows[e.RowIndex].Cells["account_status"].Value.ToString());
+                        datagrid.CurrentRow.Selected = true;
+                        prof_id = Convert.ToInt32(datagrid.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                        prof_fullname = datagrid.Rows[e.RowIndex].Cells["first_name"].Value.ToString()
+                            + " " + datagrid.Rows[e.RowIndex].Cells["middle_name"].Value.ToString()
+                            + " " + datagrid.Rows[e.RowIndex].Cells["last_name"].Value.ToString();
+                        prof_cn = datagrid.Rows[e.RowIndex].Cells["contact_num"].Value.ToString();
+                        prof_cred_limit = Convert.ToDouble(datagrid.Rows[e.RowIndex].Cells["credit_limit"].Value.ToString());
+                        prof_add = datagrid.Rows[e.RowIndex].Cells["address"].Value.ToString();
+                        prof_stat = Convert.ToInt32(datagrid.Rows[e.RowIndex].Cells["account_status"].Value.ToString());
 
-                            break;
-                        }
+                        break;
                 }
             }
 

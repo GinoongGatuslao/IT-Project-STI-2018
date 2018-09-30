@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="LoanType.cs" />
     <Compile Include="Profile.cs" />
+    <Compile Include="Register.cs" />
     <Compile Include="Search.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +89,7 @@
     </Compile>
     <Compile Include="StatusList.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="UserType.cs" />
     <EmbeddedResource Include="Search.resx">
       <DependentUpon>Search.cs</DependentUpon>
     </EmbeddedResource>
