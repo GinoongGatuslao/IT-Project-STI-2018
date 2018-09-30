@@ -9,7 +9,7 @@ class Transaction extends Model
     protected $table = "tbl_transactions";
 
     protected $fillable = [
-        'account_id',
+        'profile_id',
         'loan_id',
         'collector_id',
         'payment'

@@ -16,12 +16,17 @@ class LoanController extends Controller
 
     public function getAllLoan()
     {
-        return Loan::all();
+        $loans = DB::select(DB::raw("
+            SELECT tbl_loans.*, profile.first_name, profile.middle_name, profile.last_name
+            FROM tbl_loans
+            INNER JOIN tbl_profiles profile ON profile.id = tbl_loans.profile_id"));
+
+        return response()->json($loans, 200);
     }
 
-    public function getLoan($account_id)
+    public function getLoan($profile_id)
     {
-        $loan = Loan::where('account_id', $account_id);
+        $loan = Loan::where('profile_id', $profile_id);
         return response()->json($loan->get(), 200);
     }
 
@@ -60,9 +65,9 @@ class LoanController extends Controller
         $amortztn = $totalValue / $request["term_length"];
 
         //check first if still below credit limit
-        $previousLoan = $this->getTotalExistingLoans($request->get("account_id"));
+        $previousLoan = $this->getTotalExistingLoans($request->get("profile_id"));
         $valueWithExisting = $previousLoan + $totalValue;
-        $account = Profile::where("id", $request->get("account_id"))->first();
+        $account = Profile::where("id", $request->get("profile_id"))->first();
         if ($account->credit_limit < $valueWithExisting) {
             return response()->json([
                 "requested_loan_amount" => $totalValue,
@@ -74,7 +79,7 @@ class LoanController extends Controller
 
         $loanItems = Array();
         $newLoan = Loan::create([
-            "account_id" => $request->get("account_id"),
+            "profile_id" => $request->get("profile_id"),
             "term_length" => $request->get("term_length"),
             "loan_value" => $totalValue,
             "amortization" => $amortztn,
@@ -98,8 +103,8 @@ class LoanController extends Controller
         return response()->json($newProduct, 201);*/
     }
 
-    public function getTotalExistingLoans($account_id) {
-    $loans = Loan::where("account_id", $account_id)->get();
+    public function getTotalExistingLoans($profile_id) {
+    $loans = Loan::where("profile_id", $profile_id)->get();
     $t_val = 0;
     foreach ($loans as $loan) {
         if ($loan["status"] == 1) {

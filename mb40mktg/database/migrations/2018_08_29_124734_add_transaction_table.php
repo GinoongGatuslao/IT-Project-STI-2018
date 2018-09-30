@@ -17,7 +17,7 @@ class AddTransactionTable extends Migration
         if (!Schema::hasTable($this->tableName)) {
             Schema::create($this->tableName, function (Blueprint $table) {
                 $table->increments('id');
-                $table->integer('account_id');
+                $table->integer('profile_id');
                 $table->integer('loan_id');
                 $table->integer('collector_id');
                 $table->float('payment');

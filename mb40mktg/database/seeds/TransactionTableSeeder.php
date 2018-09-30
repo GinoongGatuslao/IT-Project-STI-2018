@@ -23,7 +23,7 @@ class TransactionTableSeeder extends Seeder
             $paymentMade = $faker->randomElement(array(1399, 1299, 2500, 995));
             for ($x = 0; $x < $fakeLoanPayments; $x++) {
                 Transaction::create([
-                    'account_id' => $accntId,
+                    'profile_id' => $accntId,
                     'loan_id' => $loanId,
                     'collector_id' => $faker->numberBetween(1, 10),
                     'payment' => $paymentMade
