@@ -15,7 +15,7 @@ class AddItemIdOnLoanTable extends Migration
     public function up()
     {
         Schema::table($this->tableName, function (Blueprint $table) {
-            $table->integer('item_id')->after('account_id');
+            $table->integer('item_id')->after('profile_id');
         });
     }
 

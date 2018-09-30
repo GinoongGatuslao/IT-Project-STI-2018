@@ -83,8 +83,7 @@ Route::group(['middleware' => 'auth:api'], function () {
      */
     Route::post('transaction/newtransaction', 'TransactionController@storeTransaction');
     Route::get('transaction', 'TransactionController@getAll');
-    Route::get('transaction/id/{id}', 'TransactionController@findId');
-    Route::get('transaction/account/{id}', 'TransactionController@getTransactionByAccount');
+    Route::get('transaction/records', 'TransactionController@getTransactionRecordsByProfileAndLoan');
     Route::get('transaction/collector/{id}', 'TransactionController@getTransactionByCollector');
     Route::get('transaction/loan/{id}', 'TransactionController@getTransactionByLoan');
     Route::get('transaction/pay_range', 'TransactionController@getTransactionByPaymentRange');

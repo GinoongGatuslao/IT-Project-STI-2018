@@ -42,12 +42,15 @@ class ProfileController extends Controller
     {
         $fname = $request->header("fname");
         $lname = $request->header("lname");
+        $filterUserTypeId = $request->header("usertype");
 
         $profileQuery = DB::select(DB::raw(
-            "SELECT *
+            "SELECT profile.*
             FROM tbl_profiles profile
+            INNER JOIN users u ON profile.user_id = u.id 
             WHERE profile.last_name LIKE \"%" . $lname . "%\"
-            AND profile.first_name LIKE \"%" . $fname . "%\""));
+            AND profile.first_name LIKE \"%" . $fname . "%\"
+            AND u.user_type = " . $filterUserTypeId));
 
         return response()->json($profileQuery, 200);
     }
