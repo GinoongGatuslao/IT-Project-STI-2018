@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Account;
+use App\Config\LoanStatus;
 use App\Loan;
 use App\LoanItem;
 use App\Price;
@@ -20,14 +20,22 @@ class LoanController extends Controller
             SELECT tbl_loans.*, profile.first_name, profile.middle_name, profile.last_name
             FROM tbl_loans
             INNER JOIN tbl_profiles profile ON profile.id = tbl_loans.profile_id"));
-
+        //add String representation of 'status' id
+        foreach ($loans as $loan) {
+            $loan->status_str = LoanStatus::getStatusStr($loan->status);
+        }
         return response()->json($loans, 200);
     }
 
     public function getLoan($profile_id)
     {
-        $loan = Loan::where('profile_id', $profile_id);
-        return response()->json($loan->get(), 200);
+        $loan = DB::select(DB::raw("
+        SELECT * FROM tbl_loans loan
+        WHERE loan.profile_id = :profileId"), array("profileId" => $profile_id));
+        foreach ($loan as $l) {
+            $l->status_str = LoanStatus::getStatusStr($l->status);
+        }
+        return response()->json($loan, 200);
     }
 
     public function getLoanItems($loan_id)

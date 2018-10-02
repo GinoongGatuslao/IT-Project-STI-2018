@@ -13,6 +13,7 @@ class Loan extends Model
         'term_length',
         'loan_value',
         'amortization',
+        'running_balance',
         'status'
     ];
 }

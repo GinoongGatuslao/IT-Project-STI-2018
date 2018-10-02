@@ -27,6 +27,7 @@ Route::post('logout', 'Auth\LoginController@logout');
 Route::post('register', 'Auth\RegisterController@register');
 
 Route::group(['middleware' => 'auth:api'], function () {
+    Route::put('user/update/{id}', 'Controller@update');
     Route::get('users', "Controller@getAllUsers");
     Route::get('userinfo', 'Controller@getUserInfo');
 
@@ -56,7 +57,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('profile/get/{id}', 'ProfileController@getProfile');
     Route::get('profile/user/{id}', 'ProfileController@getUserProfile');
     Route::post('profile/createprofile', 'ProfileController@createProfile');
-    Route::put('profile/updateprofile', 'ProfileController@updateProfile');
+    Route::put('profile/updateprofile/{id}', 'ProfileController@updateProfile');
 
     /**
      * PRICE
@@ -74,7 +75,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('loan/getloan/{account_id}', 'LoanController@getLoan');
     Route::get('loan/getloanitems/{loan_id}', 'LoanController@getLoanItems');
     Route::post('loan/addloan', 'LoanController@storeLoan');
-    Route::put('loan/updateloan', 'LoanController@updateLoan');
+    Route::put('loan/updateloan/{id}', 'LoanController@updateLoan');
     Route::delete('loan/deleteloan', 'LoanController@deleteLoan');
 
     /**

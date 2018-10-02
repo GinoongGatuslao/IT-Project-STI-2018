@@ -21,4 +21,9 @@ class UserType
             ]
         ];
     }
+
+    static function getUserTypeStr($id)
+    {
+        return self::getUserTypes()["types"][$id];
+    }
 }
