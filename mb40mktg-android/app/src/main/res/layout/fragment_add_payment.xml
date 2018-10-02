@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="350dp"
+    android:layout_height="match_parent"
+    android:layout_margin="15dp"
+    android:minHeight="400dp"
+    android:minWidth="350dp">
+
+    <TextView
+        android:id="@+id/labelLoanTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="@string/label_payment_for"
+        android:textSize="@dimen/font_size_15sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/loanTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:textColor="@color/colorMaterialGrey800"
+        android:textSize="@dimen/font_size_17sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/labelLoanTitle"
+        app:layout_constraintLeft_toRightOf="@id/labelLoanTitle"
+        app:layout_constraintTop_toTopOf="@id/labelLoanTitle" />
+
+    <TextView
+        android:id="@+id/labelPayee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="@string/label_payee"
+        android:textSize="@dimen/font_size_15sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/labelLoanTitle" />
+
+    <TextView
+        android:id="@+id/payeeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:textColor="@color/colorMaterialGrey800"
+        android:textSize="@dimen/font_size_17sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/labelPayee"
+        app:layout_constraintLeft_toRightOf="@id/labelPayee"
+        app:layout_constraintTop_toTopOf="@id/labelPayee" />
+
+    <TextView
+        android:id="@+id/labelCollector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="@string/label_collector"
+        android:textSize="@dimen/font_size_15sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/labelPayee" />
+
+    <TextView
+        android:id="@+id/collectorName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:textColor="@color/colorMaterialGrey800"
+        android:textSize="@dimen/font_size_17sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/labelCollector"
+        app:layout_constraintLeft_toRightOf="@id/labelCollector"
+        app:layout_constraintTop_toTopOf="@id/labelCollector" />
+
+    <TextView
+        android:id="@+id/labelPayment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="@string/label_collection_amt"
+        android:textSize="@dimen/font_size_15sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/labelCollector" />
+
+    <EditText
+        android:id="@+id/paymentEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:hint="@string/prompt_amount_here"
+        android:inputType="numberDecimal"
+        android:textColor="@color/colorMaterialGrey800"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@id/labelPayment"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toRightOf="@id/labelPayment"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/labelPayment" />
+
+    <CheckBox
+        android:id="@+id/disclaim"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/prompt_declare_correct"
+        app:layout_constraintTop_toBottomOf="@id/labelPayment" />
+
+    <TextView
+        android:id="@+id/errors"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_weight="1"
+        android:background="@color/colorPink"
+        android:textColor="@color/colorRed"
+        android:visibility="gone"
+        android:layout_margin="10dp"
+        android:padding="5dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/disclaim" />
+
+    <Button
+        android:id="@+id/transactionSubmit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/button_submit"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toRightOf="@id/transactionCancel"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/errors" />
+
+    <Button
+        android:id="@+id/transactionCancel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/button_cancel"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/transactionSubmit"
+        app:layout_constraintTop_toBottomOf="@id/errors" />
+
+</android.support.constraint.ConstraintLayout>

@@ -17,7 +17,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".view.activities.LoginActivity"
             android:label="@string/app_name">
@@ -27,8 +26,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.activities.CollectorActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".view.activities.RegisterActivity"
+            android:parentActivityName=".view.activities.LoginActivity" />
+        <activity
+            android:name=".view.activities.CollectorActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.activities.CustomerLoansActivity"
+            android:parentActivityName=".view.activities.CollectorActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

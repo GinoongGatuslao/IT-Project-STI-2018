@@ -6,8 +6,7 @@ import android.util.Log;
 
 import com.android.itproj.mb40marketing.Constants;
 import com.android.itproj.mb40marketing.CoreApp;
-import com.android.itproj.mb40marketing.helper.interfaces.ProfileCallbacks;
-import com.android.itproj.mb40marketing.model.AccountModel;
+import com.android.itproj.mb40marketing.helper.interfaces.ProfileCallback;
 import com.android.itproj.mb40marketing.model.LoanItemSummaryModel;
 import com.android.itproj.mb40marketing.model.LoanModel;
 import com.android.itproj.mb40marketing.model.ProfileModel;
@@ -17,7 +16,6 @@ import org.apache.http.HttpStatus;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -45,7 +43,7 @@ public class ProfileController {
         this.compositeSubscription = new CompositeSubscription();
     }
 
-    public void registerProfile(final ProfileModel profileModel, final ProfileCallbacks.ProfileRegister profileRegister) {
+    public void registerProfile(final ProfileModel profileModel, final ProfileCallback.ProfileRegister profileRegister) {
         compositeSubscription.add(
                 ((CoreApp) context)
                         .getRestAPI()
@@ -75,7 +73,7 @@ public class ProfileController {
         );
     }
 
-    public void getUserProfile(final int userId, final ProfileCallbacks.ProfileRequest profileRequest) {
+    public void getUserProfile(final int userId, final ProfileCallback.ProfileRequest profileRequest) {
         compositeSubscription.add(
                 ((CoreApp) context)
                         .getRestAPI()
@@ -105,13 +103,14 @@ public class ProfileController {
         );
     }
 
-    public void getUserProfileByName(final String firstName, final String lastName, final ProfileCallbacks.ProfileRequest profileRequest) {
+    public void getUserProfileByName(final String firstName, final String lastName, final String usertype, final ProfileCallback.ProfileRequest profileRequest) {
         compositeSubscription.add(
                 ((CoreApp)context)
                 .getRestAPI()
                 .getUserProfileByName(new HashMap<String, String>() {{
                     put("fname", firstName);
                     put("lname", lastName);
+                    put("usertype", usertype);
                 }})
                 .subscribe(new Observer<List<ProfileModel>>() {
                     @Override
@@ -132,7 +131,31 @@ public class ProfileController {
         );
     }
 
-    public void getCachedProfile(ProfileCallbacks.ProfileRequest profileRequest) {
+    public void getAllProfiles(final ProfileCallback.ProfileRequest profileRequest) {
+        compositeSubscription.add(
+                ((CoreApp)context)
+                .getRestAPI()
+                .getAllProfiles()
+                .subscribe(new Observer<List<ProfileModel>>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        profileRequest.onProfileFetchFailed(e, ((HttpException)e).code());
+                    }
+
+                    @Override
+                    public void onNext(List<ProfileModel> profileModels) {
+                        profileRequest.onProfileFetch(profileModels);
+                    }
+                })
+        );
+    }
+
+    public void getCachedProfile(ProfileCallback.ProfileRequest profileRequest) {
         String userProfile = preferences.getString(Constants.SHARED_PREFS_KEY_USER_INFO, "");
         Log.d("getCachedProfile", "getCachedProfile: " + userProfile);
         if (userProfile.isEmpty()) {
@@ -151,7 +174,7 @@ public class ProfileController {
                 .apply();
     }
 
-    public void getLoans(int accountId, final ProfileCallbacks.UserLoanCallback callback) {
+    public void getLoans(int accountId, final ProfileCallback.UserLoanCallback callback) {
         compositeSubscription.add(
                 ((CoreApp) context)
                         .getRestAPI()
@@ -174,7 +197,7 @@ public class ProfileController {
                         }));
     }
 
-    public void getLoanItems(int loan_id, final ProfileCallbacks.UserLoanItemsCallback callback) {
+    public void getLoanItems(int loan_id, final ProfileCallback.UserLoanItemsCallback callback) {
         compositeSubscription.add(
                 ((CoreApp)context)
                         .getRestAPI()

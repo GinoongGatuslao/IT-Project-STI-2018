@@ -48,9 +48,25 @@
 
     <!--Collector Activity-->
     <string name="label_search_customer">Search Customer</string>
-    <string name="label_search_loan">Search Loan ID</string>
-    <string name="prompt_loan_id">Loan ID</string>
+    <string name="label_search_account">Search Account Number</string>
+    <string name="prompt_loan_id">Account number</string>
+    <string name="prompt_amount_here">amount here&#8230;</string>
     <string name="text_customer_name_placeholder">%1$s, %2$s %3$s</string>
+    <string name="text_customer_profile_id_placeholder">Account No.: %1$d</string>
+    <string name="text_payment_collector">Collected by %1$s %2$s</string>
+    <string name="text_no_loans">No active loans</string>
+    <string name="button_add_payment">Add Payment</string>
+    <string name="button_view_loans">View Items</string>
+    <string name="label_prev_transactions">Previous Transactions</string>
+
+    <!--Add Payment Fragment-->
+    <string name="label_payment_for">Payment for</string>
+    <string name="label_payee">Payee</string>
+    <string name="label_collector">Collector</string>
+    <string name="label_collection_amt">Payment</string>
+    <string name="prompt_declare_correct">I hereby guarantee that information on this form are true and correct.</string>
+    <string name="button_submit">Submit</string>
+    <string name="button_cancel">Cancel</string>
 
     <!--Loan List item-->
     <string name="loaned_items">Loaned items</string>
@@ -58,6 +74,7 @@
     <string name="loan_list_total_value">Amount</string>
     <string name="loan_list_status">Status</string>
     <string name="loan_list_interest">Interest</string>
+    <string name="loan_term_placeholder">%1$d/mo @ %2$.2f</string>
 
     <!--Errors-->
     <string name="err_invalid_email">This email address is invalid</string>

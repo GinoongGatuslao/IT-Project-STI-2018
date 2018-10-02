@@ -22,11 +22,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.itproj.mb40marketing.Constants;
 import com.android.itproj.mb40marketing.CoreApp;
 import com.android.itproj.mb40marketing.R;
 import com.android.itproj.mb40marketing.controller.modules.AuthStateModule;
 import com.android.itproj.mb40marketing.helper.interfaces.AuthenticationCallback;
-import com.android.itproj.mb40marketing.helper.interfaces.ProfileCallbacks;
+import com.android.itproj.mb40marketing.helper.interfaces.ProfileCallback;
 import com.android.itproj.mb40marketing.model.ProfileModel;
 import com.android.itproj.mb40marketing.model.UserModel;
 
@@ -40,7 +41,7 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements AuthenticationCallback.AuthLoginCallback, ProfileCallbacks.ProfileRequest {
+public class LoginActivity extends AppCompatActivity implements AuthenticationCallback.AuthLoginCallback, ProfileCallback.ProfileRequest {
 
     private static final String TAG = "LoginActivity";
 
@@ -71,7 +72,7 @@ public class LoginActivity extends AppCompatActivity implements AuthenticationCa
         if (((CoreApp) getApplication()).getAuthState().isAuthenticated()) {
             ((CoreApp) getApplication())
                     .getProfileController()
-                    .getCachedProfile(new ProfileCallbacks.ProfileRequest() {
+                    .getCachedProfile(new ProfileCallback.ProfileRequest() {
                         @Override
                         public void onProfileFetch(ProfileModel model) {
                             AuthStateModule.AuthState authState = ((CoreApp) getApplication()).getAuthState();

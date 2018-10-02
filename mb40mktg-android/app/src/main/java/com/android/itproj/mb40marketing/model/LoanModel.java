@@ -7,16 +7,18 @@ import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
+@ToString
 public class LoanModel {
 
     @Expose(deserialize = false)
     @Getter
     private int id;
 
-    @SerializedName("account_id")
+    @SerializedName("profile_id")
     @Getter
-    private int account_id;
+    private int profile_id;
 
     @SerializedName("term_length")
     @Getter
@@ -34,6 +36,11 @@ public class LoanModel {
     @Getter
     @Setter
     private List<LoanItemSummaryModel> loanItemSummary;
+
+    @Expose(deserialize = false)
+    @SerializedName("status_str")
+    @Getter
+    private String status_str;
 
     @SerializedName("status")
     @Getter

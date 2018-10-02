@@ -2,7 +2,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -14,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/button_request_account"
-            android:textColor="@color/colorLink"
+            android:textColor="@color/colorAccent"
             android:textSize="@dimen/font_size_17sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -25,7 +26,7 @@
             android:layout_height="wrap_content"
             android:text="@string/button_request_account"
             android:textAllCaps="true"
-            android:textColor="@color/colorLightGreen"
+            android:textColor="@android:color/white"
             android:textSize="@dimen/font_size_15sp"
             android:textStyle="bold"
             app:layout_constraintRight_toRightOf="parent"
@@ -37,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="@string/loan_list_term_label"
-            android:textColor="@color/colorMaterialGrey400"
+            android:textColor="@color/colorLink"
             android:textSize="@dimen/font_size_18sp"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -48,7 +49,7 @@
             android:id="@+id/valueTerm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorMaterialGrey800"
+            android:textColor="@android:color/white"
             android:textSize="@dimen/font_size_15sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/labelTerm" />
@@ -60,7 +61,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
             android:text="@string/loan_list_total_value"
-            android:textColor="@color/colorMaterialGrey400"
+            android:textColor="@color/colorLink"
             android:textSize="@dimen/font_size_18sp"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintLeft_toRightOf="@id/labelTerm"
@@ -71,7 +72,7 @@
             android:id="@+id/valueAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorMaterialGrey800"
+            android:textColor="@android:color/white"
             android:textSize="@dimen/font_size_15sp"
             app:layout_constraintLeft_toLeftOf="@id/labelAmount"
             app:layout_constraintTop_toBottomOf="@id/labelAmount" />

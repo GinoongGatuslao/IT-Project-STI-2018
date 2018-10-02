@@ -64,7 +64,10 @@ public class ProfileListViewAdapter extends BaseAdapter {
                 getProfileModels().get(i).getLast_name().toUpperCase(Locale.getDefault()),
                 getProfileModels().get(i).getFirst_name(),
                 getProfileModels().get(i).getMiddle_name()));
-        holder.customerLoanId.setText(String.valueOf(getProfileModels().get(i).getId()));
+        holder.customerLoanId.setText(
+                String.format(
+                        getContext().getString(R.string.text_customer_profile_id_placeholder),
+                        getProfileModels().get(i).getId()));
         holder.customerAddress.setText(getProfileModels().get(i).getAddress());
         return view;
     }

@@ -54,6 +54,9 @@ public interface RestAPIService {
     @GET("profile/get")
     Observable<List<ProfileModel>> getUserProfileByName(@HeaderMap Map<String, String> headers);
 
+    @GET("profile")
+    Observable<List<ProfileModel>> getAllProfiles();
+
     @POST("profile/createprofile")
     Observable<ProfileModel> createProfile(@Body ProfileModel profileModel);
 
@@ -117,14 +120,17 @@ public interface RestAPIService {
     ///////////////////////////////////////////////////////////////////////////
     // TRANSACTION
     ///////////////////////////////////////////////////////////////////////////
+    @POST("transaction/newtransaction")
+    Observable<TransactionModel> recordTransaction(@Body TransactionModel model);
+
     @GET("transaction")
     Observable<List<TransactionModel>> getAllTransactions();
 
     @GET("transaction/id/{trans_id}")
     Observable<TransactionModel> getTransactionById(@Path("trans_id") String trans_id);
 
-    @GET("transaction/account/{accnt_id}")
-    Observable<List<TransactionModel>> getTransactionsByAccountId(@Path("accnt_id") String accnt_id);
+    @GET("transaction/records")
+    Observable<List<TransactionModel>> getTransactionRecords(@HeaderMap Map<String, Integer> headers);
 
     @GET("transaction/collector/{collector_id}")
     Observable<List<TransactionModel>> getTransactionsByCollector(@Path("collector_id") String collector_id);

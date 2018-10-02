@@ -49,7 +49,6 @@ public class RestAPIModule {
             @Override
             public Response intercept(Chain chain) throws IOException {
                 String apiToken = sharedPreferences.getString(Constants.SHARED_PREFS_KEY_TOKEN, "");
-                Log.d("AUTH", "intercept: " + apiToken + ", " + Constants.API_TOKEN);
                 Request authenticatedRequest =
                         chain.request()
                                 .newBuilder()

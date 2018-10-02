@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="15dp">
+    android:padding="20dp">
 
     <TextView
         android:id="@+id/productName"
@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         android:textColor="@color/colorLink"
-        android:textSize="@dimen/font_size_18sp"
+        android:textSize="@dimen/font_size_20sp"
         android:textStyle="bold"/>
 
     <TextView
@@ -23,7 +23,7 @@
         app:layout_constraintTop_toBottomOf="@id/productName"
         app:layout_constraintRight_toLeftOf="@id/priceValue"
         android:textColor="@color/colorMaterialGrey400"
-        android:textSize="@dimen/font_size_15sp"
+        android:textSize="@dimen/font_size_17sp"
         android:text="@string/loan_list_total_value"
         android:textStyle="bold"/>
 
@@ -36,7 +36,7 @@
         app:layout_constraintTop_toBottomOf="@id/productName"
         app:layout_constraintRight_toLeftOf="@id/interestLabel"
         android:textColor="@color/colorMaterialGrey800"
-        android:textSize="@dimen/font_size_14sp"
+        android:textSize="@dimen/font_size_16sp"
         android:textStyle="bold"/>
 
     <TextView
@@ -48,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@id/productName"
         app:layout_constraintRight_toLeftOf="@id/interestValue"
         android:textColor="@color/colorMaterialGrey400"
-        android:textSize="@dimen/font_size_15sp"
+        android:textSize="@dimen/font_size_17sp"
         android:text="@string/loan_list_interest"
         android:textStyle="bold"/>
 
@@ -61,7 +61,7 @@
         app:layout_constraintTop_toBottomOf="@id/productName"
         app:layout_constraintRight_toRightOf="parent"
         android:textColor="@color/colorMaterialGrey800"
-        android:textSize="@dimen/font_size_14sp"
+        android:textSize="@dimen/font_size_16sp"
         android:textStyle="bold"/>
 
 </android.support.constraint.ConstraintLayout>
