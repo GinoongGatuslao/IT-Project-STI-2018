@@ -1,8 +1,9 @@
 package com.android.itproj.mb40marketing.view.activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +14,7 @@ import com.android.itproj.mb40marketing.Constants;
 import com.android.itproj.mb40marketing.CoreApp;
 import com.android.itproj.mb40marketing.R;
 import com.android.itproj.mb40marketing.helper.interfaces.AuthenticationCallback;
-import com.android.itproj.mb40marketing.helper.interfaces.ProfileCallbacks;
+import com.android.itproj.mb40marketing.helper.interfaces.ProfileCallback;
 import com.android.itproj.mb40marketing.model.ProfileModel;
 import com.android.itproj.mb40marketing.model.UserModel;
 import com.google.gson.JsonObject;
@@ -24,23 +25,23 @@ import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.mobsandgeeks.saripaar.annotation.Password;
 import com.mobsandgeeks.saripaar.annotation.Pattern;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.List;
 import java.util.Random;
 
 import butterknife.BindView;
-import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class RegisterActivity extends AppCompatActivity implements
         Validator.ValidationListener,
         AuthenticationCallback.AuthRegisterCallback,
-        ProfileCallbacks.ProfileRegister {
+        ProfileCallback.ProfileRegister {
 
     private static final String TAG = "RegisterActivity";
+
+    private int USER_TYPE = 3;
+
+    private UserModel userModel;
 
     @NotEmpty
     @BindView(R.id.givenName)
@@ -97,7 +98,12 @@ public class RegisterActivity extends AppCompatActivity implements
     @BindView(R.id.registerBtn)
     public Button registerBtn;
 
+    private ProgressDialog alertDialog;
+
     private Validator validator;
+
+    //created for mocking
+    private List<Constants.Mock.MockObject> mockList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,42 +111,61 @@ public class RegisterActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
 
+        Constants.Mock mock = new Constants().new Mock();
+        mockList = mock.createMock();
+
         initialize();
     }
 
     private void initialize() {
         validator = new Validator(this);
         validator.setValidationListener(this);
+
+        //CREATING DUMMY VALUES
+        Random rand = new Random();
+        int rInt = rand.nextInt(mockList.size());
+
+        givenNameEditText.setText(mockList.get(rInt).fname);
+        middleNameEditText.setText(mockList.get(rInt).mname);
+        familyNameEditText.setText(mockList.get(rInt).lname);
+        addressEditText.setText(mockList.get(rInt).address);
+        contactEditText.setText(mockList.get(rInt).contact);
+        birthEditText.setText(mockList.get(rInt).bday);
+        occupationEditText.setText(mockList.get(rInt).occupation);
+        incomeEditText.setText(mockList.get(rInt).salary);
+        est_monthly_expensesEditText.setText(mockList.get(rInt).expenses);
+        usernameEditText.setText(mockList.get(rInt).username);
+        passwordEditText.setText("test123");
+        confirm_passwordEditText.setText("test123");
+
+        //initialize alert dialog
+        alertDialog = new ProgressDialog(this, ProgressDialog.STYLE_SPINNER);
+        alertDialog.setCancelable(false);
+        alertDialog.setCanceledOnTouchOutside(false);
     }
 
     @OnClick(R.id.registerBtn)
     public void registerNewAccount() {
+        //in-line hack for registering user as Collector
+        String username = usernameEditText.getText().toString();
+        if (username.charAt(0) == '/') {
+            usernameEditText.setText(
+                    username.substring(1, username.length()));
+            USER_TYPE = 2;
+        } else {
+            USER_TYPE = 3;
+        }
         validator.validate();
     }
 
     @Override
     public void onValidationSucceeded() {
-        Toast.makeText(this, "Success! Register action", Toast.LENGTH_SHORT).show();
-
-        UserModel model = new UserModel();
-        model.setUsername(usernameEditText.getText().toString());
-        model.setPassword(passwordEditText.getText().toString());
-        model.setPassword_confirmation(confirm_passwordEditText.getText().toString());
-        model.setUser_type(2);//as ONLY CLIENT WILL BE USING THIS REGISTRATION FORMS, COLLECTOR'S PROFILE ARE CREATED VIA THE DESKTOP APP
-
-        JsonObject newUser = new JsonObject();
-        newUser.addProperty("username", usernameEditText.getText().toString());
-        newUser.addProperty("user_type", 2);//as ONLY CLIENT WILL BE USING THIS REGISTRATION FORMS, COLLECTOR'S PROFILE ARE CREATED VIA THE DESKTOP APP
-        newUser.addProperty("password", passwordEditText.getText().toString());
-        newUser.addProperty("password_confirmation", confirm_passwordEditText.getText().toString());
-
-        ((CoreApp) getApplication())
-                .getAuthenticationController()
-                .registerUser(newUser, this);
+        registerUserDetails();
     }
 
     @Override
     public void onValidationFailed(List<ValidationError> errors) {
+        updateAlertDialog(false, "");
         for (ValidationError error : errors) {
             View view = error.getView();
             String message = error.getCollatedErrorMessage(this);
@@ -156,6 +181,8 @@ public class RegisterActivity extends AppCompatActivity implements
 
     @Override
     public void onRegisterSuccess(UserModel model) {
+        userModel = model;
+        updateAlertDialog(true, this.getString(R.string.progress_create_profile));
         //now we create profile for the client as filled-in on forms
 
         //create the model for POST body
@@ -176,22 +203,58 @@ public class RegisterActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onRegisterFailed(Throwable e) {
+    public void onRegisterFailed(Throwable e, int code) {
+        updateAlertDialog(false, "");
         Log.e(TAG, "onRegisterFailed: ", e);
     }
 
     @Override
     public void onProfileRegisterSuccess(ProfileModel model) {
+        updateAlertDialog(false, "");
         Log.d(TAG, "onProfileRegisterSuccess: " + model.toString());
-        ((CoreApp)getApplication()).getProfileController().setProfile(model);
+        ((CoreApp) getApplication()).getProfileController().setProfile(model);
 
-        Intent intent = new Intent(this, HomeActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        Intent intent = new Intent(this, CollectorActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 
     @Override
-    public void onProfileRegisterFailed(Throwable throwable) {
+    public void onProfileRegisterFailed(Throwable throwable, int code) {
+        updateAlertDialog(false, "");
         Log.e(TAG, "onProfileRegisterFailed: ", throwable);
+    }
+
+    private void registerUserDetails() {
+        updateAlertDialog(true, this.getString(R.string.progress_register));
+
+        UserModel model = new UserModel();
+        model.setUsername(usernameEditText.getText().toString());
+        model.setPassword(passwordEditText.getText().toString());
+        model.setPassword_confirmation(confirm_passwordEditText.getText().toString());
+        model.setUser_type(2);//as ONLY CLIENT WILL BE USING THIS REGISTRATION FORMS, COLLECTOR'S PROFILE ARE CREATED VIA THE DESKTOP APP
+
+        JsonObject newUser = new JsonObject();
+        newUser.addProperty("username", usernameEditText.getText().toString());
+        newUser.addProperty("user_type", USER_TYPE);//as ONLY CLIENT WILL BE USING THIS REGISTRATION FORMS, COLLECTOR'S PROFILE ARE CREATED VIA THE DESKTOP APP
+        newUser.addProperty("password", passwordEditText.getText().toString());
+        newUser.addProperty("password_confirmation", confirm_passwordEditText.getText().toString());
+
+        ((CoreApp) getApplication())
+                .getAuthenticationController()
+                .registerUser(newUser, this);
+    }
+
+    private void updateAlertDialog(boolean showDialog, String message) {
+        if (alertDialog != null) {
+            if (showDialog) {
+                if (!alertDialog.isShowing()) {
+                    alertDialog.show();
+                }
+                alertDialog.setMessage(message);
+            } else {
+                alertDialog.dismiss();
+            }
+        }
     }
 }

@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.android.itproj.mb40marketing.controller.AuthenticationController;
 import com.android.itproj.mb40marketing.controller.ProfileController;
+import com.android.itproj.mb40marketing.controller.TransactionController;
 import com.android.itproj.mb40marketing.controller.component.DaggerUserComponent;
 import com.android.itproj.mb40marketing.controller.component.UserComponent;
 import com.android.itproj.mb40marketing.controller.modules.AuthStateModule;
@@ -33,6 +34,9 @@ public class CoreApp extends Application {
     ProfileController profileController;
 
     @Getter
+    TransactionController transactionController;
+
+    @Getter
     RestAPIModule restAPIModule;
 
     @Override
@@ -52,13 +56,10 @@ public class CoreApp extends Application {
         userComponent.inject(authenticationController);
         profileController = new ProfileController(this);
         userComponent.inject(profileController);
+        transactionController = new TransactionController(this);
 
         restAPI = userComponent.getRestAPICall();
         authState = userComponent.getAuthState();
-    }
-
-    public void updateRestAPIToken() {
-        restAPIModule.updateToken(authState.getAuthString());
     }
 
 }

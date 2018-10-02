@@ -17,7 +17,7 @@ class CreateTableForAccounts extends Migration
         if (!Schema::hasTable($this->tableName)) {
             Schema::create($this->tableName, function (Blueprint $table) {
                 $table->increments('id');
-                $table->string('profile_id');
+                $table->integer('profile_id');
                 $table->integer('credit_limit')->default('0');
                 $table->text('path_id_pic');
                 $table->text('path_house_sketch_pic');

@@ -19,4 +19,9 @@ class StatusEnum {
             ]
         ];
     }
+
+    static function getStatusStr($id)
+    {
+        return self::getStatus()["status"][$id];
+    }
 }

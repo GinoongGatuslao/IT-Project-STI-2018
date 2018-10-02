@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">MB40 Marketing</string>
 
+    <string name="app_page_account">My Account</string>
+    <string name="app_page_collection">Collection</string>
+
+    <!-- Menus-->
+    <string name="menu_profile">[x]Profile</string>
+    <string name="menu_logout">Logout</string>
+
     <!-- Strings related to login -->
     <string name="prompt_username">Username</string>
     <string name="prompt_password">Password</string>
@@ -8,11 +15,6 @@
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="action_log_out">Log out</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_unmatched_password">Password doesn\'t match</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Storage permissions is required for accessing your uploadable files."</string>
 
     <!-- Strings related to registration -->
@@ -25,6 +27,62 @@
     <string name="prompt_occupation">Occupation</string>
     <string name="prompt_income">Income</string>
     <string name="prompt_est_monthly_expenses">Est. Monthly Expenses</string>
-    <string name="label_field_reminder">*ALL fields are required</string>
+    <string name="label_required_fields">Required Fields</string>
+    <string name="label_optional_fields">Optional</string>
+    <string name="label_valid_id">Photo of Valid ID</string>
+    <string name="label_home_sketch">Photo of residence sketch</string>
+    <string name="button_select">Select</string>
     <string name="button_register">Register</string>
+
+    <!-- Register dialog strings -->
+    <string name="progress_register">Registering&#8230;</string>
+    <string name="progress_create_profile">Creating profile&#8230;</string>
+    <string name="progress_upload">Uploading images&#8230;</string>
+    <string name="title_activity_home">HomeActivity</string>
+
+    <!--CLient Activity-->
+    <string name="button_request_account">Request an account</string>
+    <string name="text_pull_down_refresh">Pull down to refresh</string>
+    <string name="text_or_pull_down_refresh">or Pull down to refresh</string>
+    <string name="text_not_verified">Your account hasn\'t been verified.\nContact us to follow up verification process.</string>
+
+    <!--Collector Activity-->
+    <string name="label_search_customer">Search Customer</string>
+    <string name="label_search_account">Search Account Number</string>
+    <string name="prompt_loan_id">Account number</string>
+    <string name="prompt_amount_here">amount here&#8230;</string>
+    <string name="text_customer_name_placeholder">%1$s, %2$s %3$s</string>
+    <string name="text_customer_profile_id_placeholder">Account No.: %1$d</string>
+    <string name="text_payment_collector">Collected by %1$s %2$s</string>
+    <string name="text_no_loans">No active loans</string>
+    <string name="button_add_payment">Add Payment</string>
+    <string name="button_view_loans">View Items</string>
+    <string name="label_prev_transactions">Previous Transactions</string>
+
+    <!--Add Payment Fragment-->
+    <string name="label_payment_for">Payment for</string>
+    <string name="label_payee">Payee</string>
+    <string name="label_collector">Collector</string>
+    <string name="label_collection_amt">Payment</string>
+    <string name="prompt_declare_correct">I hereby guarantee that information on this form are true and correct.</string>
+    <string name="button_submit">Submit</string>
+    <string name="button_cancel">Cancel</string>
+
+    <!--Loan List item-->
+    <string name="loaned_items">Loaned items</string>
+    <string name="loan_list_term_label">Term</string>
+    <string name="loan_list_total_value">Amount</string>
+    <string name="loan_list_status">Status</string>
+    <string name="loan_list_interest">Interest</string>
+    <string name="loan_term_placeholder">%1$d/mo @ %2$.2f</string>
+
+    <!--Errors-->
+    <string name="err_invalid_email">This email address is invalid</string>
+    <string name="err_invalid_password">This password is too short</string>
+    <string name="err_unmatched_password">Password doesn\'t match</string>
+    <string name="err_incorrect_password">This password is incorrect</string>
+    <string name="err_field_required">This field is required</string>
+    <string name="err_server_unavailable">Unable to contact server</string>
+    <string name="err_no_record">No records found.</string>
+    <string name="err_placeholder">%1$s: %2$s</string>
 </resources>

@@ -26,10 +26,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.activities.HomeActivity" />
         <activity
             android:name=".view.activities.RegisterActivity"
-            android:parentActivityName=".view.activities.HomeActivity"></activity>
+            android:parentActivityName=".view.activities.LoginActivity" />
+        <activity
+            android:name=".view.activities.CollectorActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.activities.CustomerLoansActivity"
+            android:parentActivityName=".view.activities.CollectorActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

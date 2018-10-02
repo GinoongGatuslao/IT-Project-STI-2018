@@ -19,16 +19,14 @@ class CreateTableForLoans extends Migration
             Schema::create($this->tableName, function (Blueprint $table) {
                 // primary key
                 $table->increments('id');
-                //account_id of the client
-                $table->integer('account_id');
+                //profile_id of the client
+                $table->integer('profile_id');
                 //length of amortization
-                $table->integer('length'); // 30, 90, 180
+                $table->integer('term_length'); // 30, 90, 180
                 //loan value of current loan record
-                $table->integer('loan_value');
+                $table->float('loan_value');
                 //daily amortization value - this is calculated upon entry and approval
-                $table->integer('amortization');
-                //interest rate if there are
-                $table->integer('interest_rt')->default('0');
+                $table->float('amortization');
                 //if this loan is active OR inactive on client's account
                 $table->boolean('status');//active / inactive
                 $table->timestamps();

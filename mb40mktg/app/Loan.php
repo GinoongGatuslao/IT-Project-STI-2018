@@ -9,11 +9,11 @@ class Loan extends Model
     protected $table = "tbl_loans";
 
     protected $fillable = [
-        'account_id',
-        'length	',
+        'profile_id',
+        'term_length',
         'loan_value',
         'amortization',
-        'interest_rt',
+        'running_balance',
         'status'
     ];
 }
