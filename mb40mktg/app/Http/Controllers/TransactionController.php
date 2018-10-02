@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Loan;
+use App\Http\Controllers\LoanController;
 
 class TransactionController extends Controller
 {
@@ -16,6 +18,7 @@ class TransactionController extends Controller
     public function storeTransaction(Request $request)
     {
         $newTransaction = Transaction::create($request->all());
+        $this->updatePaymentBalance($newTransaction);
         return response()->json($newTransaction, 200);
     }
 
@@ -57,5 +60,20 @@ class TransactionController extends Controller
 
         $transaction = Transaction::whereBetween('payment', [$min, $max]);
         return response()->json($transaction->get(), 200);
+    }
+
+    private function updatePaymentBalance($newTransaction)
+    {
+        $loan = Loan::findOrFail($newTransaction->loan_id);
+        $deltaTotal = $loan->running_balance + $newTransaction->payment;
+        if ($deltaTotal >= $loan->loan_value) {
+            $loanstatus = 2;
+        } else {
+            $loanstatus = 1;
+        }
+        $loan->update([
+            "status" => $loanstatus,
+            "running_balance" => $deltaTotal
+        ]);
     }
 }

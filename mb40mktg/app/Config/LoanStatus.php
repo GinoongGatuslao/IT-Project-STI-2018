@@ -20,4 +20,9 @@ class LoanStatus
             ]
         ];
     }
+
+    static function getStatusStr($id)
+    {
+        return self::getLoanStatus()["types"][$id];
+    }
 }

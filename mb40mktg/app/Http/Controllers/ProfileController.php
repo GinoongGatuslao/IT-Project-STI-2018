@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Config\UserType;
+use App\Config\VerificationStatus;
 use App\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -9,8 +11,13 @@ use Illuminate\Support\Facades\DB;
 class ProfileController extends Controller
 {
     public function getAllProfiles() {
-        return Profile::select("*")
+        $profiles = Profile::select("*")
             ->join('users', 'tbl_profiles.user_id', '=', 'users.id')->get();
+        foreach ($profiles as $profile) {
+            $profile->usertype_str = UserType::getUserTypeStr($profile->user_type);
+            $profile->verified_str = VerificationStatus::getVerificationState($profile->verified);
+        }
+        return $profiles;
     }
 
     public function getProfile($id)

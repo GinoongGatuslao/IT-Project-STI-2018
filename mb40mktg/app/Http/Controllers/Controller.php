@@ -11,6 +11,8 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class Controller extends BaseController
 {
@@ -51,6 +53,21 @@ class Controller extends BaseController
 
     public function getAllUsers()
     {
-        return User::all();
+        $users = User::all();
+        foreach ($users as $user) {
+            $user->usertype_str = UserType::getUserTypeStr($user->user_type);
+        }
+        return $users;
+    }
+
+    public function update(Request $data, $id)
+    {
+        $updatedUser = Array(
+            "username"=>$data["username"],
+            "password" => Hash::make($data["password"])
+        );
+        $current = User::where("id", $id);
+        $current->update($updatedUser);
+        return response()->json($current->get(), 200);
     }
 }
