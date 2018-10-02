@@ -47,7 +47,7 @@ public class TransactionModel {
     @SerializedName("payment")
     @Getter
     @Setter
-    private int payment;
+    private double payment;
 
     @SerializedName("created_at")
     @Getter @Setter

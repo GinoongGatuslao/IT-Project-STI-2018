@@ -37,6 +37,11 @@ public class LoanModel {
     @Setter
     private List<LoanItemSummaryModel> loanItemSummary;
 
+    @Expose(deserialize = false)
+    @SerializedName("status_str")
+    @Getter
+    private String status_str;
+
     @SerializedName("status")
     @Getter
     private int status;

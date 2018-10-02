@@ -2,7 +2,9 @@ package com.android.itproj.mb40marketing.view.activities;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
@@ -41,7 +44,8 @@ public class CustomerLoansActivity extends AppCompatActivity implements
         ProfileCallback.UserLoanItemsCallback,
         SwipeRefreshLayout.OnRefreshListener,
         AdapterView.OnItemSelectedListener,
-        TransactionCallback {
+        TransactionCallback,
+        LoanItemsFragment.OnItemsLoadedCallback{
 
     private static final String TAG = "CustomerLoansActivity";
 
@@ -73,9 +77,16 @@ public class CustomerLoansActivity extends AppCompatActivity implements
     @BindView(R.id.viewLoansBtn)
     public Button viewLoansBtn;
 
+    @BindView(R.id.bottom_sheet)
+    public View bottomSheet;
+
     private LoanSpinnerAdapter loanSpinnerAdapter;
 
     private int lastSelectedIndex = 0;
+
+    private boolean isFromHidden = true;
+
+    private BottomSheetBehavior bottomSheetBehavior;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +94,9 @@ public class CustomerLoansActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_customer_loans);
         ButterKnife.bind(this);
 
-        loanSpinner.setOnItemSelectedListener(this);
+        swipeRefreshLayout.setColorSchemeColors(
+                getResources().getColor(R.color.colorAccent),
+                getResources().getColor(R.color.colorLink));
         swipeRefreshLayout.setOnRefreshListener(this);
 
         setCustomerProfile((ProfileModel) getIntent().getExtras().get("profile"));
@@ -98,6 +111,44 @@ public class CustomerLoansActivity extends AppCompatActivity implements
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         onRefresh();
+
+        //bottom sheet behavior
+        bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+        bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
+                    Log.d(TAG, "onStateChanged: COLLAPSED! hide fragments?");
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+                } else if (newState == BottomSheetBehavior.STATE_EXPANDED) {
+                    Log.d(TAG, "onStateChanged: EXPANDED! show fragments?");
+                } else if (newState == BottomSheetBehavior.STATE_HIDDEN) {
+                    Log.d(TAG, "onStateChanged: HIDDEN! you can't see me!");
+                    isFromHidden = true;
+                }
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+
+            }
+        });
+
+        transactionList.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if (transactionList.getChildCount() > 0) {
+                    swipeRefreshLayout.setEnabled(firstVisibleItem == 0
+                            && transactionList.getChildAt(0).getTop() == 0);
+                }
+            }
+        });
     }
 
     @Override
@@ -115,15 +166,18 @@ public class CustomerLoansActivity extends AppCompatActivity implements
         if (lastSelectedIndex != i) {
             lastSelectedIndex = i;
         }
-        Log.d(TAG, "onItemSelected: " + loanSpinnerAdapter.getItem(lastSelectedIndex).toString());
+        LoanModel loanItem = loanSpinnerAdapter.getItem(lastSelectedIndex);
+        Log.d(TAG, "onItemSelected: " + loanItem.toString());
         swipeRefreshLayout.setRefreshing(true);
         addPaymentButton.setEnabled(false);
         viewLoansBtn.setEnabled(false);
+        loanSpinner.setEnabled(false);
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
         ((CoreApp) getApplication())
                 .getTransactionController()
                 .getTransactionRecords(
-                        loanSpinnerAdapter.getItem(lastSelectedIndex).getId(),
-                        loanSpinnerAdapter.getItem(lastSelectedIndex).getProfile_id(),
+                        loanItem.getId(),
+                        loanItem.getProfile_id(),
                         this);
     }
 
@@ -134,9 +188,13 @@ public class CustomerLoansActivity extends AppCompatActivity implements
 
     @Override
     public void onRefresh() {
+        setVisibility(View.VISIBLE, loansFrame);
+        setVisibility(View.GONE, noticeFrame);
+
         swipeRefreshLayout.setRefreshing(true);
         addPaymentButton.setEnabled(false);
         viewLoansBtn.setEnabled(false);
+        loanSpinner.setEnabled(false);
         ((CoreApp) getApplication())
                 .getProfileController()
                 .getLoans(getCustomerProfile().getId(), this);
@@ -145,12 +203,19 @@ public class CustomerLoansActivity extends AppCompatActivity implements
     @Override
     public void onLoanListRequest(List<LoanModel> loanModelList) {
         if (loanModelList.size() > 0) {
+            setVisibility(View.VISIBLE, loansFrame);
+            setVisibility(View.GONE, noticeFrame);
             Log.d(TAG, "onLoanListRequest: " + Arrays.deepToString(loanModelList.toArray()));
             loanSpinnerAdapter = new LoanSpinnerAdapter(this, android.R.layout.simple_list_item_1, loanModelList);
             loanSpinner.setAdapter(loanSpinnerAdapter);
+            loanSpinner.setOnItemSelectedListener(null);
+            loanSpinner.setSelection(lastSelectedIndex);
+            loanSpinner.setOnItemSelectedListener(this);
             loanSpinner.invalidate();
         } else {
+            setErrorMessage("No loan records.", 0);
             swipeRefreshLayout.setRefreshing(false);
+            loanSpinner.setEnabled(true);
         }
     }
 
@@ -161,12 +226,16 @@ public class CustomerLoansActivity extends AppCompatActivity implements
 
     @Override
     public void onTransactionRecordRequest(List<TransactionModel> transactionModels) {
-        swipeRefreshLayout.setRefreshing(false);
-        addPaymentButton.setEnabled(true);
-        viewLoansBtn.setEnabled(true);
         Log.d(TAG, "onTransactionRecordRequest: " + Arrays.deepToString(transactionModels.toArray()));
         TransactionListAdapter transactionListAdapter = new TransactionListAdapter(this, transactionModels);
         transactionList.setAdapter(transactionListAdapter);
+        LoanItemsFragment instance = LoanItemsFragment.newInstance(
+                loanSpinnerAdapter.getItem(lastSelectedIndex).getId());
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragmentHolder, instance)
+                .commit();
+        instance.setOnLoanItemsLoaded(this);
     }
 
     @Override
@@ -177,6 +246,12 @@ public class CustomerLoansActivity extends AppCompatActivity implements
     }
 
     @Override
+    public void onCancel() {
+        addPaymentButton.setEnabled(true);
+        viewLoansBtn.setEnabled(true);
+    }
+
+    @Override
     public void onError(Throwable throwable, int code) {
         swipeRefreshLayout.setRefreshing(false);
         addPaymentButton.setEnabled(true);
@@ -184,8 +259,23 @@ public class CustomerLoansActivity extends AppCompatActivity implements
         setErrorMessage(throwable.getMessage(), code);
     }
 
+    @Override
+    public void onItemsLoaded() {
+        LoanModel loan = loanSpinnerAdapter.getItem(lastSelectedIndex);
+        if (loan.getStatus() == 1) {
+            addPaymentButton.setEnabled(true);
+        } else {
+            addPaymentButton.setEnabled(false);
+        }
+        swipeRefreshLayout.setRefreshing(false);
+        viewLoansBtn.setEnabled(true);
+        loanSpinner.setEnabled(true);
+    }
+
     @OnClick(R.id.addPaymentButton)
     public void addPayment() {
+        addPaymentButton.setEnabled(false);
+        viewLoansBtn.setEnabled(false);
         LoanModel model = (LoanModel) loanSpinner.getSelectedItem();
         ProfileModel profile = ((CoreApp) getApplication()).getProfileController().getProfile();
         AddPaymentDialogFragment addPaymentDialogFragment = AddPaymentDialogFragment.newInstance(
@@ -197,11 +287,13 @@ public class CustomerLoansActivity extends AppCompatActivity implements
                 profile.getLast_name() + ", " + profile.getFirst_name());
         addPaymentDialogFragment.setOnNewTransactionCallback(this);
         addPaymentDialogFragment.show(getSupportFragmentManager(), "PaymentDialog");
+        addPaymentDialogFragment.setCancelable(false);
     }
 
     @OnClick(R.id.viewLoansBtn)
     public void viewLoans() {
         LoanModel model = loanSpinnerAdapter.getItem(lastSelectedIndex);
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         ((CoreApp)getApplication())
                 .getProfileController()
                 .getLoanItems(model.getId(), this);
@@ -211,7 +303,7 @@ public class CustomerLoansActivity extends AppCompatActivity implements
         setVisibility(View.INVISIBLE, loansFrame);
         setVisibility(View.VISIBLE, noticeFrame);
         noticeText.setText(message);
-        noticeText.setTextColor(ContextCompat.getColor(this, R.color.colorLightRed));
+        noticeText.setTextColor(ContextCompat.getColor(this, R.color.colorPalePink));
     }
 
     private void setVisibility(int visibility, View... views) {

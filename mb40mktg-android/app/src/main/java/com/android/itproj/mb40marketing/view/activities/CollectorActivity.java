@@ -32,7 +32,6 @@ import com.android.itproj.mb40marketing.helper.interfaces.AuthenticationCallback
 import com.android.itproj.mb40marketing.helper.interfaces.ProfileCallback;
 import com.android.itproj.mb40marketing.model.ProfileModel;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -105,6 +104,9 @@ public class CollectorActivity extends AppCompatActivity implements
         setVisibility(View.GONE, searchFormFrame, noticeFrame);
         swipeRefreshLayout.setRefreshing(true);
         swipeRefreshLayout.setEnabled(true);
+        swipeRefreshLayout.setColorSchemeColors(
+                getResources().getColor(R.color.colorAccent),
+                getResources().getColor(R.color.colorLink));
 
         searchResultList.setOnItemClickListener(this);
 
@@ -294,7 +296,7 @@ public class CollectorActivity extends AppCompatActivity implements
     private void setErrorMessage(String message, int code) {
         setVisibility(View.VISIBLE, noticeFrame);
         noticeText.setText(message);
-        noticeText.setTextColor(ContextCompat.getColor(this, R.color.colorLightRed));
+        noticeText.setTextColor(ContextCompat.getColor(this, R.color.colorPalePink));
         swipeRefreshLayout.setRefreshing(false);
     }
 

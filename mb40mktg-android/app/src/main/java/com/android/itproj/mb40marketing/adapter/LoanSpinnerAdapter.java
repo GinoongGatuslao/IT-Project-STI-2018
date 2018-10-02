@@ -3,6 +3,7 @@ package com.android.itproj.mb40marketing.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,11 +75,29 @@ public class LoanSpinnerAdapter extends ArrayAdapter<LoanModel> {
         }
 
         viewHolder.loanTitle.setText(getLoanModels().get(position).getCreated_at());
-        viewHolder.loanStatusValue.setText((getLoanModels().get(position).getStatus() == 1 ? "Active" : "Check other state"));
-        viewHolder.valueTerm.setText(String.valueOf(getLoanModels().get(position).getTerm_length()));
+        viewHolder.loanStatusValue.setText((getLoanModels().get(position).getStatus_str()));
+        setStatusColor(viewHolder.loanStatusValue, getLoanModels().get(position).getStatus());
+        viewHolder.valueTerm.setText(
+                String.format(getContext().getString(R.string.loan_term_placeholder),
+                        getLoanModels().get(position).getTerm_length(),
+                        getLoanModels().get(position).getAmortization()));
         viewHolder.valueAmount.setText(String.valueOf(getLoanModels().get(position).getLoan_value()));
 
         return view;
+    }
+
+    private void setStatusColor(TextView statusText, int status) {
+        switch (status) {
+            case 0:
+                statusText.setTextColor(ContextCompat.getColor(context, R.color.colorRed));
+                break;
+            case 1:
+                statusText.setTextColor(ContextCompat.getColor(context, android.R.color.white));
+                break;
+            case 2:
+                statusText.setTextColor(ContextCompat.getColor(context, R.color.colorLightGreen));
+                break;
+        }
     }
 
     public class ViewHolder {

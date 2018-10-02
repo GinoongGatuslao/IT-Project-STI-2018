@@ -4,30 +4,32 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.itproj.mb40marketing.CoreApp;
 import com.android.itproj.mb40marketing.R;
 import com.android.itproj.mb40marketing.helper.interfaces.TransactionCallback;
 import com.android.itproj.mb40marketing.model.TransactionModel;
+import com.mobsandgeeks.saripaar.Rule;
+import com.mobsandgeeks.saripaar.ValidationError;
+import com.mobsandgeeks.saripaar.Validator;
+import com.mobsandgeeks.saripaar.annotation.Checked;
+import com.mobsandgeeks.saripaar.annotation.DecimalMin;
 
-import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import lombok.Getter;
-import lombok.Setter;
 
-public class AddPaymentDialogFragment extends DialogFragment {
+public class AddPaymentDialogFragment extends DialogFragment implements Validator.ValidationListener{
 
     private static final String TAG = "AddPaymentDialogFragmen";
 
@@ -48,10 +50,21 @@ public class AddPaymentDialogFragment extends DialogFragment {
     public TextView collectorNameText;
 
     @BindView(R.id.paymentEditText)
+    @DecimalMin(50)
     public EditText paymentEditText;
 
     @BindView(R.id.transactionSubmit)
     public Button transactionSubmitBtn;
+
+    @BindView(R.id.transactionCancel)
+    public Button transactionCancelBtn;
+
+    @BindView(R.id.errors)
+    public TextView errorsText;
+
+    @BindView(R.id.disclaim)
+    @Checked
+    public CheckBox disclaimCheckBox;
 
     @Getter
     private String loanTitle = "";
@@ -73,6 +86,8 @@ public class AddPaymentDialogFragment extends DialogFragment {
 
     @Getter
     private TransactionCallback transactionCallback;
+
+    private Validator validator;
 
     public static AddPaymentDialogFragment newInstance(String loanTitle, int profileId, int loanId, int collectorId, String payee, String collector) {
 
@@ -109,6 +124,8 @@ public class AddPaymentDialogFragment extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        validator = new Validator(this);
+        validator.setValidationListener(this);
         return inflater.inflate(R.layout.fragment_add_payment, container);
     }
 
@@ -122,15 +139,47 @@ public class AddPaymentDialogFragment extends DialogFragment {
 
     @OnClick(R.id.transactionSubmit)
     public void submitTransaction() {
+        validator.validate();
+    }
+
+    @OnClick(R.id.transactionCancel)
+    public void cancelTransaction() {
+        getTransactionCallback().onCancel();
+        dismiss();
+    }
+
+    @Override
+    public void onValidationSucceeded() {
+        errorsText.setVisibility(View.GONE);
         TransactionModel model = new TransactionModel();
         model.setProfile_id(profileId);
         model.setLoan_id(loanId);
         model.setCollector_id(collectorId);
-        model.setPayment(Integer.parseInt(paymentEditText.getText().toString()));
+        model.setPayment(Double.valueOf(paymentEditText.getText().toString()));
         ((CoreApp) getActivity().getApplication())
                 .getTransactionController()
                 .createTransaction(model, getTransactionCallback());
         dismiss();
+    }
+
+    @Override
+    public void onValidationFailed(List<ValidationError> errors) {
+        errorsText.setVisibility(View.VISIBLE);
+        String errorStr = "";
+        for (ValidationError error : errors) {
+            if (error.getView() instanceof EditText) {
+                ((TextView)error.getView()).setError(error.getFailedRules().get(0).getMessage(getActivity()));
+            }
+            if (error.getView() instanceof CheckBox) {
+                ((CheckBox) error.getView()).setError(error.getFailedRules().get(0).getMessage(getActivity()));
+            }
+            for (Rule rule : error.getFailedRules()) {
+                if (!rule.getMessage(getActivity()).isEmpty()) {
+                    errorStr += " - " + rule.getMessage(getActivity()) + "\n";
+                }
+            }
+        }
+        errorsText.setText(errorStr);
     }
 
     public void setOnNewTransactionCallback(TransactionCallback callback) {

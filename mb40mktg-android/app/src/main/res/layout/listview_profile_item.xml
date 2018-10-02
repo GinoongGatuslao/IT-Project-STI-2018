@@ -19,24 +19,25 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/loanId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:textColor="@color/colorMaterialGrey800"
-            android:textSize="@dimen/font_size_18sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/customerName" />
-
-        <TextView
             android:id="@+id/customerAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:textColor="@color/colorMaterialGrey600"
-            android:textSize="@dimen/font_size_15sp"
+            android:textSize="@dimen/font_size_18sp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/loanId" />
+            app:layout_constraintTop_toBottomOf="@id/customerName" />
+
+        <TextView
+            android:id="@+id/loanId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/colorMaterialGrey800"
+            android:textSize="@dimen/font_size_15sp"
+            android:textStyle="italic"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/customerAddress" />
 
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>

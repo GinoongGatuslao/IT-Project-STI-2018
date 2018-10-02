@@ -37,6 +37,11 @@ public class ProfileModel implements Serializable{
     @Setter
     private String last_name;
 
+    @SerializedName("gender")
+    @Getter
+    @Setter
+    private String gender;
+
     @SerializedName("address")
     @Getter
     @Setter

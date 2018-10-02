@@ -10,5 +10,7 @@ public interface TransactionCallback {
 
     void onTransactionRecord(TransactionModel transactionModel);
 
+    void onCancel();
+
     void onError(Throwable throwable, int code);
 }

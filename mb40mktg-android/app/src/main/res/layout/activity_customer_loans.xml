@@ -1,112 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/swipe_container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.activities.CollectorActivity">
+    android:layout_height="match_parent">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appBarLayout"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/Base.Theme.AppCompat.Light">
+        android:layout_height="match_parent"
+        tools:context=".view.activities.CollectorActivity">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@android:color/transparent"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:layout_height="wrap_content"
+            android:theme="@style/Base.Theme.AppCompat.Light">
 
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/noticeFrame"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone">
-
-            <TextView
-                android:id="@+id/noticeText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal|center_vertical"
-                android:text="@string/text_no_loans"
-                android:textColor="@color/colorMaterialGrey600"
-                android:textSize="@dimen/font_size_20sp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent" />
-
-            <TextView
-                android:id="@+id/pullDownRefresh"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="@string/text_or_pull_down_refresh"
-                android:textColor="@color/colorMaterialGrey400"
-                android:textSize="@dimen/font_size_14sp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/noticeText" />
-
-        </android.support.constraint.ConstraintLayout>
-
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/loansFrame"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="visible">
-
-            <Spinner
-                android:id="@+id/loanSpinner"
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/colorPrimaryDark"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                app:theme="@style/ToolbarTheme"
+                app:titleTextColor="@android:color/white" />
 
-            <TextView
-                android:id="@+id/prevTransactionLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/label_prev_transactions"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/font_size_18sp"
-                android:textStyle="bold"
-                app:layout_constraintLeft_toLeftOf="@id/transactionList"
-                app:layout_constraintTop_toBottomOf="@id/loanSpinner" />
-
-            <ListView
-                android:id="@+id/transactionList"
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/noticeFrame"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_margin="10dp"
-                app:layout_constraintBottom_toTopOf="@id/viewLoansBtn"
-                app:layout_constraintTop_toBottomOf="@id/prevTransactionLabel"
-                app:layout_constraintVertical_weight="1" />
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimaryDark"
+                android:visibility="gone">
 
-            <Button
-                android:id="@+id/viewLoansBtn"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/button_view_loans"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/addPaymentButton"
-                app:layout_constraintTop_toBottomOf="@id/transactionList" />
+                <TextView
+                    android:id="@+id/noticeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="@string/text_no_loans"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/font_size_20sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
 
-            <Button
-                android:id="@+id/addPaymentButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/button_add_payment"
-                app:layout_constraintBottom_toBottomOf="@id/viewLoansBtn"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintLeft_toRightOf="@id/viewLoansBtn"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@id/viewLoansBtn" />
+                <TextView
+                    android:id="@+id/pullDownRefresh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/text_or_pull_down_refresh"
+                    android:textColor="@color/colorMaterialGrey400"
+                    android:textSize="@dimen/font_size_14sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/noticeText" />
 
-        </android.support.constraint.ConstraintLayout>
+            </android.support.constraint.ConstraintLayout>
 
-    </android.support.design.widget.AppBarLayout>
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/loansFrame"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible">
 
-</android.support.v4.widget.SwipeRefreshLayout>
+                <RelativeLayout
+                    android:id="@+id/loanWrapper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimaryDark">
+
+                    <Spinner
+                        android:id="@+id/loanSpinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/colorAccent" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/prevTransactionLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/label_prev_transactions"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/font_size_18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="@id/transactionList"
+                    app:layout_constraintTop_toBottomOf="@id/loanWrapper" />
+
+                <ListView
+                    android:id="@+id/transactionList"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="10dp"
+                    app:layout_constraintBottom_toTopOf="@id/viewLoansBtn"
+                    app:layout_constraintTop_toBottomOf="@id/prevTransactionLabel"
+                    app:layout_constraintVertical_weight="1" />
+
+                <Button
+                    android:id="@+id/viewLoansBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_view_loans"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/addPaymentButton"
+                    app:layout_constraintTop_toBottomOf="@id/transactionList" />
+
+                <Button
+                    android:id="@+id/addPaymentButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_add_payment"
+                    app:layout_constraintBottom_toBottomOf="@id/viewLoansBtn"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintLeft_toRightOf="@id/viewLoansBtn"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/viewLoansBtn" />
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.design.widget.AppBarLayout>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="420dp"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        app:behavior_hideable="true"
+        app:behavior_peekHeight="50dp"
+        app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="@string/loaned_items"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/font_size_18sp"
+            android:textStyle="italic" />
+
+        <FrameLayout
+            android:id="@+id/fragmentHolder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>
