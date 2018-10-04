@@ -20,6 +20,11 @@ namespace WindowsFormsApp1
         public DateTime updated_at { get; set; }
         public int status { get; set; }
         public string status_str { get; set; }
+        public string address { get; set; }
+        public string contact_num { get; set; }
+        public double credit_limit { get; set; }
+        public double running_balance { get; set; }
+        public double amortization_m { get; set; }
         public List<LoanItem> loan_items { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace WindowsFormsApp1
         public static string prof_add = string.Empty;
         public static string prof_cn = string.Empty;
         public static double prof_cred_limit = 0;
-        public static int prof_stat = 0;
+        public static string prof_stat = string.Empty;
 
         public Search()
         {
@@ -103,8 +103,8 @@ namespace WindowsFormsApp1
                             datagrid.Columns[5].HeaderText = "Address";
                             datagrid.Columns[6].HeaderText = "Contact No";
                             datagrid.Columns[13].HeaderText = "Credit Limit";
-                            datagrid.Columns[14].HeaderText = "Status";
                             datagrid.Columns[16].HeaderText = "User Type";
+                            datagrid.Columns[19].HeaderText = "Status";
 
                             datagrid.Columns[1].Visible = false;
                             datagrid.Columns[7].Visible = false;
@@ -113,8 +113,11 @@ namespace WindowsFormsApp1
                             datagrid.Columns[10].Visible = false;
                             datagrid.Columns[11].Visible = false;
                             datagrid.Columns[12].Visible = false;
+                            datagrid.Columns[14].Visible = false;
                             datagrid.Columns[15].Visible = false;
                             datagrid.Columns[16].Visible = false;
+                            datagrid.Columns[17].Visible = false;
+                            datagrid.Columns[18].Visible = false;
                             datagrid.Columns[13].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                             datagrid.Columns[13].DefaultCellStyle.Format = "N1";
                         }
@@ -153,7 +156,7 @@ namespace WindowsFormsApp1
                         prof_cn = datagrid.Rows[e.RowIndex].Cells["contact_num"].Value.ToString();
                         prof_cred_limit = Convert.ToDouble(datagrid.Rows[e.RowIndex].Cells["credit_limit"].Value.ToString());
                         prof_add = datagrid.Rows[e.RowIndex].Cells["address"].Value.ToString();
-                        prof_stat = Convert.ToInt32(datagrid.Rows[e.RowIndex].Cells["account_status"].Value.ToString());
+                        prof_stat = datagrid.Rows[e.RowIndex].Cells["verified_str"].Value.ToString();
 
                         break;
                 }

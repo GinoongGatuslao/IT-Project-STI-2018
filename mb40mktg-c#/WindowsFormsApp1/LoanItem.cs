@@ -11,5 +11,9 @@ namespace WindowsFormsApp1
         public int item_id;
         public int item_status;
         public double interest;
+        public string item_name;
+        public string price;
+        public string description;
+        public string status_str;
     }
 }

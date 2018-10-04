@@ -69,6 +69,59 @@ namespace WindowsFormsApp1
             return responseValue;
         }
 
+        public string PutRequest()
+        {
+            string responseValue = string.Empty;
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(endPoint);
+            request.Method = "PUT";
+
+            if (!login)
+            {
+                request.Headers.Add("Authorization", "Bearer " + Login.api_token);
+            }
+
+            if (request.Method == "PUT" && postJSON != string.Empty)
+            {
+                request.ContentType = "application/json";
+                using (StreamWriter swJSONPayload = new StreamWriter(request.GetRequestStream()))
+                {
+                    swJSONPayload.Write(postJSON);
+                    swJSONPayload.Close();
+                }
+            }
+
+            HttpWebResponse response = null;
+
+            try
+            {
+                response = (HttpWebResponse)request.GetResponse();
+
+                using (Stream responseStream = response.GetResponseStream())
+                {
+                    if (responseStream != null)
+                    {
+                        using (StreamReader reader = new StreamReader(responseStream))
+                        {
+                            responseValue = response.StatusCode.ToString() + "|" + reader.ReadToEnd();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                responseValue = "{\"errorMessages\":[\"" + ex.Message.ToString() + "\"],\"errors\":{}}";
+            }
+            finally
+            {
+                if (response != null)
+                {
+                    ((IDisposable)response).Dispose();
+                }
+            }
+
+            return responseValue;
+        }
+
         public string GetRequest()
         {
             string responseValue = string.Empty;

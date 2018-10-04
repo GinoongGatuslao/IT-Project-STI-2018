@@ -7,7 +7,7 @@ namespace WindowsFormsApp1
 {
     public partial class Login : Form
     {
-        public static string api_token = string.Empty;
+        public static string api_token = "5SmStzhfLxKfBaDiSeLXPagsMQjjyvIR9WUAiVlHNm7ZawbFpXtMgOWqO69E";
         public static int user_type = 0;
 
         public Login()
@@ -19,6 +19,7 @@ namespace WindowsFormsApp1
         {
             if (username_tb.Text != string.Empty && password_tb.Text != string.Empty)
             {
+                Cursor.Current = Cursors.WaitCursor;
                 RestClient restClient = new RestClient();
                 restClient.endPoint = Settings.baseUrl.ToString()
                     + "/api/login?";
@@ -55,6 +56,7 @@ namespace WindowsFormsApp1
                     MessageBox.Show("Invalid username or password.", "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                Cursor.Current = Cursors.Default;
             } else
             {
                 MessageBox.Show("Username and password cannot be empty", "Error",

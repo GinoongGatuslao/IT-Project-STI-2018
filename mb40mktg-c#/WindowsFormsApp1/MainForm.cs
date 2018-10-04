@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -13,7 +14,6 @@ namespace WindowsFormsApp1
     {
         private List<Panel> rightPanel = new List<Panel>();
         private List<Panel> leftPanel = new List<Panel>();
-        private List<TextBox> profileTbs = new List<TextBox>();
         private int item_index = 0;
         private int search_index = 0;
         private Loan loan = new Loan();
@@ -25,6 +25,8 @@ namespace WindowsFormsApp1
         private List<Loan> loans;
         private List<Profile> profiles;
         private static Random random = new Random();
+        private bool edit = false;
+        private Loan selectedLoan;
 
         public MainForm()
         {
@@ -47,13 +49,6 @@ namespace WindowsFormsApp1
             leftPanel.Add(loan_sidepanel); //1
             leftPanel.Add(confirmclient_sidepanel); //2
             leftPanel[0].BringToFront();
-
-            profileTbs.Add(prof_fn_tb);
-            profileTbs.Add(prof_mn_tb);
-            profileTbs.Add(prof_ln_tb);
-            profileTbs.Add(prof_gender_tb);
-            profileTbs.Add(prof_cn_tb);
-            profileTbs.Add(prof_address_tb);
 
             string response = string.Empty;
             Cursor.Current = Cursors.WaitCursor;
@@ -78,6 +73,16 @@ namespace WindowsFormsApp1
                 item_stat_cb.Items.Add(statuslist.status[i]);
             }
             item_stat_cb.SelectedIndex = 0;
+
+            restClient.endPoint = Settings.baseUrl
+                + "/api/usertypes";
+            response = restClient.GetRequest();
+
+            userTypes = JsonConvert.DeserializeObject<UserType>(response);
+            stype_tb.Items.Add(userTypes.types[1]);
+            stype_tb.Items.Add(userTypes.types[2]);
+            stype_tb.SelectedIndex = 0;
+
             Cursor.Current = Cursors.Default;
         }
 
@@ -133,11 +138,6 @@ namespace WindowsFormsApp1
         {
             rightPanel[3].BringToFront();
             leftPanel[0].BringToFront();
-            for (int i = 0; i < profileTbs.Count; i++)
-            {
-                profileTbs[i].Clear();
-                profileTbs[i].Enabled = false;
-            }
             prof_bdate_picker.Enabled = false;
             prof_upload_btn.Enabled = false;
             save_btn.Enabled = false;
@@ -298,10 +298,6 @@ namespace WindowsFormsApp1
 
         private void edit_profile_btn_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < profileTbs.Count; i++)
-            {
-                profileTbs[i].Enabled = true;
-            }
             prof_bdate_picker.Enabled = true;
             prof_upload_btn.Enabled = true;
             save_btn.Enabled = true;
@@ -321,45 +317,66 @@ namespace WindowsFormsApp1
         private void save_loan_btn_Click(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
-            //TODO: add error catching for empty fields and wrong input
             loan.profile_id = Int32.Parse(account_id_tb.Text);
             loan.term_length = Int32.Parse(length_tb.Text);
             loan.status = loan_status_cb.SelectedIndex;
-            loan.loan_value = Convert.ToDouble(total_amount_tb.Text.ToString());
-            loan.amortization = Convert.ToDouble(amortization_tb.Text.ToString());
-            loan.loan_items = new List<LoanItem>();
 
-            int index = 0;
-            foreach (Control c in loan_items_fp.Controls)
+            Console.WriteLine("edit : " + loan.amortization);
+            string response = string.Empty;
+            if (!edit)
             {
-                if (loan_items_fp.Controls.ContainsKey("loanitem" + Convert.ToString(index)))
+                loan.loan_items = new List<LoanItem>();
+
+                int index = 0;
+                foreach (Control c in loan_items_fp.Controls)
                 {
-                    GroupBox gb = (GroupBox)loan_items_fp.Controls[index];
+                    if (loan_items_fp.Controls.ContainsKey("loanitem" + Convert.ToString(index)))
+                    {
+                        GroupBox gb = (GroupBox)loan_items_fp.Controls[index];
 
-                    TextBox id_tb = (TextBox)gb.Controls["item_id_tb"];
-                    ComboBox stat_cb = (ComboBox)gb.Controls["item_stat_cb"];
-                    TextBox interest_tb = (TextBox)gb.Controls["item_int_tb"];
+                        TextBox id_tb = (TextBox)gb.Controls["item_id_tb"];
+                        ComboBox stat_cb = (ComboBox)gb.Controls["item_stat_cb"];
+                        TextBox interest_tb = (TextBox)gb.Controls["item_int_tb"];
 
-                    LoanItem loanItem = new LoanItem();
-                    loanItem.item_id = Convert.ToInt32(id_tb.Text);
-                    loanItem.item_status = item_stat_cb.SelectedIndex;
-                    loanItem.interest = Convert.ToDouble(interest_tb.Text);
-                    loan.loan_items.Add(loanItem);
+                        LoanItem loanItem = new LoanItem();
+                        loanItem.item_id = Convert.ToInt32(id_tb.Text);
+                        loanItem.item_status = item_stat_cb.SelectedIndex;
+                        loanItem.interest = Convert.ToDouble(interest_tb.Text);
+                        loan.loan_items.Add(loanItem);
+                    }
+                    index++;
                 }
-                index++;
-            }
 
-            restClient.endPoint = Settings.baseUrl.ToString()
+                restClient.endPoint = Settings.baseUrl.ToString()
                 + "/api/loan/addloan";
 
-            string jsonResult = JsonConvert.SerializeObject(loan);
-            Console.WriteLine(jsonResult.ToString());
+                string jsonResult = JsonConvert.SerializeObject(loan);
+                Console.WriteLine(jsonResult.ToString());
 
-            restClient.postJSON = jsonResult;
-            restClient.login = false;
+                restClient.postJSON = jsonResult;
+                restClient.login = false;
 
-            string response = string.Empty;
-            response = restClient.PostRequest();
+                response = restClient.PostRequest();
+            } else //edit
+            {
+                loan.loan_value = Convert.ToDouble(total_amount_tb.Text.ToString());
+
+                restClient.endPoint = Settings.baseUrl.ToString()
+                + "/api/loan/updateloan/"
+                + selectedLoan.id;
+                edit = false;
+                add_item_btn.Visible = true;
+
+                string jsonResult = JsonConvert.SerializeObject(loan);
+                Console.WriteLine(jsonResult.ToString());
+
+                restClient.postJSON = jsonResult;
+                restClient.login = false;
+
+                response = restClient.PutRequest();
+            }
+
+            
             Console.WriteLine("response : " + response);
             Cursor.Current = Cursors.Default;
 
@@ -483,6 +500,7 @@ namespace WindowsFormsApp1
 
         private void cancel_loan_btn_Click(object sender, EventArgs e)
         {
+            add_item_btn.Visible = true;
             ClearTextBoxesInAddLoan(this.Controls);
         }
         
@@ -618,28 +636,67 @@ namespace WindowsFormsApp1
 
         private void ssave_btn_Click(object sender, EventArgs e)
         {
-            Cursor.Current = Cursors.WaitCursor;
-            restClient.endPoint = Settings.baseUrl
-                + "/api/register";
-            restClient.login = true;
+            try
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                restClient.endPoint = Settings.baseUrl
+                    + "/api/register";
+                restClient.login = true;
 
-            Register register = new Register();
-            register.username = username_tb.Text.ToString();
-            register.user_type = "1"; //staff
-            register.password = genpass_tb.Text.ToString();
-            register.password_confirmation = genpass_tb.Text.ToString();
+                Register register = new Register();
+                register.username = username_tb.Text.ToString();
+                register.user_type = "1"; //staff
+                register.password = genpass_tb.Text.ToString();
+                register.password_confirmation = genpass_tb.Text.ToString();
 
-            string jsonStr = JsonConvert.SerializeObject(register);
-            Console.WriteLine(jsonStr);
-            restClient.postJSON = jsonStr;
+                string jsonStr = JsonConvert.SerializeObject(register);
+                Console.WriteLine(jsonStr);
+                restClient.postJSON = jsonStr;
 
-            string response = string.Empty;
-            response = restClient.PostRequest();
-            Console.WriteLine(response);
+                string response = string.Empty;
+                response = restClient.PostRequest();
+                Console.WriteLine(response);
 
-            clearTextBoxes(this.Controls);
-            genpass_tb.Text = generatePassword();
-            Cursor.Current = Cursors.Default;
+                restClient.endPoint = Settings.baseUrl
+                    + "/api/profile/createprofile";
+                restClient.login = false;
+
+                string[] res = response.Split('|');
+                var jo = JObject.Parse(res[1]);
+                var id = jo["id"].ToString();
+
+                Profile profile = new Profile();
+                profile.user_id = Convert.ToInt32(id.ToString());
+                profile.first_name = sfname_tb.Text.ToString();
+                profile.middle_name = smname_tb.Text.ToString();
+                profile.last_name = lname_tb.Text.ToString();
+                profile.gender = male_rb.Checked ? "male" : "female";
+                profile.address = saddress_tb.Text.ToString();
+                profile.contact_num = scn_tb.Text.ToString();
+                profile.bday = sbday_tb.Text.ToString();
+                //todo profile.path_id_pic = ;
+
+                jsonStr = JsonConvert.SerializeObject(profile);
+                Console.WriteLine(jsonStr);
+                restClient.postJSON = jsonStr;
+
+                response = restClient.PostRequest();
+                Console.WriteLine(response);
+
+                clearTextBoxes(this.Controls);
+                genpass_tb.Text = generatePassword();
+                Cursor.Current = Cursors.Default;
+                cstaff_stat_lbl.Text = "Account created successfully.";
+                cstaff_stat_lbl.ForeColor = Color.Green;
+            }
+            catch
+            {
+                Cursor.Current = Cursors.Default;
+                Console.WriteLine("Registration failed.");
+                cstaff_stat_lbl.Text = "Error creating account.";
+                cstaff_stat_lbl.ForeColor = Color.Red;
+            }
+            
         }
 
         private void scancel_btn_Click(object sender, EventArgs e)
@@ -655,7 +712,96 @@ namespace WindowsFormsApp1
 
         private void find_btn_Click(object sender, EventArgs e)
         {
+            viewAccountsToolStripMenuItem_Click(sender, e);
             unconf_rb.Checked = true;
+        }
+
+        /**
+         * DOUBLE CLICK EVENTS
+         **/
+
+        private void accounts_data_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void loan_data_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            edit = true;
+            add_item_btn.Visible = false;
+            if (loan_data.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+            {
+                addLoanToolStripMenuItem_Click(sender, e);
+
+                string response = string.Empty;
+                restClient.endPoint = Settings.baseUrl
+                    + "/api/loan/getloanbyid/"
+                    + loan_data.Rows[e.RowIndex].Cells["id"].Value.ToString();
+
+                response = restClient.GetRequest();
+                Console.WriteLine(response);
+
+                selectedLoan = JsonConvert.DeserializeObject<Loan>(response);
+
+                if (selectedLoan != null)
+                {
+                    client_name_tb.Text = selectedLoan.first_name + " "
+                        + selectedLoan.middle_name + " "
+                        + selectedLoan.last_name;
+                    address_tb.Text = selectedLoan.address;
+                    account_id_tb.Text = selectedLoan.profile_id.ToString();
+                    contactnum_tb.Text = selectedLoan.contact_num;
+                    cred_lmt_tb.Text = selectedLoan.credit_limit.ToString("N1");
+                    total_amount_tb.Text = selectedLoan.loan_value.ToString("N1");
+                    balance_tb.Text = selectedLoan.running_balance.ToString("N1");
+                    length_tb.Text = (Convert.ToInt32(selectedLoan.term_length) / 30).ToString();
+                    amortization_tb.Text = Convert.ToDouble(selectedLoan.amortization_m).ToString("N1");
+
+                    ldate_picker.Text = selectedLoan.created_at.ToShortDateString();
+                    loan_status_cb.SelectedIndex = selectedLoan.status;
+                }
+
+                restClient.endPoint = Settings.baseUrl
+                    + "/api/loan/getloanitems/"
+                    + loan_data.Rows[e.RowIndex].Cells["id"].Value.ToString();
+
+                response = restClient.GetRequest();
+                Console.WriteLine(response);
+
+                var loanlist = JsonConvert.DeserializeObject<List<LoanItem>>(response);
+
+                if (loanlist != null && loanlist.Count != 0)
+                {
+                    for (int i = 0; i < loanlist.Count - 1; i++)
+                    {
+                        add_item_btn_Click(sender, e);
+                    }
+
+                    int index = 0;
+                    foreach (Control c in loan_items_fp.Controls)
+                    {
+                        if (loan_items_fp.Controls.ContainsKey("loanitem" + Convert.ToString(index)))
+                        {
+                            GroupBox gb = (GroupBox)loan_items_fp.Controls[index];
+
+                            TextBox id_tb = (TextBox)gb.Controls["item_id_tb"];
+                            TextBox name_tb = (TextBox)gb.Controls["item_name_tb"];
+                            TextBox desc_tb = (TextBox)gb.Controls["item_desc_tb"];
+                            ComboBox stat_cb = (ComboBox)gb.Controls["item_stat_cb"];
+                            TextBox price_tb = (TextBox)gb.Controls["item_price_tb"];
+                            TextBox interest_tb = (TextBox)gb.Controls["item_int_tb"];
+
+                            id_tb.Text = loanlist[index].item_id.ToString();
+                            name_tb.Text = loanlist[index].item_name.ToString();
+                            desc_tb.Text = loanlist[index].description.ToString();
+                            price_tb.Text = Convert.ToDouble(loanlist[index].price).ToString("N1");
+                            interest_tb.Text = loanlist[index].interest.ToString();
+                            stat_cb.SelectedIndex = loanlist[index].item_status;
+                        }
+                        index++;
+                    }
+                }
+            }
         }
 
         /**
@@ -691,14 +837,22 @@ namespace WindowsFormsApp1
 
         private void total_amount_tb_TextChanged(object sender, EventArgs e)
         {
-            amortization_tb.Text = (Convert.ToDouble(total_amount_tb.Text.ToString()) /
-                Convert.ToInt32(length_tb.Text.ToString())).ToString("N1");
+            if (!total_amount_tb.Text.Equals(string.Empty) && !length_tb.Text.Equals(string.Empty))
+            {
+                amortization_tb.Text = ((Convert.ToDouble(total_amount_tb.Text)) /
+                (Convert.ToInt32(length_tb.Text))).ToString("N1");
+
+                balance_tb.Text = Convert.ToDouble(total_amount_tb.Text).ToString("N1");
+            }
         }
 
         private void length_tb_TextChanged(object sender, EventArgs e)
         {
-            amortization_tb.Text = (Convert.ToDouble(total_amount_tb.Text.ToString()) /
+            if (!total_amount_tb.Text.Equals(string.Empty) && !length_tb.Text.Equals(string.Empty))
+            {
+                amortization_tb.Text = (Convert.ToDouble(total_amount_tb.Text.ToString()) /
                 Convert.ToInt32(length_tb.Text.ToString())).ToString("N1");
+            }
         }
 
         private void item_int_tb_TextChanged(object sender, EventArgs e)
@@ -981,6 +1135,11 @@ namespace WindowsFormsApp1
             loan_data.Columns[5].Visible = false;
             loan_data.Columns[7].Visible = false;
             loan_data.Columns[10].Visible = false;
+            loan_data.Columns[12].Visible = false;
+            loan_data.Columns[13].Visible = false;
+            loan_data.Columns[14].Visible = false;
+            loan_data.Columns[15].Visible = false;
+            loan_data.Columns[16].Visible = false;
             loan_data.Columns[0].Width = 35;
             loan_data.Columns[2].Width = 85;
             loan_data.Columns[4].Width = 85;
@@ -1000,7 +1159,7 @@ namespace WindowsFormsApp1
             accounts_data.Columns[2].HeaderText = "First Name";
             accounts_data.Columns[3].HeaderText = "Middle Name";
             accounts_data.Columns[4].HeaderText = "Last Name";
-            accounts_data.Columns[16].HeaderText = "User Type";
+            accounts_data.Columns[18].HeaderText = "User Type";
             //accounts_data.Columns[0].HeaderText = "Status";
 
             accounts_data.Columns[1].Visible = false;
@@ -1015,6 +1174,7 @@ namespace WindowsFormsApp1
             accounts_data.Columns[13].Visible = false;
             accounts_data.Columns[14].Visible = false;
             accounts_data.Columns[15].Visible = false;
+            accounts_data.Columns[17].Visible = false;
         }
 
         public void ClearTextBoxesInAddLoan(Control.ControlCollection ctrlCollection)
@@ -1117,7 +1277,7 @@ namespace WindowsFormsApp1
                         contactnum_tb.Text = Search.prof_cn;
                         cred_lmt_tb.Text = Search.prof_cred_limit.ToString("N1");
 
-                        if (Search.prof_stat == 1)
+                        if (Search.prof_stat.Equals("Confirmed"))
                         {
                             account_stat_lbl.Text = "This account is confirmed.";
                             account_stat_lbl.ForeColor = Color.Green;

@@ -25,5 +25,8 @@ namespace WindowsFormsApp1
         public int verified { get; set; }
         public string username { get; set; }
         public int user_type { get; set; }
+        public string gender { get; set; }
+        public string usertype_str { get; set; }
+        public string verified_str { get; set; }
     }
 }
