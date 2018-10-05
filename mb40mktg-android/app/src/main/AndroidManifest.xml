@@ -19,7 +19,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".view.activities.LoginActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,14 +29,18 @@
         </activity>
         <activity
             android:name=".view.activities.RegisterActivity"
-            android:parentActivityName=".view.activities.LoginActivity" />
+            android:parentActivityName=".view.activities.LoginActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.activities.CollectorActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".view.activities.CustomerLoansActivity"
             android:parentActivityName=".view.activities.CollectorActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".view.activities.ProfileActivity"></activity>
     </application>
 
 </manifest>

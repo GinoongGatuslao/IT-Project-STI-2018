@@ -81,7 +81,10 @@ public class LoanSpinnerAdapter extends ArrayAdapter<LoanModel> {
                 String.format(getContext().getString(R.string.loan_term_placeholder),
                         getLoanModels().get(position).getTerm_length(),
                         getLoanModels().get(position).getAmortization()));
-        viewHolder.valueAmount.setText(String.valueOf(getLoanModels().get(position).getLoan_value()));
+        viewHolder.valueAmount.setText(
+                String.format(context.getString(R.string.loan_amount_placeholder),
+                getLoanModels().get(position).getRunning_balance(),
+                getLoanModels().get(position).getLoan_value()));
 
         return view;
     }

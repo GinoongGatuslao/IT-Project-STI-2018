@@ -67,7 +67,7 @@ public class TransactionListAdapter extends BaseAdapter {
         }
 
         holder.count.setText(String.valueOf(i + 1));
-        holder.paymentAmount.setText(String.valueOf(getTransactionModels().get(i).getPayment()));
+        holder.paymentAmount.setText(String.format(Locale.getDefault(), "%1$.2f", getTransactionModels().get(i).getPayment()));
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
         Date date = null;
         try {

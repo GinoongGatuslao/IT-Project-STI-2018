@@ -20,4 +20,10 @@ public class AuthenticationCallback {
 
         void onRegisterFailed(Throwable e, int code);
     }
+
+    public interface UserAccountUpdate {
+        void onAccountUpdate(UserModel model);
+
+        void onAccountUpdateError(Throwable e, int code);
+    }
 }
