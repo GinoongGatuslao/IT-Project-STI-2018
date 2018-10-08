@@ -22,24 +22,30 @@ class ProfileController extends Controller
 
     public function getProfile($id)
     {
-        return $this->getByKeyProfile("tbl_profiles.id", $id);
+        return $this->getByKeyProfile("profile.id", $id);
     }
 
     public function getUserProfile($id)
     {
-        return $this->getByKeyProfile("tbl_profiles.user_id", $id);
+        return $this->getByKeyProfile("profile.user_id", $id);
     }
 
     public function getByKeyProfile($key, $id){
-        $profiles = Profile::select("*")
-            ->join('users', 'tbl_profiles.user_id', '=', 'users.id')
-            ->where($key, $id)->get();
+        $profiles = DB::select(DB::raw("
+        SELECT *, profile.id FROM tbl_profiles profile
+        INNER JOIN users u ON profile.user_id = u.id
+        WHERE " . $key . " = " . $id));
+
         foreach ($profiles as $profile) {
             $profile->usertype_str = UserType::getUserTypeStr($profile->user_type);
             $profile->verified_str = VerificationStatus::getVerificationState($profile->verified);
         }
 
-        return $profiles[0];
+        try {
+            return response()->json($profiles[0], 200);
+        } catch (\Exception $exception) {
+            return $this->returnEmpty();
+        }
     }
 
     public function createProfile(Request $request)
