@@ -711,7 +711,7 @@ namespace WindowsFormsApp1
                 profile.gender = smale_rb.Checked ? "male" : "female";
                 profile.address = saddress_tb.Text.ToString();
                 profile.contact_num = scn_tb.Text.ToString();
-                profile.bday = sbday_tb.Value.ToShortDateString();
+                profile.bday = sbday_tb.Value.ToString("MM/dd/yyyy");
                 profile.verified = 1; //since staff/collector siya
                 //todo profile.path_id_pic = ;
 
@@ -842,7 +842,7 @@ namespace WindowsFormsApp1
                 prof.address = prof_address_tb.Text;
                 prof.contact_num = prof_cn_tb.Text; 
                 prof.gender = prof_male_rb.Checked ? "Male" : "Female";
-                prof.bday = prof_bdate_picker.Value.ToShortDateString();
+                prof.bday = prof_bdate_picker.Value.ToString("MM/dd/yyyy");
                 //prof id pic
 
                 var jsonStr = JsonConvert.SerializeObject(prof);
