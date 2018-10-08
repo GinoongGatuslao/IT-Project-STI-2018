@@ -40,7 +40,8 @@
             android:parentActivityName=".view.activities.CollectorActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".view.activities.ProfileActivity"></activity>
+        <activity android:name=".view.activities.ProfileActivity"
+            android:parentActivityName=".view.activities.CollectorActivity"/>
     </application>
 
 </manifest>

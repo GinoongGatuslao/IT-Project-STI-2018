@@ -83,4 +83,14 @@ public class ProfileModel implements Serializable{
     @SerializedName("account_status")
     @Getter
     public int account_status;
+
+    @Expose(deserialize = false)
+    @SerializedName("username")
+    @Getter
+    public String username;
+
+    @Expose(deserialize = false)
+    @SerializedName("usertype_str")
+    @Getter
+    public String usertype_str;
 }

@@ -5,7 +5,7 @@
     <string name="app_page_collection">Collection</string>
 
     <!-- Menus-->
-    <string name="menu_profile">[x]Profile</string>
+    <string name="menu_profile">Profile</string>
     <string name="menu_logout">Logout</string>
 
     <!-- Strings related to login -->
@@ -75,7 +75,7 @@
     <string name="loan_list_total_value">Amount</string>
     <string name="loan_list_status">Status</string>
     <string name="loan_list_interest">Interest</string>
-    <string name="loan_term_placeholder">%1$d/mo @ %2$.2f</string>
+    <string name="loan_term_placeholder">%1$d/mo @ %2$.2f daily</string>
     <string name="loan_amount_placeholder">%1$.2f / %2$.2f</string>
 
     <!--Errors-->
@@ -95,4 +95,6 @@
     <string name="label_name">Name</string>
     <string name="label_address">Address</string>
     <string name="label_contact">Contact</string>
+    <string name="label_logged_as_placeholder">Logged as %1$s</string>
+    <string name="label_profile_footer">mb40mktg © 2018</string>
 </resources>
