@@ -19,6 +19,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -31,6 +32,8 @@ import com.android.itproj.mb40marketing.adapter.ProfileListViewAdapter;
 import com.android.itproj.mb40marketing.helper.interfaces.AuthenticationCallback;
 import com.android.itproj.mb40marketing.helper.interfaces.ProfileCallback;
 import com.android.itproj.mb40marketing.model.ProfileModel;
+
+import org.apache.http.HttpStatus;
 
 import java.util.Arrays;
 import java.util.List;
@@ -85,6 +88,7 @@ public class CollectorActivity extends AppCompatActivity implements
         ButterKnife.bind(this);
 
         swipeRefreshLayout.setOnRefreshListener(this);
+        swipeRefreshLayout.setEnabled(true);
         searchFname.addTextChangedListener(this);
         searchLname.addTextChangedListener(this);
 
@@ -103,12 +107,25 @@ public class CollectorActivity extends AppCompatActivity implements
 
         setVisibility(View.GONE, searchFormFrame, noticeFrame);
         swipeRefreshLayout.setRefreshing(true);
-        swipeRefreshLayout.setEnabled(true);
         swipeRefreshLayout.setColorSchemeColors(
                 getResources().getColor(R.color.colorAccent),
                 getResources().getColor(R.color.colorLink));
 
         searchResultList.setOnItemClickListener(this);
+        searchResultList.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView absListView, int i) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView absListView, int firstVisibleItem, int i1, int i2) {
+                if (searchResultList.getChildCount() > 0) {
+                    swipeRefreshLayout.setEnabled(firstVisibleItem == 0
+                            && searchResultList.getChildAt(0).getTop() == 0);
+                }
+            }
+        });
 
         onRefresh();
     }
@@ -131,6 +148,8 @@ public class CollectorActivity extends AppCompatActivity implements
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_profile:
+                Intent intent = new Intent(this, ProfileActivity.class);
+                startActivity(intent);
                 break;
             case R.id.menu_logout:
                 ((CoreApp) getApplication())
@@ -179,9 +198,16 @@ public class CollectorActivity extends AppCompatActivity implements
 
     @Override
     public void onProfileFetchFailed(Throwable throwable, int code) {
-        Toast.makeText(this, "Unable to profile(s). Try again.", Toast.LENGTH_LONG).show();
         swipeRefreshLayout.setRefreshing(false);
         hideKeyboardFrom(this, findViewById(android.R.id.content).getRootView());
+        if (code == HttpStatus.SC_UNAUTHORIZED) {
+            Toast.makeText(this, "User session reset", Toast.LENGTH_SHORT).show();
+            ((CoreApp)getApplication())
+                    .getAuthenticationController()
+                    .forceLogout(this);
+        } else {
+            setErrorMessage(getResources().getString(R.string.prompt_unable_to_fetch), code);
+        }
     }
 
     @Override
@@ -270,10 +296,8 @@ public class CollectorActivity extends AppCompatActivity implements
     private void checkIfProfileVerified() {
         if (((CoreApp) getApplication()).getProfileController().getProfile().getVerified() != 1) {
             swipeRefreshLayout.setRefreshing(false);
-            swipeRefreshLayout.setEnabled(true);
             showVerificationNotice();
         } else {
-            swipeRefreshLayout.setEnabled(false);
             setVisibility(View.GONE, noticeFrame);
             noticeFrame.invalidate();
             setVisibility(View.VISIBLE, searchFormFrame);
@@ -283,7 +307,7 @@ public class CollectorActivity extends AppCompatActivity implements
 
     private void showVerificationNotice() {
         setVisibility(View.GONE, searchFormFrame);
-        setVisibility(View.VISIBLE, noticeFrame, noticeFrame);
+        setVisibility(View.VISIBLE, noticeFrame);
     }
 
     private void setVisibility(int visibility, View... views) {

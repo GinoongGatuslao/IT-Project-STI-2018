@@ -57,7 +57,7 @@ public class AuthenticationController {
 
                             @Override
                             public void onError(Throwable e) {
-                                authCallback.onLoginFailed(e, ((HttpException)e).code());
+                                authCallback.onLoginFailed(e, ((HttpException) e).code());
                             }
 
                             @Override
@@ -86,7 +86,7 @@ public class AuthenticationController {
 
                             @Override
                             public void onError(Throwable e) {
-                                authCallback.onLogoutFailed(e, ((HttpException)e).code());
+                                authCallback.onLogoutFailed(e, ((HttpException) e).code());
                             }
 
                             @Override
@@ -119,11 +119,42 @@ public class AuthenticationController {
         }
         authLogoutCallback.onLogoutSuccess();
     }
+
     public void registerUser(final JsonObject userModel, final AuthenticationCallback.AuthRegisterCallback registerCallback) {
         compositeSubscription.add(
+                ((CoreApp) context).getRestAPI()
+                        .registerUser(userModel)
+                        .subscribe(new Observer<JsonObject>() {
+                            @Override
+                            public void onCompleted() {
+
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                registerCallback.onRegisterFailed(e, ((HttpException) e).code());
+                            }
+
+                            @Override
+                            public void onNext(JsonObject model) {
+                                UserModel userModel = new Gson().fromJson(model, UserModel.class);
+                                if (userModel != null) {
+                                    authState.saveKeyAndType(userModel.getApi_token(), userModel.getUser_type());
+                                    Constants.API_TOKEN = userModel.getApi_token();
+                                    registerCallback.onRegisterSuccess(userModel);
+                                } else {
+                                    registerCallback.onRegisterFailed(new Throwable("Failed to register user!"), HttpStatus.SC_METHOD_FAILURE);
+                                }
+                            }
+                        })
+        );
+    }
+
+    public void updateUserAccount(int userId, JsonObject jsonObject, final AuthenticationCallback.UserAccountUpdate updateCallback) {
+        compositeSubscription.add(
                 ((CoreApp)context).getRestAPI()
-                .registerUser(userModel)
-                .subscribe(new Observer<JsonObject>() {
+                .updateUserAccount(userId, jsonObject)
+                .subscribe(new Observer<UserModel>() {
                     @Override
                     public void onCompleted() {
 
@@ -131,19 +162,12 @@ public class AuthenticationController {
 
                     @Override
                     public void onError(Throwable e) {
-                        registerCallback.onRegisterFailed(e, ((HttpException)e).code());
+                        updateCallback.onAccountUpdateError(e, ((HttpException)e).code());
                     }
 
                     @Override
-                    public void onNext(JsonObject model) {
-                        UserModel userModel = new Gson().fromJson(model, UserModel.class);
-                        if (userModel != null) {
-                            authState.saveKeyAndType(userModel.getApi_token(), userModel.getUser_type());
-                            Constants.API_TOKEN = userModel.getApi_token();
-                            registerCallback.onRegisterSuccess(userModel);
-                        } else {
-                            registerCallback.onRegisterFailed(new Throwable("Failed to register user!"), HttpStatus.SC_METHOD_FAILURE);
-                        }
+                    public void onNext(UserModel model) {
+                        updateCallback.onAccountUpdate(model);
                     }
                 })
         );

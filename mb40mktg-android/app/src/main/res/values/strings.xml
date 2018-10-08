@@ -5,7 +5,7 @@
     <string name="app_page_collection">Collection</string>
 
     <!-- Menus-->
-    <string name="menu_profile">[x]Profile</string>
+    <string name="menu_profile">Profile</string>
     <string name="menu_logout">Logout</string>
 
     <!-- Strings related to login -->
@@ -58,6 +58,7 @@
     <string name="button_add_payment">Add Payment</string>
     <string name="button_view_loans">View Items</string>
     <string name="label_prev_transactions">Previous Transactions</string>
+    <string name="prompt_unable_to_fetch">Unable fetch to profile(s). Try again.</string>
 
     <!--Add Payment Fragment-->
     <string name="label_payment_for">Payment for</string>
@@ -74,7 +75,8 @@
     <string name="loan_list_total_value">Amount</string>
     <string name="loan_list_status">Status</string>
     <string name="loan_list_interest">Interest</string>
-    <string name="loan_term_placeholder">%1$d/mo @ %2$.2f</string>
+    <string name="loan_term_placeholder">%1$d/mo @ %2$.2f daily</string>
+    <string name="loan_amount_placeholder">%1$.2f / %2$.2f</string>
 
     <!--Errors-->
     <string name="err_invalid_email">This email address is invalid</string>
@@ -85,4 +87,14 @@
     <string name="err_server_unavailable">Unable to contact server</string>
     <string name="err_no_record">No records found.</string>
     <string name="err_placeholder">%1$s: %2$s</string>
+
+    <!--Profile Activity-->
+    <string name="label_fname">First Name</string>
+    <string name="label_mname">Middle Name</string>
+    <string name="label_lname">Last Name</string>
+    <string name="label_name">Name</string>
+    <string name="label_address">Address</string>
+    <string name="label_contact">Contact</string>
+    <string name="label_logged_as_placeholder">Logged as %1$s</string>
+    <string name="label_profile_footer">mb40mktg © 2018</string>
 </resources>

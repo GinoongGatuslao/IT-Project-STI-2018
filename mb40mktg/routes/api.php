@@ -73,6 +73,7 @@ Route::group(['middleware' => 'auth:api'], function () {
      */
     Route::get('loan/getloans', 'LoanController@getAllLoan');
     Route::get('loan/getloan/{account_id}', 'LoanController@getLoan');
+    Route::get('loan/getloanbyid/{loan_id}', 'LoanController@getLoanById');
     Route::get('loan/getloanitems/{loan_id}', 'LoanController@getLoanItems');
     Route::post('loan/addloan', 'LoanController@storeLoan');
     Route::put('loan/updateloan/{id}', 'LoanController@updateLoan');
