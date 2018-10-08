@@ -12,7 +12,7 @@ namespace WindowsFormsApp1
 {
     public partial class Settings : Form
     {
-        public static string baseUrl = string.Empty;
+        public static string baseUrl = "https://a662eba6.ngrok.io";
 
         public Settings()
         {

@@ -112,8 +112,6 @@ namespace WindowsFormsApp1
             {
                 create_stf_btn.Enabled = false;
             }
-
-            genpass_tb.Text = generatePassword();
         }
 
         private void inventorymgt_btn_Click(object sender, EventArgs e)
@@ -142,6 +140,34 @@ namespace WindowsFormsApp1
             prof_upload_btn.Enabled = false;
             save_btn.Enabled = false;
             cancel_btn.Enabled = false;
+
+            Cursor.Current = Cursors.WaitCursor;
+            restClient.endPoint = Settings.baseUrl
+                + "/api/profile/get/" + Login.user_id;
+
+            string response = string.Empty;
+            response = restClient.GetRequest();
+            Console.WriteLine(response);
+
+            var profile = JsonConvert.DeserializeObject<Profile>(response);
+
+            if (profile != null)
+            {
+                prof_fn_tb.Text = profile.first_name;
+                prof_mn_tb.Text = profile.middle_name;
+                prof_ln_tb.Text = profile.last_name;
+                prof_bdate_picker.Text = profile.bday.ToLongDateString();
+                prof_address_tb.Text = profile.address;
+                prof_cn_tb.Text = profile.contact_num;
+                if (profile.gender.Equals("Male"))
+                {
+                    prof_male_rb.Checked = true;
+                } else
+                {
+                    prof_female_rb.Checked = true;
+                }
+            }
+
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -155,6 +181,7 @@ namespace WindowsFormsApp1
             leftPanel[1].BringToFront();
             loansfilter_gb.Enabled = false;
             search_gb.Enabled = false;
+            edit = false;
         }
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -175,6 +202,10 @@ namespace WindowsFormsApp1
             find_btn.Visible = true;
             filter_acc_gb.Enabled = false;
             filter_cacc_gb.Enabled = false;
+
+            stat_cb.Items.Clear();
+            stat_cb.Items.Add("Unconfirmed");
+            stat_cb.Items.Add("Confirmed");
         }
 
         private void createClientAccountToolStripMenuItem_Click(object sender, EventArgs e)
@@ -189,6 +220,10 @@ namespace WindowsFormsApp1
             find_btn.Visible = false;
             filter_acc_gb.Enabled = false;
             filter_cacc_gb.Enabled = false;
+
+            stat_cb.Items.Clear();
+            stat_cb.Items.Add("Unconfirmed");
+            stat_cb.Items.Add("Confirmed");
         }
 
         private void viewLoanToolStripMenuItem_Click(object sender, EventArgs e)
@@ -258,6 +293,7 @@ namespace WindowsFormsApp1
             leftPanel[2].BringToFront();
             filter_acc_gb.Enabled = false;
             filter_cacc_gb.Enabled = false;
+            genpass_tb.Text = generatePassword();
         }
 
         private void viewAccountsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -302,6 +338,7 @@ namespace WindowsFormsApp1
             prof_upload_btn.Enabled = true;
             save_btn.Enabled = true;
             cancel_btn.Enabled = true;
+            enableTextBoxes(this.Controls, true);
         }
         
         private void addloan_btn_Click(object sender, EventArgs e)
@@ -631,7 +668,8 @@ namespace WindowsFormsApp1
 
         private void cancel_btn_Click(object sender, EventArgs e)
         {
-           
+            profileToolStripMenuItem_Click(sender, e);
+            enableTextBoxes(this.Controls, false);
         }
 
         private void ssave_btn_Click(object sender, EventArgs e)
@@ -645,7 +683,7 @@ namespace WindowsFormsApp1
 
                 Register register = new Register();
                 register.username = username_tb.Text.ToString();
-                register.user_type = "1"; //staff
+                register.user_type = stype_tb.SelectedIndex == 0 ? "1" : "2";
                 register.password = genpass_tb.Text.ToString();
                 register.password_confirmation = genpass_tb.Text.ToString();
 
@@ -654,33 +692,36 @@ namespace WindowsFormsApp1
                 restClient.postJSON = jsonStr;
 
                 string response = string.Empty;
-                response = restClient.PostRequest();
+               // response = restClient.PostRequest();
                 Console.WriteLine(response);
 
                 restClient.endPoint = Settings.baseUrl
                     + "/api/profile/createprofile";
                 restClient.login = false;
 
-                string[] res = response.Split('|');
-                var jo = JObject.Parse(res[1]);
-                var id = jo["id"].ToString();
+                //string[] res = response.Split('|');
+                //var jo = JObject.Parse(res[1]);
+                //var id = jo["id"].ToString();
 
                 Profile profile = new Profile();
-                profile.user_id = Convert.ToInt32(id.ToString());
+               // profile.user_id = Convert.ToInt32(id.ToString());
                 profile.first_name = sfname_tb.Text.ToString();
                 profile.middle_name = smname_tb.Text.ToString();
                 profile.last_name = lname_tb.Text.ToString();
-                profile.gender = male_rb.Checked ? "male" : "female";
+                profile.gender = smale_rb.Checked ? "male" : "female";
                 profile.address = saddress_tb.Text.ToString();
                 profile.contact_num = scn_tb.Text.ToString();
                 profile.bday = sbday_tb.Text.ToString();
+                profile.verified = 1; //since staff/collector siya
                 //todo profile.path_id_pic = ;
+
+                Console.WriteLine(profile.bday.ToString());
 
                 jsonStr = JsonConvert.SerializeObject(profile);
                 Console.WriteLine(jsonStr);
                 restClient.postJSON = jsonStr;
 
-                response = restClient.PostRequest();
+                //response = restClient.PostRequest();
                 Console.WriteLine(response);
 
                 clearTextBoxes(this.Controls);
@@ -714,6 +755,111 @@ namespace WindowsFormsApp1
         {
             viewAccountsToolStripMenuItem_Click(sender, e);
             unconf_rb.Checked = true;
+        }
+
+        private void save_acc_btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                restClient.endPoint = Settings.baseUrl
+                    + "/api/register";
+                restClient.login = true;
+
+                Register register = new Register();
+                register.username = generatePassword(); //dummy lang
+                register.user_type = "3"; //client
+                register.password = "test123"; //not needed since client don't need login creditials
+                                               //but fields cannot be empty so we put dummy password
+                register.password_confirmation = "test123";
+
+                string jsonStr = JsonConvert.SerializeObject(register);
+                Console.WriteLine(jsonStr);
+                restClient.postJSON = jsonStr;
+
+                string response = string.Empty;
+                response = restClient.PostRequest();
+                Console.WriteLine(response);
+
+                restClient.endPoint = Settings.baseUrl
+                    + "/api/profile/createprofile";
+                restClient.login = false;
+
+                string[] res = response.Split('|');
+                var jo = JObject.Parse(res[1]);
+                var id = jo["id"].ToString();
+
+                Profile profile = new Profile();
+                profile.user_id = Convert.ToInt32(id.ToString());
+                profile.first_name = fn_tb.Text.ToString();
+                profile.middle_name = mn_tb.Text.ToString();
+                profile.last_name = ln_tb.Text.ToString();
+                profile.gender = male_rb.Checked ? "male" : "female";
+                profile.address = addr_tb.Text.ToString();
+                profile.contact_num = cn_tb.Text.ToString();
+                profile.bday = Convert.ToDateTime(bday_picker.Text.ToString());
+                profile.occupation = occu_tb.Text.ToString();
+                profile.mo_income = Convert.ToDouble(inc_tb.Text.ToString());
+                profile.mo_expense = Convert.ToDouble(exp_tb.Text.ToString());
+                profile.credit_limit = Convert.ToDouble(credit_limit_tb.Text.ToString());
+                profile.verified = stat_cb.SelectedIndex;
+                //todo profile.path_id_pic = ;
+                //todo profile.path_house_sketch_pic = ;
+                
+                jsonStr = JsonConvert.SerializeObject(profile);
+                Console.WriteLine(jsonStr);
+                restClient.postJSON = jsonStr;
+
+                response = restClient.PostRequest();
+                Console.WriteLine(response);
+
+                clearTextBoxes(this.Controls);
+                genpass_tb.Text = generatePassword();
+                Cursor.Current = Cursors.Default;
+                cstaff_stat_lbl.Text = "Account created successfully.";
+                cstaff_stat_lbl.ForeColor = Color.Green;
+            }
+            catch
+            {
+                Cursor.Current = Cursors.Default;
+                Console.WriteLine("Registration failed.");
+                cstaff_stat_lbl.Text = "Error creating account.";
+                cstaff_stat_lbl.ForeColor = Color.Red;
+            }
+        }
+
+        private void save_btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                restClient.endPoint = Settings.baseUrl
+                    + "/api/profile/updateprofile/" + Login.user_id;
+
+                Profile prof = new Profile();
+                prof.user_id = Login.user_id;
+                prof.first_name = prof_fn_tb.Text;
+                prof.middle_name = prof_mn_tb.Text;
+                prof.last_name = prof_ln_tb.Text;
+                prof.address = prof_address_tb.Text;
+                prof.contact_num = prof_cn_tb.Text;
+                prof.gender = prof_male_rb.Checked ? "Male" : "Female";
+                prof.bday = Convert.ToDateTime(prof_bdate_picker.Text.ToString());
+                //prof id pic
+
+                var jsonStr = JsonConvert.SerializeObject(prof);
+                restClient.postJSON = jsonStr;
+
+                string response = string.Empty;
+                response = restClient.PutRequest();
+                Console.WriteLine(response);
+                Cursor.Current = Cursors.Default;
+            } catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            //add status message
+            enableTextBoxes(this.Controls, false);
         }
 
         /**
@@ -841,8 +987,11 @@ namespace WindowsFormsApp1
             {
                 amortization_tb.Text = ((Convert.ToDouble(total_amount_tb.Text)) /
                 (Convert.ToInt32(length_tb.Text))).ToString("N1");
-
-                balance_tb.Text = Convert.ToDouble(total_amount_tb.Text).ToString("N1");
+                
+                if(!edit)
+                {
+                    balance_tb.Text = Convert.ToDouble(total_amount_tb.Text).ToString("N1");
+                }
             }
         }
 
@@ -1160,7 +1309,7 @@ namespace WindowsFormsApp1
             accounts_data.Columns[3].HeaderText = "Middle Name";
             accounts_data.Columns[4].HeaderText = "Last Name";
             accounts_data.Columns[18].HeaderText = "User Type";
-            //accounts_data.Columns[0].HeaderText = "Status";
+            accounts_data.Columns[19].HeaderText = "Status";
 
             accounts_data.Columns[1].Visible = false;
             accounts_data.Columns[5].Visible = false;
@@ -1237,7 +1386,22 @@ namespace WindowsFormsApp1
                 }
                 else
                 {
-                    ClearTextBoxesInAddLoan(ctrl.Controls);
+                    clearTextBoxes(ctrl.Controls);
+                }
+            }
+        }
+
+        private void enableTextBoxes(Control.ControlCollection ctrlCollection, bool enable)
+        {
+            foreach (Control ctrl in ctrlCollection)
+            {
+                if (ctrl is TextBoxBase)
+                {
+                    ctrl.Enabled = enable;
+                }
+                else
+                {
+                    enableTextBoxes(ctrl.Controls, enable);
                 }
             }
         }
