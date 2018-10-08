@@ -18,6 +18,8 @@ namespace WindowsFormsApp1
         public static string prof_cn = string.Empty;
         public static double prof_cred_limit = 0;
         public static string prof_stat = string.Empty;
+        public static int price_id = 0;
+        public static double price = 0;
 
         public Search()
         {
@@ -28,11 +30,13 @@ namespace WindowsFormsApp1
         {
             RestClient restClient = new RestClient();
 
+            Cursor.Current = Cursors.WaitCursor;
             switch (tag.ToString())
             {
                 case "ITEM":
                     {
                         this.Text = "Item Search";
+                        addprice_btn.Visible = false;
                         restClient.endPoint = Settings.baseUrl.ToString()
                             + "/api/product/getitems";
 
@@ -72,6 +76,7 @@ namespace WindowsFormsApp1
                 case "CLIENT":
                     {
                         this.Text = "Client Search";
+                        addprice_btn.Visible = false;
                         restClient.endPoint = Settings.baseUrl.ToString()
                             + "/api/profile";
 
@@ -128,7 +133,36 @@ namespace WindowsFormsApp1
 
                         break;
                     }
+                case "PRICE":
+                    {
+                        this.Text = "Price Search";
+                        addprice_btn.Visible = true;
+                        restClient.endPoint = Settings.baseUrl
+                            + "/api/price/getpricelist";
+
+                        string response = string.Empty;
+                        response = restClient.GetRequest();
+                        Console.WriteLine(response);
+
+                        if (!response.Equals("[]"))
+                        {
+                            nodata_lbl.Visible = false;
+                            var price = JsonConvert.DeserializeObject<List<Price>>(response);
+
+                            datagrid.DataSource = price;
+
+                            datagrid.Columns[0].HeaderText = "ID";
+                            datagrid.Columns[1].HeaderText = "Price";
+                            datagrid.Columns[1].DefaultCellStyle.Format = "N1";
+                        } else
+                        {
+                            nodata_lbl.Visible = true;
+                        }
+
+                        break;
+                    }
             }
+            Cursor.Current = Cursors.Default;
         }
 
         private void datagrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -146,8 +180,6 @@ namespace WindowsFormsApp1
 
                         break;
                     case "CLIENT":
-                        Console.WriteLine("hello world");
-
                         datagrid.CurrentRow.Selected = true;
                         prof_id = Convert.ToInt32(datagrid.Rows[e.RowIndex].Cells["id"].Value.ToString());
                         prof_fullname = datagrid.Rows[e.RowIndex].Cells["first_name"].Value.ToString()
@@ -159,10 +191,32 @@ namespace WindowsFormsApp1
                         prof_stat = datagrid.Rows[e.RowIndex].Cells["verified_str"].Value.ToString();
 
                         break;
+                    case "PRICE":
+                        datagrid.CurrentRow.Selected = true;
+                        price_id = Convert.ToInt32(datagrid.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                        price = Convert.ToDouble(datagrid.Rows[e.RowIndex].Cells["price"].Value.ToString());
+                        break;
                 }
             }
 
             this.Close();
+        }
+
+        private void addprice_btn_Click(object sender, EventArgs e)
+        {
+            AddPrice addPrice = new AddPrice();
+            addPrice.Show();
+
+            addPrice.FormClosed += new FormClosedEventHandler(addPrice_FormClosed);
+        }
+
+        private void addPrice_FormClosed(object sender, EventArgs e)
+        {
+            if (!AddPrice.cancel)
+            {
+                tag = "PRICE";
+                ItemSearch_Load(sender, e);
+            }
         }
     }
 }
