@@ -12,7 +12,9 @@ class Loan extends Model
         'profile_id',
         'term_length',
         'loan_value',
+        'running_balance',
         'amortization',
+        'amortization_m',
         'running_balance',
         'status'
     ];

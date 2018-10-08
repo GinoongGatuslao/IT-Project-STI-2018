@@ -41,6 +41,10 @@ public interface RestAPIService {
     @POST("register")
     Observable<JsonObject> registerUser(@Body JsonObject newUserModel);
 
+    @Headers("Content-Type: application/json")
+    @POST("user/update/{user_id}")
+    Observable<UserModel> updateUserAccount(@Path("user_id") int user_id, @Body JsonObject updatedAccount);
+
     ///////////////////////////////////////////////////////////////////////////
     // PROFILE
     ///////////////////////////////////////////////////////////////////////////

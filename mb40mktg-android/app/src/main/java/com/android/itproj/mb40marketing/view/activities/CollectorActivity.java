@@ -179,9 +179,9 @@ public class CollectorActivity extends AppCompatActivity implements
 
     @Override
     public void onProfileFetchFailed(Throwable throwable, int code) {
-        Toast.makeText(this, "Unable to profile(s). Try again.", Toast.LENGTH_LONG).show();
         swipeRefreshLayout.setRefreshing(false);
         hideKeyboardFrom(this, findViewById(android.R.id.content).getRootView());
+        setErrorMessage(getResources().getString(R.string.prompt_unable_to_fetch), code);
     }
 
     @Override
@@ -283,7 +283,7 @@ public class CollectorActivity extends AppCompatActivity implements
 
     private void showVerificationNotice() {
         setVisibility(View.GONE, searchFormFrame);
-        setVisibility(View.VISIBLE, noticeFrame, noticeFrame);
+        setVisibility(View.VISIBLE, noticeFrame);
     }
 
     private void setVisibility(int visibility, View... views) {
