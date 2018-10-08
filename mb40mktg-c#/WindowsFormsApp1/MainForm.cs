@@ -156,7 +156,7 @@ namespace WindowsFormsApp1
                 prof_fn_tb.Text = profile.first_name;
                 prof_mn_tb.Text = profile.middle_name;
                 prof_ln_tb.Text = profile.last_name;
-                prof_bdate_picker.Text = profile.bday.ToLongDateString();
+                prof_bdate_picker.Value = Convert.ToDateTime(profile.bday);
                 prof_address_tb.Text = profile.address;
                 prof_cn_tb.Text = profile.contact_num;
                 if (profile.gender.Equals("Male"))
@@ -692,36 +692,34 @@ namespace WindowsFormsApp1
                 restClient.postJSON = jsonStr;
 
                 string response = string.Empty;
-               // response = restClient.PostRequest();
+                response = restClient.PostRequest();
                 Console.WriteLine(response);
 
                 restClient.endPoint = Settings.baseUrl
                     + "/api/profile/createprofile";
                 restClient.login = false;
 
-                //string[] res = response.Split('|');
-                //var jo = JObject.Parse(res[1]);
-                //var id = jo["id"].ToString();
+                string[] res = response.Split('|');
+                var jo = JObject.Parse(res[1]);
+                var id = jo["id"].ToString();
 
                 Profile profile = new Profile();
-               // profile.user_id = Convert.ToInt32(id.ToString());
+                profile.user_id = Convert.ToInt32(id.ToString());
                 profile.first_name = sfname_tb.Text.ToString();
                 profile.middle_name = smname_tb.Text.ToString();
                 profile.last_name = lname_tb.Text.ToString();
                 profile.gender = smale_rb.Checked ? "male" : "female";
                 profile.address = saddress_tb.Text.ToString();
                 profile.contact_num = scn_tb.Text.ToString();
-                profile.bday = sbday_tb.Text.ToString();
+                profile.bday = sbday_tb.Value.ToShortDateString();
                 profile.verified = 1; //since staff/collector siya
                 //todo profile.path_id_pic = ;
-
-                Console.WriteLine(profile.bday.ToString());
 
                 jsonStr = JsonConvert.SerializeObject(profile);
                 Console.WriteLine(jsonStr);
                 restClient.postJSON = jsonStr;
 
-                //response = restClient.PostRequest();
+                response = restClient.PostRequest();
                 Console.WriteLine(response);
 
                 clearTextBoxes(this.Controls);
@@ -797,7 +795,7 @@ namespace WindowsFormsApp1
                 profile.gender = male_rb.Checked ? "male" : "female";
                 profile.address = addr_tb.Text.ToString();
                 profile.contact_num = cn_tb.Text.ToString();
-                profile.bday = Convert.ToDateTime(bday_picker.Text.ToString());
+                profile.bday = bday_picker.Value.ToShortDateString();
                 profile.occupation = occu_tb.Text.ToString();
                 profile.mo_income = Convert.ToDouble(inc_tb.Text.ToString());
                 profile.mo_expense = Convert.ToDouble(exp_tb.Text.ToString());
@@ -842,9 +840,9 @@ namespace WindowsFormsApp1
                 prof.middle_name = prof_mn_tb.Text;
                 prof.last_name = prof_ln_tb.Text;
                 prof.address = prof_address_tb.Text;
-                prof.contact_num = prof_cn_tb.Text;
+                prof.contact_num = prof_cn_tb.Text; 
                 prof.gender = prof_male_rb.Checked ? "Male" : "Female";
-                prof.bday = Convert.ToDateTime(prof_bdate_picker.Text.ToString());
+                prof.bday = prof_bdate_picker.Value.ToShortDateString();
                 //prof id pic
 
                 var jsonStr = JsonConvert.SerializeObject(prof);
@@ -859,7 +857,6 @@ namespace WindowsFormsApp1
                 Console.WriteLine(ex.Message.ToString());
             }
             //add status message
-            enableTextBoxes(this.Controls, false);
         }
 
         /**
@@ -874,6 +871,8 @@ namespace WindowsFormsApp1
         private void loan_data_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             edit = true;
+            account_stat_lbl.Text = "Status";
+            account_stat_lbl.ForeColor = Color.Black;
             add_item_btn.Visible = false;
             if (loan_data.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
             {
