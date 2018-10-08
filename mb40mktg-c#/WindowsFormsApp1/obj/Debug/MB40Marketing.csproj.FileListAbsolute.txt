@@ -1,0 +1,16 @@
+C:\Users\patdl\Documents\Davao\IT-Project-STI-2018\mb40mktg-c#\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
+C:\Users\patdl\Documents\Davao\IT-Project-STI-2018\mb40mktg-c#\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
+C:\Users\patdl\Documents\Davao\IT-Project-STI-2018\mb40mktg-c#\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
+C:\Users\patdl\Documents\Davao\IT-Project-STI-2018\mb40mktg-c#\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.MainForm.resources
+C:\Users\patdl\Documents\Davao\IT-Project-STI-2018\mb40mktg-c#\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Login.resources
+C:\Users\patdl\Documents\Davao\IT-Project-STI-2018\mb40mktg-c#\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+C:\Users\patdl\Documents\Davao\IT-Project-STI-2018\mb40mktg-c#\WindowsFormsApp1\obj\Debug\MB40Marketing.csproj.GenerateResource.cache
+C:\Users\patdl\Documents\Davao\IT-Project-STI-2018\mb40mktg-c#\WindowsFormsApp1\obj\Debug\MB40Marketing.csproj.CoreCompileInputs.cache
+C:\Users\patdl\Documents\Davao\IT-Project-STI-2018\mb40mktg-c#\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
+C:\Users\patdl\Documents\Davao\IT-Project-STI-2018\mb40mktg-c#\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+C:\Users\patdl\Documents\Davao\IT-Project-STI-2018\mb40mktg-c#\WindowsFormsApp1\obj\Debug\MB40Marketing.csprojAssemblyReference.cache
+C:\Users\patdl\Documents\Davao\IT-Project-STI-2018\mb40mktg-c#\WindowsFormsApp1\bin\Debug\Newtonsoft.Json.dll
+C:\Users\patdl\Documents\Davao\IT-Project-STI-2018\mb40mktg-c#\WindowsFormsApp1\bin\Debug\Newtonsoft.Json.xml
+C:\Users\patdl\Documents\Davao\IT-Project-STI-2018\mb40mktg-c#\WindowsFormsApp1\obj\Debug\MB40Marketing.csproj.CopyComplete
+C:\Users\patdl\Documents\Davao\IT-Project-STI-2018\mb40mktg-c#\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Settings.resources
+C:\Users\patdl\Documents\Davao\IT-Project-STI-2018\mb40mktg-c#\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Search.resources
