@@ -12,7 +12,22 @@ class TransactionController extends Controller
 {
     public function getAll()
     {
-        return Transaction::all();
+        $transactions = DB::select(DB::raw("
+        SELECT
+          trans.*,
+          loan.remaining_balance AS 'loan_rem',
+          loan.loan_value,
+          p.first_name,
+          p.middle_name,
+          p.last_name,
+          c.first_name AS 'c_fname',
+          c.middle_name AS 'c_mname',
+          c.last_name AS 'c_lname'
+        FROM tbl_transactions trans
+        INNER JOIN tbl_loans loan ON loan.id = trans.loan_id
+        INNER JOIN tbl_profiles p ON p.id = trans.profile_id
+        INNER JOIN (SELECT * FROM tbl_profiles) c ON trans.collector_id = c.user_id"));
+        return response()->json($transactions, 200);
     }
 
     public function storeTransaction(Request $request)
@@ -32,10 +47,22 @@ class TransactionController extends Controller
     {
         $transaction = DB::select(
             DB::raw(
-                "SELECT t.*, p.first_name AS 'c_fname', p.middle_name AS 'c_mname', p.last_name AS 'c_lname'
-                        FROM tbl_transactions t
-                        INNER JOIN tbl_profiles p ON t.collector_id = p.id
-                        WHERE t.profile_id = :profileId AND t.loan_id = :loanId"), array(
+                "
+                        SELECT
+                          trans.*,
+                          loan.remaining_balance AS 'loan_rem',
+                          loan.loan_value,
+                          p.first_name,
+                          p.middle_name,
+                          p.last_name,
+                          c.first_name AS 'c_fname',
+                          c.middle_name AS 'c_mname',
+                          c.last_name AS 'c_lname'
+                        FROM tbl_transactions trans
+                        INNER JOIN tbl_loans loan ON loan.id = trans.loan_id
+                        INNER JOIN tbl_profiles p ON p.id = trans.profile_id
+                        INNER JOIN (SELECT * FROM tbl_profiles) c ON trans.collector_id = c.user_id
+                        WHERE trans.profile_id = :profileId AND trans.loan_id = :loanId"), array(
             'profileId' => $request->header("profile_id"),
             'loanId' => $request->header("loan_id")));
         return response()->json($transaction, 200);
@@ -43,8 +70,23 @@ class TransactionController extends Controller
 
     public function getTransactionByCollector($id)
     {
-        $transaction = Transaction::where('collector_id', $id);
-        return response()->json($transaction->get(), 200);
+        $transaction = DB::select(DB::raw("
+        SELECT
+          trans.*,
+          loan.remaining_balance AS 'loan_rem',
+          loan.loan_value,
+          p.first_name,
+          p.middle_name,
+          p.last_name,
+          c.first_name AS 'c_fname',
+          c.middle_name AS 'c_mname',
+          c.last_name AS 'c_lname'
+        FROM tbl_transactions trans
+        INNER JOIN tbl_loans loan ON loan.id = trans.loan_id
+        INNER JOIN tbl_profiles p ON p.id = trans.profile_id
+        INNER JOIN (SELECT * FROM tbl_profiles) c ON trans.collector_id = c.user_id
+        WHERE trans.collector_id = " . $id));
+        return response()->json($transaction, 200);
     }
 
     public function getTransactionByLoan($id)
@@ -58,22 +100,43 @@ class TransactionController extends Controller
         $min = $request->header('min');
         $max = $request->header('max');
 
-        $transaction = Transaction::whereBetween('payment', [$min, $max]);
-        return response()->json($transaction->get(), 200);
+//        $transaction = Transaction::whereBetween('payment', [$min, $max]);
+        $transaction = DB::select(DB::raw("
+        SELECT
+          trans.*,
+          loan.remaining_balance AS 'loan_rem',
+          loan.loan_value,
+          p.first_name,
+          p.middle_name,
+          p.last_name,
+          c.first_name AS 'c_fname',
+          c.middle_name AS 'c_mname',
+          c.last_name AS 'c_lname'
+        FROM tbl_transactions trans
+        INNER JOIN tbl_loans loan ON loan.id = trans.loan_id
+        INNER JOIN tbl_profiles p ON p.id = trans.profile_id
+        INNER JOIN (SELECT * FROM tbl_profiles) c ON trans.collector_id = c.user_id
+        WHERE trans.payment BETWEEN " . $min . " AND " . $max . "
+        "));
+        return response()->json($transaction, 200);
     }
 
     private function updatePaymentBalance($newTransaction)
     {
+        $transaction = Transaction::findOrFail($newTransaction->id);
         $loan = Loan::findOrFail($newTransaction->loan_id);
-        $deltaTotal = $loan->running_balance + $newTransaction->payment;
-        if ($deltaTotal >= $loan->loan_value) {
+        $payRemain = $loan->remaining_balance - $transaction->payment;
+        if ($payRemain <= 0) {
             $loanstatus = 2;
         } else {
             $loanstatus = 1;
         }
         $loan->update([
             "status" => $loanstatus,
-            "running_balance" => $deltaTotal
+            "remaining_balance" => $payRemain
+        ]);
+        $transaction->update([
+            "remaining_balance" => $payRemain
         ]);
     }
 }

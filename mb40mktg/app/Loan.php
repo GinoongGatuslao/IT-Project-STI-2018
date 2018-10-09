@@ -15,7 +15,7 @@ class Loan extends Model
         'running_balance',
         'amortization',
         'amortization_m',
-        'running_balance',
+        'remaining_balance',
         'status'
     ];
 }

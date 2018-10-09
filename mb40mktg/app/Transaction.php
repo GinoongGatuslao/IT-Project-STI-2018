@@ -12,6 +12,7 @@ class Transaction extends Model
         'profile_id',
         'loan_id',
         'collector_id',
-        'payment'
+        'payment',
+        'remaining_balance'
     ];
 }

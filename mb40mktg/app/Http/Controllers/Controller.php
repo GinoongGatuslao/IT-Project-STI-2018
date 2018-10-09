@@ -64,7 +64,7 @@ class Controller extends BaseController
     {
         $updatedUser = Array();
         if (!strlen($data["username"]) == 0) {
-            $updatedUser["username"] = Hash::make($data["username"]);
+            $updatedUser["username"] = $data["username"];
         }
 //        "password" => Hash::make($data["password"])
         if (!strlen($data["password"]) == 0) {

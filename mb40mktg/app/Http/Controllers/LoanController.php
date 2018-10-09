@@ -124,6 +124,7 @@ class LoanController extends Controller
             "loan_value" => $totalValue,
             "amortization" => round($amortztn, 2),
             "amortization_m" => round($amortztn_m, 2),
+            "remaining_balance" => round($totalValue, 2),
             "status" => $request->get("status")]);
 
         $loanItems["account"] = $newLoan;
