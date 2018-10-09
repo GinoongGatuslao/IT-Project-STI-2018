@@ -18,9 +18,12 @@ class LoanController extends Controller
     public function getAllLoan()
     {
         $loans = DB::select(DB::raw("
-            SELECT tbl_loans.*, profile.first_name, profile.middle_name, profile.last_name
-            FROM tbl_loans
-            INNER JOIN tbl_profiles profile ON profile.id = tbl_loans.profile_id"));
+        SELECT loan.*, 
+            profile.first_name, profile.middle_name, 
+            profile.last_name, profile.contact_num, 
+            profile.address, profile.credit_limit
+        FROM tbl_loans loan
+        INNER JOIN tbl_profiles profile ON loan.profile_id = profile.id"));
         //add String representation of 'status' id
         foreach ($loans as $loan) {
             $loan->status_str = LoanStatus::getStatusStr($loan->status);

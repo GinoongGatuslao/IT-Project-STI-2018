@@ -11,8 +11,11 @@ use Illuminate\Support\Facades\DB;
 class ProfileController extends Controller
 {
     public function getAllProfiles() {
-        $profiles = Profile::select("*")
-            ->join('users', 'tbl_profiles.user_id', '=', 'users.id')->get();
+        /*$profiles = Profile::select("*")
+            ->join('users', 'tbl_profiles.user_id', '=', 'users.id')->get();*/
+        $profiles = DB::select(DB::raw("
+        SELECT *, profile.id FROM tbl_profiles profile
+        INNER JOIN users u ON u.id = profile.user_id"));
         foreach ($profiles as $profile) {
             $profile->usertype_str = UserType::getUserTypeStr($profile->user_type);
             $profile->verified_str = VerificationStatus::getVerificationState($profile->verified);
