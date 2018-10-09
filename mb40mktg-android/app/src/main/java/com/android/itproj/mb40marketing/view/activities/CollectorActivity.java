@@ -109,7 +109,7 @@ public class CollectorActivity extends AppCompatActivity implements
         swipeRefreshLayout.setRefreshing(true);
         swipeRefreshLayout.setColorSchemeColors(
                 getResources().getColor(R.color.colorAccent),
-                getResources().getColor(R.color.colorLink));
+                getResources().getColor(R.color.colorSkyBlueLink));
 
         searchResultList.setOnItemClickListener(this);
         searchResultList.setOnScrollListener(new AbsListView.OnScrollListener() {

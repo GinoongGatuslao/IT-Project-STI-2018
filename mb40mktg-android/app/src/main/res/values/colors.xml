@@ -3,7 +3,8 @@
     <color name="colorPrimary">#2F2FA2</color>
     <color name="colorPrimaryDark">#242582</color>
     <color name="colorAccent">#F64C72</color>
-    <color name="colorLink">#00a2ff</color>
+    <color name="colorSkyBlueLink">#00a2ff</color>
+    <color name="colorCyanLink">#00e5ff</color>
     <color name="colorDarkPurple">#553D67</color>
     <color name="colorRed">#ff0000</color>
     <color name="colorPink">#f8bbd0</color>

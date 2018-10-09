@@ -96,5 +96,6 @@
     <string name="label_address">Address</string>
     <string name="label_contact">Contact</string>
     <string name="label_logged_as_placeholder">Logged as %1$s</string>
+    <string name="prompt_update_profile">Update Profile</string>
     <string name="label_profile_footer">mb40mktg © 2018</string>
 </resources>

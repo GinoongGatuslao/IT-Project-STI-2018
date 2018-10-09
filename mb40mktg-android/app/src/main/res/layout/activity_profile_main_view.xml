@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <TextView
+        android:id="@+id/profileName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Test, Test text"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/font_size_21sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@id/guidelineL"
+        app:layout_constraintRight_toLeftOf="@id/guidelineR"
+        app:layout_constraintTop_toBottomOf="@id/guideline" />
+
+    <TextView
+        android:id="@+id/profileLoginName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Test, Test text"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/font_size_16sp"
+        app:layout_constraintLeft_toRightOf="@id/guidelineL"
+        app:layout_constraintRight_toLeftOf="@id/guidelineR"
+        app:layout_constraintTop_toBottomOf="@id/profileName" />
+
+    <TextView
+        android:id="@+id/profileType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Test, Test text"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/font_size_16sp"
+        app:layout_constraintLeft_toRightOf="@id/guidelineL"
+        app:layout_constraintRight_toLeftOf="@id/guidelineR"
+        app:layout_constraintTop_toBottomOf="@id/profileLoginName" />
+
+    <TextView
+        android:id="@+id/profileAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Test, Test text"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/font_size_16sp"
+        app:layout_constraintLeft_toRightOf="@id/guidelineL"
+        app:layout_constraintRight_toLeftOf="@id/guidelineR"
+        app:layout_constraintTop_toBottomOf="@id/profileType" />
+
+    <TextView
+        android:id="@+id/profileContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Test, Test text"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/font_size_16sp"
+        app:layout_constraintLeft_toRightOf="@id/guidelineL"
+        app:layout_constraintRight_toLeftOf="@id/guidelineR"
+        app:layout_constraintTop_toBottomOf="@id/profileAddress" />
+
+    <TextView
+        android:id="@+id/profileBirth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Test, Test text"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/font_size_16sp"
+        app:layout_constraintLeft_toRightOf="@id/guidelineL"
+        app:layout_constraintRight_toLeftOf="@id/guidelineR"
+        app:layout_constraintTop_toBottomOf="@id/profileContact" />
+
+    <TextView
+        android:id="@+id/updateProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/prompt_update_profile"
+        android:textColor="@color/colorCyanLink"
+        android:textSize="@dimen/font_size_16sp"
+        android:textStyle="italic"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profileBirth" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/label_profile_footer"
+        android:textColor="@color/colorMaterialGrey400"
+        android:textSize="@dimen/font_size_12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/guidelineL"
+        app:layout_constraintRight_toLeftOf="@id/guidelineR" />
+
+</android.support.constraint.ConstraintLayout>

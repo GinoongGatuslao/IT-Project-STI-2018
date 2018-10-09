@@ -1,6 +1,5 @@
 package com.android.itproj.mb40marketing.view.activities;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
@@ -96,7 +95,7 @@ public class CustomerLoansActivity extends AppCompatActivity implements
 
         swipeRefreshLayout.setColorSchemeColors(
                 getResources().getColor(R.color.colorAccent),
-                getResources().getColor(R.color.colorLink));
+                getResources().getColor(R.color.colorSkyBlueLink));
         swipeRefreshLayout.setOnRefreshListener(this);
 
         setCustomerProfile((ProfileModel) getIntent().getExtras().get("profile"));

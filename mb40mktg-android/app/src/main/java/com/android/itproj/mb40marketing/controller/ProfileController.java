@@ -103,6 +103,30 @@ public class ProfileController {
         );
     }
 
+    public void updateUserProfile(final int userId, final ProfileModel updatedProfile, final ProfileCallback.ProfileRequest profileRequest) {
+        compositeSubscription.add(
+                ((CoreApp)context)
+                        .getRestAPI()
+                        .updateProfile(updatedProfile)
+                        .subscribe(new Observer<ProfileModel>() {
+                            @Override
+                            public void onCompleted() {
+
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+
+                            }
+
+                            @Override
+                            public void onNext(ProfileModel model) {
+                                profileRequest.onProfileFetch(model);
+                            }
+                        })
+        );
+    }
+
     public void getUserProfileByName(final String firstName, final String lastName, final String usertype, final ProfileCallback.ProfileRequest profileRequest) {
         compositeSubscription.add(
                 ((CoreApp)context)
