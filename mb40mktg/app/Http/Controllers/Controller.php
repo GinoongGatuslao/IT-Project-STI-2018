@@ -62,15 +62,16 @@ class Controller extends BaseController
 
     public function update(Request $data, $id)
     {
-        $updatedUser = Array(
-            "username"=>$data["username"]
-        );
+        $updatedUser = Array();
+        if (!strlen($data["username"]) == 0) {
+            $updatedUser["username"] = Hash::make($data["username"]);
+        }
 //        "password" => Hash::make($data["password"])
         if (!strlen($data["password"]) == 0) {
             $updatedUser["password"] = Hash::make($data["password"]);
         }
         $current = User::where("id", $id);
         $current->update($updatedUser);
-        return response()->json($current->get(), 200);
+        return response()->json($current->first(), 200);
     }
 }

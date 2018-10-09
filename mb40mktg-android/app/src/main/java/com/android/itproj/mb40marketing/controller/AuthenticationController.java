@@ -1,6 +1,7 @@
 package com.android.itproj.mb40marketing.controller;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.android.itproj.mb40marketing.Constants;
 import com.android.itproj.mb40marketing.CoreApp;
@@ -167,6 +168,7 @@ public class AuthenticationController {
 
                     @Override
                     public void onNext(UserModel model) {
+                        Log.d("update", "onNext: " + model.toString());
                         updateCallback.onAccountUpdate(model);
                     }
                 })

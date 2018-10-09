@@ -42,7 +42,7 @@ public interface RestAPIService {
     Observable<JsonObject> registerUser(@Body JsonObject newUserModel);
 
     @Headers("Content-Type: application/json")
-    @POST("user/update/{user_id}")
+    @PUT("user/update/{user_id}")
     Observable<UserModel> updateUserAccount(@Path("user_id") int user_id, @Body JsonObject updatedAccount);
 
     ///////////////////////////////////////////////////////////////////////////
@@ -64,8 +64,8 @@ public interface RestAPIService {
     @POST("profile/createprofile")
     Observable<ProfileModel> createProfile(@Body ProfileModel profileModel);
 
-    @PUT("profile/updateprofile")
-    Observable<ProfileModel> updateProfile(@Body ProfileModel profileModel);
+    @PUT("profile/updateprofile/{profile_id}")
+    Observable<ProfileModel> updateProfile(@Path("profile_id") int profileId, @Body ProfileModel profileModel);
 
     ///////////////////////////////////////////////////////////////////////////
     // PRODUCT

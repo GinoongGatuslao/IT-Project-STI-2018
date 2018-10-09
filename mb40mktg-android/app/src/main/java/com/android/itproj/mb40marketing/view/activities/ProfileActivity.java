@@ -3,21 +3,27 @@ package com.android.itproj.mb40marketing.view.activities;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.itproj.mb40marketing.CoreApp;
 import com.android.itproj.mb40marketing.R;
+import com.android.itproj.mb40marketing.helper.interfaces.AuthenticationCallback;
 import com.android.itproj.mb40marketing.helper.interfaces.ProfileCallback;
 import com.android.itproj.mb40marketing.model.ProfileModel;
 import com.android.itproj.mb40marketing.model.UserModel;
+import com.google.gson.JsonObject;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.ConfirmPassword;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
+import com.mobsandgeeks.saripaar.annotation.Optional;
 import com.mobsandgeeks.saripaar.annotation.Password;
 import com.mobsandgeeks.saripaar.annotation.Pattern;
 
@@ -25,16 +31,19 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ProfileActivity extends AppCompatActivity implements
-        SwipeRefreshLayout.OnRefreshListener,
         ProfileCallback.ProfileRequest,
-        Validator.ValidationListener {
+        Validator.ValidationListener,
+        AuthenticationCallback.UserAccountUpdate {
 
+    private static final String TAG = "ProfileActivity";
+
+    //main views
     @BindView(R.id.mainView)
     public View mainProfileView;
 
-    //main views
     @BindView(R.id.swipeRefreshLayout)
     public SwipeRefreshLayout swipeRefreshLayout;
 
@@ -56,6 +65,9 @@ public class ProfileActivity extends AppCompatActivity implements
     @BindView(R.id.profileBirth)
     public TextView profileBirth;
 
+    @BindView(R.id.updateProfile)
+    public TextView updateProfile;
+
     //edit views
     @BindView(R.id.editView)
     public View editProfileView;
@@ -71,6 +83,9 @@ public class ProfileActivity extends AppCompatActivity implements
     @NotEmpty
     @BindView(R.id.familyName)
     public EditText familyNameEditText;
+
+    @BindView(R.id.gender)
+    public Spinner genderSpinner;
 
     @NotEmpty
     @BindView(R.id.address)
@@ -115,16 +130,19 @@ public class ProfileActivity extends AppCompatActivity implements
     @BindView(R.id.registerBtn)
     public Button registerBtn;
 
+    private final String[] genderSelection = new String[]{"Male", "Female"};
+
     private Validator validator;
+
+    private ProfileModel profileModel, newProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         ButterKnife.bind(this);
-        swipeRefreshLayout.setOnRefreshListener(this);
 
-        ProfileModel profileModel = ((CoreApp) getApplication())
+        profileModel = ((CoreApp) getApplication())
                 .getProfileController()
                 .getProfile();
 
@@ -135,13 +153,30 @@ public class ProfileActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onRefresh() {
-
+    public void onProfileFetch(ProfileModel model) {
+        swipeRefreshLayout.setRefreshing(false);
+        Log.d(TAG, "onProfileFetch: " + model.toString());
+        changeView(editProfileView, mainProfileView);
+        profileModel = model;
+        profileModel.setUsername(newProfile.getUsername());
+        profileModel.setUsertype_str(newProfile.getUsertype_str());
+        setProfile(profileModel);
     }
 
     @Override
-    public void onProfileFetch(ProfileModel model) {
+    public void onAccountUpdate(UserModel model) {
+        Log.d(TAG, "onAccountUpdate: " + model.toString());
+        ((CoreApp) getApplication())
+                .getProfileController()
+                .updateUserProfile(profileModel.getId(), newProfile, this);
+    }
 
+    @Override
+    public void onAccountUpdateError(Throwable e, int code) {
+        swipeRefreshLayout.setRefreshing(false);
+        Toast.makeText(this, getString(R.string.err_failed_to_update_user), Toast.LENGTH_LONG).show();
+        changeView(editProfileView, mainProfileView);
+        setProfile(profileModel);
     }
 
     @Override
@@ -151,12 +186,49 @@ public class ProfileActivity extends AppCompatActivity implements
 
     @Override
     public void onProfileFetchFailed(Throwable throwable, int code) {
-
+        swipeRefreshLayout.setRefreshing(false);
+        Toast.makeText(this, getString(R.string.err_failed_to_update_profile), Toast.LENGTH_LONG).show();
+        changeView(editProfileView, mainProfileView);
+        setProfile(profileModel);
     }
 
     @Override
     public void onValidationSucceeded() {
+        swipeRefreshLayout.setRefreshing(true);
+        newProfile = profileModel;
+        newProfile.setUser_id(profileModel.getUser_id());
+        newProfile.setFirst_name(givenNameEditText.getText().toString());
+        newProfile.setMiddle_name(middleNameEditText.getText().toString());
+        newProfile.setLast_name(familyNameEditText.getText().toString());
+        newProfile.setAddress(addressEditText.getText().toString());
+        newProfile.setContact(contactEditText.getText().toString());
+        newProfile.setBirth(birthEditText.getText().toString());
+        newProfile.setOccupation(occupationEditText.getText().toString());
+        newProfile.setIncome(incomeEditText.getText().toString());
+        newProfile.setEst_monthly_expenses(est_monthly_expensesEditText.getText().toString());
+        newProfile.setGender(genderSpinner.getSelectedItem().toString());
+        newProfile.setVerified(profileModel.getVerified());
+        newProfile.setCredit_limit(profileModel.getCredit_limit());
+        newProfile.setAccount_status(profileModel.getAccount_status());
 
+        JsonObject jsonObject = new JsonObject();
+        if (usernameEditText.getText().toString().equals(profileModel.getUsername())
+                && passwordEditText.getText().toString().isEmpty()
+                && confirm_passwordEditText.getText().toString().isEmpty()) {
+            ((CoreApp) getApplication())
+                    .getProfileController()
+                    .updateUserProfile(profileModel.getId(), profileModel, this);
+        } else {
+            if (!usernameEditText.getText().toString().equals(profileModel.getUsername())) {
+                jsonObject.addProperty("username", usernameEditText.getText().toString());
+            }
+            if (!passwordEditText.getText().toString().equals(profileModel.getUsername())) {
+                jsonObject.addProperty("password", passwordEditText.getText().toString());
+            }
+            ((CoreApp) getApplication())
+                    .getAuthenticationController()
+                    .updateUserAccount(profileModel.getUser_id(), jsonObject, this);
+        }
     }
 
     @Override
@@ -172,6 +244,52 @@ public class ProfileActivity extends AppCompatActivity implements
                 Toast.makeText(this, message, Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    @OnClick(R.id.updateProfile)
+    public void editProfile() {
+        changeView(mainProfileView, editProfileView);
+        updateFieldsFromProfile(profileModel);
+    }
+
+    @OnClick(R.id.registerBtn)
+    public void updateProfile() {
+        validator.validate();
+    }
+
+    private void updateFieldsFromProfile(ProfileModel profileModel) {
+        givenNameEditText.setText(profileModel.getFirst_name());
+        middleNameEditText.setText(profileModel.getMiddle_name());
+        familyNameEditText.setText(profileModel.getLast_name());
+        genderSpinner.setAdapter(provideGenderSpinnerAdapter());
+        genderSpinner.setSelection(getIndexOfGender(profileModel.getGender()));
+        addressEditText.setText(profileModel.getAddress());
+        contactEditText.setText(profileModel.getContact());
+        birthEditText.setText(profileModel.getBirth());
+        occupationEditText.setText(profileModel.getOccupation());
+        incomeEditText.setText(profileModel.getIncome());
+        est_monthly_expensesEditText.setText(profileModel.getEst_monthly_expenses());
+        usernameEditText.setText(profileModel.getUsername());
+    }
+
+    private ArrayAdapter<String> provideGenderSpinnerAdapter() {
+        return new ArrayAdapter<>(this, R.layout.listview_gender_item, genderSelection);
+    }
+
+    private int getIndexOfGender(String gender) {
+        for (int i = 0; i < genderSelection.length; i++) {
+            if (genderSelection[i].equals(gender)) {
+                return i;
+            }
+        }
+        return 0;
+    }
+
+    private void changeView(View toHide, View toShow) {
+        toHide.setVisibility(View.INVISIBLE);
+        toShow.setVisibility(View.VISIBLE);
+        toHide.invalidate();
+        toShow.invalidate();
     }
 
     private void setProfile(ProfileModel profile) {

@@ -9,15 +9,19 @@
     android:padding="15dp"
     tools:context=".view.activities.ProfileActivity">
 
-    <include
-        android:id="@+id/mainView"
-        android:visibility="visible"
-        layout="@layout/activity_profile_main_view"
-        />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include
+            android:id="@+id/mainView"
+            android:visibility="visible"
+            layout="@layout/activity_profile_main_view"
+            />
 
-    <include
-        android:id="@+id/editView"
-        android:visibility="gone"
-        layout="@layout/activity_register"/>
+        <include
+            android:id="@+id/editView"
+            android:visibility="gone"
+            layout="@layout/activity_register"/>
+    </FrameLayout>
 
 </android.support.v4.widget.SwipeRefreshLayout>

@@ -74,23 +74,28 @@ public class ProfileModel implements Serializable{
 
     @SerializedName("verified")
     @Getter
+    @Setter
     public int verified;
 
     @SerializedName("credit_limit")
     @Getter
+    @Setter
     public int credit_limit;
 
     @SerializedName("account_status")
     @Getter
+    @Setter
     public int account_status;
 
-    @Expose(deserialize = false)
+    @Expose(deserialize = false, serialize = false)
     @SerializedName("username")
     @Getter
+    @Setter
     public String username;
 
-    @Expose(deserialize = false)
+    @Expose(deserialize = false, serialize = false)
     @SerializedName("usertype_str")
     @Getter
+    @Setter
     public String usertype_str;
 }

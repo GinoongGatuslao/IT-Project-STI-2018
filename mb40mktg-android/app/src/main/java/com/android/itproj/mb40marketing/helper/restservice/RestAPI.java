@@ -68,9 +68,9 @@ public class RestAPI {
 
     }
 
-    public Observable<ProfileModel> updateProfile(ProfileModel updatedProfile) {
+    public Observable<ProfileModel> updateProfile(int profileId, ProfileModel updatedProfile) {
         return restService
-                .updateProfile(updatedProfile)
+                .updateProfile(profileId, updatedProfile)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io());
     }

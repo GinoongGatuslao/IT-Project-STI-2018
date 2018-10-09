@@ -103,11 +103,11 @@ public class ProfileController {
         );
     }
 
-    public void updateUserProfile(final int userId, final ProfileModel updatedProfile, final ProfileCallback.ProfileRequest profileRequest) {
+    public void updateUserProfile(final int profileId, final ProfileModel updatedProfile, final ProfileCallback.ProfileRequest profileRequest) {
         compositeSubscription.add(
                 ((CoreApp)context)
                         .getRestAPI()
-                        .updateProfile(updatedProfile)
+                        .updateProfile(profileId, updatedProfile)
                         .subscribe(new Observer<ProfileModel>() {
                             @Override
                             public void onCompleted() {
@@ -121,6 +121,8 @@ public class ProfileController {
 
                             @Override
                             public void onNext(ProfileModel model) {
+                                saveProfileInfo(model);
+                                setProfile(model);
                                 profileRequest.onProfileFetch(model);
                             }
                         })

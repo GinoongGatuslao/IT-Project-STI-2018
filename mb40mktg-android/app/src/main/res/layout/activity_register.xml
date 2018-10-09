@@ -27,20 +27,23 @@
             android:id="@+id/til1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColorHint="@color/colorMaterialGrey600"
             app:layout_constraintTop_toBottomOf="@id/requiredReminder">
 
             <EditText
                 android:id="@+id/givenName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorSkyBlueLink"
                 android:hint="@string/prompt_given_name"
                 android:imeActionId="6"
                 android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="flagNavigateNext"
                 android:inputType="text"
                 android:maxLines="1"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:textColor="@android:color/white"
+                android:textColorHint="@color/colorMaterialGrey600"
+                android:theme="@style/ToolbarTheme" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -49,20 +52,23 @@
             android:id="@+id/til2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColorHint="@color/colorMaterialGrey600"
             app:layout_constraintTop_toBottomOf="@id/til1">
 
             <EditText
                 android:id="@+id/middleName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorSkyBlueLink"
                 android:hint="@string/prompt_middle_name"
                 android:imeActionId="6"
                 android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="flagNavigateNext"
                 android:inputType="text"
                 android:maxLines="1"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:textColor="@android:color/white"
+                android:textColorHint="@color/colorMaterialGrey600"
+                android:theme="@style/ToolbarTheme" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -71,6 +77,7 @@
             android:id="@+id/til3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textColorHint="@color/colorMaterialGrey600"
             app:layout_constraintHorizontal_weight="2"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/gender"
@@ -80,14 +87,16 @@
                 android:id="@+id/familyName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorSkyBlueLink"
                 android:hint="@string/prompt_last_name"
                 android:imeActionId="6"
                 android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="flagNavigateNext"
                 android:inputType="text"
                 android:maxLines="1"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:textColor="@android:color/white"
+                android:textColorHint="@color/colorMaterialGrey600"
+                android:theme="@style/ToolbarTheme" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -95,7 +104,7 @@
             android:id="@+id/gender"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorSkyBlueLink"
+            android:backgroundTint="@color/colorAccent"
             android:hint="@string/prompt_last_name"
             android:imeActionId="6"
             android:imeActionLabel="@string/action_sign_in_short"
@@ -103,31 +112,34 @@
             android:inputType="text"
             android:maxLines="1"
             android:singleLine="true"
+            app:layout_constraintBottom_toBottomOf="@id/til3"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintLeft_toRightOf="@id/til3"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/til3"
-            app:layout_constraintBottom_toBottomOf="@id/til3"/>
+            app:layout_constraintTop_toTopOf="@id/til3" />
 
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/til4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColorHint="@color/colorMaterialGrey600"
             app:layout_constraintTop_toBottomOf="@id/til3">
 
             <EditText
                 android:id="@+id/address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorSkyBlueLink"
                 android:hint="@string/prompt_address"
                 android:imeActionId="6"
                 android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="flagNavigateNext"
                 android:inputType="text"
                 android:maxLines="1"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:textColor="@android:color/white"
+                android:textColorHint="@color/colorMaterialGrey600"
+                android:theme="@style/ToolbarTheme" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -136,20 +148,23 @@
             android:id="@+id/til5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColorHint="@color/colorMaterialGrey600"
             app:layout_constraintTop_toBottomOf="@id/til4">
 
             <EditText
                 android:id="@+id/contact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorSkyBlueLink"
                 android:hint="@string/prompt_contact"
                 android:imeActionId="6"
                 android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="flagNavigateNext"
                 android:inputType="text"
                 android:maxLines="1"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:textColor="@android:color/white"
+                android:textColorHint="@color/colorMaterialGrey600"
+                android:theme="@style/ToolbarTheme" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -158,6 +173,7 @@
             android:id="@+id/til6"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textColorHint="@color/colorMaterialGrey600"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@+id/til7"
@@ -167,14 +183,16 @@
                 android:id="@+id/birth"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorSkyBlueLink"
                 android:hint="@string/prompt_birth"
                 android:imeActionId="6"
                 android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="flagNavigateNext"
                 android:inputType="date"
                 android:maxLines="1"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:textColor="@android:color/white"
+                android:textColorHint="@color/colorMaterialGrey600"
+                android:theme="@style/ToolbarTheme" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -183,6 +201,7 @@
             android:id="@+id/til7"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textColorHint="@color/colorMaterialGrey600"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintLeft_toRightOf="@+id/til6"
             app:layout_constraintRight_toRightOf="parent"
@@ -192,14 +211,16 @@
                 android:id="@+id/occupation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorSkyBlueLink"
                 android:hint="@string/prompt_occupation"
                 android:imeActionId="6"
                 android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="flagNavigateNext"
                 android:inputType="text"
                 android:maxLines="1"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:textColor="@android:color/white"
+                android:textColorHint="@color/colorMaterialGrey600"
+                android:theme="@style/ToolbarTheme" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -208,6 +229,7 @@
             android:id="@+id/til8"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textColorHint="@color/colorMaterialGrey600"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/til9"
@@ -217,14 +239,16 @@
                 android:id="@+id/income"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorSkyBlueLink"
                 android:hint="@string/prompt_income"
                 android:imeActionId="6"
                 android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="flagNavigateNext"
                 android:inputType="numberDecimal"
                 android:maxLines="1"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:textColor="@android:color/white"
+                android:textColorHint="@color/colorMaterialGrey600"
+                android:theme="@style/ToolbarTheme" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -233,6 +257,7 @@
             android:id="@+id/til9"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textColorHint="@color/colorMaterialGrey600"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintLeft_toRightOf="@+id/til8"
             app:layout_constraintRight_toRightOf="parent"
@@ -242,14 +267,16 @@
                 android:id="@+id/est_monthly_expenses"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorSkyBlueLink"
                 android:hint="@string/prompt_est_monthly_expenses"
                 android:imeActionId="6"
                 android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="flagNavigateNext"
                 android:inputType="numberDecimal"
                 android:maxLines="1"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:textColor="@android:color/white"
+                android:textColorHint="@color/colorMaterialGrey600"
+                android:theme="@style/ToolbarTheme" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -258,20 +285,23 @@
             android:id="@+id/til10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColorHint="@color/colorMaterialGrey600"
             app:layout_constraintTop_toBottomOf="@id/til8">
 
             <EditText
                 android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorSkyBlueLink"
                 android:hint="@string/prompt_username"
                 android:imeActionId="6"
                 android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="flagNavigateNext"
                 android:inputType="text"
                 android:maxLines="1"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:textColor="@android:color/white"
+                android:textColorHint="@color/colorMaterialGrey600"
+                android:theme="@style/ToolbarTheme" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -280,6 +310,7 @@
             android:id="@+id/til11"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textColorHint="@color/colorMaterialGrey600"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/til12"
@@ -289,14 +320,16 @@
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorSkyBlueLink"
-                android:hint="@string/prompt_password"
+                android:hint="@string/hint_password_unchanged"
                 android:imeActionId="6"
                 android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="flagNavigateNext"
                 android:inputType="textPassword"
                 android:maxLines="1"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:textColor="@android:color/white"
+                android:textColorHint="@color/colorMaterialGrey600"
+                android:theme="@style/ToolbarTheme" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -305,6 +338,7 @@
             android:id="@+id/til12"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textColorHint="@color/colorMaterialGrey600"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintLeft_toRightOf="@+id/til11"
             app:layout_constraintRight_toRightOf="parent"
@@ -314,14 +348,15 @@
                 android:id="@+id/confirm_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorSkyBlueLink"
-                android:hint="@string/retype_password"
+                android:hint="@string/hint_password_unchanged"
                 android:imeActionId="6"
                 android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="flagNavigateNext"
                 android:inputType="textPassword"
                 android:maxLines="1"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:textColor="@android:color/white"
+                android:theme="@style/ToolbarTheme" />
 
         </android.support.design.widget.TextInputLayout>
 
