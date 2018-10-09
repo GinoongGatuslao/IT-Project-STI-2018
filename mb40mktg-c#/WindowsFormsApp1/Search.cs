@@ -12,6 +12,7 @@ namespace WindowsFormsApp1
         public static string itemName = string.Empty;
         public static string itemDesc = string.Empty;
         public static double itemPrice = 0;
+        public static int itemStockCount = 0;
         public static string prof_fullname = string.Empty;
         public static int prof_id = 0;
         public static string prof_add = string.Empty;
@@ -34,6 +35,7 @@ namespace WindowsFormsApp1
             switch (tag.ToString())
             {
                 case "ITEM":
+                case "ITEM_BATCH":
                     {
                         this.Text = "Item Search";
                         addprice_btn.Visible = false;
@@ -172,12 +174,13 @@ namespace WindowsFormsApp1
                 switch (tag.ToString())
                 {
                     case "ITEM":
+                    case "ITEM_BATCH":
                         datagrid.CurrentRow.Selected = true;
                         itemId = Convert.ToInt32(datagrid.Rows[e.RowIndex].Cells["id"].Value.ToString());
                         itemName = datagrid.Rows[e.RowIndex].Cells["item_name"].Value.ToString();
                         itemDesc = datagrid.Rows[e.RowIndex].Cells["description"].Value.ToString();
                         itemPrice = Convert.ToDouble(datagrid.Rows[e.RowIndex].Cells["price"].Value.ToString());
-
+                        itemStockCount = Convert.ToInt32(datagrid.Rows[e.RowIndex].Cells["stock_count"].Value.ToString());
                         break;
                     case "CLIENT":
                         datagrid.CurrentRow.Selected = true;
@@ -189,7 +192,6 @@ namespace WindowsFormsApp1
                         prof_cred_limit = Convert.ToDouble(datagrid.Rows[e.RowIndex].Cells["credit_limit"].Value.ToString());
                         prof_add = datagrid.Rows[e.RowIndex].Cells["address"].Value.ToString();
                         prof_stat = datagrid.Rows[e.RowIndex].Cells["verified_str"].Value.ToString();
-
                         break;
                     case "PRICE":
                         datagrid.CurrentRow.Selected = true;

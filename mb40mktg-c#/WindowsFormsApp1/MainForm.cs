@@ -16,6 +16,7 @@ namespace WindowsFormsApp1
         private List<Panel> leftPanel = new List<Panel>();
         private int item_index = 0;
         private int search_index = 0;
+        private int batch_index = 0;
         private Loan loan = new Loan();
         private LoanType loanTypes;
         private RestClient restClient = new RestClient();
@@ -24,12 +25,15 @@ namespace WindowsFormsApp1
         private UserType userTypes;
         private List<Loan> loans;
         private List<Profile> profiles;
+        private List<Item> items;
         private static Random random = new Random();
         private bool edit = false;
         private int selected_loanid = 0;
         private int selected_profileid = 0;
         private int selected_userId = 0;
         private int current_userId = 0;
+        private int selected_itemId = 0;
+        private int selected_priceId = 0;
 
         public MainForm()
         {
@@ -49,12 +53,16 @@ namespace WindowsFormsApp1
             rightPanel.Add(addloan_panel); //4
             rightPanel.Add(viewloan_panel); //5
             rightPanel.Add(additem_panel); //6
+            rightPanel.Add(batch_panel); //7
+            rightPanel.Add(view_item_panel); //8
+            rightPanel.Add(trans_panel); //9
             rightPanel[0].BringToFront();
 
             leftPanel.Add(profile_sidepanel); //0
             leftPanel.Add(loan_sidepanel); //1
             leftPanel.Add(confirmclient_sidepanel); //2
             leftPanel.Add(inventory_sidepanel); //3
+            leftPanel.Add(trans_sidepanel); //4
             leftPanel[0].BringToFront();
 
             try
@@ -129,11 +137,29 @@ namespace WindowsFormsApp1
 
         private void inventorymgt_btn_Click(object sender, EventArgs e)
         {
-            this.Text = "Transaction Management";
+            this.Text = "Inventory Management";
             this.Refresh();
             main_panel.Visible = true;
             dashboard_panel.Visible = false;
             addItemToolStripMenuItem_Click(sender, e);
+        }
+
+        private void transaction_btn_Click(object sender, EventArgs e)
+        {
+            this.Text = "Transaction";
+            this.Refresh();
+            main_panel.Visible = true;
+            dashboard_panel.Visible = false;
+            collectionToolStripMenuItem_Click(sender, e);
+        }
+
+        private void reports_btn_Click(object sender, EventArgs e)
+        {
+            this.Text = "Reports";
+            this.Refresh();
+            main_panel.Visible = true;
+            dashboard_panel.Visible = false;
+            reports_panel.BringToFront();
         }
 
         /**
@@ -157,7 +183,6 @@ namespace WindowsFormsApp1
             dashboard_panel.Visible = false;
             main_panel.Visible = true;
             myprof_stat.Text = string.Empty;
-            myprof_stat.ForeColor = Color.Black;
 
             Cursor.Current = Cursors.WaitCursor;
             restClient.endPoint = Settings.baseUrl
@@ -200,6 +225,9 @@ namespace WindowsFormsApp1
             leftPanel[1].BringToFront();
             loansfilter_gb.Enabled = false;
             search_gb.Enabled = false;
+            edit = false;
+            add_item_btn.Visible = true;
+            ClearTextBoxesInAddLoan(addloan_panel.Controls);
         }
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -225,7 +253,6 @@ namespace WindowsFormsApp1
             stat_cb.Items.Add("Unconfirmed");
             stat_cb.Items.Add("Confirmed");
             account_stat.Text = string.Empty;
-            account_stat.ForeColor = Color.Black;
         }
 
         private void createClientAccountToolStripMenuItem_Click(object sender, EventArgs e)
@@ -241,6 +268,7 @@ namespace WindowsFormsApp1
             filter_acc_gb.Enabled = false;
             filter_cacc_gb.Enabled = false;
             male_rb.Checked = true;
+            clearTextBoxes(confirmclient_panel.Controls);
 
             stat_cb.Items.Clear();
             stat_cb.Items.Add("Unconfirmed");
@@ -248,7 +276,6 @@ namespace WindowsFormsApp1
             stat_cb.SelectedIndex = 0;
 
             account_stat.Text = string.Empty;
-            account_stat.ForeColor = Color.Black;
         }
 
         private void viewLoanToolStripMenuItem_Click(object sender, EventArgs e)
@@ -366,22 +393,109 @@ namespace WindowsFormsApp1
 
         private void viewItemsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            rightPanel[6].BringToFront();
+            rightPanel[8].BringToFront();
             leftPanel[3].BringToFront();
+            Cursor.Current = Cursors.WaitCursor;
+            try
+            {
+                restClient.endPoint = Settings.baseUrl
+                    + "/api/product/getitems";
+                string response = string.Empty;
+                response = restClient.GetRequest();
+                Console.WriteLine(response);
+
+                items = JsonConvert.DeserializeObject<List<Item>>(response);
+                item_data.DataSource = null;
+
+                if (items.Count != 0)
+                {
+                    no_item_lbl.Visible = false;
+                    item_data.DataSource = items;
+                    item_data.Visible = true;
+                    format_ItemDataTable();
+                } else
+                {
+                    no_item_lbl.Visible = true;
+                    item_data.Visible = false;
+                }
+               
+            } catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            Cursor.Current = Cursors.Default;
         }
 
         private void addItemToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            clearTextBoxes(additem_panel.Controls);
+            price_tb.Text = "0";
+            reorder_tb.Text = "0";
             rightPanel[6].BringToFront();
             leftPanel[3].BringToFront();
             item_stat.Text = string.Empty;
-            item_stat.ForeColor = Color.Black;
+            if (edit)
+            {
+                stock_lbl.Visible = true;
+                repo_lbl.Visible = true;
+                dam_lbl.Visible = true;
+                stock_tb.Visible = true;
+                repo_tb.Visible = true;
+                dam_tb.Visible = true;
+            } else
+            {
+                stock_lbl.Visible = false;
+                repo_lbl.Visible = false;
+                dam_lbl.Visible = false;
+                stock_tb.Visible = false;
+                repo_tb.Visible = false;
+                dam_tb.Visible = false;
+            }
         }
 
         private void addItemByBatchToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            rightPanel[6].BringToFront();
+            rightPanel[7].BringToFront();
             leftPanel[3].BringToFront();
+            item_status.Text = string.Empty;
+        }
+
+        private void collectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rightPanel[9].BringToFront();
+            leftPanel[4].BringToFront();
+
+            try
+            {
+                restClient.endPoint = Settings.baseUrl
+                    + "/api/transaction";
+                string response = string.Empty;
+                response = restClient.GetRequest();
+                Console.WriteLine(response);
+
+                var transactions = JsonConvert.DeserializeObject<List<Transaction>>(response);
+                trans_data.DataSource = null;
+
+                if (transactions.Count != 0)
+                {
+                    trans_data.DataSource = transactions;
+                    format_transDataTable();
+                    no_trans.Visible = false;
+                    trans_data.Visible = true;
+                } else
+                {
+                    no_trans.Visible = true;
+                    trans_data.Visible = false;
+                }
+            } catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+        }
+
+        private void reportsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            reports_panel.BringToFront();
         }
 
         /**
@@ -415,7 +529,6 @@ namespace WindowsFormsApp1
             string response = string.Empty;
             if (!edit)
             {
-                Console.WriteLine("HELLO WORLD!");
                 loan.loan_items = new List<LoanItem>();
 
                 int index = 0;
@@ -471,7 +584,7 @@ namespace WindowsFormsApp1
             Console.WriteLine("response : " + response);
             Cursor.Current = Cursors.Default;
 
-            ClearTextBoxesInAddLoan(this.Controls);
+            ClearTextBoxesInAddLoan(addloan_panel.Controls);
         }
         
         private void add_item_btn_Click(object sender, EventArgs e)
@@ -533,12 +646,14 @@ namespace WindowsFormsApp1
             item_id_tb.Size = new Size(247, 20);
             item_id_tb.Location = new Point(81, 16);
             item_id_tb.Name = "item_id_tb";
+            item_id_tb.Enabled = false;
             gb.Controls.Add(item_id_tb);
 
             TextBox item_name_tb = new TextBox();
             item_name_tb.Size = new Size(247, 20);
             item_name_tb.Location = new Point(81, 42);
             item_name_tb.Name = "item_name_tb";
+            item_name_tb.Enabled = false;
             gb.Controls.Add(item_name_tb);
 
             TextBox item_desc_tb = new TextBox();
@@ -546,6 +661,7 @@ namespace WindowsFormsApp1
             item_desc_tb.Location = new Point(81, 67);
             item_desc_tb.Multiline = true;
             item_desc_tb.Name = "item_desc_tb";
+            item_desc_tb.Enabled = false;
             gb.Controls.Add(item_desc_tb);
 
             ComboBox item_stat_cb = new ComboBox();
@@ -593,7 +709,7 @@ namespace WindowsFormsApp1
         {
             edit = false;
             add_item_btn.Visible = true;
-            ClearTextBoxesInAddLoan(this.Controls);
+            ClearTextBoxesInAddLoan(addloan_panel.Controls);
         }
         
         private void search_item0_Click(object sender, EventArgs e)
@@ -730,57 +846,71 @@ namespace WindowsFormsApp1
         {
             try
             {
-                Cursor.Current = Cursors.WaitCursor;
-                restClient.endPoint = Settings.baseUrl
-                    + "/api/register";
-                restClient.login = true;
+                if (checkEmptyTextBoxes(create_staff_panel.Controls))
+                {
+                    if (scn_tb.Text.All(Char.IsDigit) && scn_tb.Text.Length == 10)
+                    {
+                        Cursor.Current = Cursors.WaitCursor;
+                        restClient.endPoint = Settings.baseUrl
+                            + "/api/register";
+                        restClient.login = true;
 
-                Register register = new Register();
-                register.username = username_tb.Text.ToString();
-                register.user_type = stype_tb.SelectedIndex == 0 ? "1" : "2";
-                register.password = genpass_tb.Text.ToString();
-                register.password_confirmation = genpass_tb.Text.ToString();
+                        Register register = new Register();
+                        register.username = username_tb.Text.ToString();
+                        register.user_type = stype_tb.SelectedIndex == 0 ? "1" : "2";
+                        register.password = genpass_tb.Text.ToString();
+                        register.password_confirmation = genpass_tb.Text.ToString();
 
-                string jsonStr = JsonConvert.SerializeObject(register);
-                Console.WriteLine(jsonStr);
-                restClient.postJSON = jsonStr;
+                        string jsonStr = JsonConvert.SerializeObject(register);
+                        Console.WriteLine(jsonStr);
+                        restClient.postJSON = jsonStr;
 
-                string response = string.Empty;
-                response = restClient.PostRequest();
-                Console.WriteLine(response);
+                        string response = string.Empty;
+                        response = restClient.PostRequest();
+                        Console.WriteLine(response);
 
-                restClient.endPoint = Settings.baseUrl
-                    + "/api/profile/createprofile";
-                restClient.login = false;
+                        restClient.endPoint = Settings.baseUrl
+                            + "/api/profile/createprofile";
+                        restClient.login = false;
 
-                string[] res = response.Split('|');
-                var jo = JObject.Parse(res[1]);
-                var id = jo["id"].ToString();
+                        string[] res = response.Split('|');
+                        var jo = JObject.Parse(res[1]);
+                        var id = jo["id"].ToString();
 
-                Profile profile = new Profile();
-                profile.user_id = Convert.ToInt32(id.ToString());
-                profile.first_name = sfname_tb.Text.ToString();
-                profile.middle_name = smname_tb.Text.ToString();
-                profile.last_name = lname_tb.Text.ToString();
-                profile.gender = smale_rb.Checked ? "male" : "female";
-                profile.address = saddress_tb.Text.ToString();
-                profile.contact_num = scn_tb.Text.ToString();
-                profile.bday = sbday_tb.Value.ToString("MM/dd/yyyy");
-                profile.verified = 1; //since staff/collector siya
-                //todo profile.path_id_pic = ;
+                        Profile profile = new Profile();
+                        profile.user_id = Convert.ToInt32(id.ToString());
+                        profile.first_name = sfname_tb.Text.ToString();
+                        profile.middle_name = smname_tb.Text.ToString();
+                        profile.last_name = lname_tb.Text.ToString();
+                        profile.gender = smale_rb.Checked ? "male" : "female";
+                        profile.address = saddress_tb.Text.ToString();
+                        profile.contact_num = scn_tb.Text.ToString();
+                        profile.bday = sbday_tb.Value.ToString("MM/dd/yyyy");
+                        profile.verified = 1; //since staff/collector siya
+                                              //todo profile.path_id_pic = ;
 
-                jsonStr = JsonConvert.SerializeObject(profile);
-                Console.WriteLine(jsonStr);
-                restClient.postJSON = jsonStr;
+                        jsonStr = JsonConvert.SerializeObject(profile);
+                        Console.WriteLine(jsonStr);
+                        restClient.postJSON = jsonStr;
 
-                response = restClient.PostRequest();
-                Console.WriteLine(response);
+                        response = restClient.PostRequest();
+                        Console.WriteLine(response);
 
-                clearTextBoxes(this.Controls);
-                genpass_tb.Text = generatePassword();
-                Cursor.Current = Cursors.Default;
-                cstaff_stat_lbl.Text = "Account created successfully.";
-                cstaff_stat_lbl.ForeColor = Color.Green;
+                        clearTextBoxes(create_staff_panel.Controls);
+                        genpass_tb.Text = generatePassword();
+                        Cursor.Current = Cursors.Default;
+                        cstaff_stat_lbl.Text = "Account created successfully.";
+                        cstaff_stat_lbl.ForeColor = Color.Green;
+                    } else
+                    {
+                        cstaff_stat_lbl.Text = "Invalid contact number.";
+                        cstaff_stat_lbl.ForeColor = Color.Red;
+                    }
+                } else
+                {
+                    cstaff_stat_lbl.Text = "Fields cannot be empty.";
+                    cstaff_stat_lbl.ForeColor = Color.Red;
+                }
             }
             catch
             {
@@ -794,7 +924,7 @@ namespace WindowsFormsApp1
 
         private void scancel_btn_Click(object sender, EventArgs e)
         {
-            clearTextBoxes(this.Controls);
+            clearTextBoxes(create_staff_panel.Controls);
             genpass_tb.Text = generatePassword();
         }
 
@@ -814,93 +944,111 @@ namespace WindowsFormsApp1
         {
             try
             {
-                Cursor.Current = Cursors.WaitCursor;
-                string response = string.Empty;
-                string jsonStr = string.Empty;
-                Profile profile = new Profile();
-
-                if (!edit)
+                if (checkEmptyTextBoxes(confirmclient_panel.Controls))
                 {
-                    restClient.endPoint = Settings.baseUrl
-                    + "/api/register";
-                    restClient.login = true;
+                    if (cn_tb.Text.All(Char.IsDigit) && cn_tb.Text.Length == 10)
+                    {
+                        Cursor.Current = Cursors.WaitCursor;
+                        string response = string.Empty;
+                        string jsonStr = string.Empty;
+                        Profile profile = new Profile();
 
-                    Register register = new Register();
-                    register.username = generatePassword(); //dummy
-                    register.user_type = "3"; //client
-                    register.password = "test123"; //not needed since client don't need login credentials
-                                                   //but fields cannot be empty so we put dummy password
-                    register.password_confirmation = "test123";
+                        if (!edit)
+                        {
+                            restClient.endPoint = Settings.baseUrl
+                            + "/api/register";
+                            restClient.login = true;
 
-                    jsonStr = JsonConvert.SerializeObject(register);
-                    restClient.postJSON = jsonStr;
-                    response = restClient.PostRequest();
-                    Console.WriteLine(response);
+                            Register register = new Register();
+                            register.username = generatePassword(); //dummy
+                            register.user_type = "3"; //client
+                            register.password = "test123"; //not needed since client don't need login credentials
+                                                           //but fields cannot be empty so we put dummy password
+                            register.password_confirmation = "test123";
 
-                    restClient.endPoint = Settings.baseUrl
-                    + "/api/profile/createprofile";
-                    restClient.login = false;
+                            jsonStr = JsonConvert.SerializeObject(register);
+                            restClient.postJSON = jsonStr;
+                            response = restClient.PostRequest();
+                            Console.WriteLine(response);
 
-                    string[] res = response.Split('|');
-                    var jo = JObject.Parse(res[1]);
-                    var id = jo["id"].ToString();
+                            restClient.endPoint = Settings.baseUrl
+                            + "/api/profile/createprofile";
+                            restClient.login = false;
 
-                    profile.user_id = Convert.ToInt32(id.ToString());
-                    profile.first_name = fn_tb.Text.ToString();
-                    profile.middle_name = mn_tb.Text.ToString();
-                    profile.last_name = ln_tb.Text.ToString();
-                    profile.gender = male_rb.Checked ? "male" : "female";
-                    profile.address = addr_tb.Text.ToString();
-                    profile.contact_num = cn_tb.Text.ToString();
-                    profile.bday = bday_picker.Value.ToString("MM/dd/yyyy");
-                    profile.occupation = occu_tb.Text.ToString();
-                    profile.mo_income = Convert.ToDouble(inc_tb.Text.ToString());
-                    profile.mo_expense = Convert.ToDouble(exp_tb.Text.ToString());
-                    profile.credit_limit = Convert.ToDouble(credit_limit_tb.Text.ToString());
-                    profile.verified = stat_cb.SelectedIndex;
-                    //todo profile.path_id_pic = ;
-                    //todo profile.path_house_sketch_pic = ;
+                            string[] res = response.Split('|');
+                            var jo = JObject.Parse(res[1]);
+                            var id = jo["id"].ToString();
 
-                    jsonStr = JsonConvert.SerializeObject(profile);
-                    Console.WriteLine(jsonStr);
-                    restClient.postJSON = jsonStr;
+                            profile.user_id = Convert.ToInt32(id.ToString());
+                            profile.first_name = fn_tb.Text.ToString();
+                            profile.middle_name = mn_tb.Text.ToString();
+                            profile.last_name = ln_tb.Text.ToString();
+                            profile.gender = male_rb.Checked ? "male" : "female";
+                            profile.address = addr_tb.Text.ToString();
+                            profile.contact_num = cn_tb.Text.ToString();
+                            profile.bday = bday_picker.Value.ToString("MM/dd/yyyy");
+                            profile.occupation = occu_tb.Text.ToString();
+                            profile.mo_income = Convert.ToDouble(inc_tb.Text.ToString());
+                            profile.mo_expense = Convert.ToDouble(exp_tb.Text.ToString());
+                            profile.credit_limit = Convert.ToDouble(credit_limit_tb.Text.ToString());
+                            profile.verified = stat_cb.SelectedIndex;
+                            //todo profile.path_id_pic = ;
+                            //todo profile.path_house_sketch_pic = ;
 
-                    response = restClient.PostRequest();
-                    Console.WriteLine(response);
-                    account_stat.Text = "Account created successfully.";
-                } else //edit
-                {
-                    profile.user_id = selected_userId;
-                    profile.first_name = fn_tb.Text.ToString();
-                    profile.middle_name = mn_tb.Text.ToString();
-                    profile.last_name = ln_tb.Text.ToString();
-                    profile.gender = male_rb.Checked ? "male" : "female";
-                    profile.address = addr_tb.Text.ToString();
-                    profile.contact_num = cn_tb.Text.ToString();
-                    profile.bday = bday_picker.Value.ToString("MM/dd/yyyy");
-                    profile.occupation = occu_tb.Text.ToString();
-                    profile.mo_income = Convert.ToDouble(inc_tb.Text.ToString());
-                    profile.mo_expense = Convert.ToDouble(exp_tb.Text.ToString());
-                    profile.credit_limit = Convert.ToDouble(credit_limit_tb.Text.ToString());
-                    profile.verified = 1; //verified
-                    //todo profile.path_id_pic = ;
-                    //todo profile.path_house_sketch_pic = ;
+                            jsonStr = JsonConvert.SerializeObject(profile);
+                            Console.WriteLine(jsonStr);
+                            restClient.postJSON = jsonStr;
 
-                    restClient.endPoint = Settings.baseUrl
-                        + "/api/profile/updateprofile/"
-                        + selected_profileid;
-                    restClient.login = false;
-                    jsonStr = JsonConvert.SerializeObject(profile);
-                    restClient.postJSON = jsonStr;
+                            response = restClient.PostRequest();
+                            Console.WriteLine(response);
+                            account_stat.Text = "Account created successfully.";
+                        }
+                        else //edit
+                        {
+                            profile.user_id = selected_userId;
+                            profile.first_name = fn_tb.Text.ToString();
+                            profile.middle_name = mn_tb.Text.ToString();
+                            profile.last_name = ln_tb.Text.ToString();
+                            profile.gender = male_rb.Checked ? "male" : "female";
+                            profile.address = addr_tb.Text.ToString();
+                            profile.contact_num = cn_tb.Text.ToString();
+                            profile.bday = bday_picker.Value.ToString("MM/dd/yyyy");
+                            profile.occupation = occu_tb.Text.ToString();
+                            profile.mo_income = Convert.ToDouble(inc_tb.Text.ToString());
+                            profile.mo_expense = Convert.ToDouble(exp_tb.Text.ToString());
+                            profile.credit_limit = Convert.ToDouble(credit_limit_tb.Text.ToString());
+                            profile.verified = 1; //verified
+                                                  //todo profile.path_id_pic = ;
+                                                  //todo profile.path_house_sketch_pic = ;
 
-                    response = restClient.PutRequest();
-                    Console.WriteLine(response);
-                    account_stat.Text = "Account created successfully.";
+                            restClient.endPoint = Settings.baseUrl
+                                + "/api/profile/updateprofile/"
+                                + selected_profileid;
+                            restClient.login = false;
+                            edit = false;
+                            jsonStr = JsonConvert.SerializeObject(profile);
+                            restClient.postJSON = jsonStr;
+
+                            response = restClient.PutRequest();
+                            Console.WriteLine(response);
+                            account_stat.Text = "Account created successfully.";
+                        }
+                        clearTextBoxes(confirmclient_panel.Controls);
+                        genpass_tb.Text = generatePassword();
+                        Cursor.Current = Cursors.Default;
+                        account_stat.ForeColor = Color.Green;
+                    }
+                    else
+                    {
+                        account_stat.Text = "Invalid contact number.";
+                        account_stat.ForeColor = Color.Red;
+                    }
                 }
-                clearTextBoxes(this.Controls);
-                genpass_tb.Text = generatePassword();
-                Cursor.Current = Cursors.Default;
-                account_stat.ForeColor = Color.Green;
+                else
+                {
+                    account_stat.Text = "Fields cannot be empty.";
+                    account_stat.ForeColor = Color.Red;
+                }
             }
             catch
             {
@@ -915,32 +1063,48 @@ namespace WindowsFormsApp1
         {
             try
             {
-                Cursor.Current = Cursors.WaitCursor;
-                restClient.endPoint = Settings.baseUrl
-                    + "/api/profile/updateprofile/" + Login.id;
+                if (checkEmptyTextBoxes(profile_panel.Controls))
+                {
+                    if (prof_cn_tb.Text.All(Char.IsDigit) && prof_cn_tb.Text.Length == 10)
+                    {
+                        Cursor.Current = Cursors.WaitCursor;
+                        restClient.endPoint = Settings.baseUrl
+                            + "/api/profile/updateprofile/" + Login.id;
 
-                Profile prof = new Profile();
-                prof.user_id = current_userId;
-                prof.first_name = prof_fn_tb.Text;
-                prof.middle_name = prof_mn_tb.Text;
-                prof.last_name = prof_ln_tb.Text;
-                prof.address = prof_address_tb.Text;
-                prof.contact_num = prof_cn_tb.Text; 
-                prof.gender = prof_male_rb.Checked ? "Male" : "Female";
-                prof.bday = prof_bdate_picker.Value.ToString("MM/dd/yyyy");
-                prof.verified = 1; //verified
-                //prof id pic
+                        Profile prof = new Profile();
+                        prof.user_id = current_userId;
+                        prof.first_name = prof_fn_tb.Text;
+                        prof.middle_name = prof_mn_tb.Text;
+                        prof.last_name = prof_ln_tb.Text;
+                        prof.address = prof_address_tb.Text;
+                        prof.contact_num = prof_cn_tb.Text;
+                        prof.gender = prof_male_rb.Checked ? "Male" : "Female";
+                        prof.bday = prof_bdate_picker.Value.ToString("MM/dd/yyyy");
+                        prof.verified = 1; //verified
+                                           //prof id pic
 
-                var jsonStr = JsonConvert.SerializeObject(prof);
-                restClient.postJSON = jsonStr;
-                
-                string response = string.Empty;
-                restClient.login = false;
-                response = restClient.PutRequest();
-                Console.WriteLine(response);
-                Cursor.Current = Cursors.Default;
-                myprof_stat.Text = "Successfully updated profile.";
-                myprof_stat.ForeColor = Color.Green;
+                        var jsonStr = JsonConvert.SerializeObject(prof);
+                        restClient.postJSON = jsonStr;
+
+                        string response = string.Empty;
+                        restClient.login = false;
+                        response = restClient.PutRequest();
+                        Console.WriteLine(response);
+                        Cursor.Current = Cursors.Default;
+                        myprof_stat.Text = "Successfully updated profile.";
+                        myprof_stat.ForeColor = Color.Green;
+                    }
+                    else
+                    {
+                        myprof_stat.Text = "Invalid contact number.";
+                        myprof_stat.ForeColor = Color.Red;
+                    }
+                }
+                else
+                {
+                    myprof_stat.Text = "Fields cannot be empty.";
+                    myprof_stat.ForeColor = Color.Red;
+                }
             } catch (Exception ex)
             {
                 Console.WriteLine(ex.Message.ToString());
@@ -981,7 +1145,14 @@ namespace WindowsFormsApp1
             itemname_tb.Text = string.Empty;
             description_tb.Text = string.Empty;
             price_tb.Text = "0";
+            edit = false;
             reorder_tb.Text = string.Empty;
+            stock_lbl.Visible = false;
+            repo_lbl.Visible = false;
+            dam_lbl.Visible = false;
+            stock_tb.Visible = false;
+            repo_tb.Visible = false;
+            dam_tb.Visible = false;
         }
 
         private void isave_btn_Click(object sender, EventArgs e)
@@ -989,30 +1160,88 @@ namespace WindowsFormsApp1
             Cursor.Current = Cursors.WaitCursor;
             try
             {
-                Item item = new Item();
-                item.item_name = itemname_tb.Text;
-                item.price_id = Search.price_id;
-                item.description = description_tb.Text;
-                item.reorder_point = Convert.ToInt32(reorder_tb.Text);
-
                 string response = string.Empty;
                 string jsonStr = string.Empty;
-                restClient.endPoint = Settings.baseUrl
-                    + "/api/product/item";
-                restClient.login = false;
+                
+                if (!edit)
+                {
+                    if (!itemname_tb.Text.Equals(string.Empty) && !description_tb.Text.Equals(string.Empty)
+                        && !price_tb.Text.Equals("0") && !reorder_tb.Text.Equals("0"))
+                    {
+                        if (reorder_tb.Text.All(Char.IsDigit))
+                        {
+                            Item item = new Item();
+                            item.item_name = itemname_tb.Text;
+                            item.price_id = Search.price_id;
+                            item.description = description_tb.Text;
+                            item.reorder_point = Convert.ToInt32(reorder_tb.Text);
 
-                jsonStr = JsonConvert.SerializeObject(item);
-                restClient.postJSON = jsonStr;
-                response = restClient.PostRequest();
-                Console.WriteLine(jsonStr);
-                Console.WriteLine(response);
+                            restClient.endPoint = Settings.baseUrl
+                                + "/api/product/item";
+                            restClient.login = false;
 
-                item_stat.Text = "Item added successfully.";
-                item_stat.ForeColor = Color.Green;
-                itemname_tb.Text = string.Empty;
-                price_tb.Text = string.Empty;
-                description_tb.Text = string.Empty;
-                reorder_tb.Text = string.Empty;
+                            jsonStr = JsonConvert.SerializeObject(item);
+                            restClient.postJSON = jsonStr;
+                            response = restClient.PostRequest();
+                            Console.WriteLine(response);
+
+                            item_stat.Text = "Item added successfully.";
+                            item_stat.ForeColor = Color.Green;
+                            itemname_tb.Text = string.Empty;
+                            price_tb.Text = string.Empty;
+                            description_tb.Text = string.Empty;
+                            reorder_tb.Text = string.Empty;
+                        } else
+                        {
+                            item_stat.Text = "Invalid number.";
+                            item_stat.ForeColor = Color.Red;
+                        }
+                    } else
+                    {
+                        item_stat.Text = "Fields cannot be empty.";
+                        item_stat.ForeColor = Color.Red;
+                    }
+                    
+                } else
+                {
+                    if (checkEmptyTextBoxes(additem_panel.Controls))
+                    {
+                        if (stock_tb.Text.All(Char.IsDigit) && reorder_tb.Text.All(Char.IsDigit)
+                            && repo_tb.Text.All(Char.IsDigit) && dam_tb.Text.All(Char.IsDigit))
+                        {
+                            Item item = new Item();
+                            item.item_name = itemname_tb.Text;
+                            item.price_id = selected_priceId;
+                            item.stock_count = Convert.ToInt32(stock_tb.Text.ToString());
+                            item.reorder_point = Convert.ToInt32(reorder_tb.Text.ToString());
+                            item.repossessed = Convert.ToInt32(repo_tb.Text.ToString());
+                            item.damaged = Convert.ToInt32(dam_tb.Text.ToString());
+                            item.description = description_tb.Text;
+
+                            restClient.endPoint = Settings.baseUrl
+                                + "/api/product/updateitem/"
+                                + selected_itemId;
+                            restClient.login = false;
+
+                            jsonStr = JsonConvert.SerializeObject(item);
+                            restClient.postJSON = jsonStr;
+                            response = restClient.PutRequest();
+                            Console.WriteLine(response);
+
+                            item_stat.Text = "Item updated successfully.";
+                            item_stat.ForeColor = Color.Green;
+                            icancel_btn_Click(sender, e);
+                        } else
+                        {
+                            item_stat.Text = "Invalid number.";
+                            item_stat.ForeColor = Color.Red;
+                        }
+                    } else
+                    {
+                        item_stat.Text = "Fields cannot be empty.";
+                        item_stat.ForeColor = Color.Red;
+                    }
+                }
             } catch (Exception ex)
             {
                 Console.WriteLine(ex.Message.ToString());
@@ -1031,6 +1260,152 @@ namespace WindowsFormsApp1
         {
             profileToolStripMenuItem_Click(sender, e);
         }
+
+        private void iadditem_tb_Click(object sender, EventArgs e)
+        {
+            GroupBox gb = new GroupBox();
+            gb.Size = new Size(551, 40);
+            gb.Name = "item_gb" + Convert.ToString(++batch_index);
+            gb.Text = "Item " + (batch_index + 1);
+
+            Label iname_lbl = new Label();
+            iname_lbl.Text = "Item Name:";
+            iname_lbl.Location = new Point(25, 16);
+            iname_lbl.Size = new Size(61, 13);
+            gb.Controls.Add(iname_lbl);
+
+            Label quantity_lbl = new Label();
+            quantity_lbl.Text = "Quantity:";
+            quantity_lbl.Location = new Point(368, 16);
+            quantity_lbl.Size = new Size(49, 13);
+            gb.Controls.Add(quantity_lbl);
+
+            TextBox iname_tb = new TextBox();
+            iname_tb.Location = new Point(87, 13);
+            iname_tb.Size = new Size(206, 20);
+            iname_tb.Name = "iname_tb";
+            iname_tb.Enabled = false;
+            gb.Controls.Add(iname_tb);
+
+            TextBox quantity_tb = new TextBox();
+            quantity_tb.Location = new Point(419, 13);
+            quantity_tb.Size = new Size(100, 20);
+            quantity_tb.Name = "iqty_tb";
+            quantity_tb.Text = "0";
+            quantity_tb.TextAlign = HorizontalAlignment.Right;
+            gb.Controls.Add(quantity_tb);
+
+            TextBox item_id = new TextBox();
+            item_id.Location = new Point(328, 12);
+            item_id.Size = new Size(30, 20);
+            item_id.Name = "iid_tb";
+            item_id.Visible = false;
+            gb.Controls.Add(item_id);
+
+            Button search_btn = new Button();
+            search_btn.Size = new Size(25, 25);
+            search_btn.Location = new Point(297, 10);
+            search_btn.Name = "search_btn" + batch_index;
+            search_btn.Click += new EventHandler(search_btn_Click);
+            gb.Controls.Add(search_btn);
+
+            items_fp.Controls.Add(gb);
+        }
+
+        private void search_btn_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            search_index = Convert.ToInt32(btn.Name.ToString().Substring((btn.Name.IndexOf('n') + 1),
+                (btn.Name.Length - btn.Name.IndexOf('n') - 1)));
+            Cursor.Current = Cursors.WaitCursor;
+            Search search = new Search();
+            search.tag = "ITEM_BATCH";
+            search.Show();
+            tag = "ITEM_BATCH";
+            Cursor.Current = Cursors.Default;
+
+            search.FormClosed += new FormClosedEventHandler(Search_FormClosed);
+        }
+
+        private void bcancel_btn_Click(object sender, EventArgs e)
+        {
+            bname_tb.Text = string.Empty;
+            bnum_tb.Text = string.Empty;
+            clearFlowPanelInBatch();
+        }
+
+        private void bsave_tb_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                restClient.endPoint = Settings.baseUrl
+                    + "/api/product/batch";
+                restClient.login = false;
+
+                ItemBatch ibatch = new ItemBatch();
+                ibatch.batch_name = bname_tb.Text;
+                ibatch.batch_number = bnum_tb.Text;
+                ibatch.date_rcv = Convert.ToDateTime(batch_picker.Value).ToString("MM/dd/yyyy");
+                ibatch.items_rcv = new List<ItemBatchList>();
+
+                int index = 0;
+                foreach (Control c in items_fp.Controls)
+                {
+                    if (items_fp.Controls.ContainsKey("item_gb" + Convert.ToString(index)))
+                    {
+                        GroupBox gb = (GroupBox)items_fp.Controls[index];
+                        TextBox qty_tb = (TextBox)gb.Controls["iqty_tb"];
+                        TextBox id_tb = (TextBox)gb.Controls["iid_tb"];
+
+                        ItemBatchList item = new ItemBatchList();
+                        item.item_id = Convert.ToInt32(id_tb.Text.ToString());
+                        item.quantity = Convert.ToInt32(qty_tb.Text.ToString());
+                        ibatch.items_rcv.Add(item);
+                    }
+                    index++;
+                }
+
+                string response = string.Empty;
+                string jsonStr = string.Empty;
+                jsonStr = JsonConvert.SerializeObject(ibatch);
+                restClient.postJSON = jsonStr;
+                response = restClient.PostRequest();
+                Console.WriteLine(response);
+
+                Cursor.Current = Cursors.Default;
+                item_status.Text = "Save successful.";
+                item_status.ForeColor = Color.Green;
+            } catch (Exception ex)
+            {
+                item_status.Text = "Error saving changes.";
+                item_status.ForeColor = Color.Red;
+                Console.WriteLine(ex.Message.ToString());
+            }
+        }
+
+        private void ccancel_btn_Click(object sender, EventArgs e)
+        {
+            prof_upload_btn.Visible = true;
+            up_sketch_btn.Visible = true;
+            find_btn.Visible = false;
+            clearTextBoxes(confirmclient_panel.Controls);
+        }
+
+        private void scname_btn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sclient_btn_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void repossessed_btn_Click(object sender, EventArgs e)
+        {
+
+        }   
 
         /**
          * DOUBLE CLICK EVENTS
@@ -1075,7 +1450,6 @@ namespace WindowsFormsApp1
         {
             edit = true;
             account_stat_lbl.Text = string.Empty;
-            account_stat_lbl.ForeColor = Color.Black;
             add_item_btn.Visible = false;
             try
             {
@@ -1092,7 +1466,7 @@ namespace WindowsFormsApp1
                     contactnum_tb.Text = loan_data.Rows[e.RowIndex].Cells["contact_num"].Value.ToString();
                     cred_lmt_tb.Text = Convert.ToDouble(loan_data.Rows[e.RowIndex].Cells["credit_limit"].Value).ToString("N1");
                     total_amount_tb.Text = Convert.ToDouble(loan_data.Rows[e.RowIndex].Cells["loan_value"].Value).ToString("N1");
-                    balance_tb.Text = Convert.ToDouble(loan_data.Rows[e.RowIndex].Cells["running_balance"].Value).ToString("N1");
+                    balance_tb.Text = Convert.ToDouble(loan_data.Rows[e.RowIndex].Cells["remaining_balance"].Value).ToString("N1");
                     length_tb.Text = (Convert.ToInt32(loan_data.Rows[e.RowIndex].Cells["term_length"].Value.ToString()) / 30).ToString();
                     amortization_tb.Text = Convert.ToDouble(loan_data.Rows[e.RowIndex].Cells["amortization_m"].Value).ToString("N1");
                     ldate_picker.Text = Convert.ToDateTime(loan_data.Rows[e.RowIndex].Cells["created_at"].Value).ToShortDateString();
@@ -1138,6 +1512,31 @@ namespace WindowsFormsApp1
                             index++;
                         }
                     }
+                }
+            } catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+        }
+
+        private void item_data_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            edit = true;
+            try
+            {
+                if (item_data.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+                {
+                    addItemToolStripMenuItem_Click(sender, e);
+
+                    selected_itemId = Convert.ToInt32(item_data.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    selected_priceId = Convert.ToInt32(item_data.Rows[e.RowIndex].Cells["price_id"].Value.ToString());
+                    itemname_tb.Text = item_data.Rows[e.RowIndex].Cells["item_name"].Value.ToString();
+                    description_tb.Text = item_data.Rows[e.RowIndex].Cells["description"].Value.ToString();
+                    price_tb.Text = Convert.ToDouble(item_data.Rows[e.RowIndex].Cells["price"].Value).ToString("N1");
+                    reorder_tb.Text = item_data.Rows[e.RowIndex].Cells["reorder_point"].Value.ToString();
+                    stock_tb.Text = item_data.Rows[e.RowIndex].Cells["stock_count"].Value.ToString();
+                    repo_tb.Text = item_data.Rows[e.RowIndex].Cells["repossessed"].Value.ToString();
+                    dam_tb.Text = item_data.Rows[e.RowIndex].Cells["damaged"].Value.ToString();
                 }
             } catch (Exception ex)
             {
@@ -1488,7 +1887,111 @@ namespace WindowsFormsApp1
                 }
             }
         }
-        
+
+        private void repo_rb_CheckedChanged(object sender, EventArgs e)
+        {
+            item_data.DataSource = null;
+            if (items.Count != 0)
+            {
+                List<Item> new_profs = new List<Item>();
+                foreach (Item i in items)
+                {
+                    if (i.repossessed != 0)
+                    {
+                        new_profs.Add(i);
+                    }
+                }
+
+                if (new_profs.Count != 0)
+                {
+                    item_data.DataSource = new_profs;
+                    item_data.Visible = true;
+                    no_item_lbl.Visible = false;
+                    format_ItemDataTable();
+                }
+                else
+                {
+                    item_data.Visible = false;
+                    no_item_lbl.Visible = true;
+                }
+            }
+        }
+
+        private void dam_rb_CheckedChanged(object sender, EventArgs e)
+        {
+            item_data.DataSource = null;
+            if (items.Count != 0)
+            {
+                List<Item> new_profs = new List<Item>();
+                foreach (Item i in items)
+                {
+                    if (i.damaged != 0)
+                    {
+                        new_profs.Add(i);
+                    }
+                }
+
+                if (new_profs.Count != 0)
+                {
+                    item_data.DataSource = new_profs;
+                    item_data.Visible = true;
+                    no_item_lbl.Visible = false;
+                    format_ItemDataTable();
+                }
+                else
+                {
+                    item_data.Visible = false;
+                    no_item_lbl.Visible = true;
+                }
+            }
+        }
+
+        private void instock_rb_CheckedChanged(object sender, EventArgs e)
+        {
+            item_data.DataSource = null;
+            if (items.Count != 0)
+            {
+                List<Item> new_profs = new List<Item>();
+                foreach (Item i in items)
+                {
+                    if (i.stock_count != 0)
+                    {
+                        new_profs.Add(i);
+                    }
+                }
+
+                if (new_profs.Count != 0)
+                {
+                    item_data.DataSource = new_profs;
+                    item_data.Visible = true;
+                    no_item_lbl.Visible = false;
+                    format_ItemDataTable();
+                }
+                else
+                {
+                    item_data.Visible = false;
+                    no_item_lbl.Visible = true;
+                }
+            }
+        }
+
+        private void iall_rb_CheckedChanged(object sender, EventArgs e)
+        {
+            item_data.DataSource = null;
+            if (items.Count != 0)
+            {
+                item_data.DataSource = items;
+                item_data.Visible = true;
+                no_item_lbl.Visible = false;
+                format_ItemDataTable();
+            } else
+            {
+                item_data.Visible = false;
+                no_item_lbl.Visible = true;
+
+            }
+        }
+
         /**
          * LEAVE EVENTS
          **/
@@ -1496,7 +1999,14 @@ namespace WindowsFormsApp1
         {
             if (!inc_tb.Text.ToString().Equals(string.Empty))
             {
-                inc_tb.Text = Convert.ToDouble(inc_tb.Text).ToString("N1");
+                if (inc_tb.Text.All(Char.IsDigit))
+                {
+                    inc_tb.Text = Convert.ToDouble(inc_tb.Text).ToString("N1");
+                } else
+                {
+                    account_stat.Text = "Invalid number.";
+                    account_stat.ForeColor = Color.Red;
+                }
             }
         }
 
@@ -1504,7 +2014,14 @@ namespace WindowsFormsApp1
         {
             if (!exp_tb.Text.ToString().Equals(string.Empty))
             {
-                exp_tb.Text = Convert.ToDouble(exp_tb.Text).ToString("N1");
+                if (exp_tb.Text.All(Char.IsDigit))
+                {
+                    exp_tb.Text = Convert.ToDouble(exp_tb.Text).ToString("N1");
+                } else
+                {
+                    account_stat.Text = "Invalid number.";
+                    account_stat.ForeColor = Color.Red;
+                }
             }
         }
 
@@ -1512,7 +2029,14 @@ namespace WindowsFormsApp1
         {
             if (!credit_limit_tb.Text.ToString().Equals(string.Empty))
             {
-                credit_limit_tb.Text = Convert.ToDouble(credit_limit_tb.Text).ToString("N1");
+                if (inc_tb.Text.All(Char.IsDigit))
+                {
+                    credit_limit_tb.Text = Convert.ToDouble(credit_limit_tb.Text).ToString("N1");
+                } else
+                {
+                    account_stat.Text = "Invalid number.";
+                    account_stat.ForeColor = Color.Red;
+                }
             }
         }
 
@@ -1539,6 +2063,7 @@ namespace WindowsFormsApp1
             loan_data.Columns[14].Visible = false;
             loan_data.Columns[15].Visible = false;
             loan_data.Columns[16].Visible = false;
+            loan_data.Columns[17].Visible = false;
             loan_data.Columns[0].Width = 35;
             loan_data.Columns[2].Width = 85;
             loan_data.Columns[4].Width = 85;
@@ -1578,6 +2103,47 @@ namespace WindowsFormsApp1
             accounts_data.Columns[0].Width = 50;
         }
 
+        private void format_ItemDataTable()
+        {
+            item_data.Columns[0].HeaderText = "ID";
+            item_data.Columns[1].HeaderText = "Item Name";
+            item_data.Columns[3].HeaderText = "Price";
+            item_data.Columns[4].HeaderText = "Stock Count";
+            item_data.Columns[5].HeaderText = "Reorder Point";
+            item_data.Columns[6].HeaderText = "Repossessed";
+            item_data.Columns[7].HeaderText = "Damaged";
+
+            item_data.Columns[2].Visible = false;
+            item_data.Columns[8].Visible = false;
+
+            item_data.Columns[0].Width = 35;
+            item_data.Columns[1].Width = 120;
+            item_data.Columns[3].Width = 65;
+            item_data.Columns[4].Width = 100;
+            item_data.Columns[5].Width = 100;
+            item_data.Columns[6].Width = 75;
+            item_data.Columns[7].Width = 75;
+
+            item_data.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            item_data.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            item_data.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            item_data.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            item_data.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            item_data.Columns[3].DefaultCellStyle.Format = "N1";
+        }
+
+        private void format_transDataTable()
+        {
+            /**trans_data.Columns[0].HeaderText = "ID";
+            trans_data.Columns[].HeaderText = "";
+            trans_data.Columns[].HeaderText = "";
+            trans_data.Columns[].HeaderText = "";
+            trans_data.Columns[].HeaderText = "";
+            trans_data.Columns[].HeaderText = "";
+            trans_data.Columns[].HeaderText = "";**/
+        }
+
         public void ClearTextBoxesInAddLoan(Control.ControlCollection ctrlCollection)
         {
             foreach (Control ctrl in ctrlCollection)
@@ -1602,30 +2168,24 @@ namespace WindowsFormsApp1
                 }
             }
 
-            int index = 0;
-            foreach (Control c in loan_items_fp.Controls)
-            {
-                if (loan_items_fp.Controls.ContainsKey("loanitem" + Convert.ToString(index)))
-                {
-                    if (index != 0)
-                    {
-                        GroupBox gb = (GroupBox)loan_items_fp.Controls[index];
-                        gb.Dispose();
-                    }
-                    else
-                    {
-                        GroupBox gb = (GroupBox)loan_items_fp.Controls[index];
-                        TextBox price_tb = (TextBox)gb.Controls["item_price_tb"];
-                        TextBox int_tb = (TextBox)gb.Controls["item_int_tb"];
 
-                        price_tb.Text = string.Empty;
-                        int_tb.Text = "0.01";
-                    }
+            for (int i = loan_items_fp.Controls.Count - 1; i >= 0; i--)
+            {
+                if (i != 0)
+                {
+                    loan_items_fp.Controls[i].Dispose();
                 }
-                index++;
+                else
+                {
+                    GroupBox gb = (GroupBox)loan_items_fp.Controls[i];
+                    TextBox price_tb = (TextBox)gb.Controls["item_price_tb"];
+                    TextBox int_tb = (TextBox)gb.Controls["item_int_tb"];
+
+                    price_tb.Text = string.Empty;
+                    int_tb.Text = "0.01";
+                }
             }
             account_stat_lbl.Text = string.Empty;
-            account_stat_lbl.ForeColor = Color.Black;
         }
 
         private void clearTextBoxes(Control.ControlCollection ctrlCollection)
@@ -1643,27 +2203,74 @@ namespace WindowsFormsApp1
             }
         }
 
+        private void clearFlowPanelInBatch()
+        {
+            for (int i = items_fp.Controls.Count - 1; i >= 0; i--)
+            {
+                if (i != 0)
+                {
+                    items_fp.Controls[i].Dispose();
+                } else
+                {
+                    GroupBox gb = (GroupBox)items_fp.Controls[0];
+                    TextBox name_tb = (TextBox)gb.Controls["iname_tb"];
+                    TextBox quantity_tb = (TextBox)gb.Controls["iqty_tb"];
+
+                    name_tb.Text = string.Empty;
+                    quantity_tb.Text = "0";
+                }
+            }
+
+            item_status.Text = string.Empty;
+        }
+
         private void Search_FormClosed(object sender, FormClosedEventArgs e)
         {
             switch (tag.ToString())
             {
                 case "ITEM":
                     {
-                        foreach (Control c in loan_items_fp.Controls)
+                        if (Search.itemStockCount != 0)
                         {
-                            if (loan_items_fp.Controls.ContainsKey("loanitem" + Convert.ToString(search_index)))
+                            foreach (Control c in loan_items_fp.Controls)
                             {
-                                GroupBox gb = (GroupBox)loan_items_fp.Controls[search_index];
+                                if (loan_items_fp.Controls.ContainsKey("loanitem" + Convert.ToString(search_index)))
+                                {
+                                    GroupBox gb = (GroupBox)loan_items_fp.Controls[search_index];
 
-                                TextBox id_tb = (TextBox)gb.Controls["item_id_tb"];
-                                TextBox name_tb = (TextBox)gb.Controls["item_name_tb"];
-                                TextBox desc_tb = (TextBox)gb.Controls["item_desc_tb"];
-                                TextBox price_tb = (TextBox)gb.Controls["item_price_tb"];
+                                    TextBox id_tb = (TextBox)gb.Controls["item_id_tb"];
+                                    TextBox name_tb = (TextBox)gb.Controls["item_name_tb"];
+                                    TextBox desc_tb = (TextBox)gb.Controls["item_desc_tb"];
+                                    TextBox price_tb = (TextBox)gb.Controls["item_price_tb"];
 
-                                id_tb.Text = Search.itemId.ToString();
+                                    id_tb.Text = Search.itemId.ToString();
+                                    name_tb.Text = Search.itemName.ToString();
+                                    desc_tb.Text = Search.itemDesc.ToString();
+                                    price_tb.Text = Search.itemPrice.ToString("N1");
+                                }
+                            }
+                            account_stat_lbl.Text = string.Empty;
+                        } else
+                        {
+                            account_stat_lbl.Text = "Item is out of stock.";
+                            account_stat_lbl.ForeColor = Color.Red;
+                        }
+                        
+                        break;
+                    }
+                case "ITEM_BATCH":
+                    {
+                        foreach (Control c in items_fp.Controls)
+                        {
+                            if (items_fp.Controls.ContainsKey("item_gb" + Convert.ToString(search_index)))
+                            {
+                                GroupBox gb = (GroupBox)items_fp.Controls[search_index];
+
+                                TextBox name_tb = (TextBox)gb.Controls["iname_tb"];
+                                TextBox id_tb = (TextBox)gb.Controls["iid_tb"];
+
                                 name_tb.Text = Search.itemName.ToString();
-                                desc_tb.Text = Search.itemDesc.ToString();
-                                price_tb.Text = Search.itemPrice.ToString("N1");
+                                id_tb.Text = Search.itemId.ToString();
                             }
                         }
                         break;
@@ -1730,6 +2337,25 @@ namespace WindowsFormsApp1
               .Select(s => s[random.Next(s.Length)]).ToArray());
 
             return alpha + numeric;
+        }
+
+        private bool checkEmptyTextBoxes(Control.ControlCollection ctrlCollection)
+        {
+            foreach (Control ctrl in ctrlCollection)
+            {
+                if (ctrl is TextBoxBase)
+                {
+                    if (ctrl.Text.ToString().Equals(String.Empty))
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    checkEmptyTextBoxes(ctrl.Controls);
+                }
+            }
+            return true;
         }
     }
 }

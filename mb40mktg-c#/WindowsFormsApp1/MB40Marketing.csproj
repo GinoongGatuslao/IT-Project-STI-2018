@@ -56,6 +56,7 @@
       <DependentUpon>AddPrice.cs</DependentUpon>
     </Compile>
     <Compile Include="Item.cs" />
+    <Compile Include="ItemBatch.cs" />
     <Compile Include="LoanType.cs" />
     <Compile Include="Price.cs" />
     <Compile Include="Profile.cs" />
@@ -96,6 +97,7 @@
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
     <Compile Include="StatusList.cs" />
+    <Compile Include="Transaction.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserType.cs" />
     <EmbeddedResource Include="AddPrice.resx">
