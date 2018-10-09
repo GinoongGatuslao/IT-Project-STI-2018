@@ -8,7 +8,7 @@ namespace WindowsFormsApp1
     public partial class Login : Form
     {
         public static string api_token = string.Empty;
-        public static int user_id = 0;
+        public static int id = 0;
         public static int user_type = 0;
 
         public Login()
@@ -43,7 +43,7 @@ namespace WindowsFormsApp1
                     User user = JsonConvert.DeserializeObject<User>(res[1]);
                     api_token = user.api_token;
                     user_type = user.user_type;
-                    user_id = user.id;
+                    id = user.id;
                     Console.WriteLine("api_token: " + user.api_token);
 
                     this.Hide();
