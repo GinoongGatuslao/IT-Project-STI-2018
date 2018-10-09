@@ -32,10 +32,9 @@ public class LoanModel {
     @Getter
     private float amortization;
 
-    @Expose(deserialize = false)
-    @SerializedName("running_balance")
+    @SerializedName("remaining_balance")
     @Getter
-    private float running_balance;
+    private float remaining_balance;
 
     @Expose(deserialize = false, serialize = false)
     @Getter

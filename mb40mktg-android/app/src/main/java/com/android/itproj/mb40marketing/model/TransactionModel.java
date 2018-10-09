@@ -49,6 +49,16 @@ public class TransactionModel {
     @Setter
     private double payment;
 
+    @SerializedName("payment_total")
+    @Getter
+    @Setter
+    private double payment_total;
+
+    @SerializedName("remaining_balance")
+    @Getter
+    @Setter
+    private double remaining_balance;
+
     @SerializedName("created_at")
     @Getter @Setter
     private String created_at;
