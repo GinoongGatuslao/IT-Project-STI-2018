@@ -182,7 +182,6 @@ namespace WindowsFormsApp1
             cancel_btn.Enabled = false;
             dashboard_panel.Visible = false;
             main_panel.Visible = true;
-            myprof_stat.Text = string.Empty;
 
             Cursor.Current = Cursors.WaitCursor;
             restClient.endPoint = Settings.baseUrl
@@ -252,7 +251,6 @@ namespace WindowsFormsApp1
             stat_cb.Items.Clear();
             stat_cb.Items.Add("Unconfirmed");
             stat_cb.Items.Add("Confirmed");
-            account_stat.Text = string.Empty;
         }
 
         private void createClientAccountToolStripMenuItem_Click(object sender, EventArgs e)
@@ -274,8 +272,6 @@ namespace WindowsFormsApp1
             stat_cb.Items.Add("Unconfirmed");
             stat_cb.Items.Add("Confirmed");
             stat_cb.SelectedIndex = 0;
-
-            account_stat.Text = string.Empty;
         }
 
         private void viewLoanToolStripMenuItem_Click(object sender, EventArgs e)
@@ -314,29 +310,35 @@ namespace WindowsFormsApp1
 
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Cursor.Current = Cursors.WaitCursor;
-            restClient.endPoint = Settings.baseUrl.ToString()
-                + "/api/logout";
-            restClient.login = false;
-
-            string response = string.Empty;
-            response = restClient.PostRequest();
-            Console.WriteLine("response : " + response);
-            string[] res = response.Split('|');
-
-            if (res[0].Equals("OK"))
+            var result = MessageBox.Show("Are you sure you want to logout?", "Logout",
+                                MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
             {
-                this.Hide();
-                Login login = new Login();
-                login.Closed += (s, args) => this.Close();
-                login.Show();
-                Console.WriteLine("logout successful");
+                Cursor.Current = Cursors.WaitCursor;
+                restClient.endPoint = Settings.baseUrl.ToString()
+                    + "/api/logout";
+                restClient.login = false;
+
+                string response = string.Empty;
+                response = restClient.PostRequest();
+                Console.WriteLine("response : " + response);
+                string[] res = response.Split('|');
+
+                if (res[0].Equals("OK"))
+                {
+                    this.Hide();
+                    Login login = new Login();
+                    login.Closed += (s, args) => this.Close();
+                    login.Show();
+                    Console.WriteLine("logout successful");
+                }
+                else
+                {
+                    Console.WriteLine("error logout");
+                }
+                Cursor.Current = Cursors.Default;
             }
-            else
-            {
-                Console.WriteLine("error logout");
-            }
-            Cursor.Current = Cursors.Default;
         }
 
         private void addStaffAccountToolStripMenuItem_Click(object sender, EventArgs e)
@@ -433,7 +435,6 @@ namespace WindowsFormsApp1
             reorder_tb.Text = "0";
             rightPanel[6].BringToFront();
             leftPanel[3].BringToFront();
-            item_stat.Text = string.Empty;
             if (edit)
             {
                 stock_lbl.Visible = true;
@@ -457,7 +458,6 @@ namespace WindowsFormsApp1
         {
             rightPanel[7].BringToFront();
             leftPanel[3].BringToFront();
-            item_status.Text = string.Empty;
         }
 
         private void collectionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -527,64 +527,90 @@ namespace WindowsFormsApp1
             loan.status = loan_status_cb.SelectedIndex;
             
             string response = string.Empty;
-            if (!edit)
+            try
             {
-                loan.loan_items = new List<LoanItem>();
-
-                int index = 0;
-                foreach (Control c in loan_items_fp.Controls)
+                if (Convert.ToDouble(total_amount_tb.Text) <= Convert.ToDouble(cred_lmt_tb.Text))
                 {
-                    if (loan_items_fp.Controls.ContainsKey("loanitem" + Convert.ToString(index)))
+                    if (!edit)
                     {
-                        GroupBox gb = (GroupBox)loan_items_fp.Controls[index];
+                        loan.loan_items = new List<LoanItem>();
 
-                        TextBox id_tb = (TextBox)gb.Controls["item_id_tb"];
-                        ComboBox stat_cb = (ComboBox)gb.Controls["item_stat_cb"];
-                        TextBox interest_tb = (TextBox)gb.Controls["item_int_tb"];
+                        int index = 0;
+                        foreach (Control c in loan_items_fp.Controls)
+                        {
+                            if (loan_items_fp.Controls.ContainsKey("loanitem" + Convert.ToString(index)))
+                            {
+                                GroupBox gb = (GroupBox)loan_items_fp.Controls[index];
 
-                        LoanItem loanItem = new LoanItem();
-                        loanItem.item_id = Convert.ToInt32(id_tb.Text);
-                        loanItem.item_status = item_stat_cb.SelectedIndex;
-                        loanItem.interest = Convert.ToDouble(interest_tb.Text);
-                        loan.loan_items.Add(loanItem);
+                                TextBox id_tb = (TextBox)gb.Controls["item_id_tb"];
+                                ComboBox stat_cb = (ComboBox)gb.Controls["item_stat_cb"];
+                                TextBox interest_tb = (TextBox)gb.Controls["item_int_tb"];
+
+                                LoanItem loanItem = new LoanItem();
+                                loanItem.item_id = Convert.ToInt32(id_tb.Text);
+                                loanItem.item_status = item_stat_cb.SelectedIndex;
+                                loanItem.interest = Convert.ToDouble(interest_tb.Text);
+                                loan.loan_items.Add(loanItem);
+                            }
+                            index++;
+                        }
+
+                        restClient.endPoint = Settings.baseUrl.ToString()
+                        + "/api/loan/addloan";
+
+                        string jsonResult = JsonConvert.SerializeObject(loan);
+                        Console.WriteLine(jsonResult.ToString());
+
+                        restClient.postJSON = jsonResult;
+                        restClient.login = false;
+
+                        response = restClient.PostRequest();
+                        MessageBox.Show("Loan added successfully.", "Save Loan",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
                     }
-                    index++;
+                    else //edit
+                    {
+                        Console.WriteLine("HELLO WORLDsssss!");
+                        loan.loan_value = Convert.ToDouble(total_amount_tb.Text.ToString());
+
+                        restClient.endPoint = Settings.baseUrl.ToString()
+                        + "/api/loan/updateloan/"
+                        + selected_loanid;
+                        edit = false;
+                        add_item_btn.Visible = true;
+
+                        string jsonResult = JsonConvert.SerializeObject(loan);
+                        Console.WriteLine(jsonResult.ToString());
+
+                        restClient.postJSON = jsonResult;
+                        restClient.login = false;
+                        response = restClient.PutRequest();
+
+                        MessageBox.Show("Loan updated successfully.", "Save Loan",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+                    }
+                    Console.WriteLine("response : " + response);
+                }
+                else
+                {
+                    MessageBox.Show("Loan amount exceeded the credit limit.", "Save Loan",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
 
-                restClient.endPoint = Settings.baseUrl.ToString()
-                + "/api/loan/addloan";
-
-                string jsonResult = JsonConvert.SerializeObject(loan);
-                Console.WriteLine(jsonResult.ToString());
-
-                restClient.postJSON = jsonResult;
-                restClient.login = false;
-
-                response = restClient.PostRequest();
-            } else //edit
+                Cursor.Current = Cursors.Default;
+                ClearTextBoxesInAddLoan(addloan_panel.Controls);
+            } catch (Exception ex)
             {
-                Console.WriteLine("HELLO WORLDsssss!");
-                loan.loan_value = Convert.ToDouble(total_amount_tb.Text.ToString());
-
-                restClient.endPoint = Settings.baseUrl.ToString()
-                + "/api/loan/updateloan/"
-                + selected_loanid;
-                edit = false;
-                add_item_btn.Visible = true;
-
-                string jsonResult = JsonConvert.SerializeObject(loan);
-                Console.WriteLine(jsonResult.ToString());
-
-                restClient.postJSON = jsonResult;
-                restClient.login = false;
-                response = restClient.PutRequest();
+                Console.WriteLine(ex.Message.ToString());
+                Cursor.Current = Cursors.Default;
+                MessageBox.Show("Error saving loan.", "Save Loan",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
-
             
-            Console.WriteLine("response : " + response);
-            Cursor.Current = Cursors.Default;
-
-            ClearTextBoxesInAddLoan(addloan_panel.Controls);
         }
         
         private void add_item_btn_Click(object sender, EventArgs e)
@@ -899,25 +925,29 @@ namespace WindowsFormsApp1
                         clearTextBoxes(create_staff_panel.Controls);
                         genpass_tb.Text = generatePassword();
                         Cursor.Current = Cursors.Default;
-                        cstaff_stat_lbl.Text = "Account created successfully.";
-                        cstaff_stat_lbl.ForeColor = Color.Green;
+                        MessageBox.Show("Account created successfully.", "Save Account",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
                     } else
                     {
-                        cstaff_stat_lbl.Text = "Invalid contact number.";
-                        cstaff_stat_lbl.ForeColor = Color.Red;
+                        MessageBox.Show("Invalid contact number.", "Save Account",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
                     }
                 } else
                 {
-                    cstaff_stat_lbl.Text = "Fields cannot be empty.";
-                    cstaff_stat_lbl.ForeColor = Color.Red;
+                    MessageBox.Show("Fields cannot be empty.", "Save Account",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
             }
             catch
             {
                 Cursor.Current = Cursors.Default;
                 Console.WriteLine("Registration failed.");
-                cstaff_stat_lbl.Text = "Error creating account.";
-                cstaff_stat_lbl.ForeColor = Color.Red;
+                MessageBox.Show("Error creating account.", "Save Account",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
             
         }
@@ -1001,7 +1031,9 @@ namespace WindowsFormsApp1
 
                             response = restClient.PostRequest();
                             Console.WriteLine(response);
-                            account_stat.Text = "Account created successfully.";
+                            MessageBox.Show("Account created successfully.", "Save Account",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
                         }
                         else //edit
                         {
@@ -1031,31 +1063,35 @@ namespace WindowsFormsApp1
 
                             response = restClient.PutRequest();
                             Console.WriteLine(response);
-                            account_stat.Text = "Account created successfully.";
+                            MessageBox.Show("Account created successfully.", "Save Account",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
                         }
                         clearTextBoxes(confirmclient_panel.Controls);
                         genpass_tb.Text = generatePassword();
                         Cursor.Current = Cursors.Default;
-                        account_stat.ForeColor = Color.Green;
                     }
                     else
                     {
-                        account_stat.Text = "Invalid contact number.";
-                        account_stat.ForeColor = Color.Red;
+                        MessageBox.Show("Invalid contact number.", "Save Account",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
-                    account_stat.Text = "Fields cannot be empty.";
-                    account_stat.ForeColor = Color.Red;
+                    MessageBox.Show("Fields cannot be empty.", "Save Account",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
             }
             catch
             {
                 Cursor.Current = Cursors.Default;
                 Console.WriteLine("Registration failed.");
-                account_stat.Text = "Error creating account.";
-                account_stat.ForeColor = Color.Red;
+                MessageBox.Show("Error creating account.", "Save Account",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -1091,25 +1127,29 @@ namespace WindowsFormsApp1
                         response = restClient.PutRequest();
                         Console.WriteLine(response);
                         Cursor.Current = Cursors.Default;
-                        myprof_stat.Text = "Successfully updated profile.";
-                        myprof_stat.ForeColor = Color.Green;
+                        MessageBox.Show("Successfully updated profile.", "Save Profile",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
                     }
                     else
                     {
-                        myprof_stat.Text = "Invalid contact number.";
-                        myprof_stat.ForeColor = Color.Red;
+                        MessageBox.Show("Invalid contact number.", "Save Profile",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
-                    myprof_stat.Text = "Fields cannot be empty.";
-                    myprof_stat.ForeColor = Color.Red;
+                    MessageBox.Show("Fields cannot be empty.", "Save Profile",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
             } catch (Exception ex)
             {
                 Console.WriteLine(ex.Message.ToString());
-                myprof_stat.Text = "Error updating profile.";
-                myprof_stat.ForeColor = Color.Red;
+                MessageBox.Show("Error updating profile.", "Save Profile",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -1184,22 +1224,25 @@ namespace WindowsFormsApp1
                             restClient.postJSON = jsonStr;
                             response = restClient.PostRequest();
                             Console.WriteLine(response);
-
-                            item_stat.Text = "Item added successfully.";
-                            item_stat.ForeColor = Color.Green;
+                            
+                            MessageBox.Show("Item added successfully.", "Save Item",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
                             itemname_tb.Text = string.Empty;
                             price_tb.Text = string.Empty;
                             description_tb.Text = string.Empty;
                             reorder_tb.Text = string.Empty;
                         } else
                         {
-                            item_stat.Text = "Invalid number.";
-                            item_stat.ForeColor = Color.Red;
+                            MessageBox.Show("Invalid number.", "Save Item",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
                         }
                     } else
                     {
-                        item_stat.Text = "Fields cannot be empty.";
-                        item_stat.ForeColor = Color.Red;
+                        MessageBox.Show("Fields cannot be empty.", "Save Item",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
                     }
                     
                 } else
@@ -1227,26 +1270,30 @@ namespace WindowsFormsApp1
                             restClient.postJSON = jsonStr;
                             response = restClient.PutRequest();
                             Console.WriteLine(response);
-
-                            item_stat.Text = "Item updated successfully.";
-                            item_stat.ForeColor = Color.Green;
+                            
+                            MessageBox.Show("Item updated successfully.", "Save Item",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
                             icancel_btn_Click(sender, e);
                         } else
                         {
-                            item_stat.Text = "Invalid number.";
-                            item_stat.ForeColor = Color.Red;
+                            MessageBox.Show("Invalid number.", "Save Item",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
                         }
                     } else
                     {
-                        item_stat.Text = "Fields cannot be empty.";
-                        item_stat.ForeColor = Color.Red;
+                        MessageBox.Show("Fields cannot be empty.", "Save Item",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
                     }
                 }
             } catch (Exception ex)
             {
                 Console.WriteLine(ex.Message.ToString());
-                item_stat.Text = "Error adding item.";
-                item_stat.ForeColor = Color.Red;
+                MessageBox.Show("Error adding item.", "Save Item",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
             Cursor.Current = Cursors.Default;
         }
@@ -1374,12 +1421,15 @@ namespace WindowsFormsApp1
                 Console.WriteLine(response);
 
                 Cursor.Current = Cursors.Default;
-                item_status.Text = "Save successful.";
-                item_status.ForeColor = Color.Green;
+                MessageBox.Show("Save successful.", "Save Items",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                bcancel_btn_Click(sender, e);
             } catch (Exception ex)
             {
-                item_status.Text = "Error saving changes.";
-                item_status.ForeColor = Color.Red;
+                MessageBox.Show("Error saving changes.", "Save Items",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 Console.WriteLine(ex.Message.ToString());
             }
         }
@@ -1449,7 +1499,6 @@ namespace WindowsFormsApp1
         private void loan_data_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             edit = true;
-            account_stat_lbl.Text = string.Empty;
             add_item_btn.Visible = false;
             try
             {
@@ -1467,8 +1516,8 @@ namespace WindowsFormsApp1
                     cred_lmt_tb.Text = Convert.ToDouble(loan_data.Rows[e.RowIndex].Cells["credit_limit"].Value).ToString("N1");
                     total_amount_tb.Text = Convert.ToDouble(loan_data.Rows[e.RowIndex].Cells["loan_value"].Value).ToString("N1");
                     balance_tb.Text = Convert.ToDouble(loan_data.Rows[e.RowIndex].Cells["remaining_balance"].Value).ToString("N1");
-                    length_tb.Text = (Convert.ToInt32(loan_data.Rows[e.RowIndex].Cells["term_length"].Value.ToString()) / 30).ToString();
-                    amortization_tb.Text = Convert.ToDouble(loan_data.Rows[e.RowIndex].Cells["amortization_m"].Value).ToString("N1");
+                    length_tb.Text = Convert.ToInt32(loan_data.Rows[e.RowIndex].Cells["term_length"].Value.ToString()).ToString();
+                    amortization_tb.Text = Convert.ToDouble(loan_data.Rows[e.RowIndex].Cells["amortization"].Value).ToString("N1");
                     ldate_picker.Text = Convert.ToDateTime(loan_data.Rows[e.RowIndex].Cells["created_at"].Value).ToShortDateString();
                     loan_status_cb.SelectedIndex = Convert.ToInt32(loan_data.Rows[e.RowIndex].Cells["status"].Value);
 
@@ -1578,11 +1627,10 @@ namespace WindowsFormsApp1
         {
             if (!total_amount_tb.Text.Equals(string.Empty) && !length_tb.Text.Equals(string.Empty))
             {
-                amortization_tb.Text = ((Convert.ToDouble(total_amount_tb.Text)) /
-                (Convert.ToInt32(length_tb.Text))).ToString("N1");
-                
                 if(!edit)
                 {
+                    amortization_tb.Text = ((Convert.ToDouble(total_amount_tb.Text)) /
+                        (Convert.ToInt32(length_tb.Text))).ToString("N1");
                     balance_tb.Text = Convert.ToDouble(total_amount_tb.Text).ToString("N1");
                 }
             }
@@ -2004,8 +2052,9 @@ namespace WindowsFormsApp1
                     inc_tb.Text = Convert.ToDouble(inc_tb.Text).ToString("N1");
                 } else
                 {
-                    account_stat.Text = "Invalid number.";
-                    account_stat.ForeColor = Color.Red;
+                    MessageBox.Show("Invalid number.", "Number Input",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
             }
         }
@@ -2019,8 +2068,9 @@ namespace WindowsFormsApp1
                     exp_tb.Text = Convert.ToDouble(exp_tb.Text).ToString("N1");
                 } else
                 {
-                    account_stat.Text = "Invalid number.";
-                    account_stat.ForeColor = Color.Red;
+                    MessageBox.Show("Invalid number.", "Number Input",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 }
             }
         }
@@ -2034,8 +2084,9 @@ namespace WindowsFormsApp1
                     credit_limit_tb.Text = Convert.ToDouble(credit_limit_tb.Text).ToString("N1");
                 } else
                 {
-                    account_stat.Text = "Invalid number.";
-                    account_stat.ForeColor = Color.Red;
+                    MessageBox.Show("Invalid number.", "Number Input",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 }
             }
         }
@@ -2185,7 +2236,6 @@ namespace WindowsFormsApp1
                     int_tb.Text = "0.01";
                 }
             }
-            account_stat_lbl.Text = string.Empty;
         }
 
         private void clearTextBoxes(Control.ControlCollection ctrlCollection)
@@ -2220,8 +2270,6 @@ namespace WindowsFormsApp1
                     quantity_tb.Text = "0";
                 }
             }
-
-            item_status.Text = string.Empty;
         }
 
         private void Search_FormClosed(object sender, FormClosedEventArgs e)
@@ -2230,32 +2278,23 @@ namespace WindowsFormsApp1
             {
                 case "ITEM":
                     {
-                        if (Search.itemStockCount != 0)
+                        foreach (Control c in loan_items_fp.Controls)
                         {
-                            foreach (Control c in loan_items_fp.Controls)
+                            if (loan_items_fp.Controls.ContainsKey("loanitem" + Convert.ToString(search_index)))
                             {
-                                if (loan_items_fp.Controls.ContainsKey("loanitem" + Convert.ToString(search_index)))
-                                {
-                                    GroupBox gb = (GroupBox)loan_items_fp.Controls[search_index];
+                                GroupBox gb = (GroupBox)loan_items_fp.Controls[search_index];
 
-                                    TextBox id_tb = (TextBox)gb.Controls["item_id_tb"];
-                                    TextBox name_tb = (TextBox)gb.Controls["item_name_tb"];
-                                    TextBox desc_tb = (TextBox)gb.Controls["item_desc_tb"];
-                                    TextBox price_tb = (TextBox)gb.Controls["item_price_tb"];
+                                TextBox id_tb = (TextBox)gb.Controls["item_id_tb"];
+                                TextBox name_tb = (TextBox)gb.Controls["item_name_tb"];
+                                TextBox desc_tb = (TextBox)gb.Controls["item_desc_tb"];
+                                TextBox price_tb = (TextBox)gb.Controls["item_price_tb"];
 
-                                    id_tb.Text = Search.itemId.ToString();
-                                    name_tb.Text = Search.itemName.ToString();
-                                    desc_tb.Text = Search.itemDesc.ToString();
-                                    price_tb.Text = Search.itemPrice.ToString("N1");
-                                }
+                                id_tb.Text = Search.itemId.ToString();
+                                name_tb.Text = Search.itemName.ToString();
+                                desc_tb.Text = Search.itemDesc.ToString();
+                                price_tb.Text = Search.itemPrice.ToString("N1");
                             }
-                            account_stat_lbl.Text = string.Empty;
-                        } else
-                        {
-                            account_stat_lbl.Text = "Item is out of stock.";
-                            account_stat_lbl.ForeColor = Color.Red;
                         }
-                        
                         break;
                     }
                 case "ITEM_BATCH":
@@ -2282,26 +2321,6 @@ namespace WindowsFormsApp1
                         account_id_tb.Text = Search.prof_id.ToString();
                         contactnum_tb.Text = Search.prof_cn;
                         cred_lmt_tb.Text = Search.prof_cred_limit.ToString("N1");
-
-                        if (Search.prof_stat.Equals("Confirmed"))
-                        {
-                            account_stat_lbl.Text = "This account is confirmed.";
-                            account_stat_lbl.ForeColor = Color.Green;
-                            loan_items_fp.Enabled = true;
-                            add_item_btn.Enabled = true;
-                            save_loan_btn.Enabled = true;
-                            cancel_loan_btn.Enabled = true;
-                        }
-                        else
-                        {
-                            account_stat_lbl.Text = "This account is not yet confirmed.";
-                            account_stat_lbl.ForeColor = Color.Red;
-                            loan_items_fp.Enabled = false;
-                            add_item_btn.Enabled = false;
-                            save_loan_btn.Enabled = false;
-                            cancel_loan_btn.Enabled = false;
-                        }
-
                         break;
                     }
                 case "PRICE":

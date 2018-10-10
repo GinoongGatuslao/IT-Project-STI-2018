@@ -174,34 +174,59 @@ namespace WindowsFormsApp1
                 switch (tag.ToString())
                 {
                     case "ITEM":
+                        if (Convert.ToInt32(datagrid.Rows[e.RowIndex].Cells["stock_count"].Value.ToString()) >= 1)
+                        {
+                            datagrid.CurrentRow.Selected = true;
+                            itemId = Convert.ToInt32(datagrid.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                            itemName = datagrid.Rows[e.RowIndex].Cells["item_name"].Value.ToString();
+                            itemDesc = datagrid.Rows[e.RowIndex].Cells["description"].Value.ToString();
+                            itemPrice = Convert.ToDouble(datagrid.Rows[e.RowIndex].Cells["price"].Value.ToString());
+                            itemStockCount = Convert.ToInt32(datagrid.Rows[e.RowIndex].Cells["stock_count"].Value.ToString());
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Item is out of stock.", "Adding Item",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                        }
+                        break;
                     case "ITEM_BATCH":
                         datagrid.CurrentRow.Selected = true;
                         itemId = Convert.ToInt32(datagrid.Rows[e.RowIndex].Cells["id"].Value.ToString());
                         itemName = datagrid.Rows[e.RowIndex].Cells["item_name"].Value.ToString();
-                        itemDesc = datagrid.Rows[e.RowIndex].Cells["description"].Value.ToString();
-                        itemPrice = Convert.ToDouble(datagrid.Rows[e.RowIndex].Cells["price"].Value.ToString());
                         itemStockCount = Convert.ToInt32(datagrid.Rows[e.RowIndex].Cells["stock_count"].Value.ToString());
+                        this.Close();
                         break;
                     case "CLIENT":
-                        datagrid.CurrentRow.Selected = true;
-                        prof_id = Convert.ToInt32(datagrid.Rows[e.RowIndex].Cells["id"].Value.ToString());
-                        prof_fullname = datagrid.Rows[e.RowIndex].Cells["first_name"].Value.ToString()
-                            + " " + datagrid.Rows[e.RowIndex].Cells["middle_name"].Value.ToString()
-                            + " " + datagrid.Rows[e.RowIndex].Cells["last_name"].Value.ToString();
-                        prof_cn = datagrid.Rows[e.RowIndex].Cells["contact_num"].Value.ToString();
-                        prof_cred_limit = Convert.ToDouble(datagrid.Rows[e.RowIndex].Cells["credit_limit"].Value.ToString());
-                        prof_add = datagrid.Rows[e.RowIndex].Cells["address"].Value.ToString();
-                        prof_stat = datagrid.Rows[e.RowIndex].Cells["verified_str"].Value.ToString();
+                        if (datagrid.Rows[e.RowIndex].Cells["verified"].Value.ToString().Equals("1"))
+                        {
+                            datagrid.CurrentRow.Selected = true;
+                            prof_id = Convert.ToInt32(datagrid.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                            prof_fullname = datagrid.Rows[e.RowIndex].Cells["first_name"].Value.ToString()
+                                + " " + datagrid.Rows[e.RowIndex].Cells["middle_name"].Value.ToString()
+                                + " " + datagrid.Rows[e.RowIndex].Cells["last_name"].Value.ToString();
+                            prof_cn = datagrid.Rows[e.RowIndex].Cells["contact_num"].Value.ToString();
+                            prof_cred_limit = Convert.ToDouble(datagrid.Rows[e.RowIndex].Cells["credit_limit"].Value.ToString());
+                            prof_add = datagrid.Rows[e.RowIndex].Cells["address"].Value.ToString();
+                            prof_stat = datagrid.Rows[e.RowIndex].Cells["verified_str"].Value.ToString();
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Account is not yet confirmed.", "Account Information",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                        }
                         break;
                     case "PRICE":
                         datagrid.CurrentRow.Selected = true;
                         price_id = Convert.ToInt32(datagrid.Rows[e.RowIndex].Cells["id"].Value.ToString());
                         price = Convert.ToDouble(datagrid.Rows[e.RowIndex].Cells["price"].Value.ToString());
+                        this.Close();
                         break;
                 }
             }
-
-            this.Close();
         }
 
         private void addprice_btn_Click(object sender, EventArgs e)
