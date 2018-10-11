@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp1
 {
-    class Price
+    public class Price
     {
         public int id { get; set; }
         public double price { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp1
 {
-    class Profile
+    public class Profile
     {
         public int id { get; set; }
         public int user_id { get; set; }

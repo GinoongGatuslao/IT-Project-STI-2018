@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp1
 {
-    class Products
+    public class Products
     {
         public int id { get; set; }
         public string item_name { get; set; }

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 
@@ -21,6 +23,9 @@ namespace WindowsFormsApp1
         public static string prof_stat = string.Empty;
         public static int price_id = 0;
         public static double price = 0;
+        public List<Products> products = new List<Products>();
+        public List<Profile> profiles = new List<Profile>();
+        public List<Price> prices = new List<Price>();
 
         public Search()
         {
@@ -37,6 +42,7 @@ namespace WindowsFormsApp1
                 case "ITEM":
                 case "ITEM_BATCH":
                     {
+                        search_lbl.Text = "Search by item name: ";
                         this.Text = "Item Search";
                         addprice_btn.Visible = false;
                         restClient.endPoint = Settings.baseUrl.ToString()
@@ -50,25 +56,10 @@ namespace WindowsFormsApp1
                         if (!response.Equals("[]"))
                         {
                             nodata_lbl.Visible = false;
-                            var products = JsonConvert.DeserializeObject<List<Products>>(response);
+                            products = JsonConvert.DeserializeObject<List<Products>>(response);
 
                             datagrid.DataSource = products;
-
-                            datagrid.Columns[0].HeaderText = "Item ID";
-                            datagrid.Columns[1].HeaderText = "Item Name";
-                            datagrid.Columns[2].HeaderText = "Price";
-                            datagrid.Columns[3].HeaderText = "Stock Count";
-                            datagrid.Columns[4].HeaderText = "Repossessed";
-                            datagrid.Columns[5].HeaderText = "Damaged";
-                            datagrid.Columns[6].HeaderText = "Reorder Point";
-                            datagrid.Columns[7].HeaderText = "Description";
-
-                            datagrid.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            datagrid.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            datagrid.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            datagrid.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            datagrid.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            datagrid.Columns[2].DefaultCellStyle.Format = "N1";
+                            format_itemdata();
                         } else
                         {
                             nodata_lbl.Visible = true;
@@ -77,6 +68,7 @@ namespace WindowsFormsApp1
                     }
                 case "CLIENT":
                     {
+                        search_lbl.Text = "Search by client's last name:";
                         this.Text = "Client Search";
                         addprice_btn.Visible = false;
                         restClient.endPoint = Settings.baseUrl.ToString()
@@ -90,10 +82,10 @@ namespace WindowsFormsApp1
                         if (!response.Equals("[]"))
                         {
                             nodata_lbl.Visible = false;
-                            var profile = JsonConvert.DeserializeObject<List<Profile>>(response);
+                            profiles = JsonConvert.DeserializeObject<List<Profile>>(response);
                             List<Profile> prof = new List<Profile>();
 
-                            foreach (Profile p in profile)
+                            foreach (Profile p in profiles)
                             {
                                 if (p.user_type == 3) //for clients only
                                 {
@@ -102,31 +94,7 @@ namespace WindowsFormsApp1
                             }
 
                             datagrid.DataSource = prof;
-
-                            datagrid.Columns[0].HeaderText = "Client ID";
-                            datagrid.Columns[2].HeaderText = "First Name";
-                            datagrid.Columns[3].HeaderText = "Middle Name";
-                            datagrid.Columns[4].HeaderText = "Last Name";
-                            datagrid.Columns[5].HeaderText = "Address";
-                            datagrid.Columns[6].HeaderText = "Contact No";
-                            datagrid.Columns[13].HeaderText = "Credit Limit";
-                            datagrid.Columns[16].HeaderText = "User Type";
-                            datagrid.Columns[19].HeaderText = "Status";
-
-                            datagrid.Columns[1].Visible = false;
-                            datagrid.Columns[7].Visible = false;
-                            datagrid.Columns[8].Visible = false;
-                            datagrid.Columns[9].Visible = false;
-                            datagrid.Columns[10].Visible = false;
-                            datagrid.Columns[11].Visible = false;
-                            datagrid.Columns[12].Visible = false;
-                            datagrid.Columns[14].Visible = false;
-                            datagrid.Columns[15].Visible = false;
-                            datagrid.Columns[16].Visible = false;
-                            datagrid.Columns[17].Visible = false;
-                            datagrid.Columns[18].Visible = false;
-                            datagrid.Columns[13].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            datagrid.Columns[13].DefaultCellStyle.Format = "N1";
+                            format_clientdata();
                         }
                         else
                         {
@@ -137,6 +105,7 @@ namespace WindowsFormsApp1
                     }
                 case "PRICE":
                     {
+                        search_lbl.Text = "Search by price:";
                         this.Text = "Price Search";
                         addprice_btn.Visible = true;
                         restClient.endPoint = Settings.baseUrl
@@ -149,13 +118,10 @@ namespace WindowsFormsApp1
                         if (!response.Equals("[]"))
                         {
                             nodata_lbl.Visible = false;
-                            var price = JsonConvert.DeserializeObject<List<Price>>(response);
+                            prices = JsonConvert.DeserializeObject<List<Price>>(response);
 
-                            datagrid.DataSource = price;
-
-                            datagrid.Columns[0].HeaderText = "ID";
-                            datagrid.Columns[1].HeaderText = "Price";
-                            datagrid.Columns[1].DefaultCellStyle.Format = "N1";
+                            datagrid.DataSource = prices;
+                            format_price();
                         } else
                         {
                             nodata_lbl.Visible = true;
@@ -243,6 +209,110 @@ namespace WindowsFormsApp1
             {
                 tag = "PRICE";
                 ItemSearch_Load(sender, e);
+            }
+        }
+
+        private void format_itemdata()
+        {
+            datagrid.Columns[0].HeaderText = "Item ID";
+            datagrid.Columns[1].HeaderText = "Item Name";
+            datagrid.Columns[2].HeaderText = "Price";
+            datagrid.Columns[3].HeaderText = "Stock Count";
+            datagrid.Columns[4].HeaderText = "Repossessed";
+            datagrid.Columns[5].HeaderText = "Damaged";
+            datagrid.Columns[6].HeaderText = "Reorder Point";
+            datagrid.Columns[7].HeaderText = "Description";
+
+            datagrid.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            datagrid.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            datagrid.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            datagrid.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            datagrid.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            datagrid.Columns[2].DefaultCellStyle.Format = "N1";
+        }
+
+        private void format_clientdata()
+        {
+            datagrid.Columns[0].HeaderText = "Client ID";
+            datagrid.Columns[2].HeaderText = "First Name";
+            datagrid.Columns[3].HeaderText = "Middle Name";
+            datagrid.Columns[4].HeaderText = "Last Name";
+            datagrid.Columns[5].HeaderText = "Address";
+            datagrid.Columns[6].HeaderText = "Contact No";
+            datagrid.Columns[13].HeaderText = "Credit Limit";
+            datagrid.Columns[16].HeaderText = "User Type";
+            datagrid.Columns[19].HeaderText = "Status";
+
+            datagrid.Columns[1].Visible = false;
+            datagrid.Columns[7].Visible = false;
+            datagrid.Columns[8].Visible = false;
+            datagrid.Columns[9].Visible = false;
+            datagrid.Columns[10].Visible = false;
+            datagrid.Columns[11].Visible = false;
+            datagrid.Columns[12].Visible = false;
+            datagrid.Columns[14].Visible = false;
+            datagrid.Columns[15].Visible = false;
+            datagrid.Columns[16].Visible = false;
+            datagrid.Columns[17].Visible = false;
+            datagrid.Columns[18].Visible = false;
+            datagrid.Columns[13].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            datagrid.Columns[13].DefaultCellStyle.Format = "N1";
+        }
+
+        private void format_price()
+        {
+            datagrid.Columns[0].HeaderText = "ID";
+            datagrid.Columns[1].HeaderText = "Price";
+            datagrid.Columns[1].DefaultCellStyle.Format = "N1";
+        }
+
+        private void search_tb_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (tag)
+            {
+                case "ITEM":
+                case "ITEM_BATCH":
+                    datagrid.DataSource = null;
+                    List<Products> prod = new List<Products>();
+                    foreach (Products p in products)
+                    {
+                        CultureInfo culture = new CultureInfo("es-ES", false);
+                        if (culture.CompareInfo.IndexOf(p.item_name, search_tb.Text.ToString(), CompareOptions.IgnoreCase) >= 0)
+                        {
+                            prod.Add(p);
+                        }
+                    }
+                    datagrid.DataSource = prod;
+                    format_itemdata();
+                    break;
+                case "CLIENT":
+                    datagrid.DataSource = null;
+                    List<Profile> prof = new List<Profile>();
+                    foreach (Profile p in profiles)
+                    {
+                        CultureInfo culture = new CultureInfo("es-ES", false);
+                        if (culture.CompareInfo.IndexOf(p.last_name, search_tb.Text.ToString(), CompareOptions.IgnoreCase) >= 0)
+                        {
+                            prof.Add(p);
+                        }
+                    }
+                    datagrid.DataSource = prof;
+                    format_clientdata();
+                    break;
+                case "PRICE":
+                    datagrid.DataSource = null;
+                    List<Price> price = new List<Price>();
+                    foreach (Price p in prices)
+                    {
+                        CultureInfo culture = new CultureInfo("es-ES", false);
+                        if (culture.CompareInfo.IndexOf(p.price.ToString(), search_tb.Text.ToString(), CompareOptions.IgnoreCase) >= 0)
+                        {
+                            price.Add(p);
+                        }
+                    }
+                    datagrid.DataSource = price;
+                    format_price();
+                    break;
             }
         }
     }

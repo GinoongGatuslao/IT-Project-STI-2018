@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -247,6 +248,7 @@ namespace WindowsFormsApp1
             find_btn.Visible = true;
             filter_acc_gb.Enabled = false;
             filter_cacc_gb.Enabled = false;
+            asearch_gb.Enabled = false;
 
             stat_cb.Items.Clear();
             stat_cb.Items.Add("Unconfirmed");
@@ -347,6 +349,7 @@ namespace WindowsFormsApp1
             leftPanel[2].BringToFront();
             filter_acc_gb.Enabled = false;
             filter_cacc_gb.Enabled = false;
+            asearch_gb.Enabled = false;
             genpass_tb.Text = generatePassword();
             smale_rb.Checked = true;
         }
@@ -359,6 +362,7 @@ namespace WindowsFormsApp1
             leftPanel[2].BringToFront();
             filter_acc_gb.Enabled = true;
             filter_cacc_gb.Enabled = true;
+            asearch_gb.Enabled = true;
 
             restClient.endPoint = Settings.baseUrl
                 + "/api/profile";
@@ -397,6 +401,8 @@ namespace WindowsFormsApp1
         {
             rightPanel[8].BringToFront();
             leftPanel[3].BringToFront();
+            filter_items_gb.Enabled = true;
+            isearch_gb.Enabled = true;
             Cursor.Current = Cursors.WaitCursor;
             try
             {
@@ -433,6 +439,8 @@ namespace WindowsFormsApp1
             clearTextBoxes(additem_panel.Controls);
             price_tb.Text = "0";
             reorder_tb.Text = "0";
+            filter_items_gb.Enabled = false;
+            isearch_gb.Enabled = false;
             rightPanel[6].BringToFront();
             leftPanel[3].BringToFront();
             if (edit)
@@ -458,6 +466,8 @@ namespace WindowsFormsApp1
         {
             rightPanel[7].BringToFront();
             leftPanel[3].BringToFront();
+            filter_items_gb.Enabled = false;
+            isearch_gb.Enabled = false;
         }
 
         private void collectionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1455,7 +1465,79 @@ namespace WindowsFormsApp1
         private void repossessed_btn_Click(object sender, EventArgs e)
         {
 
-        }   
+        }
+
+        private void asearch_btn_Click(object sender, EventArgs e)
+        {
+            accounts_data.DataSource = null;
+            if (profiles.Count != 0)
+            {
+                List<Profile> new_profs = new List<Profile>();
+                foreach (Profile p in profiles)
+                {
+                    if (!asearch_tb.Text.ToString().Equals(string.Empty))
+                    {
+                        if (p.last_name.ToString().Equals(asearch_tb.Text.ToString(), StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            new_profs.Add(p);
+                        }
+                    } else
+                    {
+                        new_profs.Add(p);
+                    }
+                }
+
+                if (new_profs.Count != 0)
+                {
+                    accounts_data.DataSource = new_profs;
+                    accounts_data.Visible = true;
+                    no_accounts.Visible = false;
+                    format_accountDataTable();
+                }
+                else
+                {
+                    accounts_data.Visible = false;
+                    no_accounts.Visible = true;
+                }
+            }
+        }
+
+        private void isearch_btn_Click(object sender, EventArgs e)
+        {
+            item_data.DataSource = null;
+            if (items.Count != 0)
+            {
+                List<Item> new_profs = new List<Item>();
+                foreach (Item i in items)
+                {
+                    if (!isearch_tb.Text.ToString().Equals(string.Empty))
+                    {
+                        CultureInfo culture = new CultureInfo("es-ES", false);
+                        if (culture.CompareInfo.IndexOf(i.item_name, isearch_tb.Text.ToString(), CompareOptions.IgnoreCase) >= 0)
+                        {
+                            new_profs.Add(i);
+                        }
+                    } else
+                    {
+                        new_profs.Add(i);
+                    }
+                    
+                }
+
+                if (new_profs.Count != 0)
+                {
+                    item_data.DataSource = new_profs;
+                    item_data.Visible = true;
+                    no_item_lbl.Visible = false;
+                    format_ItemDataTable();
+                }
+                else
+                {
+                    item_data.Visible = false;
+                    no_item_lbl.Visible = true;
+                }
+            }
+        }
 
         /**
          * DOUBLE CLICK EVENTS

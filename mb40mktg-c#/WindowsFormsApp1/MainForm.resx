@@ -173,7 +173,7 @@
         RK5CYII=
 </value>
   </data>
-  <data name="sclient_btn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="isearch_btn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
         JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAA3XAAAN1wFCKJt4AAAAB3RJ
@@ -186,7 +186,7 @@
         RK5CYII=
 </value>
   </data>
-  <data name="scname_btn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="asearch_btn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
         JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAA3XAAAN1wFCKJt4AAAAB3RJ
@@ -213,6 +213,32 @@
 </value>
   </data>
   <data name="slname_btn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAA3XAAAN1wFCKJt4AAAAB3RJ
+        TUUH4gkMEDYikMS+AQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAEjSURBVDhP
+        ndI9S8NQFMbxdFARVCxYxN1FxI7iWPADVGoHdweddXESwUHBfgO3QotgFwcdxVUQrIMvHaSOWoeW0sGi
+        1v6fQ4S09kbIAz/COUnOzU3i9WUaR7hCAxUUsYJ/s4p3/KAODXnEt98rYBIDk0IHNWTUCERPVYKGXKjR
+        nzFU0cKsGo4cQ0PWrQokC53YssqdCWiLN1YFcgANmLMqPGdoY8gqP6fQ/oetCk8OWqxnq/tQc8Gq8Jzj
+        Ez2LpaEBu1a5MwX9G2WrAhnBPT6QVGNAYjiBFtJL/5NFfKGJTYziN/O4hG5+VsOVZbxAF2qfd3jza3n1
+        j4dwZhzb0OM+Qd88jyXo3DU0ZA+REodeoobsqBElCTxAQ9bUiJIZ3Hqet9EFc51EU0DdfOgAAAAASUVO
+        RK5CYII=
+</value>
+  </data>
+  <data name="sclient_btn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAA3XAAAN1wFCKJt4AAAAB3RJ
+        TUUH4gkMEDYikMS+AQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAEjSURBVDhP
+        ndI9S8NQFMbxdFARVCxYxN1FxI7iWPADVGoHdweddXESwUHBfgO3QotgFwcdxVUQrIMvHaSOWoeW0sGi
+        1v6fQ4S09kbIAz/COUnOzU3i9WUaR7hCAxUUsYJ/s4p3/KAODXnEt98rYBIDk0IHNWTUCERPVYKGXKjR
+        nzFU0cKsGo4cQ0PWrQokC53YssqdCWiLN1YFcgANmLMqPGdoY8gqP6fQ/oetCk8OWqxnq/tQc8Gq8Jzj
+        Ez2LpaEBu1a5MwX9G2WrAhnBPT6QVGNAYjiBFtJL/5NFfKGJTYziN/O4hG5+VsOVZbxAF2qfd3jza3n1
+        j4dwZhzb0OM+Qd88jyXo3DU0ZA+REodeoobsqBElCTxAQ9bUiJIZ3Hqet9EFc51EU0DdfOgAAAAASUVO
+        RK5CYII=
+</value>
+  </data>
+  <data name="scname_btn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
         JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAA3XAAAN1wFCKJt4AAAAB3RJ

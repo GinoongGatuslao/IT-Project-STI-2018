@@ -33,25 +33,83 @@
             this.inventorymgt_btn = new System.Windows.Forms.Button();
             this.loanmgt_btn = new System.Windows.Forms.Button();
             this.main_panel = new System.Windows.Forms.Panel();
-            this.additem_panel = new System.Windows.Forms.Panel();
-            this.stock_tb = new System.Windows.Forms.TextBox();
-            this.repo_tb = new System.Windows.Forms.TextBox();
-            this.dam_tb = new System.Windows.Forms.TextBox();
-            this.dam_lbl = new System.Windows.Forms.Label();
-            this.repo_lbl = new System.Windows.Forms.Label();
-            this.stock_lbl = new System.Windows.Forms.Label();
-            this.label71 = new System.Windows.Forms.Label();
-            this.icancel_btn = new System.Windows.Forms.Button();
-            this.isave_btn = new System.Windows.Forms.Button();
-            this.label70 = new System.Windows.Forms.Label();
-            this.reorder_tb = new System.Windows.Forms.TextBox();
-            this.price_tb = new System.Windows.Forms.TextBox();
-            this.description_tb = new System.Windows.Forms.TextBox();
-            this.itemname_tb = new System.Windows.Forms.TextBox();
-            this.label69 = new System.Windows.Forms.Label();
-            this.label67 = new System.Windows.Forms.Label();
-            this.label66 = new System.Windows.Forms.Label();
-            this.label65 = new System.Windows.Forms.Label();
+            this.confirmclient_panel = new System.Windows.Forms.Panel();
+            this.label87 = new System.Windows.Forms.Label();
+            this.ccancel_btn = new System.Windows.Forms.Button();
+            this.find_btn = new System.Windows.Forms.Button();
+            this.female_rb = new System.Windows.Forms.RadioButton();
+            this.male_rb = new System.Windows.Forms.RadioButton();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label49 = new System.Windows.Forms.Label();
+            this.credit_limit_tb = new System.Windows.Forms.TextBox();
+            this.up_photo_btn = new System.Windows.Forms.Button();
+            this.up_sketch_btn = new System.Windows.Forms.Button();
+            this.save_acc_btn = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.bday_picker = new System.Windows.Forms.DateTimePicker();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.exp_tb = new System.Windows.Forms.TextBox();
+            this.inc_tb = new System.Windows.Forms.TextBox();
+            this.occu_tb = new System.Windows.Forms.TextBox();
+            this.stat_cb = new System.Windows.Forms.ComboBox();
+            this.cn_tb = new System.Windows.Forms.TextBox();
+            this.addr_tb = new System.Windows.Forms.TextBox();
+            this.ln_tb = new System.Windows.Forms.TextBox();
+            this.mn_tb = new System.Windows.Forms.TextBox();
+            this.fn_tb = new System.Windows.Forms.TextBox();
+            this.label46 = new System.Windows.Forms.Label();
+            this.label45 = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.accounts_lbl = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dashboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.profileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addLoanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewLoanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.accountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createClientAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.confirmClientAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addStaffAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewAccountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.inventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addItemByBatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.transactionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.collectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loan_sidepanel = new System.Windows.Forms.Panel();
+            this.search_gb = new System.Windows.Forms.GroupBox();
+            this.slamount_btn = new System.Windows.Forms.Button();
+            this.slname_btn = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.slamount1_tb = new System.Windows.Forms.TextBox();
+            this.slamount2_tb = new System.Windows.Forms.TextBox();
+            this.slname_tb = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.viewloan_btn = new System.Windows.Forms.Button();
+            this.addloan_btn = new System.Windows.Forms.Button();
+            this.loansfilter_gb = new System.Windows.Forms.GroupBox();
+            this.all_rb = new System.Windows.Forms.RadioButton();
+            this.active_rb = new System.Windows.Forms.RadioButton();
+            this.completed_rb = new System.Windows.Forms.RadioButton();
+            this.inactive_rb = new System.Windows.Forms.RadioButton();
+            this.profile_sidepanel = new System.Windows.Forms.Panel();
+            this.edit_profile_btn = new System.Windows.Forms.Button();
             this.addloan_panel = new System.Windows.Forms.Panel();
             this.label89 = new System.Windows.Forms.Label();
             this.label58 = new System.Windows.Forms.Label();
@@ -70,6 +128,7 @@
             this.label33 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.item_price_tb = new System.Windows.Forms.TextBox();
+            this.search_item0 = new System.Windows.Forms.Button();
             this.item_desc_tb = new System.Windows.Forms.TextBox();
             this.item_name_tb = new System.Windows.Forms.TextBox();
             this.item_id_tb = new System.Windows.Forms.TextBox();
@@ -93,6 +152,7 @@
             this.label27 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
+            this.client_search_btn = new System.Windows.Forms.Button();
             this.contactnum_tb = new System.Windows.Forms.TextBox();
             this.address_tb = new System.Windows.Forms.TextBox();
             this.account_id_tb = new System.Windows.Forms.TextBox();
@@ -102,40 +162,26 @@
             this.client_name_tb = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.confirmclient_panel = new System.Windows.Forms.Panel();
-            this.label87 = new System.Windows.Forms.Label();
-            this.ccancel_btn = new System.Windows.Forms.Button();
-            this.find_btn = new System.Windows.Forms.Button();
-            this.female_rb = new System.Windows.Forms.RadioButton();
-            this.male_rb = new System.Windows.Forms.RadioButton();
-            this.label35 = new System.Windows.Forms.Label();
-            this.label49 = new System.Windows.Forms.Label();
-            this.credit_limit_tb = new System.Windows.Forms.TextBox();
-            this.up_photo_btn = new System.Windows.Forms.Button();
-            this.up_sketch_btn = new System.Windows.Forms.Button();
-            this.save_acc_btn = new System.Windows.Forms.Button();
-            this.bday_picker = new System.Windows.Forms.DateTimePicker();
-            this.exp_tb = new System.Windows.Forms.TextBox();
-            this.inc_tb = new System.Windows.Forms.TextBox();
-            this.occu_tb = new System.Windows.Forms.TextBox();
-            this.stat_cb = new System.Windows.Forms.ComboBox();
-            this.cn_tb = new System.Windows.Forms.TextBox();
-            this.addr_tb = new System.Windows.Forms.TextBox();
-            this.ln_tb = new System.Windows.Forms.TextBox();
-            this.mn_tb = new System.Windows.Forms.TextBox();
-            this.fn_tb = new System.Windows.Forms.TextBox();
-            this.label46 = new System.Windows.Forms.Label();
-            this.label45 = new System.Windows.Forms.Label();
-            this.label44 = new System.Windows.Forms.Label();
-            this.label43 = new System.Windows.Forms.Label();
-            this.label42 = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
-            this.label39 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.accounts_lbl = new System.Windows.Forms.Label();
+            this.additem_panel = new System.Windows.Forms.Panel();
+            this.stock_tb = new System.Windows.Forms.TextBox();
+            this.repo_tb = new System.Windows.Forms.TextBox();
+            this.dam_tb = new System.Windows.Forms.TextBox();
+            this.dam_lbl = new System.Windows.Forms.Label();
+            this.repo_lbl = new System.Windows.Forms.Label();
+            this.stock_lbl = new System.Windows.Forms.Label();
+            this.label71 = new System.Windows.Forms.Label();
+            this.icancel_btn = new System.Windows.Forms.Button();
+            this.isave_btn = new System.Windows.Forms.Button();
+            this.search_price_btn = new System.Windows.Forms.Button();
+            this.label70 = new System.Windows.Forms.Label();
+            this.reorder_tb = new System.Windows.Forms.TextBox();
+            this.price_tb = new System.Windows.Forms.TextBox();
+            this.description_tb = new System.Windows.Forms.TextBox();
+            this.itemname_tb = new System.Windows.Forms.TextBox();
+            this.label69 = new System.Windows.Forms.Label();
+            this.label67 = new System.Windows.Forms.Label();
+            this.label66 = new System.Windows.Forms.Label();
+            this.label65 = new System.Windows.Forms.Label();
             this.profile_panel = new System.Windows.Forms.Panel();
             this.label88 = new System.Windows.Forms.Label();
             this.prof_female_rb = new System.Windows.Forms.RadioButton();
@@ -143,6 +189,7 @@
             this.cancel_btn = new System.Windows.Forms.Button();
             this.save_btn = new System.Windows.Forms.Button();
             this.prof_upload_btn = new System.Windows.Forms.Button();
+            this.prof_pic_pbx = new System.Windows.Forms.PictureBox();
             this.prof_bdate_picker = new System.Windows.Forms.DateTimePicker();
             this.prof_address_tb = new System.Windows.Forms.TextBox();
             this.prof_cn_tb = new System.Windows.Forms.TextBox();
@@ -172,6 +219,7 @@
             this.ssave_btn = new System.Windows.Forms.Button();
             this.scancel_btn = new System.Windows.Forms.Button();
             this.sbday_tb = new System.Windows.Forms.DateTimePicker();
+            this.staff_pb = new System.Windows.Forms.PictureBox();
             this.scn_tb = new System.Windows.Forms.TextBox();
             this.saddress_tb = new System.Windows.Forms.TextBox();
             this.lname_tb = new System.Windows.Forms.TextBox();
@@ -185,9 +233,9 @@
             this.label63 = new System.Windows.Forms.Label();
             this.label50 = new System.Windows.Forms.Label();
             this.trans_panel = new System.Windows.Forms.Panel();
-            this.no_trans = new System.Windows.Forms.Label();
             this.trans_data = new System.Windows.Forms.DataGridView();
             this.label79 = new System.Windows.Forms.Label();
+            this.no_trans = new System.Windows.Forms.Label();
             this.view_item_panel = new System.Windows.Forms.Panel();
             this.item_data = new System.Windows.Forms.DataGridView();
             this.label76 = new System.Windows.Forms.Label();
@@ -200,6 +248,7 @@
             this.items_fp = new System.Windows.Forms.FlowLayoutPanel();
             this.item_gb0 = new System.Windows.Forms.GroupBox();
             this.iid_tb = new System.Windows.Forms.TextBox();
+            this.search_btn0 = new System.Windows.Forms.Button();
             this.iqty_tb = new System.Windows.Forms.TextBox();
             this.iname_tb = new System.Windows.Forms.TextBox();
             this.label77 = new System.Windows.Forms.Label();
@@ -211,28 +260,6 @@
             this.label73 = new System.Windows.Forms.Label();
             this.label72 = new System.Windows.Forms.Label();
             this.label68 = new System.Windows.Forms.Label();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dashboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.profileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addLoanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewLoanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.accountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.createClientAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.confirmClientAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addStaffAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewAccountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.inventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addItemByBatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.transactionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.collectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.view_acc_panel = new System.Windows.Forms.Panel();
             this.label56 = new System.Windows.Forms.Label();
             this.accounts_data = new System.Windows.Forms.DataGridView();
@@ -243,14 +270,31 @@
             this.loan_data = new System.Windows.Forms.DataGridView();
             this.no_data_lbl = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.reports_panel = new System.Windows.Forms.Panel();
+            this.rep_stat = new System.Windows.Forms.Label();
+            this.label85 = new System.Windows.Forms.Label();
+            this.application_btn = new System.Windows.Forms.Button();
+            this.sales_btn = new System.Windows.Forms.Button();
+            this.payment_btn = new System.Windows.Forms.Button();
+            this.damaged_btn = new System.Windows.Forms.Button();
+            this.stock_btn = new System.Windows.Forms.Button();
+            this.repossessed_btn = new System.Windows.Forms.Button();
+            this.label84 = new System.Windows.Forms.Label();
+            this.monthly_btn = new System.Windows.Forms.Button();
+            this.weekly_btn = new System.Windows.Forms.Button();
+            this.daily_btn = new System.Windows.Forms.Button();
+            this.label82 = new System.Windows.Forms.Label();
+            this.label83 = new System.Windows.Forms.Label();
             this.trans_sidepanel = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.sclient_btn = new System.Windows.Forms.Button();
             this.sclient_tb = new System.Windows.Forms.TextBox();
             this.label81 = new System.Windows.Forms.Label();
+            this.scname_btn = new System.Windows.Forms.Button();
             this.scname_tb = new System.Windows.Forms.TextBox();
             this.label80 = new System.Windows.Forms.Label();
             this.inventory_sidepanel = new System.Windows.Forms.Panel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.filter_items_gb = new System.Windows.Forms.GroupBox();
             this.iall_rb = new System.Windows.Forms.RadioButton();
             this.instock_rb = new System.Windows.Forms.RadioButton();
             this.dam_rb = new System.Windows.Forms.RadioButton();
@@ -271,63 +315,35 @@
             this.create_stf_btn = new System.Windows.Forms.Button();
             this.create_acc_btn = new System.Windows.Forms.Button();
             this.confirm_btn = new System.Windows.Forms.Button();
-            this.loan_sidepanel = new System.Windows.Forms.Panel();
-            this.search_gb = new System.Windows.Forms.GroupBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.slamount1_tb = new System.Windows.Forms.TextBox();
-            this.slamount2_tb = new System.Windows.Forms.TextBox();
-            this.slname_tb = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.viewloan_btn = new System.Windows.Forms.Button();
-            this.addloan_btn = new System.Windows.Forms.Button();
-            this.loansfilter_gb = new System.Windows.Forms.GroupBox();
-            this.all_rb = new System.Windows.Forms.RadioButton();
-            this.active_rb = new System.Windows.Forms.RadioButton();
-            this.completed_rb = new System.Windows.Forms.RadioButton();
-            this.inactive_rb = new System.Windows.Forms.RadioButton();
-            this.profile_sidepanel = new System.Windows.Forms.Panel();
-            this.edit_profile_btn = new System.Windows.Forms.Button();
-            this.reports_panel = new System.Windows.Forms.Panel();
-            this.rep_stat = new System.Windows.Forms.Label();
-            this.label85 = new System.Windows.Forms.Label();
-            this.application_btn = new System.Windows.Forms.Button();
-            this.sales_btn = new System.Windows.Forms.Button();
-            this.payment_btn = new System.Windows.Forms.Button();
-            this.damaged_btn = new System.Windows.Forms.Button();
-            this.stock_btn = new System.Windows.Forms.Button();
-            this.repossessed_btn = new System.Windows.Forms.Button();
-            this.label84 = new System.Windows.Forms.Label();
-            this.monthly_btn = new System.Windows.Forms.Button();
-            this.weekly_btn = new System.Windows.Forms.Button();
-            this.daily_btn = new System.Windows.Forms.Button();
-            this.label82 = new System.Windows.Forms.Label();
-            this.label83 = new System.Windows.Forms.Label();
             this.dashboard_panel = new System.Windows.Forms.Panel();
             this.reports_btn = new System.Windows.Forms.Button();
             this.transaction_btn = new System.Windows.Forms.Button();
-            this.search_item0 = new System.Windows.Forms.Button();
-            this.client_search_btn = new System.Windows.Forms.Button();
-            this.search_price_btn = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.prof_pic_pbx = new System.Windows.Forms.PictureBox();
-            this.staff_pb = new System.Windows.Forms.PictureBox();
-            this.search_btn0 = new System.Windows.Forms.Button();
-            this.sclient_btn = new System.Windows.Forms.Button();
-            this.scname_btn = new System.Windows.Forms.Button();
-            this.slamount_btn = new System.Windows.Forms.Button();
-            this.slname_btn = new System.Windows.Forms.Button();
             this.profile_btn = new System.Windows.Forms.Button();
             this.logout_btn = new System.Windows.Forms.Button();
+            this.asearch_gb = new System.Windows.Forms.GroupBox();
+            this.asearch_tb = new System.Windows.Forms.TextBox();
+            this.asearch_btn = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.isearch_gb = new System.Windows.Forms.GroupBox();
+            this.isearch_tb = new System.Windows.Forms.TextBox();
+            this.isearch_btn = new System.Windows.Forms.Button();
             this.main_panel.SuspendLayout();
-            this.additem_panel.SuspendLayout();
+            this.confirmclient_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.menuStrip1.SuspendLayout();
+            this.loan_sidepanel.SuspendLayout();
+            this.search_gb.SuspendLayout();
+            this.loansfilter_gb.SuspendLayout();
+            this.profile_sidepanel.SuspendLayout();
             this.addloan_panel.SuspendLayout();
             this.loan_items_fp.SuspendLayout();
             this.loanItem0.SuspendLayout();
-            this.confirmclient_panel.SuspendLayout();
+            this.additem_panel.SuspendLayout();
             this.profile_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.prof_pic_pbx)).BeginInit();
             this.create_staff_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.staff_pb)).BeginInit();
             this.trans_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trans_data)).BeginInit();
             this.view_item_panel.SuspendLayout();
@@ -335,28 +351,21 @@
             this.batch_panel.SuspendLayout();
             this.items_fp.SuspendLayout();
             this.item_gb0.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             this.view_acc_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.accounts_data)).BeginInit();
             this.viewloan_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.loan_data)).BeginInit();
+            this.reports_panel.SuspendLayout();
             this.trans_sidepanel.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.inventory_sidepanel.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.filter_items_gb.SuspendLayout();
             this.confirmclient_sidepanel.SuspendLayout();
             this.filter_cacc_gb.SuspendLayout();
             this.filter_acc_gb.SuspendLayout();
-            this.loan_sidepanel.SuspendLayout();
-            this.search_gb.SuspendLayout();
-            this.loansfilter_gb.SuspendLayout();
-            this.profile_sidepanel.SuspendLayout();
-            this.reports_panel.SuspendLayout();
             this.dashboard_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.prof_pic_pbx)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.staff_pb)).BeginInit();
+            this.asearch_gb.SuspendLayout();
+            this.isearch_gb.SuspendLayout();
             this.SuspendLayout();
             // 
             // accountsmgt_btn
@@ -394,226 +403,758 @@
             // 
             // main_panel
             // 
+            this.main_panel.Controls.Add(this.view_item_panel);
+            this.main_panel.Controls.Add(this.view_acc_panel);
+            this.main_panel.Controls.Add(this.viewloan_panel);
             this.main_panel.Controls.Add(this.confirmclient_panel);
             this.main_panel.Controls.Add(this.menuStrip1);
-            this.main_panel.Controls.Add(this.trans_sidepanel);
-            this.main_panel.Controls.Add(this.inventory_sidepanel);
-            this.main_panel.Controls.Add(this.confirmclient_sidepanel);
-            this.main_panel.Controls.Add(this.loan_sidepanel);
-            this.main_panel.Controls.Add(this.profile_sidepanel);
             this.main_panel.Controls.Add(this.addloan_panel);
             this.main_panel.Controls.Add(this.additem_panel);
             this.main_panel.Controls.Add(this.profile_panel);
             this.main_panel.Controls.Add(this.create_staff_panel);
             this.main_panel.Controls.Add(this.trans_panel);
-            this.main_panel.Controls.Add(this.view_item_panel);
             this.main_panel.Controls.Add(this.batch_panel);
-            this.main_panel.Controls.Add(this.view_acc_panel);
-            this.main_panel.Controls.Add(this.viewloan_panel);
+            this.main_panel.Controls.Add(this.inventory_sidepanel);
+            this.main_panel.Controls.Add(this.confirmclient_sidepanel);
+            this.main_panel.Controls.Add(this.loan_sidepanel);
+            this.main_panel.Controls.Add(this.profile_sidepanel);
             this.main_panel.Controls.Add(this.reports_panel);
+            this.main_panel.Controls.Add(this.trans_sidepanel);
             this.main_panel.Location = new System.Drawing.Point(1, 1);
             this.main_panel.Name = "main_panel";
             this.main_panel.Size = new System.Drawing.Size(799, 450);
             this.main_panel.TabIndex = 3;
             this.main_panel.Visible = false;
             // 
-            // additem_panel
+            // confirmclient_panel
             // 
-            this.additem_panel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.additem_panel.Controls.Add(this.stock_tb);
-            this.additem_panel.Controls.Add(this.repo_tb);
-            this.additem_panel.Controls.Add(this.dam_tb);
-            this.additem_panel.Controls.Add(this.dam_lbl);
-            this.additem_panel.Controls.Add(this.repo_lbl);
-            this.additem_panel.Controls.Add(this.stock_lbl);
-            this.additem_panel.Controls.Add(this.label71);
-            this.additem_panel.Controls.Add(this.icancel_btn);
-            this.additem_panel.Controls.Add(this.isave_btn);
-            this.additem_panel.Controls.Add(this.search_price_btn);
-            this.additem_panel.Controls.Add(this.label70);
-            this.additem_panel.Controls.Add(this.reorder_tb);
-            this.additem_panel.Controls.Add(this.price_tb);
-            this.additem_panel.Controls.Add(this.description_tb);
-            this.additem_panel.Controls.Add(this.itemname_tb);
-            this.additem_panel.Controls.Add(this.label69);
-            this.additem_panel.Controls.Add(this.label67);
-            this.additem_panel.Controls.Add(this.label66);
-            this.additem_panel.Controls.Add(this.label65);
-            this.additem_panel.Location = new System.Drawing.Point(209, 27);
-            this.additem_panel.Name = "additem_panel";
-            this.additem_panel.Size = new System.Drawing.Size(586, 419);
-            this.additem_panel.TabIndex = 35;
+            this.confirmclient_panel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.confirmclient_panel.Controls.Add(this.label87);
+            this.confirmclient_panel.Controls.Add(this.ccancel_btn);
+            this.confirmclient_panel.Controls.Add(this.find_btn);
+            this.confirmclient_panel.Controls.Add(this.female_rb);
+            this.confirmclient_panel.Controls.Add(this.male_rb);
+            this.confirmclient_panel.Controls.Add(this.label35);
+            this.confirmclient_panel.Controls.Add(this.label49);
+            this.confirmclient_panel.Controls.Add(this.credit_limit_tb);
+            this.confirmclient_panel.Controls.Add(this.up_photo_btn);
+            this.confirmclient_panel.Controls.Add(this.up_sketch_btn);
+            this.confirmclient_panel.Controls.Add(this.save_acc_btn);
+            this.confirmclient_panel.Controls.Add(this.pictureBox2);
+            this.confirmclient_panel.Controls.Add(this.bday_picker);
+            this.confirmclient_panel.Controls.Add(this.pictureBox1);
+            this.confirmclient_panel.Controls.Add(this.exp_tb);
+            this.confirmclient_panel.Controls.Add(this.inc_tb);
+            this.confirmclient_panel.Controls.Add(this.occu_tb);
+            this.confirmclient_panel.Controls.Add(this.stat_cb);
+            this.confirmclient_panel.Controls.Add(this.cn_tb);
+            this.confirmclient_panel.Controls.Add(this.addr_tb);
+            this.confirmclient_panel.Controls.Add(this.ln_tb);
+            this.confirmclient_panel.Controls.Add(this.mn_tb);
+            this.confirmclient_panel.Controls.Add(this.fn_tb);
+            this.confirmclient_panel.Controls.Add(this.label46);
+            this.confirmclient_panel.Controls.Add(this.label45);
+            this.confirmclient_panel.Controls.Add(this.label44);
+            this.confirmclient_panel.Controls.Add(this.label43);
+            this.confirmclient_panel.Controls.Add(this.label42);
+            this.confirmclient_panel.Controls.Add(this.label41);
+            this.confirmclient_panel.Controls.Add(this.label40);
+            this.confirmclient_panel.Controls.Add(this.label39);
+            this.confirmclient_panel.Controls.Add(this.label38);
+            this.confirmclient_panel.Controls.Add(this.label37);
+            this.confirmclient_panel.Controls.Add(this.label36);
+            this.confirmclient_panel.Controls.Add(this.accounts_lbl);
+            this.confirmclient_panel.Location = new System.Drawing.Point(209, 27);
+            this.confirmclient_panel.Name = "confirmclient_panel";
+            this.confirmclient_panel.Size = new System.Drawing.Size(586, 419);
+            this.confirmclient_panel.TabIndex = 32;
             // 
-            // stock_tb
+            // label87
             // 
-            this.stock_tb.Location = new System.Drawing.Point(210, 194);
-            this.stock_tb.Name = "stock_tb";
-            this.stock_tb.Size = new System.Drawing.Size(222, 20);
-            this.stock_tb.TabIndex = 25;
-            this.stock_tb.Text = "0";
-            this.stock_tb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.stock_tb.Visible = false;
+            this.label87.AutoSize = true;
+            this.label87.Location = new System.Drawing.Point(10, 247);
+            this.label87.Name = "label87";
+            this.label87.Size = new System.Drawing.Size(25, 13);
+            this.label87.TabIndex = 73;
+            this.label87.Text = "+63";
             // 
-            // repo_tb
+            // ccancel_btn
             // 
-            this.repo_tb.Location = new System.Drawing.Point(210, 220);
-            this.repo_tb.Name = "repo_tb";
-            this.repo_tb.Size = new System.Drawing.Size(222, 20);
-            this.repo_tb.TabIndex = 24;
-            this.repo_tb.Text = "0";
-            this.repo_tb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.repo_tb.Visible = false;
+            this.ccancel_btn.Location = new System.Drawing.Point(478, 389);
+            this.ccancel_btn.Name = "ccancel_btn";
+            this.ccancel_btn.Size = new System.Drawing.Size(98, 23);
+            this.ccancel_btn.TabIndex = 35;
+            this.ccancel_btn.Text = "Cancel";
+            this.ccancel_btn.UseVisualStyleBackColor = true;
+            this.ccancel_btn.Click += new System.EventHandler(this.ccancel_btn_Click);
             // 
-            // dam_tb
+            // find_btn
             // 
-            this.dam_tb.Location = new System.Drawing.Point(210, 246);
-            this.dam_tb.Name = "dam_tb";
-            this.dam_tb.Size = new System.Drawing.Size(222, 20);
-            this.dam_tb.TabIndex = 23;
-            this.dam_tb.Text = "0";
-            this.dam_tb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.dam_tb.Visible = false;
+            this.find_btn.Location = new System.Drawing.Point(279, 389);
+            this.find_btn.Name = "find_btn";
+            this.find_btn.Size = new System.Drawing.Size(98, 23);
+            this.find_btn.TabIndex = 33;
+            this.find_btn.Text = "Find";
+            this.find_btn.UseVisualStyleBackColor = true;
+            this.find_btn.Click += new System.EventHandler(this.find_btn_Click);
             // 
-            // dam_lbl
+            // female_rb
             // 
-            this.dam_lbl.AutoSize = true;
-            this.dam_lbl.Location = new System.Drawing.Point(119, 249);
-            this.dam_lbl.Name = "dam_lbl";
-            this.dam_lbl.Size = new System.Drawing.Size(56, 13);
-            this.dam_lbl.TabIndex = 22;
-            this.dam_lbl.Text = "Damaged:";
-            this.dam_lbl.Visible = false;
+            this.female_rb.AutoSize = true;
+            this.female_rb.Location = new System.Drawing.Point(89, 361);
+            this.female_rb.Name = "female_rb";
+            this.female_rb.Size = new System.Drawing.Size(59, 17);
+            this.female_rb.TabIndex = 32;
+            this.female_rb.TabStop = true;
+            this.female_rb.Text = "Female";
+            this.female_rb.UseVisualStyleBackColor = true;
             // 
-            // repo_lbl
+            // male_rb
             // 
-            this.repo_lbl.AutoSize = true;
-            this.repo_lbl.Location = new System.Drawing.Point(119, 225);
-            this.repo_lbl.Name = "repo_lbl";
-            this.repo_lbl.Size = new System.Drawing.Size(74, 13);
-            this.repo_lbl.TabIndex = 21;
-            this.repo_lbl.Text = "Repossessed:";
-            this.repo_lbl.Visible = false;
+            this.male_rb.AutoSize = true;
+            this.male_rb.Location = new System.Drawing.Point(13, 361);
+            this.male_rb.Name = "male_rb";
+            this.male_rb.Size = new System.Drawing.Size(48, 17);
+            this.male_rb.TabIndex = 31;
+            this.male_rb.TabStop = true;
+            this.male_rb.Text = "Male";
+            this.male_rb.UseVisualStyleBackColor = true;
             // 
-            // stock_lbl
+            // label35
             // 
-            this.stock_lbl.AutoSize = true;
-            this.stock_lbl.Location = new System.Drawing.Point(119, 197);
-            this.stock_lbl.Name = "stock_lbl";
-            this.stock_lbl.Size = new System.Drawing.Size(69, 13);
-            this.stock_lbl.TabIndex = 20;
-            this.stock_lbl.Text = "Stock Count:";
-            this.stock_lbl.Visible = false;
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(12, 345);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(42, 13);
+            this.label35.TabIndex = 30;
+            this.label35.Text = "Gender";
             // 
-            // label71
+            // label49
             // 
-            this.label71.AutoSize = true;
-            this.label71.Location = new System.Drawing.Point(119, 171);
-            this.label71.Name = "label71";
-            this.label71.Size = new System.Drawing.Size(75, 13);
-            this.label71.TabIndex = 19;
-            this.label71.Text = "Reorder Point:";
+            this.label49.AutoSize = true;
+            this.label49.Location = new System.Drawing.Point(217, 120);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(61, 13);
+            this.label49.TabIndex = 29;
+            this.label49.Text = "Credit Limit:";
             // 
-            // icancel_btn
+            // credit_limit_tb
             // 
-            this.icancel_btn.Location = new System.Drawing.Point(501, 385);
-            this.icancel_btn.Name = "icancel_btn";
-            this.icancel_btn.Size = new System.Drawing.Size(75, 23);
-            this.icancel_btn.TabIndex = 18;
-            this.icancel_btn.Text = "Cancel";
-            this.icancel_btn.UseVisualStyleBackColor = true;
-            this.icancel_btn.Click += new System.EventHandler(this.icancel_btn_Click);
+            this.credit_limit_tb.Location = new System.Drawing.Point(220, 136);
+            this.credit_limit_tb.Name = "credit_limit_tb";
+            this.credit_limit_tb.Size = new System.Drawing.Size(196, 20);
+            this.credit_limit_tb.TabIndex = 28;
+            this.credit_limit_tb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.credit_limit_tb.Leave += new System.EventHandler(this.credit_limit_tb_Leave);
             // 
-            // isave_btn
+            // up_photo_btn
             // 
-            this.isave_btn.Location = new System.Drawing.Point(420, 385);
-            this.isave_btn.Name = "isave_btn";
-            this.isave_btn.Size = new System.Drawing.Size(75, 23);
-            this.isave_btn.TabIndex = 17;
-            this.isave_btn.Text = "Save";
-            this.isave_btn.UseVisualStyleBackColor = true;
-            this.isave_btn.Click += new System.EventHandler(this.isave_btn_Click);
+            this.up_photo_btn.Location = new System.Drawing.Point(180, 389);
+            this.up_photo_btn.Name = "up_photo_btn";
+            this.up_photo_btn.Size = new System.Drawing.Size(98, 23);
+            this.up_photo_btn.TabIndex = 27;
+            this.up_photo_btn.Text = "Upload Photo";
+            this.up_photo_btn.UseVisualStyleBackColor = true;
             // 
-            // label70
+            // up_sketch_btn
             // 
-            this.label70.AutoSize = true;
-            this.label70.Location = new System.Drawing.Point(190, 145);
-            this.label70.Name = "label70";
-            this.label70.Size = new System.Drawing.Size(14, 13);
-            this.label70.TabIndex = 15;
-            this.label70.Text = "P";
+            this.up_sketch_btn.Location = new System.Drawing.Point(279, 389);
+            this.up_sketch_btn.Name = "up_sketch_btn";
+            this.up_sketch_btn.Size = new System.Drawing.Size(98, 23);
+            this.up_sketch_btn.TabIndex = 26;
+            this.up_sketch_btn.Text = "Upload Sketch";
+            this.up_sketch_btn.UseVisualStyleBackColor = true;
             // 
-            // reorder_tb
+            // save_acc_btn
             // 
-            this.reorder_tb.Location = new System.Drawing.Point(210, 168);
-            this.reorder_tb.Name = "reorder_tb";
-            this.reorder_tb.Size = new System.Drawing.Size(222, 20);
-            this.reorder_tb.TabIndex = 14;
-            this.reorder_tb.Text = "0";
-            this.reorder_tb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.save_acc_btn.Location = new System.Drawing.Point(378, 389);
+            this.save_acc_btn.Name = "save_acc_btn";
+            this.save_acc_btn.Size = new System.Drawing.Size(98, 23);
+            this.save_acc_btn.TabIndex = 25;
+            this.save_acc_btn.Text = "Save";
+            this.save_acc_btn.UseVisualStyleBackColor = true;
+            this.save_acc_btn.Click += new System.EventHandler(this.save_acc_btn_Click);
             // 
-            // price_tb
+            // pictureBox2
             // 
-            this.price_tb.AcceptsReturn = true;
-            this.price_tb.Enabled = false;
-            this.price_tb.Location = new System.Drawing.Point(210, 142);
-            this.price_tb.Name = "price_tb";
-            this.price_tb.Size = new System.Drawing.Size(193, 20);
-            this.price_tb.TabIndex = 14;
-            this.price_tb.Text = "0";
-            this.price_tb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox2.Location = new System.Drawing.Point(220, 214);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(346, 167);
+            this.pictureBox2.TabIndex = 24;
+            this.pictureBox2.TabStop = false;
             // 
-            // description_tb
+            // bday_picker
             // 
-            this.description_tb.Location = new System.Drawing.Point(210, 79);
-            this.description_tb.Multiline = true;
-            this.description_tb.Name = "description_tb";
-            this.description_tb.Size = new System.Drawing.Size(222, 55);
-            this.description_tb.TabIndex = 14;
+            this.bday_picker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.bday_picker.Location = new System.Drawing.Point(13, 283);
+            this.bday_picker.Name = "bday_picker";
+            this.bday_picker.Size = new System.Drawing.Size(196, 20);
+            this.bday_picker.TabIndex = 23;
+            this.bday_picker.Value = new System.DateTime(2018, 9, 19, 19, 23, 11, 0);
             // 
-            // itemname_tb
+            // pictureBox1
             // 
-            this.itemname_tb.Location = new System.Drawing.Point(210, 53);
-            this.itemname_tb.Name = "itemname_tb";
-            this.itemname_tb.Size = new System.Drawing.Size(222, 20);
-            this.itemname_tb.TabIndex = 14;
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox1.Location = new System.Drawing.Point(425, 59);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(141, 132);
+            this.pictureBox1.TabIndex = 22;
+            this.pictureBox1.TabStop = false;
             // 
-            // label69
+            // exp_tb
             // 
-            this.label69.AutoSize = true;
-            this.label69.Location = new System.Drawing.Point(119, 82);
-            this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(63, 13);
-            this.label69.TabIndex = 13;
-            this.label69.Text = "Description:";
+            this.exp_tb.Location = new System.Drawing.Point(220, 97);
+            this.exp_tb.Name = "exp_tb";
+            this.exp_tb.Size = new System.Drawing.Size(196, 20);
+            this.exp_tb.TabIndex = 20;
+            this.exp_tb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.exp_tb.Leave += new System.EventHandler(this.exp_tb_Leave);
             // 
-            // label67
+            // inc_tb
             // 
-            this.label67.AutoSize = true;
-            this.label67.Location = new System.Drawing.Point(119, 145);
-            this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(34, 13);
-            this.label67.TabIndex = 11;
-            this.label67.Text = "Price:";
+            this.inc_tb.Location = new System.Drawing.Point(220, 58);
+            this.inc_tb.Name = "inc_tb";
+            this.inc_tb.Size = new System.Drawing.Size(196, 20);
+            this.inc_tb.TabIndex = 19;
+            this.inc_tb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.inc_tb.Leave += new System.EventHandler(this.inc_tb_Leave);
             // 
-            // label66
+            // occu_tb
             // 
-            this.label66.AutoSize = true;
-            this.label66.Location = new System.Drawing.Point(119, 56);
-            this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(61, 13);
-            this.label66.TabIndex = 10;
-            this.label66.Text = "Item Name:";
+            this.occu_tb.Location = new System.Drawing.Point(13, 322);
+            this.occu_tb.Name = "occu_tb";
+            this.occu_tb.Size = new System.Drawing.Size(196, 20);
+            this.occu_tb.TabIndex = 18;
             // 
-            // label65
+            // stat_cb
             // 
-            this.label65.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label65.Font = new System.Drawing.Font("Bookman Old Style", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label65.Location = new System.Drawing.Point(0, 0);
-            this.label65.Name = "label65";
-            this.label65.Size = new System.Drawing.Size(582, 22);
-            this.label65.TabIndex = 8;
-            this.label65.Text = "ADD ITEM";
-            this.label65.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.stat_cb.FormattingEnabled = true;
+            this.stat_cb.Location = new System.Drawing.Point(220, 175);
+            this.stat_cb.Name = "stat_cb";
+            this.stat_cb.Size = new System.Drawing.Size(196, 21);
+            this.stat_cb.TabIndex = 17;
+            // 
+            // cn_tb
+            // 
+            this.cn_tb.Location = new System.Drawing.Point(35, 244);
+            this.cn_tb.MaxLength = 10;
+            this.cn_tb.Name = "cn_tb";
+            this.cn_tb.Size = new System.Drawing.Size(174, 20);
+            this.cn_tb.TabIndex = 16;
+            // 
+            // addr_tb
+            // 
+            this.addr_tb.Location = new System.Drawing.Point(13, 175);
+            this.addr_tb.Multiline = true;
+            this.addr_tb.Name = "addr_tb";
+            this.addr_tb.Size = new System.Drawing.Size(196, 49);
+            this.addr_tb.TabIndex = 15;
+            // 
+            // ln_tb
+            // 
+            this.ln_tb.Location = new System.Drawing.Point(13, 136);
+            this.ln_tb.Name = "ln_tb";
+            this.ln_tb.Size = new System.Drawing.Size(196, 20);
+            this.ln_tb.TabIndex = 14;
+            // 
+            // mn_tb
+            // 
+            this.mn_tb.Location = new System.Drawing.Point(13, 97);
+            this.mn_tb.Name = "mn_tb";
+            this.mn_tb.Size = new System.Drawing.Size(196, 20);
+            this.mn_tb.TabIndex = 13;
+            // 
+            // fn_tb
+            // 
+            this.fn_tb.Location = new System.Drawing.Point(13, 58);
+            this.fn_tb.Name = "fn_tb";
+            this.fn_tb.Size = new System.Drawing.Size(196, 20);
+            this.fn_tb.TabIndex = 12;
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Location = new System.Drawing.Point(219, 159);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(40, 13);
+            this.label46.TabIndex = 10;
+            this.label46.Text = "Status:";
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Location = new System.Drawing.Point(219, 198);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(98, 13);
+            this.label45.TabIndex = 10;
+            this.label45.Text = "Residence Sketch:";
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Location = new System.Drawing.Point(12, 267);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(52, 13);
+            this.label44.TabIndex = 10;
+            this.label44.Text = "Birthdate:";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(219, 82);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(91, 13);
+            this.label43.TabIndex = 10;
+            this.label43.Text = "Monthly Expense:";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(219, 42);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(85, 13);
+            this.label42.TabIndex = 10;
+            this.label42.Text = "Monthly Income:";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(12, 306);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(65, 13);
+            this.label41.TabIndex = 10;
+            this.label41.Text = "Occupation:";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(12, 228);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(87, 13);
+            this.label40.TabIndex = 10;
+            this.label40.Text = "Contact Number:";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(12, 159);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(51, 13);
+            this.label39.TabIndex = 10;
+            this.label39.Text = "Address: ";
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(12, 120);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(61, 13);
+            this.label38.TabIndex = 10;
+            this.label38.Text = "Last Name:";
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(12, 81);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(72, 13);
+            this.label37.TabIndex = 0;
+            this.label37.Text = "Middle Name:";
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(12, 42);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(60, 13);
+            this.label36.TabIndex = 9;
+            this.label36.Text = "First Name:";
+            // 
+            // accounts_lbl
+            // 
+            this.accounts_lbl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.accounts_lbl.Font = new System.Drawing.Font("Bookman Old Style", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.accounts_lbl.Location = new System.Drawing.Point(0, 0);
+            this.accounts_lbl.Name = "accounts_lbl";
+            this.accounts_lbl.Size = new System.Drawing.Size(582, 22);
+            this.accounts_lbl.TabIndex = 7;
+            this.accounts_lbl.Text = "CREATE CLIENT ACCOUNT";
+            this.accounts_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.loanToolStripMenuItem,
+            this.accountsToolStripMenuItem,
+            this.inventoryToolStripMenuItem,
+            this.transactionToolStripMenuItem,
+            this.reportsToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(799, 24);
+            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dashboardToolStripMenuItem,
+            this.profileToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.logoutToolStripMenuItem,
+            this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // dashboardToolStripMenuItem
+            // 
+            this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
+            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.dashboardToolStripMenuItem.Text = "Dashboard";
+            this.dashboardToolStripMenuItem.Click += new System.EventHandler(this.dashboardToolStripMenuItem_Click);
+            // 
+            // profileToolStripMenuItem
+            // 
+            this.profileToolStripMenuItem.Name = "profileToolStripMenuItem";
+            this.profileToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.profileToolStripMenuItem.Text = "My Profile";
+            this.profileToolStripMenuItem.Click += new System.EventHandler(this.profileToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(128, 6);
+            // 
+            // logoutToolStripMenuItem
+            // 
+            this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.logoutToolStripMenuItem.Text = "Logout";
+            this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // loanToolStripMenuItem
+            // 
+            this.loanToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addLoanToolStripMenuItem,
+            this.viewLoanToolStripMenuItem});
+            this.loanToolStripMenuItem.Name = "loanToolStripMenuItem";
+            this.loanToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
+            this.loanToolStripMenuItem.Text = "Loan";
+            // 
+            // addLoanToolStripMenuItem
+            // 
+            this.addLoanToolStripMenuItem.Name = "addLoanToolStripMenuItem";
+            this.addLoanToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.addLoanToolStripMenuItem.Text = "Add Loan";
+            this.addLoanToolStripMenuItem.Click += new System.EventHandler(this.addLoanToolStripMenuItem_Click);
+            // 
+            // viewLoanToolStripMenuItem
+            // 
+            this.viewLoanToolStripMenuItem.Name = "viewLoanToolStripMenuItem";
+            this.viewLoanToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.viewLoanToolStripMenuItem.Text = "View Loans";
+            this.viewLoanToolStripMenuItem.Click += new System.EventHandler(this.viewLoanToolStripMenuItem_Click);
+            // 
+            // accountsToolStripMenuItem
+            // 
+            this.accountsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createClientAccountToolStripMenuItem,
+            this.confirmClientAccountToolStripMenuItem,
+            this.addStaffAccountToolStripMenuItem,
+            this.viewAccountsToolStripMenuItem});
+            this.accountsToolStripMenuItem.Name = "accountsToolStripMenuItem";
+            this.accountsToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
+            this.accountsToolStripMenuItem.Text = "Accounts";
+            // 
+            // createClientAccountToolStripMenuItem
+            // 
+            this.createClientAccountToolStripMenuItem.Name = "createClientAccountToolStripMenuItem";
+            this.createClientAccountToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.createClientAccountToolStripMenuItem.Text = "Create Client Account";
+            this.createClientAccountToolStripMenuItem.Click += new System.EventHandler(this.createClientAccountToolStripMenuItem_Click);
+            // 
+            // confirmClientAccountToolStripMenuItem
+            // 
+            this.confirmClientAccountToolStripMenuItem.Name = "confirmClientAccountToolStripMenuItem";
+            this.confirmClientAccountToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.confirmClientAccountToolStripMenuItem.Text = "Confirm Client Account";
+            this.confirmClientAccountToolStripMenuItem.Click += new System.EventHandler(this.confirmClientAccountToolStripMenuItem_Click);
+            // 
+            // addStaffAccountToolStripMenuItem
+            // 
+            this.addStaffAccountToolStripMenuItem.Name = "addStaffAccountToolStripMenuItem";
+            this.addStaffAccountToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.addStaffAccountToolStripMenuItem.Text = "Create Staff Profile";
+            this.addStaffAccountToolStripMenuItem.Click += new System.EventHandler(this.addStaffAccountToolStripMenuItem_Click);
+            // 
+            // viewAccountsToolStripMenuItem
+            // 
+            this.viewAccountsToolStripMenuItem.Name = "viewAccountsToolStripMenuItem";
+            this.viewAccountsToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.viewAccountsToolStripMenuItem.Text = "View Accounts";
+            this.viewAccountsToolStripMenuItem.Click += new System.EventHandler(this.viewAccountsToolStripMenuItem_Click);
+            // 
+            // inventoryToolStripMenuItem
+            // 
+            this.inventoryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addItemToolStripMenuItem,
+            this.addItemByBatchToolStripMenuItem,
+            this.viewItemsToolStripMenuItem});
+            this.inventoryToolStripMenuItem.Name = "inventoryToolStripMenuItem";
+            this.inventoryToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
+            this.inventoryToolStripMenuItem.Text = "Inventory";
+            // 
+            // addItemToolStripMenuItem
+            // 
+            this.addItemToolStripMenuItem.Name = "addItemToolStripMenuItem";
+            this.addItemToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addItemToolStripMenuItem.Text = "Add Item";
+            this.addItemToolStripMenuItem.Click += new System.EventHandler(this.addItemToolStripMenuItem_Click);
+            // 
+            // addItemByBatchToolStripMenuItem
+            // 
+            this.addItemByBatchToolStripMenuItem.Name = "addItemByBatchToolStripMenuItem";
+            this.addItemByBatchToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addItemByBatchToolStripMenuItem.Text = "Add Item by Batch";
+            this.addItemByBatchToolStripMenuItem.Click += new System.EventHandler(this.addItemByBatchToolStripMenuItem_Click);
+            // 
+            // viewItemsToolStripMenuItem
+            // 
+            this.viewItemsToolStripMenuItem.Name = "viewItemsToolStripMenuItem";
+            this.viewItemsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewItemsToolStripMenuItem.Text = "View Items";
+            this.viewItemsToolStripMenuItem.Click += new System.EventHandler(this.viewItemsToolStripMenuItem_Click);
+            // 
+            // transactionToolStripMenuItem
+            // 
+            this.transactionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.collectionToolStripMenuItem});
+            this.transactionToolStripMenuItem.Name = "transactionToolStripMenuItem";
+            this.transactionToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
+            this.transactionToolStripMenuItem.Text = "Transaction";
+            // 
+            // collectionToolStripMenuItem
+            // 
+            this.collectionToolStripMenuItem.Name = "collectionToolStripMenuItem";
+            this.collectionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.collectionToolStripMenuItem.Text = "Collection";
+            this.collectionToolStripMenuItem.Click += new System.EventHandler(this.collectionToolStripMenuItem_Click);
+            // 
+            // reportsToolStripMenuItem
+            // 
+            this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
+            this.reportsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.reportsToolStripMenuItem.Text = "Reports";
+            this.reportsToolStripMenuItem.Click += new System.EventHandler(this.reportsToolStripMenuItem_Click);
+            // 
+            // loan_sidepanel
+            // 
+            this.loan_sidepanel.BackColor = System.Drawing.Color.DarkGray;
+            this.loan_sidepanel.Controls.Add(this.search_gb);
+            this.loan_sidepanel.Controls.Add(this.viewloan_btn);
+            this.loan_sidepanel.Controls.Add(this.addloan_btn);
+            this.loan_sidepanel.Controls.Add(this.loansfilter_gb);
+            this.loan_sidepanel.Location = new System.Drawing.Point(3, 27);
+            this.loan_sidepanel.Name = "loan_sidepanel";
+            this.loan_sidepanel.Size = new System.Drawing.Size(200, 420);
+            this.loan_sidepanel.TabIndex = 1;
+            // 
+            // search_gb
+            // 
+            this.search_gb.Controls.Add(this.slamount_btn);
+            this.search_gb.Controls.Add(this.slname_btn);
+            this.search_gb.Controls.Add(this.label13);
+            this.search_gb.Controls.Add(this.label12);
+            this.search_gb.Controls.Add(this.slamount1_tb);
+            this.search_gb.Controls.Add(this.slamount2_tb);
+            this.search_gb.Controls.Add(this.slname_tb);
+            this.search_gb.Controls.Add(this.label11);
+            this.search_gb.Location = new System.Drawing.Point(6, 223);
+            this.search_gb.Name = "search_gb";
+            this.search_gb.Size = new System.Drawing.Size(187, 146);
+            this.search_gb.TabIndex = 3;
+            this.search_gb.TabStop = false;
+            this.search_gb.Text = "Search Loans By";
+            // 
+            // slamount_btn
+            // 
+            this.slamount_btn.Image = ((System.Drawing.Image)(resources.GetObject("slamount_btn.Image")));
+            this.slamount_btn.Location = new System.Drawing.Point(144, 103);
+            this.slamount_btn.Name = "slamount_btn";
+            this.slamount_btn.Size = new System.Drawing.Size(25, 25);
+            this.slamount_btn.TabIndex = 7;
+            this.slamount_btn.UseVisualStyleBackColor = true;
+            this.slamount_btn.Click += new System.EventHandler(this.slamount_btn_Click);
+            // 
+            // slname_btn
+            // 
+            this.slname_btn.Image = ((System.Drawing.Image)(resources.GetObject("slname_btn.Image")));
+            this.slname_btn.Location = new System.Drawing.Point(144, 46);
+            this.slname_btn.Name = "slname_btn";
+            this.slname_btn.Size = new System.Drawing.Size(25, 25);
+            this.slname_btn.TabIndex = 6;
+            this.slname_btn.UseVisualStyleBackColor = true;
+            this.slname_btn.Click += new System.EventHandler(this.slname_btn_Click);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(72, 108);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(16, 13);
+            this.label13.TabIndex = 5;
+            this.label13.Text = "to";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 89);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(98, 13);
+            this.label12.TabIndex = 4;
+            this.label12.Text = "Loan Amount (Php)";
+            // 
+            // slamount1_tb
+            // 
+            this.slamount1_tb.Location = new System.Drawing.Point(16, 105);
+            this.slamount1_tb.Name = "slamount1_tb";
+            this.slamount1_tb.Size = new System.Drawing.Size(55, 20);
+            this.slamount1_tb.TabIndex = 3;
+            // 
+            // slamount2_tb
+            // 
+            this.slamount2_tb.Location = new System.Drawing.Point(88, 105);
+            this.slamount2_tb.Name = "slamount2_tb";
+            this.slamount2_tb.Size = new System.Drawing.Size(55, 20);
+            this.slamount2_tb.TabIndex = 2;
+            // 
+            // slname_tb
+            // 
+            this.slname_tb.Location = new System.Drawing.Point(16, 48);
+            this.slname_tb.Name = "slname_tb";
+            this.slname_tb.Size = new System.Drawing.Size(127, 20);
+            this.slname_tb.TabIndex = 1;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 28);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(87, 13);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "Client Last Name";
+            // 
+            // viewloan_btn
+            // 
+            this.viewloan_btn.Location = new System.Drawing.Point(3, 48);
+            this.viewloan_btn.Name = "viewloan_btn";
+            this.viewloan_btn.Size = new System.Drawing.Size(194, 39);
+            this.viewloan_btn.TabIndex = 0;
+            this.viewloan_btn.Text = "View Loans";
+            this.viewloan_btn.UseVisualStyleBackColor = true;
+            this.viewloan_btn.Click += new System.EventHandler(this.viewloan_btn_Click);
+            // 
+            // addloan_btn
+            // 
+            this.addloan_btn.Location = new System.Drawing.Point(3, 4);
+            this.addloan_btn.Name = "addloan_btn";
+            this.addloan_btn.Size = new System.Drawing.Size(194, 39);
+            this.addloan_btn.TabIndex = 0;
+            this.addloan_btn.Text = "Add Loan";
+            this.addloan_btn.UseVisualStyleBackColor = true;
+            this.addloan_btn.Click += new System.EventHandler(this.addloan_btn_Click);
+            // 
+            // loansfilter_gb
+            // 
+            this.loansfilter_gb.Controls.Add(this.all_rb);
+            this.loansfilter_gb.Controls.Add(this.active_rb);
+            this.loansfilter_gb.Controls.Add(this.completed_rb);
+            this.loansfilter_gb.Controls.Add(this.inactive_rb);
+            this.loansfilter_gb.Location = new System.Drawing.Point(6, 98);
+            this.loansfilter_gb.Name = "loansfilter_gb";
+            this.loansfilter_gb.Size = new System.Drawing.Size(187, 112);
+            this.loansfilter_gb.TabIndex = 2;
+            this.loansfilter_gb.TabStop = false;
+            this.loansfilter_gb.Text = "Filter Loans";
+            // 
+            // all_rb
+            // 
+            this.all_rb.AutoSize = true;
+            this.all_rb.Location = new System.Drawing.Point(16, 84);
+            this.all_rb.Name = "all_rb";
+            this.all_rb.Size = new System.Drawing.Size(36, 17);
+            this.all_rb.TabIndex = 6;
+            this.all_rb.TabStop = true;
+            this.all_rb.Text = "All";
+            this.all_rb.UseVisualStyleBackColor = true;
+            this.all_rb.CheckedChanged += new System.EventHandler(this.all_rb_CheckedChanged);
+            // 
+            // active_rb
+            // 
+            this.active_rb.AutoSize = true;
+            this.active_rb.Location = new System.Drawing.Point(16, 42);
+            this.active_rb.Name = "active_rb";
+            this.active_rb.Size = new System.Drawing.Size(55, 17);
+            this.active_rb.TabIndex = 5;
+            this.active_rb.TabStop = true;
+            this.active_rb.Text = "Active";
+            this.active_rb.UseVisualStyleBackColor = true;
+            this.active_rb.CheckedChanged += new System.EventHandler(this.active_rb_CheckedChanged);
+            // 
+            // completed_rb
+            // 
+            this.completed_rb.AutoSize = true;
+            this.completed_rb.Location = new System.Drawing.Point(16, 63);
+            this.completed_rb.Name = "completed_rb";
+            this.completed_rb.Size = new System.Drawing.Size(75, 17);
+            this.completed_rb.TabIndex = 4;
+            this.completed_rb.TabStop = true;
+            this.completed_rb.Text = "Completed";
+            this.completed_rb.UseVisualStyleBackColor = true;
+            this.completed_rb.CheckedChanged += new System.EventHandler(this.completed_rb_CheckedChanged);
+            // 
+            // inactive_rb
+            // 
+            this.inactive_rb.AutoSize = true;
+            this.inactive_rb.Location = new System.Drawing.Point(16, 20);
+            this.inactive_rb.Name = "inactive_rb";
+            this.inactive_rb.Size = new System.Drawing.Size(63, 17);
+            this.inactive_rb.TabIndex = 3;
+            this.inactive_rb.TabStop = true;
+            this.inactive_rb.Text = "Inactive";
+            this.inactive_rb.UseVisualStyleBackColor = true;
+            this.inactive_rb.CheckedChanged += new System.EventHandler(this.inactive_rb_CheckedChanged);
+            // 
+            // profile_sidepanel
+            // 
+            this.profile_sidepanel.BackColor = System.Drawing.Color.DarkGray;
+            this.profile_sidepanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.profile_sidepanel.Controls.Add(this.button1);
+            this.profile_sidepanel.Controls.Add(this.edit_profile_btn);
+            this.profile_sidepanel.Location = new System.Drawing.Point(3, 27);
+            this.profile_sidepanel.Name = "profile_sidepanel";
+            this.profile_sidepanel.Size = new System.Drawing.Size(200, 420);
+            this.profile_sidepanel.TabIndex = 3;
+            // 
+            // edit_profile_btn
+            // 
+            this.edit_profile_btn.Location = new System.Drawing.Point(2, 2);
+            this.edit_profile_btn.Name = "edit_profile_btn";
+            this.edit_profile_btn.Size = new System.Drawing.Size(194, 39);
+            this.edit_profile_btn.TabIndex = 0;
+            this.edit_profile_btn.Text = "Edit Profile";
+            this.edit_profile_btn.UseVisualStyleBackColor = true;
+            this.edit_profile_btn.Click += new System.EventHandler(this.edit_profile_btn_Click);
             // 
             // addloan_panel
             // 
@@ -834,6 +1375,16 @@
             this.item_price_tb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.item_price_tb.TextChanged += new System.EventHandler(this.item_price_tb_TextChanged);
             // 
+            // search_item0
+            // 
+            this.search_item0.Image = ((System.Drawing.Image)(resources.GetObject("search_item0.Image")));
+            this.search_item0.Location = new System.Drawing.Point(332, 14);
+            this.search_item0.Name = "search_item0";
+            this.search_item0.Size = new System.Drawing.Size(25, 25);
+            this.search_item0.TabIndex = 9;
+            this.search_item0.UseVisualStyleBackColor = true;
+            this.search_item0.Click += new System.EventHandler(this.search_item0_Click);
+            // 
             // item_desc_tb
             // 
             this.item_desc_tb.Enabled = false;
@@ -1043,6 +1594,16 @@
             this.label25.TabIndex = 17;
             this.label25.Text = "Total Amount:";
             // 
+            // client_search_btn
+            // 
+            this.client_search_btn.Image = ((System.Drawing.Image)(resources.GetObject("client_search_btn.Image")));
+            this.client_search_btn.Location = new System.Drawing.Point(304, 40);
+            this.client_search_btn.Name = "client_search_btn";
+            this.client_search_btn.Size = new System.Drawing.Size(25, 25);
+            this.client_search_btn.TabIndex = 16;
+            this.client_search_btn.UseVisualStyleBackColor = true;
+            this.client_search_btn.Click += new System.EventHandler(this.client_search_btn_Click);
+            // 
             // contactnum_tb
             // 
             this.contactnum_tb.Enabled = false;
@@ -1123,343 +1684,213 @@
             this.label14.Text = "ADD LOAN";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // confirmclient_panel
-            // 
-            this.confirmclient_panel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.confirmclient_panel.Controls.Add(this.label87);
-            this.confirmclient_panel.Controls.Add(this.ccancel_btn);
-            this.confirmclient_panel.Controls.Add(this.find_btn);
-            this.confirmclient_panel.Controls.Add(this.female_rb);
-            this.confirmclient_panel.Controls.Add(this.male_rb);
-            this.confirmclient_panel.Controls.Add(this.label35);
-            this.confirmclient_panel.Controls.Add(this.label49);
-            this.confirmclient_panel.Controls.Add(this.credit_limit_tb);
-            this.confirmclient_panel.Controls.Add(this.up_photo_btn);
-            this.confirmclient_panel.Controls.Add(this.up_sketch_btn);
-            this.confirmclient_panel.Controls.Add(this.save_acc_btn);
-            this.confirmclient_panel.Controls.Add(this.pictureBox2);
-            this.confirmclient_panel.Controls.Add(this.bday_picker);
-            this.confirmclient_panel.Controls.Add(this.pictureBox1);
-            this.confirmclient_panel.Controls.Add(this.exp_tb);
-            this.confirmclient_panel.Controls.Add(this.inc_tb);
-            this.confirmclient_panel.Controls.Add(this.occu_tb);
-            this.confirmclient_panel.Controls.Add(this.stat_cb);
-            this.confirmclient_panel.Controls.Add(this.cn_tb);
-            this.confirmclient_panel.Controls.Add(this.addr_tb);
-            this.confirmclient_panel.Controls.Add(this.ln_tb);
-            this.confirmclient_panel.Controls.Add(this.mn_tb);
-            this.confirmclient_panel.Controls.Add(this.fn_tb);
-            this.confirmclient_panel.Controls.Add(this.label46);
-            this.confirmclient_panel.Controls.Add(this.label45);
-            this.confirmclient_panel.Controls.Add(this.label44);
-            this.confirmclient_panel.Controls.Add(this.label43);
-            this.confirmclient_panel.Controls.Add(this.label42);
-            this.confirmclient_panel.Controls.Add(this.label41);
-            this.confirmclient_panel.Controls.Add(this.label40);
-            this.confirmclient_panel.Controls.Add(this.label39);
-            this.confirmclient_panel.Controls.Add(this.label38);
-            this.confirmclient_panel.Controls.Add(this.label37);
-            this.confirmclient_panel.Controls.Add(this.label36);
-            this.confirmclient_panel.Controls.Add(this.accounts_lbl);
-            this.confirmclient_panel.Location = new System.Drawing.Point(209, 27);
-            this.confirmclient_panel.Name = "confirmclient_panel";
-            this.confirmclient_panel.Size = new System.Drawing.Size(586, 419);
-            this.confirmclient_panel.TabIndex = 32;
-            // 
-            // label87
-            // 
-            this.label87.AutoSize = true;
-            this.label87.Location = new System.Drawing.Point(10, 247);
-            this.label87.Name = "label87";
-            this.label87.Size = new System.Drawing.Size(25, 13);
-            this.label87.TabIndex = 73;
-            this.label87.Text = "+63";
-            // 
-            // ccancel_btn
-            // 
-            this.ccancel_btn.Location = new System.Drawing.Point(478, 389);
-            this.ccancel_btn.Name = "ccancel_btn";
-            this.ccancel_btn.Size = new System.Drawing.Size(98, 23);
-            this.ccancel_btn.TabIndex = 35;
-            this.ccancel_btn.Text = "Cancel";
-            this.ccancel_btn.UseVisualStyleBackColor = true;
-            this.ccancel_btn.Click += new System.EventHandler(this.ccancel_btn_Click);
-            // 
-            // find_btn
-            // 
-            this.find_btn.Location = new System.Drawing.Point(279, 389);
-            this.find_btn.Name = "find_btn";
-            this.find_btn.Size = new System.Drawing.Size(98, 23);
-            this.find_btn.TabIndex = 33;
-            this.find_btn.Text = "Find";
-            this.find_btn.UseVisualStyleBackColor = true;
-            this.find_btn.Click += new System.EventHandler(this.find_btn_Click);
-            // 
-            // female_rb
-            // 
-            this.female_rb.AutoSize = true;
-            this.female_rb.Location = new System.Drawing.Point(89, 361);
-            this.female_rb.Name = "female_rb";
-            this.female_rb.Size = new System.Drawing.Size(59, 17);
-            this.female_rb.TabIndex = 32;
-            this.female_rb.TabStop = true;
-            this.female_rb.Text = "Female";
-            this.female_rb.UseVisualStyleBackColor = true;
-            // 
-            // male_rb
-            // 
-            this.male_rb.AutoSize = true;
-            this.male_rb.Location = new System.Drawing.Point(13, 361);
-            this.male_rb.Name = "male_rb";
-            this.male_rb.Size = new System.Drawing.Size(48, 17);
-            this.male_rb.TabIndex = 31;
-            this.male_rb.TabStop = true;
-            this.male_rb.Text = "Male";
-            this.male_rb.UseVisualStyleBackColor = true;
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(12, 345);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(42, 13);
-            this.label35.TabIndex = 30;
-            this.label35.Text = "Gender";
-            // 
-            // label49
-            // 
-            this.label49.AutoSize = true;
-            this.label49.Location = new System.Drawing.Point(217, 120);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(61, 13);
-            this.label49.TabIndex = 29;
-            this.label49.Text = "Credit Limit:";
-            // 
-            // credit_limit_tb
-            // 
-            this.credit_limit_tb.Location = new System.Drawing.Point(220, 136);
-            this.credit_limit_tb.Name = "credit_limit_tb";
-            this.credit_limit_tb.Size = new System.Drawing.Size(196, 20);
-            this.credit_limit_tb.TabIndex = 28;
-            this.credit_limit_tb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.credit_limit_tb.Leave += new System.EventHandler(this.credit_limit_tb_Leave);
-            // 
-            // up_photo_btn
-            // 
-            this.up_photo_btn.Location = new System.Drawing.Point(180, 389);
-            this.up_photo_btn.Name = "up_photo_btn";
-            this.up_photo_btn.Size = new System.Drawing.Size(98, 23);
-            this.up_photo_btn.TabIndex = 27;
-            this.up_photo_btn.Text = "Upload Photo";
-            this.up_photo_btn.UseVisualStyleBackColor = true;
-            // 
-            // up_sketch_btn
-            // 
-            this.up_sketch_btn.Location = new System.Drawing.Point(279, 389);
-            this.up_sketch_btn.Name = "up_sketch_btn";
-            this.up_sketch_btn.Size = new System.Drawing.Size(98, 23);
-            this.up_sketch_btn.TabIndex = 26;
-            this.up_sketch_btn.Text = "Upload Sketch";
-            this.up_sketch_btn.UseVisualStyleBackColor = true;
-            // 
-            // save_acc_btn
-            // 
-            this.save_acc_btn.Location = new System.Drawing.Point(378, 389);
-            this.save_acc_btn.Name = "save_acc_btn";
-            this.save_acc_btn.Size = new System.Drawing.Size(98, 23);
-            this.save_acc_btn.TabIndex = 25;
-            this.save_acc_btn.Text = "Save";
-            this.save_acc_btn.UseVisualStyleBackColor = true;
-            this.save_acc_btn.Click += new System.EventHandler(this.save_acc_btn_Click);
-            // 
-            // bday_picker
-            // 
-            this.bday_picker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.bday_picker.Location = new System.Drawing.Point(13, 283);
-            this.bday_picker.Name = "bday_picker";
-            this.bday_picker.Size = new System.Drawing.Size(196, 20);
-            this.bday_picker.TabIndex = 23;
-            this.bday_picker.Value = new System.DateTime(2018, 9, 19, 19, 23, 11, 0);
-            // 
-            // exp_tb
-            // 
-            this.exp_tb.Location = new System.Drawing.Point(220, 97);
-            this.exp_tb.Name = "exp_tb";
-            this.exp_tb.Size = new System.Drawing.Size(196, 20);
-            this.exp_tb.TabIndex = 20;
-            this.exp_tb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.exp_tb.Leave += new System.EventHandler(this.exp_tb_Leave);
-            // 
-            // inc_tb
-            // 
-            this.inc_tb.Location = new System.Drawing.Point(220, 58);
-            this.inc_tb.Name = "inc_tb";
-            this.inc_tb.Size = new System.Drawing.Size(196, 20);
-            this.inc_tb.TabIndex = 19;
-            this.inc_tb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.inc_tb.Leave += new System.EventHandler(this.inc_tb_Leave);
-            // 
-            // occu_tb
-            // 
-            this.occu_tb.Location = new System.Drawing.Point(13, 322);
-            this.occu_tb.Name = "occu_tb";
-            this.occu_tb.Size = new System.Drawing.Size(196, 20);
-            this.occu_tb.TabIndex = 18;
-            // 
-            // stat_cb
-            // 
-            this.stat_cb.FormattingEnabled = true;
-            this.stat_cb.Location = new System.Drawing.Point(220, 175);
-            this.stat_cb.Name = "stat_cb";
-            this.stat_cb.Size = new System.Drawing.Size(196, 21);
-            this.stat_cb.TabIndex = 17;
-            // 
-            // cn_tb
-            // 
-            this.cn_tb.Location = new System.Drawing.Point(35, 244);
-            this.cn_tb.MaxLength = 10;
-            this.cn_tb.Name = "cn_tb";
-            this.cn_tb.Size = new System.Drawing.Size(174, 20);
-            this.cn_tb.TabIndex = 16;
-            // 
-            // addr_tb
-            // 
-            this.addr_tb.Location = new System.Drawing.Point(13, 175);
-            this.addr_tb.Multiline = true;
-            this.addr_tb.Name = "addr_tb";
-            this.addr_tb.Size = new System.Drawing.Size(196, 49);
-            this.addr_tb.TabIndex = 15;
-            // 
-            // ln_tb
-            // 
-            this.ln_tb.Location = new System.Drawing.Point(13, 136);
-            this.ln_tb.Name = "ln_tb";
-            this.ln_tb.Size = new System.Drawing.Size(196, 20);
-            this.ln_tb.TabIndex = 14;
-            // 
-            // mn_tb
-            // 
-            this.mn_tb.Location = new System.Drawing.Point(13, 97);
-            this.mn_tb.Name = "mn_tb";
-            this.mn_tb.Size = new System.Drawing.Size(196, 20);
-            this.mn_tb.TabIndex = 13;
-            // 
-            // fn_tb
-            // 
-            this.fn_tb.Location = new System.Drawing.Point(13, 58);
-            this.fn_tb.Name = "fn_tb";
-            this.fn_tb.Size = new System.Drawing.Size(196, 20);
-            this.fn_tb.TabIndex = 12;
-            // 
-            // label46
-            // 
-            this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(219, 159);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(40, 13);
-            this.label46.TabIndex = 10;
-            this.label46.Text = "Status:";
-            // 
-            // label45
-            // 
-            this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(219, 198);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(98, 13);
-            this.label45.TabIndex = 10;
-            this.label45.Text = "Residence Sketch:";
-            // 
-            // label44
-            // 
-            this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(12, 267);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(52, 13);
-            this.label44.TabIndex = 10;
-            this.label44.Text = "Birthdate:";
-            // 
-            // label43
-            // 
-            this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(219, 82);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(91, 13);
-            this.label43.TabIndex = 10;
-            this.label43.Text = "Monthly Expense:";
-            // 
-            // label42
-            // 
-            this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(219, 42);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(85, 13);
-            this.label42.TabIndex = 10;
-            this.label42.Text = "Monthly Income:";
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(12, 306);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(65, 13);
-            this.label41.TabIndex = 10;
-            this.label41.Text = "Occupation:";
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(12, 228);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(87, 13);
-            this.label40.TabIndex = 10;
-            this.label40.Text = "Contact Number:";
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(12, 159);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(51, 13);
-            this.label39.TabIndex = 10;
-            this.label39.Text = "Address: ";
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(12, 120);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(61, 13);
-            this.label38.TabIndex = 10;
-            this.label38.Text = "Last Name:";
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(12, 81);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(72, 13);
-            this.label37.TabIndex = 0;
-            this.label37.Text = "Middle Name:";
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(12, 42);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(60, 13);
-            this.label36.TabIndex = 9;
-            this.label36.Text = "First Name:";
-            // 
-            // accounts_lbl
-            // 
-            this.accounts_lbl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.accounts_lbl.Font = new System.Drawing.Font("Bookman Old Style", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.accounts_lbl.Location = new System.Drawing.Point(0, 0);
-            this.accounts_lbl.Name = "accounts_lbl";
-            this.accounts_lbl.Size = new System.Drawing.Size(582, 22);
-            this.accounts_lbl.TabIndex = 7;
-            this.accounts_lbl.Text = "CREATE CLIENT ACCOUNT";
-            this.accounts_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // additem_panel
+            // 
+            this.additem_panel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.additem_panel.Controls.Add(this.stock_tb);
+            this.additem_panel.Controls.Add(this.repo_tb);
+            this.additem_panel.Controls.Add(this.dam_tb);
+            this.additem_panel.Controls.Add(this.dam_lbl);
+            this.additem_panel.Controls.Add(this.repo_lbl);
+            this.additem_panel.Controls.Add(this.stock_lbl);
+            this.additem_panel.Controls.Add(this.label71);
+            this.additem_panel.Controls.Add(this.icancel_btn);
+            this.additem_panel.Controls.Add(this.isave_btn);
+            this.additem_panel.Controls.Add(this.search_price_btn);
+            this.additem_panel.Controls.Add(this.label70);
+            this.additem_panel.Controls.Add(this.reorder_tb);
+            this.additem_panel.Controls.Add(this.price_tb);
+            this.additem_panel.Controls.Add(this.description_tb);
+            this.additem_panel.Controls.Add(this.itemname_tb);
+            this.additem_panel.Controls.Add(this.label69);
+            this.additem_panel.Controls.Add(this.label67);
+            this.additem_panel.Controls.Add(this.label66);
+            this.additem_panel.Controls.Add(this.label65);
+            this.additem_panel.Location = new System.Drawing.Point(209, 27);
+            this.additem_panel.Name = "additem_panel";
+            this.additem_panel.Size = new System.Drawing.Size(586, 419);
+            this.additem_panel.TabIndex = 35;
+            // 
+            // stock_tb
+            // 
+            this.stock_tb.Location = new System.Drawing.Point(210, 194);
+            this.stock_tb.Name = "stock_tb";
+            this.stock_tb.Size = new System.Drawing.Size(222, 20);
+            this.stock_tb.TabIndex = 25;
+            this.stock_tb.Text = "0";
+            this.stock_tb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.stock_tb.Visible = false;
+            // 
+            // repo_tb
+            // 
+            this.repo_tb.Location = new System.Drawing.Point(210, 220);
+            this.repo_tb.Name = "repo_tb";
+            this.repo_tb.Size = new System.Drawing.Size(222, 20);
+            this.repo_tb.TabIndex = 24;
+            this.repo_tb.Text = "0";
+            this.repo_tb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.repo_tb.Visible = false;
+            // 
+            // dam_tb
+            // 
+            this.dam_tb.Location = new System.Drawing.Point(210, 246);
+            this.dam_tb.Name = "dam_tb";
+            this.dam_tb.Size = new System.Drawing.Size(222, 20);
+            this.dam_tb.TabIndex = 23;
+            this.dam_tb.Text = "0";
+            this.dam_tb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.dam_tb.Visible = false;
+            // 
+            // dam_lbl
+            // 
+            this.dam_lbl.AutoSize = true;
+            this.dam_lbl.Location = new System.Drawing.Point(119, 249);
+            this.dam_lbl.Name = "dam_lbl";
+            this.dam_lbl.Size = new System.Drawing.Size(56, 13);
+            this.dam_lbl.TabIndex = 22;
+            this.dam_lbl.Text = "Damaged:";
+            this.dam_lbl.Visible = false;
+            // 
+            // repo_lbl
+            // 
+            this.repo_lbl.AutoSize = true;
+            this.repo_lbl.Location = new System.Drawing.Point(119, 225);
+            this.repo_lbl.Name = "repo_lbl";
+            this.repo_lbl.Size = new System.Drawing.Size(74, 13);
+            this.repo_lbl.TabIndex = 21;
+            this.repo_lbl.Text = "Repossessed:";
+            this.repo_lbl.Visible = false;
+            // 
+            // stock_lbl
+            // 
+            this.stock_lbl.AutoSize = true;
+            this.stock_lbl.Location = new System.Drawing.Point(119, 197);
+            this.stock_lbl.Name = "stock_lbl";
+            this.stock_lbl.Size = new System.Drawing.Size(69, 13);
+            this.stock_lbl.TabIndex = 20;
+            this.stock_lbl.Text = "Stock Count:";
+            this.stock_lbl.Visible = false;
+            // 
+            // label71
+            // 
+            this.label71.AutoSize = true;
+            this.label71.Location = new System.Drawing.Point(119, 171);
+            this.label71.Name = "label71";
+            this.label71.Size = new System.Drawing.Size(75, 13);
+            this.label71.TabIndex = 19;
+            this.label71.Text = "Reorder Point:";
+            // 
+            // icancel_btn
+            // 
+            this.icancel_btn.Location = new System.Drawing.Point(501, 385);
+            this.icancel_btn.Name = "icancel_btn";
+            this.icancel_btn.Size = new System.Drawing.Size(75, 23);
+            this.icancel_btn.TabIndex = 18;
+            this.icancel_btn.Text = "Cancel";
+            this.icancel_btn.UseVisualStyleBackColor = true;
+            this.icancel_btn.Click += new System.EventHandler(this.icancel_btn_Click);
+            // 
+            // isave_btn
+            // 
+            this.isave_btn.Location = new System.Drawing.Point(420, 385);
+            this.isave_btn.Name = "isave_btn";
+            this.isave_btn.Size = new System.Drawing.Size(75, 23);
+            this.isave_btn.TabIndex = 17;
+            this.isave_btn.Text = "Save";
+            this.isave_btn.UseVisualStyleBackColor = true;
+            this.isave_btn.Click += new System.EventHandler(this.isave_btn_Click);
+            // 
+            // search_price_btn
+            // 
+            this.search_price_btn.Image = ((System.Drawing.Image)(resources.GetObject("search_price_btn.Image")));
+            this.search_price_btn.Location = new System.Drawing.Point(406, 139);
+            this.search_price_btn.Name = "search_price_btn";
+            this.search_price_btn.Size = new System.Drawing.Size(25, 25);
+            this.search_price_btn.TabIndex = 16;
+            this.search_price_btn.UseVisualStyleBackColor = true;
+            this.search_price_btn.Click += new System.EventHandler(this.search_price_btn_Click);
+            // 
+            // label70
+            // 
+            this.label70.AutoSize = true;
+            this.label70.Location = new System.Drawing.Point(190, 145);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(14, 13);
+            this.label70.TabIndex = 15;
+            this.label70.Text = "P";
+            // 
+            // reorder_tb
+            // 
+            this.reorder_tb.Location = new System.Drawing.Point(210, 168);
+            this.reorder_tb.Name = "reorder_tb";
+            this.reorder_tb.Size = new System.Drawing.Size(222, 20);
+            this.reorder_tb.TabIndex = 14;
+            this.reorder_tb.Text = "0";
+            this.reorder_tb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // price_tb
+            // 
+            this.price_tb.AcceptsReturn = true;
+            this.price_tb.Enabled = false;
+            this.price_tb.Location = new System.Drawing.Point(210, 142);
+            this.price_tb.Name = "price_tb";
+            this.price_tb.Size = new System.Drawing.Size(193, 20);
+            this.price_tb.TabIndex = 14;
+            this.price_tb.Text = "0";
+            this.price_tb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // description_tb
+            // 
+            this.description_tb.Location = new System.Drawing.Point(210, 79);
+            this.description_tb.Multiline = true;
+            this.description_tb.Name = "description_tb";
+            this.description_tb.Size = new System.Drawing.Size(222, 55);
+            this.description_tb.TabIndex = 14;
+            // 
+            // itemname_tb
+            // 
+            this.itemname_tb.Location = new System.Drawing.Point(210, 53);
+            this.itemname_tb.Name = "itemname_tb";
+            this.itemname_tb.Size = new System.Drawing.Size(222, 20);
+            this.itemname_tb.TabIndex = 14;
+            // 
+            // label69
+            // 
+            this.label69.AutoSize = true;
+            this.label69.Location = new System.Drawing.Point(119, 82);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(63, 13);
+            this.label69.TabIndex = 13;
+            this.label69.Text = "Description:";
+            // 
+            // label67
+            // 
+            this.label67.AutoSize = true;
+            this.label67.Location = new System.Drawing.Point(119, 145);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(34, 13);
+            this.label67.TabIndex = 11;
+            this.label67.Text = "Price:";
+            // 
+            // label66
+            // 
+            this.label66.AutoSize = true;
+            this.label66.Location = new System.Drawing.Point(119, 56);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(61, 13);
+            this.label66.TabIndex = 10;
+            this.label66.Text = "Item Name:";
+            // 
+            // label65
+            // 
+            this.label65.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label65.Font = new System.Drawing.Font("Bookman Old Style", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label65.Location = new System.Drawing.Point(0, 0);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(582, 22);
+            this.label65.TabIndex = 8;
+            this.label65.Text = "ADD ITEM";
+            this.label65.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // profile_panel
             // 
@@ -1551,6 +1982,15 @@
             this.prof_upload_btn.TabIndex = 8;
             this.prof_upload_btn.Text = "Upload Photo";
             this.prof_upload_btn.UseVisualStyleBackColor = true;
+            // 
+            // prof_pic_pbx
+            // 
+            this.prof_pic_pbx.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.prof_pic_pbx.Location = new System.Drawing.Point(27, 61);
+            this.prof_pic_pbx.Name = "prof_pic_pbx";
+            this.prof_pic_pbx.Size = new System.Drawing.Size(131, 151);
+            this.prof_pic_pbx.TabIndex = 15;
+            this.prof_pic_pbx.TabStop = false;
             // 
             // prof_bdate_picker
             // 
@@ -1833,6 +2273,15 @@
             this.sbday_tb.TabIndex = 6;
             this.sbday_tb.Value = new System.DateTime(2018, 9, 19, 19, 23, 11, 0);
             // 
+            // staff_pb
+            // 
+            this.staff_pb.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.staff_pb.Location = new System.Drawing.Point(388, 53);
+            this.staff_pb.Name = "staff_pb";
+            this.staff_pb.Size = new System.Drawing.Size(141, 132);
+            this.staff_pb.TabIndex = 53;
+            this.staff_pb.TabStop = false;
+            // 
             // scn_tb
             // 
             this.scn_tb.Location = new System.Drawing.Point(73, 239);
@@ -1946,17 +2395,6 @@
             this.trans_panel.Size = new System.Drawing.Size(586, 419);
             this.trans_panel.TabIndex = 39;
             // 
-            // no_trans
-            // 
-            this.no_trans.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.no_trans.Location = new System.Drawing.Point(0, 0);
-            this.no_trans.Name = "no_trans";
-            this.no_trans.Size = new System.Drawing.Size(582, 415);
-            this.no_trans.TabIndex = 11;
-            this.no_trans.Text = "No Transactions.";
-            this.no_trans.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.no_trans.Visible = false;
-            // 
             // trans_data
             // 
             this.trans_data.AllowUserToAddRows = false;
@@ -1979,6 +2417,17 @@
             this.label79.TabIndex = 9;
             this.label79.Text = "VIEW COLLECTIONS";
             this.label79.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // no_trans
+            // 
+            this.no_trans.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.no_trans.Location = new System.Drawing.Point(0, 0);
+            this.no_trans.Name = "no_trans";
+            this.no_trans.Size = new System.Drawing.Size(582, 415);
+            this.no_trans.TabIndex = 11;
+            this.no_trans.Text = "No Transactions.";
+            this.no_trans.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.no_trans.Visible = false;
             // 
             // view_item_panel
             // 
@@ -2119,6 +2568,16 @@
             this.iid_tb.TabIndex = 7;
             this.iid_tb.Visible = false;
             // 
+            // search_btn0
+            // 
+            this.search_btn0.Image = ((System.Drawing.Image)(resources.GetObject("search_btn0.Image")));
+            this.search_btn0.Location = new System.Drawing.Point(297, 10);
+            this.search_btn0.Name = "search_btn0";
+            this.search_btn0.Size = new System.Drawing.Size(25, 25);
+            this.search_btn0.TabIndex = 6;
+            this.search_btn0.UseVisualStyleBackColor = true;
+            this.search_btn0.Click += new System.EventHandler(this.search_btn_Click);
+            // 
             // iqty_tb
             // 
             this.iqty_tb.Location = new System.Drawing.Point(419, 13);
@@ -2213,181 +2672,6 @@
             this.label68.Text = "ADD ITEM BY BATCH";
             this.label68.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.loanToolStripMenuItem,
-            this.accountsToolStripMenuItem,
-            this.inventoryToolStripMenuItem,
-            this.transactionToolStripMenuItem,
-            this.reportsToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(799, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.dashboardToolStripMenuItem,
-            this.profileToolStripMenuItem,
-            this.toolStripSeparator2,
-            this.logoutToolStripMenuItem,
-            this.exitToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // dashboardToolStripMenuItem
-            // 
-            this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
-            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
-            this.dashboardToolStripMenuItem.Text = "Dashboard";
-            this.dashboardToolStripMenuItem.Click += new System.EventHandler(this.dashboardToolStripMenuItem_Click);
-            // 
-            // profileToolStripMenuItem
-            // 
-            this.profileToolStripMenuItem.Name = "profileToolStripMenuItem";
-            this.profileToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
-            this.profileToolStripMenuItem.Text = "My Profile";
-            this.profileToolStripMenuItem.Click += new System.EventHandler(this.profileToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(128, 6);
-            // 
-            // logoutToolStripMenuItem
-            // 
-            this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
-            this.logoutToolStripMenuItem.Text = "Logout";
-            this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
-            // loanToolStripMenuItem
-            // 
-            this.loanToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addLoanToolStripMenuItem,
-            this.viewLoanToolStripMenuItem});
-            this.loanToolStripMenuItem.Name = "loanToolStripMenuItem";
-            this.loanToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
-            this.loanToolStripMenuItem.Text = "Loan";
-            // 
-            // addLoanToolStripMenuItem
-            // 
-            this.addLoanToolStripMenuItem.Name = "addLoanToolStripMenuItem";
-            this.addLoanToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
-            this.addLoanToolStripMenuItem.Text = "Add Loan";
-            this.addLoanToolStripMenuItem.Click += new System.EventHandler(this.addLoanToolStripMenuItem_Click);
-            // 
-            // viewLoanToolStripMenuItem
-            // 
-            this.viewLoanToolStripMenuItem.Name = "viewLoanToolStripMenuItem";
-            this.viewLoanToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
-            this.viewLoanToolStripMenuItem.Text = "View Loans";
-            this.viewLoanToolStripMenuItem.Click += new System.EventHandler(this.viewLoanToolStripMenuItem_Click);
-            // 
-            // accountsToolStripMenuItem
-            // 
-            this.accountsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.createClientAccountToolStripMenuItem,
-            this.confirmClientAccountToolStripMenuItem,
-            this.addStaffAccountToolStripMenuItem,
-            this.viewAccountsToolStripMenuItem});
-            this.accountsToolStripMenuItem.Name = "accountsToolStripMenuItem";
-            this.accountsToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
-            this.accountsToolStripMenuItem.Text = "Accounts";
-            // 
-            // createClientAccountToolStripMenuItem
-            // 
-            this.createClientAccountToolStripMenuItem.Name = "createClientAccountToolStripMenuItem";
-            this.createClientAccountToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.createClientAccountToolStripMenuItem.Text = "Create Client Account";
-            this.createClientAccountToolStripMenuItem.Click += new System.EventHandler(this.createClientAccountToolStripMenuItem_Click);
-            // 
-            // confirmClientAccountToolStripMenuItem
-            // 
-            this.confirmClientAccountToolStripMenuItem.Name = "confirmClientAccountToolStripMenuItem";
-            this.confirmClientAccountToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.confirmClientAccountToolStripMenuItem.Text = "Confirm Client Account";
-            this.confirmClientAccountToolStripMenuItem.Click += new System.EventHandler(this.confirmClientAccountToolStripMenuItem_Click);
-            // 
-            // addStaffAccountToolStripMenuItem
-            // 
-            this.addStaffAccountToolStripMenuItem.Name = "addStaffAccountToolStripMenuItem";
-            this.addStaffAccountToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.addStaffAccountToolStripMenuItem.Text = "Create Staff Profile";
-            this.addStaffAccountToolStripMenuItem.Click += new System.EventHandler(this.addStaffAccountToolStripMenuItem_Click);
-            // 
-            // viewAccountsToolStripMenuItem
-            // 
-            this.viewAccountsToolStripMenuItem.Name = "viewAccountsToolStripMenuItem";
-            this.viewAccountsToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.viewAccountsToolStripMenuItem.Text = "View Accounts";
-            this.viewAccountsToolStripMenuItem.Click += new System.EventHandler(this.viewAccountsToolStripMenuItem_Click);
-            // 
-            // inventoryToolStripMenuItem
-            // 
-            this.inventoryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addItemToolStripMenuItem,
-            this.addItemByBatchToolStripMenuItem,
-            this.viewItemsToolStripMenuItem});
-            this.inventoryToolStripMenuItem.Name = "inventoryToolStripMenuItem";
-            this.inventoryToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
-            this.inventoryToolStripMenuItem.Text = "Inventory";
-            // 
-            // addItemToolStripMenuItem
-            // 
-            this.addItemToolStripMenuItem.Name = "addItemToolStripMenuItem";
-            this.addItemToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.addItemToolStripMenuItem.Text = "Add Item";
-            this.addItemToolStripMenuItem.Click += new System.EventHandler(this.addItemToolStripMenuItem_Click);
-            // 
-            // addItemByBatchToolStripMenuItem
-            // 
-            this.addItemByBatchToolStripMenuItem.Name = "addItemByBatchToolStripMenuItem";
-            this.addItemByBatchToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.addItemByBatchToolStripMenuItem.Text = "Add Item by Batch";
-            this.addItemByBatchToolStripMenuItem.Click += new System.EventHandler(this.addItemByBatchToolStripMenuItem_Click);
-            // 
-            // viewItemsToolStripMenuItem
-            // 
-            this.viewItemsToolStripMenuItem.Name = "viewItemsToolStripMenuItem";
-            this.viewItemsToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.viewItemsToolStripMenuItem.Text = "View Items";
-            this.viewItemsToolStripMenuItem.Click += new System.EventHandler(this.viewItemsToolStripMenuItem_Click);
-            // 
-            // transactionToolStripMenuItem
-            // 
-            this.transactionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.collectionToolStripMenuItem});
-            this.transactionToolStripMenuItem.Name = "transactionToolStripMenuItem";
-            this.transactionToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
-            this.transactionToolStripMenuItem.Text = "Transaction";
-            // 
-            // collectionToolStripMenuItem
-            // 
-            this.collectionToolStripMenuItem.Name = "collectionToolStripMenuItem";
-            this.collectionToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
-            this.collectionToolStripMenuItem.Text = "Collection";
-            this.collectionToolStripMenuItem.Click += new System.EventHandler(this.collectionToolStripMenuItem_Click);
-            // 
-            // reportsToolStripMenuItem
-            // 
-            this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
-            this.reportsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.reportsToolStripMenuItem.Text = "Reports";
-            this.reportsToolStripMenuItem.Click += new System.EventHandler(this.reportsToolStripMenuItem_Click);
-            // 
             // view_acc_panel
             // 
             this.view_acc_panel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -2471,11 +2755,11 @@
             this.loan_data.AllowUserToAddRows = false;
             this.loan_data.AllowUserToDeleteRows = false;
             this.loan_data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.loan_data.Location = new System.Drawing.Point(5, 25);
+            this.loan_data.Location = new System.Drawing.Point(5, 30);
             this.loan_data.Name = "loan_data";
             this.loan_data.ReadOnly = true;
             this.loan_data.RowHeadersVisible = false;
-            this.loan_data.Size = new System.Drawing.Size(575, 374);
+            this.loan_data.Size = new System.Drawing.Size(575, 369);
             this.loan_data.TabIndex = 7;
             this.loan_data.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.loan_data_CellDoubleClick);
             // 
@@ -2499,495 +2783,6 @@
             this.label10.TabIndex = 6;
             this.label10.Text = "VIEW LOAN";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // trans_sidepanel
-            // 
-            this.trans_sidepanel.BackColor = System.Drawing.Color.DarkGray;
-            this.trans_sidepanel.Controls.Add(this.groupBox2);
-            this.trans_sidepanel.Location = new System.Drawing.Point(3, 27);
-            this.trans_sidepanel.Name = "trans_sidepanel";
-            this.trans_sidepanel.Size = new System.Drawing.Size(200, 420);
-            this.trans_sidepanel.TabIndex = 40;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.sclient_btn);
-            this.groupBox2.Controls.Add(this.sclient_tb);
-            this.groupBox2.Controls.Add(this.label81);
-            this.groupBox2.Controls.Add(this.scname_btn);
-            this.groupBox2.Controls.Add(this.scname_tb);
-            this.groupBox2.Controls.Add(this.label80);
-            this.groupBox2.Location = new System.Drawing.Point(4, 9);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(191, 118);
-            this.groupBox2.TabIndex = 0;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Filter Collections";
-            // 
-            // sclient_tb
-            // 
-            this.sclient_tb.Location = new System.Drawing.Point(18, 81);
-            this.sclient_tb.Name = "sclient_tb";
-            this.sclient_tb.Size = new System.Drawing.Size(127, 20);
-            this.sclient_tb.TabIndex = 4;
-            // 
-            // label81
-            // 
-            this.label81.AutoSize = true;
-            this.label81.Location = new System.Drawing.Point(8, 65);
-            this.label81.Name = "label81";
-            this.label81.Size = new System.Drawing.Size(90, 13);
-            this.label81.TabIndex = 3;
-            this.label81.Text = "Client Last Name:";
-            // 
-            // scname_tb
-            // 
-            this.scname_tb.Location = new System.Drawing.Point(18, 40);
-            this.scname_tb.Name = "scname_tb";
-            this.scname_tb.Size = new System.Drawing.Size(127, 20);
-            this.scname_tb.TabIndex = 1;
-            // 
-            // label80
-            // 
-            this.label80.AutoSize = true;
-            this.label80.Location = new System.Drawing.Point(8, 23);
-            this.label80.Name = "label80";
-            this.label80.Size = new System.Drawing.Size(105, 13);
-            this.label80.TabIndex = 0;
-            this.label80.Text = "Collector Last Name:";
-            // 
-            // inventory_sidepanel
-            // 
-            this.inventory_sidepanel.BackColor = System.Drawing.Color.DarkGray;
-            this.inventory_sidepanel.Controls.Add(this.groupBox1);
-            this.inventory_sidepanel.Controls.Add(this.viewitems_btn);
-            this.inventory_sidepanel.Controls.Add(this.addbatch_btn);
-            this.inventory_sidepanel.Controls.Add(this.additem_btn);
-            this.inventory_sidepanel.Location = new System.Drawing.Point(3, 27);
-            this.inventory_sidepanel.Name = "inventory_sidepanel";
-            this.inventory_sidepanel.Size = new System.Drawing.Size(200, 420);
-            this.inventory_sidepanel.TabIndex = 36;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.iall_rb);
-            this.groupBox1.Controls.Add(this.instock_rb);
-            this.groupBox1.Controls.Add(this.dam_rb);
-            this.groupBox1.Controls.Add(this.repo_rb);
-            this.groupBox1.Location = new System.Drawing.Point(3, 155);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(194, 121);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Filter Items";
-            // 
-            // iall_rb
-            // 
-            this.iall_rb.AutoSize = true;
-            this.iall_rb.Location = new System.Drawing.Point(19, 91);
-            this.iall_rb.Name = "iall_rb";
-            this.iall_rb.Size = new System.Drawing.Size(36, 17);
-            this.iall_rb.TabIndex = 4;
-            this.iall_rb.TabStop = true;
-            this.iall_rb.Text = "All";
-            this.iall_rb.UseVisualStyleBackColor = true;
-            this.iall_rb.CheckedChanged += new System.EventHandler(this.iall_rb_CheckedChanged);
-            // 
-            // instock_rb
-            // 
-            this.instock_rb.AutoSize = true;
-            this.instock_rb.Location = new System.Drawing.Point(19, 68);
-            this.instock_rb.Name = "instock_rb";
-            this.instock_rb.Size = new System.Drawing.Size(65, 17);
-            this.instock_rb.TabIndex = 3;
-            this.instock_rb.TabStop = true;
-            this.instock_rb.Text = "In Stock";
-            this.instock_rb.UseVisualStyleBackColor = true;
-            this.instock_rb.CheckedChanged += new System.EventHandler(this.instock_rb_CheckedChanged);
-            // 
-            // dam_rb
-            // 
-            this.dam_rb.AutoSize = true;
-            this.dam_rb.Location = new System.Drawing.Point(19, 46);
-            this.dam_rb.Name = "dam_rb";
-            this.dam_rb.Size = new System.Drawing.Size(71, 17);
-            this.dam_rb.TabIndex = 2;
-            this.dam_rb.TabStop = true;
-            this.dam_rb.Text = "Damaged";
-            this.dam_rb.UseVisualStyleBackColor = true;
-            this.dam_rb.CheckedChanged += new System.EventHandler(this.dam_rb_CheckedChanged);
-            // 
-            // repo_rb
-            // 
-            this.repo_rb.AutoSize = true;
-            this.repo_rb.Location = new System.Drawing.Point(19, 22);
-            this.repo_rb.Name = "repo_rb";
-            this.repo_rb.Size = new System.Drawing.Size(89, 17);
-            this.repo_rb.TabIndex = 0;
-            this.repo_rb.TabStop = true;
-            this.repo_rb.Text = "Repossessed";
-            this.repo_rb.UseVisualStyleBackColor = true;
-            this.repo_rb.CheckedChanged += new System.EventHandler(this.repo_rb_CheckedChanged);
-            // 
-            // viewitems_btn
-            // 
-            this.viewitems_btn.Location = new System.Drawing.Point(3, 92);
-            this.viewitems_btn.Name = "viewitems_btn";
-            this.viewitems_btn.Size = new System.Drawing.Size(194, 39);
-            this.viewitems_btn.TabIndex = 2;
-            this.viewitems_btn.Text = "View Items";
-            this.viewitems_btn.UseVisualStyleBackColor = true;
-            this.viewitems_btn.Click += new System.EventHandler(this.viewitems_btn_Click);
-            // 
-            // addbatch_btn
-            // 
-            this.addbatch_btn.Location = new System.Drawing.Point(3, 48);
-            this.addbatch_btn.Name = "addbatch_btn";
-            this.addbatch_btn.Size = new System.Drawing.Size(194, 39);
-            this.addbatch_btn.TabIndex = 1;
-            this.addbatch_btn.Text = "Add Item By Batch";
-            this.addbatch_btn.UseVisualStyleBackColor = true;
-            this.addbatch_btn.Click += new System.EventHandler(this.addbatch_btn_Click);
-            // 
-            // additem_btn
-            // 
-            this.additem_btn.Location = new System.Drawing.Point(3, 4);
-            this.additem_btn.Name = "additem_btn";
-            this.additem_btn.Size = new System.Drawing.Size(194, 39);
-            this.additem_btn.TabIndex = 0;
-            this.additem_btn.Text = "Add Item";
-            this.additem_btn.UseVisualStyleBackColor = true;
-            this.additem_btn.Click += new System.EventHandler(this.additem_btn_Click);
-            // 
-            // confirmclient_sidepanel
-            // 
-            this.confirmclient_sidepanel.BackColor = System.Drawing.Color.DarkGray;
-            this.confirmclient_sidepanel.Controls.Add(this.filter_cacc_gb);
-            this.confirmclient_sidepanel.Controls.Add(this.filter_acc_gb);
-            this.confirmclient_sidepanel.Controls.Add(this.view_acc_btn);
-            this.confirmclient_sidepanel.Controls.Add(this.create_stf_btn);
-            this.confirmclient_sidepanel.Controls.Add(this.create_acc_btn);
-            this.confirmclient_sidepanel.Controls.Add(this.confirm_btn);
-            this.confirmclient_sidepanel.Location = new System.Drawing.Point(3, 27);
-            this.confirmclient_sidepanel.Name = "confirmclient_sidepanel";
-            this.confirmclient_sidepanel.Size = new System.Drawing.Size(200, 420);
-            this.confirmclient_sidepanel.TabIndex = 33;
-            // 
-            // filter_cacc_gb
-            // 
-            this.filter_cacc_gb.Controls.Add(this.unconf_rb);
-            this.filter_cacc_gb.Controls.Add(this.conf_rb);
-            this.filter_cacc_gb.Enabled = false;
-            this.filter_cacc_gb.Location = new System.Drawing.Point(5, 317);
-            this.filter_cacc_gb.Name = "filter_cacc_gb";
-            this.filter_cacc_gb.Size = new System.Drawing.Size(190, 68);
-            this.filter_cacc_gb.TabIndex = 5;
-            this.filter_cacc_gb.TabStop = false;
-            this.filter_cacc_gb.Text = "Filter Client Accounts";
-            // 
-            // unconf_rb
-            // 
-            this.unconf_rb.AutoSize = true;
-            this.unconf_rb.Location = new System.Drawing.Point(23, 43);
-            this.unconf_rb.Name = "unconf_rb";
-            this.unconf_rb.Size = new System.Drawing.Size(85, 17);
-            this.unconf_rb.TabIndex = 1;
-            this.unconf_rb.TabStop = true;
-            this.unconf_rb.Text = "Unconfirmed";
-            this.unconf_rb.UseVisualStyleBackColor = true;
-            this.unconf_rb.CheckedChanged += new System.EventHandler(this.unconf_rb_CheckedChanged);
-            // 
-            // conf_rb
-            // 
-            this.conf_rb.AutoSize = true;
-            this.conf_rb.Location = new System.Drawing.Point(23, 20);
-            this.conf_rb.Name = "conf_rb";
-            this.conf_rb.Size = new System.Drawing.Size(72, 17);
-            this.conf_rb.TabIndex = 0;
-            this.conf_rb.TabStop = true;
-            this.conf_rb.Text = "Confirmed";
-            this.conf_rb.UseVisualStyleBackColor = true;
-            this.conf_rb.CheckedChanged += new System.EventHandler(this.conf_rb_CheckedChanged);
-            // 
-            // filter_acc_gb
-            // 
-            this.filter_acc_gb.Controls.Add(this.aall_rb);
-            this.filter_acc_gb.Controls.Add(this.collector_rb);
-            this.filter_acc_gb.Controls.Add(this.staff_rb);
-            this.filter_acc_gb.Controls.Add(this.client_rb);
-            this.filter_acc_gb.Enabled = false;
-            this.filter_acc_gb.Location = new System.Drawing.Point(5, 197);
-            this.filter_acc_gb.Name = "filter_acc_gb";
-            this.filter_acc_gb.Size = new System.Drawing.Size(190, 114);
-            this.filter_acc_gb.TabIndex = 4;
-            this.filter_acc_gb.TabStop = false;
-            this.filter_acc_gb.Text = "Filter Accounts";
-            // 
-            // aall_rb
-            // 
-            this.aall_rb.AutoSize = true;
-            this.aall_rb.Location = new System.Drawing.Point(23, 85);
-            this.aall_rb.Name = "aall_rb";
-            this.aall_rb.Size = new System.Drawing.Size(36, 17);
-            this.aall_rb.TabIndex = 3;
-            this.aall_rb.TabStop = true;
-            this.aall_rb.Text = "All";
-            this.aall_rb.UseVisualStyleBackColor = true;
-            this.aall_rb.CheckedChanged += new System.EventHandler(this.aall_rb_CheckedChanged);
-            // 
-            // collector_rb
-            // 
-            this.collector_rb.AutoSize = true;
-            this.collector_rb.Location = new System.Drawing.Point(23, 64);
-            this.collector_rb.Name = "collector_rb";
-            this.collector_rb.Size = new System.Drawing.Size(66, 17);
-            this.collector_rb.TabIndex = 2;
-            this.collector_rb.TabStop = true;
-            this.collector_rb.Text = "Collector";
-            this.collector_rb.UseVisualStyleBackColor = true;
-            this.collector_rb.CheckedChanged += new System.EventHandler(this.collector_rb_CheckedChanged);
-            // 
-            // staff_rb
-            // 
-            this.staff_rb.AutoSize = true;
-            this.staff_rb.Location = new System.Drawing.Point(23, 42);
-            this.staff_rb.Name = "staff_rb";
-            this.staff_rb.Size = new System.Drawing.Size(47, 17);
-            this.staff_rb.TabIndex = 1;
-            this.staff_rb.TabStop = true;
-            this.staff_rb.Text = "Staff";
-            this.staff_rb.UseVisualStyleBackColor = true;
-            this.staff_rb.CheckedChanged += new System.EventHandler(this.staff_rb_CheckedChanged);
-            // 
-            // client_rb
-            // 
-            this.client_rb.AutoSize = true;
-            this.client_rb.Location = new System.Drawing.Point(23, 20);
-            this.client_rb.Name = "client_rb";
-            this.client_rb.Size = new System.Drawing.Size(51, 17);
-            this.client_rb.TabIndex = 0;
-            this.client_rb.TabStop = true;
-            this.client_rb.Text = "Client";
-            this.client_rb.UseVisualStyleBackColor = true;
-            this.client_rb.CheckedChanged += new System.EventHandler(this.client_rb_CheckedChanged);
-            // 
-            // view_acc_btn
-            // 
-            this.view_acc_btn.Location = new System.Drawing.Point(3, 138);
-            this.view_acc_btn.Name = "view_acc_btn";
-            this.view_acc_btn.Size = new System.Drawing.Size(194, 39);
-            this.view_acc_btn.TabIndex = 3;
-            this.view_acc_btn.Text = "View Accounts";
-            this.view_acc_btn.UseVisualStyleBackColor = true;
-            this.view_acc_btn.Click += new System.EventHandler(this.view_acc_btn_Click);
-            // 
-            // create_stf_btn
-            // 
-            this.create_stf_btn.Location = new System.Drawing.Point(3, 93);
-            this.create_stf_btn.Name = "create_stf_btn";
-            this.create_stf_btn.Size = new System.Drawing.Size(194, 39);
-            this.create_stf_btn.TabIndex = 0;
-            this.create_stf_btn.Text = "Create Staff Profile";
-            this.create_stf_btn.UseVisualStyleBackColor = true;
-            this.create_stf_btn.Click += new System.EventHandler(this.create_stf_btn_Click);
-            // 
-            // create_acc_btn
-            // 
-            this.create_acc_btn.Location = new System.Drawing.Point(3, 4);
-            this.create_acc_btn.Name = "create_acc_btn";
-            this.create_acc_btn.Size = new System.Drawing.Size(194, 39);
-            this.create_acc_btn.TabIndex = 1;
-            this.create_acc_btn.Text = "Create Client Account";
-            this.create_acc_btn.UseVisualStyleBackColor = true;
-            this.create_acc_btn.Click += new System.EventHandler(this.create_acc_btn_Click);
-            // 
-            // confirm_btn
-            // 
-            this.confirm_btn.Location = new System.Drawing.Point(3, 48);
-            this.confirm_btn.Name = "confirm_btn";
-            this.confirm_btn.Size = new System.Drawing.Size(194, 39);
-            this.confirm_btn.TabIndex = 2;
-            this.confirm_btn.Text = "Confirm Client Account";
-            this.confirm_btn.UseVisualStyleBackColor = true;
-            this.confirm_btn.Click += new System.EventHandler(this.confirm_btn_Click);
-            // 
-            // loan_sidepanel
-            // 
-            this.loan_sidepanel.BackColor = System.Drawing.Color.DarkGray;
-            this.loan_sidepanel.Controls.Add(this.search_gb);
-            this.loan_sidepanel.Controls.Add(this.viewloan_btn);
-            this.loan_sidepanel.Controls.Add(this.addloan_btn);
-            this.loan_sidepanel.Controls.Add(this.loansfilter_gb);
-            this.loan_sidepanel.Location = new System.Drawing.Point(3, 27);
-            this.loan_sidepanel.Name = "loan_sidepanel";
-            this.loan_sidepanel.Size = new System.Drawing.Size(200, 420);
-            this.loan_sidepanel.TabIndex = 1;
-            // 
-            // search_gb
-            // 
-            this.search_gb.Controls.Add(this.slamount_btn);
-            this.search_gb.Controls.Add(this.slname_btn);
-            this.search_gb.Controls.Add(this.label13);
-            this.search_gb.Controls.Add(this.label12);
-            this.search_gb.Controls.Add(this.slamount1_tb);
-            this.search_gb.Controls.Add(this.slamount2_tb);
-            this.search_gb.Controls.Add(this.slname_tb);
-            this.search_gb.Controls.Add(this.label11);
-            this.search_gb.Location = new System.Drawing.Point(6, 223);
-            this.search_gb.Name = "search_gb";
-            this.search_gb.Size = new System.Drawing.Size(187, 146);
-            this.search_gb.TabIndex = 3;
-            this.search_gb.TabStop = false;
-            this.search_gb.Text = "Search Loans By";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(72, 108);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(16, 13);
-            this.label13.TabIndex = 5;
-            this.label13.Text = "to";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 89);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(98, 13);
-            this.label12.TabIndex = 4;
-            this.label12.Text = "Loan Amount (Php)";
-            // 
-            // slamount1_tb
-            // 
-            this.slamount1_tb.Location = new System.Drawing.Point(16, 105);
-            this.slamount1_tb.Name = "slamount1_tb";
-            this.slamount1_tb.Size = new System.Drawing.Size(55, 20);
-            this.slamount1_tb.TabIndex = 3;
-            // 
-            // slamount2_tb
-            // 
-            this.slamount2_tb.Location = new System.Drawing.Point(88, 105);
-            this.slamount2_tb.Name = "slamount2_tb";
-            this.slamount2_tb.Size = new System.Drawing.Size(55, 20);
-            this.slamount2_tb.TabIndex = 2;
-            // 
-            // slname_tb
-            // 
-            this.slname_tb.Location = new System.Drawing.Point(16, 48);
-            this.slname_tb.Name = "slname_tb";
-            this.slname_tb.Size = new System.Drawing.Size(127, 20);
-            this.slname_tb.TabIndex = 1;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 28);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(87, 13);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "Client Last Name";
-            // 
-            // viewloan_btn
-            // 
-            this.viewloan_btn.Location = new System.Drawing.Point(3, 48);
-            this.viewloan_btn.Name = "viewloan_btn";
-            this.viewloan_btn.Size = new System.Drawing.Size(194, 39);
-            this.viewloan_btn.TabIndex = 0;
-            this.viewloan_btn.Text = "View Loans";
-            this.viewloan_btn.UseVisualStyleBackColor = true;
-            this.viewloan_btn.Click += new System.EventHandler(this.viewloan_btn_Click);
-            // 
-            // addloan_btn
-            // 
-            this.addloan_btn.Location = new System.Drawing.Point(3, 4);
-            this.addloan_btn.Name = "addloan_btn";
-            this.addloan_btn.Size = new System.Drawing.Size(194, 39);
-            this.addloan_btn.TabIndex = 0;
-            this.addloan_btn.Text = "Add Loan";
-            this.addloan_btn.UseVisualStyleBackColor = true;
-            this.addloan_btn.Click += new System.EventHandler(this.addloan_btn_Click);
-            // 
-            // loansfilter_gb
-            // 
-            this.loansfilter_gb.Controls.Add(this.all_rb);
-            this.loansfilter_gb.Controls.Add(this.active_rb);
-            this.loansfilter_gb.Controls.Add(this.completed_rb);
-            this.loansfilter_gb.Controls.Add(this.inactive_rb);
-            this.loansfilter_gb.Location = new System.Drawing.Point(6, 98);
-            this.loansfilter_gb.Name = "loansfilter_gb";
-            this.loansfilter_gb.Size = new System.Drawing.Size(187, 112);
-            this.loansfilter_gb.TabIndex = 2;
-            this.loansfilter_gb.TabStop = false;
-            this.loansfilter_gb.Text = "Filter Loans";
-            // 
-            // all_rb
-            // 
-            this.all_rb.AutoSize = true;
-            this.all_rb.Location = new System.Drawing.Point(16, 84);
-            this.all_rb.Name = "all_rb";
-            this.all_rb.Size = new System.Drawing.Size(36, 17);
-            this.all_rb.TabIndex = 6;
-            this.all_rb.TabStop = true;
-            this.all_rb.Text = "All";
-            this.all_rb.UseVisualStyleBackColor = true;
-            this.all_rb.CheckedChanged += new System.EventHandler(this.all_rb_CheckedChanged);
-            // 
-            // active_rb
-            // 
-            this.active_rb.AutoSize = true;
-            this.active_rb.Location = new System.Drawing.Point(16, 42);
-            this.active_rb.Name = "active_rb";
-            this.active_rb.Size = new System.Drawing.Size(55, 17);
-            this.active_rb.TabIndex = 5;
-            this.active_rb.TabStop = true;
-            this.active_rb.Text = "Active";
-            this.active_rb.UseVisualStyleBackColor = true;
-            this.active_rb.CheckedChanged += new System.EventHandler(this.active_rb_CheckedChanged);
-            // 
-            // completed_rb
-            // 
-            this.completed_rb.AutoSize = true;
-            this.completed_rb.Location = new System.Drawing.Point(16, 63);
-            this.completed_rb.Name = "completed_rb";
-            this.completed_rb.Size = new System.Drawing.Size(75, 17);
-            this.completed_rb.TabIndex = 4;
-            this.completed_rb.TabStop = true;
-            this.completed_rb.Text = "Completed";
-            this.completed_rb.UseVisualStyleBackColor = true;
-            this.completed_rb.CheckedChanged += new System.EventHandler(this.completed_rb_CheckedChanged);
-            // 
-            // inactive_rb
-            // 
-            this.inactive_rb.AutoSize = true;
-            this.inactive_rb.Location = new System.Drawing.Point(16, 20);
-            this.inactive_rb.Name = "inactive_rb";
-            this.inactive_rb.Size = new System.Drawing.Size(63, 17);
-            this.inactive_rb.TabIndex = 3;
-            this.inactive_rb.TabStop = true;
-            this.inactive_rb.Text = "Inactive";
-            this.inactive_rb.UseVisualStyleBackColor = true;
-            this.inactive_rb.CheckedChanged += new System.EventHandler(this.inactive_rb_CheckedChanged);
-            // 
-            // profile_sidepanel
-            // 
-            this.profile_sidepanel.BackColor = System.Drawing.Color.DarkGray;
-            this.profile_sidepanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.profile_sidepanel.Controls.Add(this.edit_profile_btn);
-            this.profile_sidepanel.Location = new System.Drawing.Point(3, 27);
-            this.profile_sidepanel.Name = "profile_sidepanel";
-            this.profile_sidepanel.Size = new System.Drawing.Size(200, 420);
-            this.profile_sidepanel.TabIndex = 3;
-            // 
-            // edit_profile_btn
-            // 
-            this.edit_profile_btn.Location = new System.Drawing.Point(2, 2);
-            this.edit_profile_btn.Name = "edit_profile_btn";
-            this.edit_profile_btn.Size = new System.Drawing.Size(194, 39);
-            this.edit_profile_btn.TabIndex = 0;
-            this.edit_profile_btn.Text = "Edit Profile";
-            this.edit_profile_btn.UseVisualStyleBackColor = true;
-            this.edit_profile_btn.Click += new System.EventHandler(this.edit_profile_btn_Click);
             // 
             // reports_panel
             // 
@@ -3155,6 +2950,339 @@
             this.label83.Text = "GENERATE REPORTS";
             this.label83.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // trans_sidepanel
+            // 
+            this.trans_sidepanel.BackColor = System.Drawing.Color.DarkGray;
+            this.trans_sidepanel.Controls.Add(this.groupBox2);
+            this.trans_sidepanel.Location = new System.Drawing.Point(3, 27);
+            this.trans_sidepanel.Name = "trans_sidepanel";
+            this.trans_sidepanel.Size = new System.Drawing.Size(200, 420);
+            this.trans_sidepanel.TabIndex = 40;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.sclient_btn);
+            this.groupBox2.Controls.Add(this.sclient_tb);
+            this.groupBox2.Controls.Add(this.label81);
+            this.groupBox2.Controls.Add(this.scname_btn);
+            this.groupBox2.Controls.Add(this.scname_tb);
+            this.groupBox2.Controls.Add(this.label80);
+            this.groupBox2.Location = new System.Drawing.Point(4, 9);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(191, 118);
+            this.groupBox2.TabIndex = 0;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Filter Collections";
+            // 
+            // sclient_btn
+            // 
+            this.sclient_btn.Image = ((System.Drawing.Image)(resources.GetObject("sclient_btn.Image")));
+            this.sclient_btn.Location = new System.Drawing.Point(150, 79);
+            this.sclient_btn.Name = "sclient_btn";
+            this.sclient_btn.Size = new System.Drawing.Size(25, 25);
+            this.sclient_btn.TabIndex = 5;
+            this.sclient_btn.UseVisualStyleBackColor = true;
+            this.sclient_btn.Click += new System.EventHandler(this.sclient_btn_Click);
+            // 
+            // sclient_tb
+            // 
+            this.sclient_tb.Location = new System.Drawing.Point(18, 81);
+            this.sclient_tb.Name = "sclient_tb";
+            this.sclient_tb.Size = new System.Drawing.Size(127, 20);
+            this.sclient_tb.TabIndex = 4;
+            // 
+            // label81
+            // 
+            this.label81.AutoSize = true;
+            this.label81.Location = new System.Drawing.Point(8, 65);
+            this.label81.Name = "label81";
+            this.label81.Size = new System.Drawing.Size(90, 13);
+            this.label81.TabIndex = 3;
+            this.label81.Text = "Client Last Name:";
+            // 
+            // scname_btn
+            // 
+            this.scname_btn.Image = ((System.Drawing.Image)(resources.GetObject("scname_btn.Image")));
+            this.scname_btn.Location = new System.Drawing.Point(150, 38);
+            this.scname_btn.Name = "scname_btn";
+            this.scname_btn.Size = new System.Drawing.Size(25, 25);
+            this.scname_btn.TabIndex = 2;
+            this.scname_btn.UseVisualStyleBackColor = true;
+            this.scname_btn.Click += new System.EventHandler(this.scname_btn_Click);
+            // 
+            // scname_tb
+            // 
+            this.scname_tb.Location = new System.Drawing.Point(18, 40);
+            this.scname_tb.Name = "scname_tb";
+            this.scname_tb.Size = new System.Drawing.Size(127, 20);
+            this.scname_tb.TabIndex = 1;
+            // 
+            // label80
+            // 
+            this.label80.AutoSize = true;
+            this.label80.Location = new System.Drawing.Point(8, 23);
+            this.label80.Name = "label80";
+            this.label80.Size = new System.Drawing.Size(105, 13);
+            this.label80.TabIndex = 0;
+            this.label80.Text = "Collector Last Name:";
+            // 
+            // inventory_sidepanel
+            // 
+            this.inventory_sidepanel.BackColor = System.Drawing.Color.DarkGray;
+            this.inventory_sidepanel.Controls.Add(this.isearch_gb);
+            this.inventory_sidepanel.Controls.Add(this.filter_items_gb);
+            this.inventory_sidepanel.Controls.Add(this.viewitems_btn);
+            this.inventory_sidepanel.Controls.Add(this.addbatch_btn);
+            this.inventory_sidepanel.Controls.Add(this.additem_btn);
+            this.inventory_sidepanel.Location = new System.Drawing.Point(3, 27);
+            this.inventory_sidepanel.Name = "inventory_sidepanel";
+            this.inventory_sidepanel.Size = new System.Drawing.Size(200, 420);
+            this.inventory_sidepanel.TabIndex = 36;
+            // 
+            // filter_items_gb
+            // 
+            this.filter_items_gb.Controls.Add(this.iall_rb);
+            this.filter_items_gb.Controls.Add(this.instock_rb);
+            this.filter_items_gb.Controls.Add(this.dam_rb);
+            this.filter_items_gb.Controls.Add(this.repo_rb);
+            this.filter_items_gb.Location = new System.Drawing.Point(4, 143);
+            this.filter_items_gb.Name = "filter_items_gb";
+            this.filter_items_gb.Size = new System.Drawing.Size(191, 121);
+            this.filter_items_gb.TabIndex = 3;
+            this.filter_items_gb.TabStop = false;
+            this.filter_items_gb.Text = "Filter Items";
+            // 
+            // iall_rb
+            // 
+            this.iall_rb.AutoSize = true;
+            this.iall_rb.Location = new System.Drawing.Point(19, 91);
+            this.iall_rb.Name = "iall_rb";
+            this.iall_rb.Size = new System.Drawing.Size(36, 17);
+            this.iall_rb.TabIndex = 4;
+            this.iall_rb.TabStop = true;
+            this.iall_rb.Text = "All";
+            this.iall_rb.UseVisualStyleBackColor = true;
+            this.iall_rb.CheckedChanged += new System.EventHandler(this.iall_rb_CheckedChanged);
+            // 
+            // instock_rb
+            // 
+            this.instock_rb.AutoSize = true;
+            this.instock_rb.Location = new System.Drawing.Point(19, 68);
+            this.instock_rb.Name = "instock_rb";
+            this.instock_rb.Size = new System.Drawing.Size(65, 17);
+            this.instock_rb.TabIndex = 3;
+            this.instock_rb.TabStop = true;
+            this.instock_rb.Text = "In Stock";
+            this.instock_rb.UseVisualStyleBackColor = true;
+            this.instock_rb.CheckedChanged += new System.EventHandler(this.instock_rb_CheckedChanged);
+            // 
+            // dam_rb
+            // 
+            this.dam_rb.AutoSize = true;
+            this.dam_rb.Location = new System.Drawing.Point(19, 46);
+            this.dam_rb.Name = "dam_rb";
+            this.dam_rb.Size = new System.Drawing.Size(71, 17);
+            this.dam_rb.TabIndex = 2;
+            this.dam_rb.TabStop = true;
+            this.dam_rb.Text = "Damaged";
+            this.dam_rb.UseVisualStyleBackColor = true;
+            this.dam_rb.CheckedChanged += new System.EventHandler(this.dam_rb_CheckedChanged);
+            // 
+            // repo_rb
+            // 
+            this.repo_rb.AutoSize = true;
+            this.repo_rb.Location = new System.Drawing.Point(19, 22);
+            this.repo_rb.Name = "repo_rb";
+            this.repo_rb.Size = new System.Drawing.Size(89, 17);
+            this.repo_rb.TabIndex = 0;
+            this.repo_rb.TabStop = true;
+            this.repo_rb.Text = "Repossessed";
+            this.repo_rb.UseVisualStyleBackColor = true;
+            this.repo_rb.CheckedChanged += new System.EventHandler(this.repo_rb_CheckedChanged);
+            // 
+            // viewitems_btn
+            // 
+            this.viewitems_btn.Location = new System.Drawing.Point(3, 92);
+            this.viewitems_btn.Name = "viewitems_btn";
+            this.viewitems_btn.Size = new System.Drawing.Size(194, 39);
+            this.viewitems_btn.TabIndex = 2;
+            this.viewitems_btn.Text = "View Items";
+            this.viewitems_btn.UseVisualStyleBackColor = true;
+            this.viewitems_btn.Click += new System.EventHandler(this.viewitems_btn_Click);
+            // 
+            // addbatch_btn
+            // 
+            this.addbatch_btn.Location = new System.Drawing.Point(3, 48);
+            this.addbatch_btn.Name = "addbatch_btn";
+            this.addbatch_btn.Size = new System.Drawing.Size(194, 39);
+            this.addbatch_btn.TabIndex = 1;
+            this.addbatch_btn.Text = "Add Item By Batch";
+            this.addbatch_btn.UseVisualStyleBackColor = true;
+            this.addbatch_btn.Click += new System.EventHandler(this.addbatch_btn_Click);
+            // 
+            // additem_btn
+            // 
+            this.additem_btn.Location = new System.Drawing.Point(3, 4);
+            this.additem_btn.Name = "additem_btn";
+            this.additem_btn.Size = new System.Drawing.Size(194, 39);
+            this.additem_btn.TabIndex = 0;
+            this.additem_btn.Text = "Add Item";
+            this.additem_btn.UseVisualStyleBackColor = true;
+            this.additem_btn.Click += new System.EventHandler(this.additem_btn_Click);
+            // 
+            // confirmclient_sidepanel
+            // 
+            this.confirmclient_sidepanel.BackColor = System.Drawing.Color.DarkGray;
+            this.confirmclient_sidepanel.Controls.Add(this.asearch_gb);
+            this.confirmclient_sidepanel.Controls.Add(this.filter_cacc_gb);
+            this.confirmclient_sidepanel.Controls.Add(this.filter_acc_gb);
+            this.confirmclient_sidepanel.Controls.Add(this.view_acc_btn);
+            this.confirmclient_sidepanel.Controls.Add(this.create_stf_btn);
+            this.confirmclient_sidepanel.Controls.Add(this.create_acc_btn);
+            this.confirmclient_sidepanel.Controls.Add(this.confirm_btn);
+            this.confirmclient_sidepanel.Location = new System.Drawing.Point(3, 27);
+            this.confirmclient_sidepanel.Name = "confirmclient_sidepanel";
+            this.confirmclient_sidepanel.Size = new System.Drawing.Size(200, 420);
+            this.confirmclient_sidepanel.TabIndex = 33;
+            // 
+            // filter_cacc_gb
+            // 
+            this.filter_cacc_gb.Controls.Add(this.unconf_rb);
+            this.filter_cacc_gb.Controls.Add(this.conf_rb);
+            this.filter_cacc_gb.Enabled = false;
+            this.filter_cacc_gb.Location = new System.Drawing.Point(4, 269);
+            this.filter_cacc_gb.Name = "filter_cacc_gb";
+            this.filter_cacc_gb.Size = new System.Drawing.Size(193, 68);
+            this.filter_cacc_gb.TabIndex = 5;
+            this.filter_cacc_gb.TabStop = false;
+            this.filter_cacc_gb.Text = "Filter Client Accounts";
+            // 
+            // unconf_rb
+            // 
+            this.unconf_rb.AutoSize = true;
+            this.unconf_rb.Location = new System.Drawing.Point(23, 43);
+            this.unconf_rb.Name = "unconf_rb";
+            this.unconf_rb.Size = new System.Drawing.Size(85, 17);
+            this.unconf_rb.TabIndex = 1;
+            this.unconf_rb.TabStop = true;
+            this.unconf_rb.Text = "Unconfirmed";
+            this.unconf_rb.UseVisualStyleBackColor = true;
+            this.unconf_rb.CheckedChanged += new System.EventHandler(this.unconf_rb_CheckedChanged);
+            // 
+            // conf_rb
+            // 
+            this.conf_rb.AutoSize = true;
+            this.conf_rb.Location = new System.Drawing.Point(23, 20);
+            this.conf_rb.Name = "conf_rb";
+            this.conf_rb.Size = new System.Drawing.Size(72, 17);
+            this.conf_rb.TabIndex = 0;
+            this.conf_rb.TabStop = true;
+            this.conf_rb.Text = "Confirmed";
+            this.conf_rb.UseVisualStyleBackColor = true;
+            this.conf_rb.CheckedChanged += new System.EventHandler(this.conf_rb_CheckedChanged);
+            // 
+            // filter_acc_gb
+            // 
+            this.filter_acc_gb.Controls.Add(this.aall_rb);
+            this.filter_acc_gb.Controls.Add(this.collector_rb);
+            this.filter_acc_gb.Controls.Add(this.staff_rb);
+            this.filter_acc_gb.Controls.Add(this.client_rb);
+            this.filter_acc_gb.Enabled = false;
+            this.filter_acc_gb.Location = new System.Drawing.Point(4, 183);
+            this.filter_acc_gb.Name = "filter_acc_gb";
+            this.filter_acc_gb.Size = new System.Drawing.Size(193, 74);
+            this.filter_acc_gb.TabIndex = 4;
+            this.filter_acc_gb.TabStop = false;
+            this.filter_acc_gb.Text = "Filter Accounts";
+            // 
+            // aall_rb
+            // 
+            this.aall_rb.AutoSize = true;
+            this.aall_rb.Location = new System.Drawing.Point(105, 40);
+            this.aall_rb.Name = "aall_rb";
+            this.aall_rb.Size = new System.Drawing.Size(36, 17);
+            this.aall_rb.TabIndex = 3;
+            this.aall_rb.TabStop = true;
+            this.aall_rb.Text = "All";
+            this.aall_rb.UseVisualStyleBackColor = true;
+            this.aall_rb.CheckedChanged += new System.EventHandler(this.aall_rb_CheckedChanged);
+            // 
+            // collector_rb
+            // 
+            this.collector_rb.AutoSize = true;
+            this.collector_rb.Location = new System.Drawing.Point(105, 18);
+            this.collector_rb.Name = "collector_rb";
+            this.collector_rb.Size = new System.Drawing.Size(66, 17);
+            this.collector_rb.TabIndex = 2;
+            this.collector_rb.TabStop = true;
+            this.collector_rb.Text = "Collector";
+            this.collector_rb.UseVisualStyleBackColor = true;
+            this.collector_rb.CheckedChanged += new System.EventHandler(this.collector_rb_CheckedChanged);
+            // 
+            // staff_rb
+            // 
+            this.staff_rb.AutoSize = true;
+            this.staff_rb.Location = new System.Drawing.Point(23, 42);
+            this.staff_rb.Name = "staff_rb";
+            this.staff_rb.Size = new System.Drawing.Size(47, 17);
+            this.staff_rb.TabIndex = 1;
+            this.staff_rb.TabStop = true;
+            this.staff_rb.Text = "Staff";
+            this.staff_rb.UseVisualStyleBackColor = true;
+            this.staff_rb.CheckedChanged += new System.EventHandler(this.staff_rb_CheckedChanged);
+            // 
+            // client_rb
+            // 
+            this.client_rb.AutoSize = true;
+            this.client_rb.Location = new System.Drawing.Point(23, 20);
+            this.client_rb.Name = "client_rb";
+            this.client_rb.Size = new System.Drawing.Size(51, 17);
+            this.client_rb.TabIndex = 0;
+            this.client_rb.TabStop = true;
+            this.client_rb.Text = "Client";
+            this.client_rb.UseVisualStyleBackColor = true;
+            this.client_rb.CheckedChanged += new System.EventHandler(this.client_rb_CheckedChanged);
+            // 
+            // view_acc_btn
+            // 
+            this.view_acc_btn.Location = new System.Drawing.Point(3, 138);
+            this.view_acc_btn.Name = "view_acc_btn";
+            this.view_acc_btn.Size = new System.Drawing.Size(194, 39);
+            this.view_acc_btn.TabIndex = 3;
+            this.view_acc_btn.Text = "View Accounts";
+            this.view_acc_btn.UseVisualStyleBackColor = true;
+            this.view_acc_btn.Click += new System.EventHandler(this.view_acc_btn_Click);
+            // 
+            // create_stf_btn
+            // 
+            this.create_stf_btn.Location = new System.Drawing.Point(3, 93);
+            this.create_stf_btn.Name = "create_stf_btn";
+            this.create_stf_btn.Size = new System.Drawing.Size(194, 39);
+            this.create_stf_btn.TabIndex = 0;
+            this.create_stf_btn.Text = "Create Staff Profile";
+            this.create_stf_btn.UseVisualStyleBackColor = true;
+            this.create_stf_btn.Click += new System.EventHandler(this.create_stf_btn_Click);
+            // 
+            // create_acc_btn
+            // 
+            this.create_acc_btn.Location = new System.Drawing.Point(3, 4);
+            this.create_acc_btn.Name = "create_acc_btn";
+            this.create_acc_btn.Size = new System.Drawing.Size(194, 39);
+            this.create_acc_btn.TabIndex = 1;
+            this.create_acc_btn.Text = "Create Client Account";
+            this.create_acc_btn.UseVisualStyleBackColor = true;
+            this.create_acc_btn.Click += new System.EventHandler(this.create_acc_btn_Click);
+            // 
+            // confirm_btn
+            // 
+            this.confirm_btn.Location = new System.Drawing.Point(3, 48);
+            this.confirm_btn.Name = "confirm_btn";
+            this.confirm_btn.Size = new System.Drawing.Size(194, 39);
+            this.confirm_btn.TabIndex = 2;
+            this.confirm_btn.Text = "Confirm Client Account";
+            this.confirm_btn.UseVisualStyleBackColor = true;
+            this.confirm_btn.Click += new System.EventHandler(this.confirm_btn_Click);
+            // 
             // dashboard_panel
             // 
             this.dashboard_panel.Controls.Add(this.reports_btn);
@@ -3191,122 +3319,6 @@
             this.transaction_btn.UseVisualStyleBackColor = true;
             this.transaction_btn.Click += new System.EventHandler(this.transaction_btn_Click);
             // 
-            // search_item0
-            // 
-            this.search_item0.Image = ((System.Drawing.Image)(resources.GetObject("search_item0.Image")));
-            this.search_item0.Location = new System.Drawing.Point(332, 14);
-            this.search_item0.Name = "search_item0";
-            this.search_item0.Size = new System.Drawing.Size(25, 25);
-            this.search_item0.TabIndex = 9;
-            this.search_item0.UseVisualStyleBackColor = true;
-            this.search_item0.Click += new System.EventHandler(this.search_item0_Click);
-            // 
-            // client_search_btn
-            // 
-            this.client_search_btn.Image = ((System.Drawing.Image)(resources.GetObject("client_search_btn.Image")));
-            this.client_search_btn.Location = new System.Drawing.Point(304, 40);
-            this.client_search_btn.Name = "client_search_btn";
-            this.client_search_btn.Size = new System.Drawing.Size(25, 25);
-            this.client_search_btn.TabIndex = 16;
-            this.client_search_btn.UseVisualStyleBackColor = true;
-            this.client_search_btn.Click += new System.EventHandler(this.client_search_btn_Click);
-            // 
-            // search_price_btn
-            // 
-            this.search_price_btn.Image = ((System.Drawing.Image)(resources.GetObject("search_price_btn.Image")));
-            this.search_price_btn.Location = new System.Drawing.Point(406, 139);
-            this.search_price_btn.Name = "search_price_btn";
-            this.search_price_btn.Size = new System.Drawing.Size(25, 25);
-            this.search_price_btn.TabIndex = 16;
-            this.search_price_btn.UseVisualStyleBackColor = true;
-            this.search_price_btn.Click += new System.EventHandler(this.search_price_btn_Click);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox2.Location = new System.Drawing.Point(220, 214);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(346, 167);
-            this.pictureBox2.TabIndex = 24;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox1.Location = new System.Drawing.Point(425, 59);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(141, 132);
-            this.pictureBox1.TabIndex = 22;
-            this.pictureBox1.TabStop = false;
-            // 
-            // prof_pic_pbx
-            // 
-            this.prof_pic_pbx.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.prof_pic_pbx.Location = new System.Drawing.Point(27, 61);
-            this.prof_pic_pbx.Name = "prof_pic_pbx";
-            this.prof_pic_pbx.Size = new System.Drawing.Size(131, 151);
-            this.prof_pic_pbx.TabIndex = 15;
-            this.prof_pic_pbx.TabStop = false;
-            // 
-            // staff_pb
-            // 
-            this.staff_pb.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.staff_pb.Location = new System.Drawing.Point(388, 53);
-            this.staff_pb.Name = "staff_pb";
-            this.staff_pb.Size = new System.Drawing.Size(141, 132);
-            this.staff_pb.TabIndex = 53;
-            this.staff_pb.TabStop = false;
-            // 
-            // search_btn0
-            // 
-            this.search_btn0.Image = ((System.Drawing.Image)(resources.GetObject("search_btn0.Image")));
-            this.search_btn0.Location = new System.Drawing.Point(297, 10);
-            this.search_btn0.Name = "search_btn0";
-            this.search_btn0.Size = new System.Drawing.Size(25, 25);
-            this.search_btn0.TabIndex = 6;
-            this.search_btn0.UseVisualStyleBackColor = true;
-            this.search_btn0.Click += new System.EventHandler(this.search_btn_Click);
-            // 
-            // sclient_btn
-            // 
-            this.sclient_btn.Image = ((System.Drawing.Image)(resources.GetObject("sclient_btn.Image")));
-            this.sclient_btn.Location = new System.Drawing.Point(150, 79);
-            this.sclient_btn.Name = "sclient_btn";
-            this.sclient_btn.Size = new System.Drawing.Size(25, 25);
-            this.sclient_btn.TabIndex = 5;
-            this.sclient_btn.UseVisualStyleBackColor = true;
-            this.sclient_btn.Click += new System.EventHandler(this.sclient_btn_Click);
-            // 
-            // scname_btn
-            // 
-            this.scname_btn.Image = ((System.Drawing.Image)(resources.GetObject("scname_btn.Image")));
-            this.scname_btn.Location = new System.Drawing.Point(150, 38);
-            this.scname_btn.Name = "scname_btn";
-            this.scname_btn.Size = new System.Drawing.Size(25, 25);
-            this.scname_btn.TabIndex = 2;
-            this.scname_btn.UseVisualStyleBackColor = true;
-            this.scname_btn.Click += new System.EventHandler(this.scname_btn_Click);
-            // 
-            // slamount_btn
-            // 
-            this.slamount_btn.Image = ((System.Drawing.Image)(resources.GetObject("slamount_btn.Image")));
-            this.slamount_btn.Location = new System.Drawing.Point(144, 103);
-            this.slamount_btn.Name = "slamount_btn";
-            this.slamount_btn.Size = new System.Drawing.Size(25, 25);
-            this.slamount_btn.TabIndex = 7;
-            this.slamount_btn.UseVisualStyleBackColor = true;
-            this.slamount_btn.Click += new System.EventHandler(this.slamount_btn_Click);
-            // 
-            // slname_btn
-            // 
-            this.slname_btn.Image = ((System.Drawing.Image)(resources.GetObject("slname_btn.Image")));
-            this.slname_btn.Location = new System.Drawing.Point(144, 46);
-            this.slname_btn.Name = "slname_btn";
-            this.slname_btn.Size = new System.Drawing.Size(25, 25);
-            this.slname_btn.TabIndex = 6;
-            this.slname_btn.UseVisualStyleBackColor = true;
-            this.slname_btn.Click += new System.EventHandler(this.slname_btn_Click);
-            // 
             // profile_btn
             // 
             this.profile_btn.Image = ((System.Drawing.Image)(resources.GetObject("profile_btn.Image")));
@@ -3327,6 +3339,71 @@
             this.logout_btn.UseVisualStyleBackColor = true;
             this.logout_btn.Click += new System.EventHandler(this.logout_btn_Click);
             // 
+            // asearch_gb
+            // 
+            this.asearch_gb.Controls.Add(this.asearch_btn);
+            this.asearch_gb.Controls.Add(this.asearch_tb);
+            this.asearch_gb.Location = new System.Drawing.Point(4, 347);
+            this.asearch_gb.Name = "asearch_gb";
+            this.asearch_gb.Size = new System.Drawing.Size(193, 54);
+            this.asearch_gb.TabIndex = 6;
+            this.asearch_gb.TabStop = false;
+            this.asearch_gb.Text = "Filter by Last Name";
+            // 
+            // asearch_tb
+            // 
+            this.asearch_tb.Location = new System.Drawing.Point(13, 22);
+            this.asearch_tb.Name = "asearch_tb";
+            this.asearch_tb.Size = new System.Drawing.Size(132, 20);
+            this.asearch_tb.TabIndex = 0;
+            // 
+            // asearch_btn
+            // 
+            this.asearch_btn.Image = ((System.Drawing.Image)(resources.GetObject("asearch_btn.Image")));
+            this.asearch_btn.Location = new System.Drawing.Point(150, 19);
+            this.asearch_btn.Name = "asearch_btn";
+            this.asearch_btn.Size = new System.Drawing.Size(25, 25);
+            this.asearch_btn.TabIndex = 1;
+            this.asearch_btn.UseVisualStyleBackColor = true;
+            this.asearch_btn.Click += new System.EventHandler(this.asearch_btn_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(2, 48);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(194, 39);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Change Password";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // isearch_gb
+            // 
+            this.isearch_gb.Controls.Add(this.isearch_btn);
+            this.isearch_gb.Controls.Add(this.isearch_tb);
+            this.isearch_gb.Location = new System.Drawing.Point(4, 274);
+            this.isearch_gb.Name = "isearch_gb";
+            this.isearch_gb.Size = new System.Drawing.Size(191, 57);
+            this.isearch_gb.TabIndex = 4;
+            this.isearch_gb.TabStop = false;
+            this.isearch_gb.Text = "Search by Item Name";
+            // 
+            // isearch_tb
+            // 
+            this.isearch_tb.Location = new System.Drawing.Point(18, 23);
+            this.isearch_tb.Name = "isearch_tb";
+            this.isearch_tb.Size = new System.Drawing.Size(127, 20);
+            this.isearch_tb.TabIndex = 0;
+            // 
+            // isearch_btn
+            // 
+            this.isearch_btn.Image = ((System.Drawing.Image)(resources.GetObject("isearch_btn.Image")));
+            this.isearch_btn.Location = new System.Drawing.Point(150, 20);
+            this.isearch_btn.Name = "isearch_btn";
+            this.isearch_btn.Size = new System.Drawing.Size(25, 25);
+            this.isearch_btn.TabIndex = 1;
+            this.isearch_btn.UseVisualStyleBackColor = true;
+            this.isearch_btn.Click += new System.EventHandler(this.isearch_btn_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3342,19 +3419,31 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.main_panel.ResumeLayout(false);
             this.main_panel.PerformLayout();
-            this.additem_panel.ResumeLayout(false);
-            this.additem_panel.PerformLayout();
+            this.confirmclient_panel.ResumeLayout(false);
+            this.confirmclient_panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            this.loan_sidepanel.ResumeLayout(false);
+            this.search_gb.ResumeLayout(false);
+            this.search_gb.PerformLayout();
+            this.loansfilter_gb.ResumeLayout(false);
+            this.loansfilter_gb.PerformLayout();
+            this.profile_sidepanel.ResumeLayout(false);
             this.addloan_panel.ResumeLayout(false);
             this.addloan_panel.PerformLayout();
             this.loan_items_fp.ResumeLayout(false);
             this.loanItem0.ResumeLayout(false);
             this.loanItem0.PerformLayout();
-            this.confirmclient_panel.ResumeLayout(false);
-            this.confirmclient_panel.PerformLayout();
+            this.additem_panel.ResumeLayout(false);
+            this.additem_panel.PerformLayout();
             this.profile_panel.ResumeLayout(false);
             this.profile_panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.prof_pic_pbx)).EndInit();
             this.create_staff_panel.ResumeLayout(false);
             this.create_staff_panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.staff_pb)).EndInit();
             this.trans_panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.trans_data)).EndInit();
             this.view_item_panel.ResumeLayout(false);
@@ -3364,36 +3453,28 @@
             this.items_fp.ResumeLayout(false);
             this.item_gb0.ResumeLayout(false);
             this.item_gb0.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.view_acc_panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.accounts_data)).EndInit();
             this.viewloan_panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.loan_data)).EndInit();
+            this.reports_panel.ResumeLayout(false);
+            this.reports_panel.PerformLayout();
             this.trans_sidepanel.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.inventory_sidepanel.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.filter_items_gb.ResumeLayout(false);
+            this.filter_items_gb.PerformLayout();
             this.confirmclient_sidepanel.ResumeLayout(false);
             this.filter_cacc_gb.ResumeLayout(false);
             this.filter_cacc_gb.PerformLayout();
             this.filter_acc_gb.ResumeLayout(false);
             this.filter_acc_gb.PerformLayout();
-            this.loan_sidepanel.ResumeLayout(false);
-            this.search_gb.ResumeLayout(false);
-            this.search_gb.PerformLayout();
-            this.loansfilter_gb.ResumeLayout(false);
-            this.loansfilter_gb.PerformLayout();
-            this.profile_sidepanel.ResumeLayout(false);
-            this.reports_panel.ResumeLayout(false);
-            this.reports_panel.PerformLayout();
             this.dashboard_panel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.prof_pic_pbx)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.staff_pb)).EndInit();
+            this.asearch_gb.ResumeLayout(false);
+            this.asearch_gb.PerformLayout();
+            this.isearch_gb.ResumeLayout(false);
+            this.isearch_gb.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -3606,7 +3687,7 @@
         private System.Windows.Forms.Button viewitems_btn;
         private System.Windows.Forms.Button addbatch_btn;
         private System.Windows.Forms.Button additem_btn;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox filter_items_gb;
         private System.Windows.Forms.RadioButton dam_rb;
         private System.Windows.Forms.RadioButton repo_rb;
         private System.Windows.Forms.RadioButton instock_rb;
@@ -3691,5 +3772,12 @@
         private System.Windows.Forms.Label label87;
         private System.Windows.Forms.Label label88;
         private System.Windows.Forms.Label label89;
+        private System.Windows.Forms.GroupBox asearch_gb;
+        private System.Windows.Forms.Button asearch_btn;
+        private System.Windows.Forms.TextBox asearch_tb;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.GroupBox isearch_gb;
+        private System.Windows.Forms.Button isearch_btn;
+        private System.Windows.Forms.TextBox isearch_tb;
     }
 }
