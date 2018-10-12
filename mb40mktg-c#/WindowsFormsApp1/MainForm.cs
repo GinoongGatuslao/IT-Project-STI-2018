@@ -66,45 +66,76 @@ namespace WindowsFormsApp1
             leftPanel.Add(trans_sidepanel); //4
             leftPanel[0].BringToFront();
 
-            try
-            {
-                string response = string.Empty;
-                Cursor.Current = Cursors.WaitCursor;
-                restClient.endPoint = Settings.baseUrl.ToString()
-                    + "/api/loanstatus";
-                response = restClient.GetRequest();
+            //try
+            //{
+            //    string response = string.Empty;
+            //    Cursor.Current = Cursors.WaitCursor;
+            //    restClient.endPoint = Settings.baseUrl.ToString()
+            //        + "/api/loanstatus";
+            //    response = restClient.GetRequest();
+            //
+            //    loanTypes = JsonConvert.DeserializeObject<LoanType>(response);
+            //    for (int i = 0; i < loanTypes.types.Length; i++)
+            //    {
+            //        loan_status_cb.Items.Add(loanTypes.types[i]);
+            //    }
+            //    loan_status_cb.SelectedIndex = 1;
+            //
+            //    restClient.endPoint = Settings.baseUrl.ToString()
+            //        + "/api/statuslist";
+            //    response = restClient.GetRequest();
+            //
+            //    statuslist = JsonConvert.DeserializeObject<StatusList>(response);
+            //    for (int i = 0; i < statuslist.status.Length; i++)
+            //    {
+            //        item_stat_cb.Items.Add(statuslist.status[i]);
+            //    }
+            //    item_stat_cb.SelectedIndex = 0;
+            //
+            //    restClient.endPoint = Settings.baseUrl
+            //        + "/api/usertypes";
+            //    response = restClient.GetRequest();
+            //
+            //    userTypes = JsonConvert.DeserializeObject<UserType>(response);
+            //    stype_tb.Items.Add(userTypes.types[1]);
+            //    stype_tb.Items.Add(userTypes.types[2]);
+            //    stype_tb.SelectedIndex = 0;
+            //} catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.Message.ToString());
+            //}
+            //Cursor.Current = Cursors.Default;
+            loan_status_cb.Items.Add("Inactive");
+            loan_status_cb.Items.Add("Active");
+            loan_status_cb.Items.Add("Completed");
+            loan_status_cb.SelectedIndex = 1;
 
-                loanTypes = JsonConvert.DeserializeObject<LoanType>(response);
-                for (int i = 0; i < loanTypes.types.Length; i++)
-                {
-                    loan_status_cb.Items.Add(loanTypes.types[i]);
-                }
-                loan_status_cb.SelectedIndex = 1;
+            item_stat_cb.Items.Add("In Stock");
+            item_stat_cb.Items.Add("Repossessed");
+            item_stat_cb.Items.Add("Damaged");
+            item_stat_cb.SelectedIndex = 0;
 
-                restClient.endPoint = Settings.baseUrl.ToString()
-                    + "/api/statuslist";
-                response = restClient.GetRequest();
+            stype_tb.Items.Add("Staff");
+            stype_tb.Items.Add("Collector");
+            stype_tb.SelectedIndex = 0;
 
-                statuslist = JsonConvert.DeserializeObject<StatusList>(response);
-                for (int i = 0; i < statuslist.status.Length; i++)
-                {
-                    item_stat_cb.Items.Add(statuslist.status[i]);
-                }
-                item_stat_cb.SelectedIndex = 0;
+            mo_inc_cb.Items.Add("P1000.00 or Less");
+            mo_inc_cb.Items.Add("P1001.00 - P3000.00");
+            mo_inc_cb.Items.Add("P3001.00 - P6000.00");
+            mo_inc_cb.Items.Add("P6001.00 - P10000.00");
+            mo_inc_cb.Items.Add("P10001.00 - P15000.00");
+            mo_inc_cb.Items.Add("P15001.00 - P25000.00");
+            mo_inc_cb.Items.Add("P25001.00 and up");
+            mo_inc_cb.SelectedIndex = 0;
 
-                restClient.endPoint = Settings.baseUrl
-                    + "/api/usertypes";
-                response = restClient.GetRequest();
-
-                userTypes = JsonConvert.DeserializeObject<UserType>(response);
-                stype_tb.Items.Add(userTypes.types[1]);
-                stype_tb.Items.Add(userTypes.types[2]);
-                stype_tb.SelectedIndex = 0;
-            } catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message.ToString());
-            }
-            Cursor.Current = Cursors.Default;
+            mo_exp_cb.Items.Add("P1000.00 or Less");
+            mo_exp_cb.Items.Add("P1001.00 - P3000.00");
+            mo_exp_cb.Items.Add("P3001.00 - P6000.00");
+            mo_exp_cb.Items.Add("P6001.00 - P10000.00");
+            mo_exp_cb.Items.Add("P10001.00 - P15000.00");
+            mo_exp_cb.Items.Add("P15001.00 - P25000.00");
+            mo_exp_cb.Items.Add("P25001.00 and up");
+            mo_exp_cb.SelectedIndex = 0;
         }
 
         /**
@@ -267,6 +298,7 @@ namespace WindowsFormsApp1
             find_btn.Visible = false;
             filter_acc_gb.Enabled = false;
             filter_cacc_gb.Enabled = false;
+            asearch_gb.Enabled = false;
             male_rb.Checked = true;
             clearTextBoxes(confirmclient_panel.Controls);
 
@@ -1028,8 +1060,8 @@ namespace WindowsFormsApp1
                             profile.contact_num = cn_tb.Text.ToString();
                             profile.bday = bday_picker.Value.ToString("MM/dd/yyyy");
                             profile.occupation = occu_tb.Text.ToString();
-                            profile.mo_income = Convert.ToDouble(inc_tb.Text.ToString());
-                            profile.mo_expense = Convert.ToDouble(exp_tb.Text.ToString());
+                            //profile.mo_income = Convert.ToDouble(inc_tb.Text.ToString());
+                            //profile.mo_expense = Convert.ToDouble(exp_tb.Text.ToString());
                             profile.credit_limit = Convert.ToDouble(credit_limit_tb.Text.ToString());
                             profile.verified = stat_cb.SelectedIndex;
                             //todo profile.path_id_pic = ;
@@ -1056,8 +1088,8 @@ namespace WindowsFormsApp1
                             profile.contact_num = cn_tb.Text.ToString();
                             profile.bday = bday_picker.Value.ToString("MM/dd/yyyy");
                             profile.occupation = occu_tb.Text.ToString();
-                            profile.mo_income = Convert.ToDouble(inc_tb.Text.ToString());
-                            profile.mo_expense = Convert.ToDouble(exp_tb.Text.ToString());
+                            //profile.mo_income = Convert.ToDouble(inc_tb.Text.ToString());
+                            //profile.mo_expense = Convert.ToDouble(exp_tb.Text.ToString());
                             profile.credit_limit = Convert.ToDouble(credit_limit_tb.Text.ToString());
                             profile.verified = 1; //verified
                                                   //todo profile.path_id_pic = ;
@@ -1539,6 +1571,17 @@ namespace WindowsFormsApp1
             }
         }
 
+        private void prof_upload_btn_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog open = new OpenFileDialog();
+            open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png)|*.jpg; *.jpeg; *.gif; *.bmp; *.png";
+            if (open.ShowDialog() == DialogResult.OK)
+            {
+                pictureBox1.Image = new Bitmap(open.FileName);
+                Console.WriteLine(open.FileName);
+            }
+        }
+
         /**
          * DOUBLE CLICK EVENTS
          **/
@@ -1560,8 +1603,8 @@ namespace WindowsFormsApp1
                     cn_tb.Text = accounts_data.Rows[e.RowIndex].Cells["contact_num"].Value.ToString();
                     bday_picker.Text = accounts_data.Rows[e.RowIndex].Cells["bday"].Value.ToString();
                     occu_tb.Text = accounts_data.Rows[e.RowIndex].Cells["occupation"].Value.ToString();
-                    inc_tb.Text = Convert.ToDouble(accounts_data.Rows[e.RowIndex].Cells["mo_income"].Value).ToString("N1");
-                    exp_tb.Text = Convert.ToDouble(accounts_data.Rows[e.RowIndex].Cells["mo_expense"].Value).ToString("N1");
+                    //inc_tb.Text = Convert.ToDouble(accounts_data.Rows[e.RowIndex].Cells["mo_income"].Value).ToString("N1");
+                    //exp_tb.Text = Convert.ToDouble(accounts_data.Rows[e.RowIndex].Cells["mo_expense"].Value).ToString("N1");
                     credit_limit_tb.Text = Convert.ToDouble(accounts_data.Rows[e.RowIndex].Cells["credit_limit"].Value).ToString("N1");
                     stat_cb.SelectedIndex = Convert.ToInt32(accounts_data.Rows[e.RowIndex].Cells["verified"].Value.ToString());
                     if (accounts_data.Rows[e.RowIndex].Cells["gender"].Value.ToString().Equals("Male"))
@@ -2123,53 +2166,33 @@ namespace WindowsFormsApp1
         }
 
         /**
-         * LEAVE EVENTS
+         * SELECTED INDEX CHANGED EVENTS
          **/
-        private void inc_tb_Leave(object sender, EventArgs e)
+        private void mo_inc_cb_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!inc_tb.Text.ToString().Equals(string.Empty))
+            switch(mo_inc_cb.SelectedIndex)
             {
-                if (inc_tb.Text.All(Char.IsDigit))
-                {
-                    inc_tb.Text = Convert.ToDouble(inc_tb.Text).ToString("N1");
-                } else
-                {
-                    MessageBox.Show("Invalid number.", "Number Input",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        private void exp_tb_Leave(object sender, EventArgs e)
-        {
-            if (!exp_tb.Text.ToString().Equals(string.Empty))
-            {
-                if (exp_tb.Text.All(Char.IsDigit))
-                {
-                    exp_tb.Text = Convert.ToDouble(exp_tb.Text).ToString("N1");
-                } else
-                {
-                    MessageBox.Show("Invalid number.", "Number Input",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        private void credit_limit_tb_Leave(object sender, EventArgs e)
-        {
-            if (!credit_limit_tb.Text.ToString().Equals(string.Empty))
-            {
-                if (inc_tb.Text.All(Char.IsDigit))
-                {
-                    credit_limit_tb.Text = Convert.ToDouble(credit_limit_tb.Text).ToString("N1");
-                } else
-                {
-                    MessageBox.Show("Invalid number.", "Number Input",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                }
+                case 0:
+                    credit_limit_tb.Text = "P50.00";
+                    break;
+                case 1:
+                    credit_limit_tb.Text = "P150.00";
+                    break;
+                case 2:
+                    credit_limit_tb.Text = "P250.00";
+                    break;
+                case 3:
+                    credit_limit_tb.Text = "P400.00";
+                    break;
+                case 4:
+                    credit_limit_tb.Text = "P500.00";
+                    break;
+                case 5:
+                    credit_limit_tb.Text = "P600.00";
+                    break;
+                case 6:
+                    credit_limit_tb.Text = "P1000.00";
+                    break;
             }
         }
 
