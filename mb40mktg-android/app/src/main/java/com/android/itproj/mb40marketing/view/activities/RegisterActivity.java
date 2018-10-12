@@ -73,14 +73,6 @@ public class RegisterActivity extends AppCompatActivity implements
     public EditText occupationEditText;
 
     @NotEmpty
-    @BindView(R.id.income)
-    public EditText incomeEditText;
-
-    @NotEmpty
-    @BindView(R.id.est_monthly_expenses)
-    public EditText est_monthly_expensesEditText;
-
-    @NotEmpty
     @BindView(R.id.username)
     public EditText usernameEditText;
 
@@ -132,8 +124,6 @@ public class RegisterActivity extends AppCompatActivity implements
         contactEditText.setText(mockList.get(rInt).contact);
         birthEditText.setText(mockList.get(rInt).bday);
         occupationEditText.setText(mockList.get(rInt).occupation);
-        incomeEditText.setText(mockList.get(rInt).salary);
-        est_monthly_expensesEditText.setText(mockList.get(rInt).expenses);
         usernameEditText.setText(mockList.get(rInt).username);
         passwordEditText.setText("test123");
         confirm_passwordEditText.setText("test123");
@@ -195,8 +185,6 @@ public class RegisterActivity extends AppCompatActivity implements
         profileModel.setContact(contactEditText.getText().toString());
         profileModel.setBirth(birthEditText.getText().toString());
         profileModel.setOccupation(occupationEditText.getText().toString());
-        profileModel.setIncome(incomeEditText.getText().toString());
-        profileModel.setEst_monthly_expenses(est_monthly_expensesEditText.getText().toString());
         ((CoreApp) getApplication())
                 .getProfileController()
                 .registerProfile(profileModel, this);

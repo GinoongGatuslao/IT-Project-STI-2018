@@ -14,7 +14,6 @@ class Loan extends Model
         'loan_value',
         'running_balance',
         'amortization',
-        'amortization_m',
         'remaining_balance',
         'status'
     ];

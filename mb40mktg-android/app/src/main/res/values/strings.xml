@@ -75,7 +75,7 @@
     <string name="loan_list_total_value">Amount</string>
     <string name="loan_list_status">Status</string>
     <string name="loan_list_interest">Interest</string>
-    <string name="loan_term_placeholder">%1$d/mo @ %2$.2f daily</string>
+    <string name="loan_term_placeholder">%1$.2f daily</string>
     <string name="loan_amount_placeholder">%1$.2f / %2$.2f</string>
 
     <!--Errors-->
@@ -98,7 +98,12 @@
     <string name="label_logged_as_placeholder">Logged as %1$s</string>
     <string name="prompt_update_profile"><u>Update Profile</u></string>
     <string name="label_profile_footer">mb40mktg © 2018</string>
-    <string name="hint_password_unchanged">Re-type password</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_retype_password">Re-type Password</string>
     <string name="err_failed_to_update_profile">Failed to update profile</string>
     <string name="err_failed_to_update_user">Failed to update user info</string>
+    <string name="label_confirm_password">Please enter current password.</string>
+    <string name="prompt_btn_confirm">Confirm</string>
+    <string name="prompt_btn_cancel">Cancel</string>
+    <string name="hint_password_guide">*Leave blank if not to change password</string>
 </resources>

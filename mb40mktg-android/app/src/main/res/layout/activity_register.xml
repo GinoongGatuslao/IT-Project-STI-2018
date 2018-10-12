@@ -225,7 +225,7 @@
         </android.support.design.widget.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout
+        <!--<android.support.design.widget.TextInputLayout
             android:id="@+id/til8"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -278,7 +278,7 @@
                 android:textColorHint="@color/colorMaterialGrey600"
                 android:theme="@style/ToolbarTheme" />
 
-        </android.support.design.widget.TextInputLayout>
+        </android.support.design.widget.TextInputLayout>-->
 
 
         <android.support.design.widget.TextInputLayout
@@ -286,7 +286,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHint="@color/colorMaterialGrey600"
-            app:layout_constraintTop_toBottomOf="@id/til8">
+            app:layout_constraintTop_toBottomOf="@id/til7">
 
             <EditText
                 android:id="@+id/username"
@@ -320,7 +320,7 @@
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/hint_password_unchanged"
+                android:hint="@string/hint_password"
                 android:imeActionId="6"
                 android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="flagNavigateNext"
@@ -348,7 +348,7 @@
                 android:id="@+id/confirm_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/hint_password_unchanged"
+                android:hint="@string/hint_retype_password"
                 android:imeActionId="6"
                 android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="flagNavigateNext"
@@ -360,6 +360,16 @@
 
         </android.support.design.widget.TextInputLayout>
 
+        <TextView
+            android:id="@+id/reminderPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hint_password_guide"
+            android:textColor="@color/colorRed"
+            android:textSize="18sp"
+            android:textStyle="italic"
+            app:layout_constraintTop_toBottomOf="@id/til11" />
+
         <Button
             android:id="@+id/registerBtn"
             android:layout_width="match_parent"
@@ -369,7 +379,7 @@
             android:text="@string/prompt_update_profile"
             android:textColor="@android:color/white"
             android:textSize="15sp"
-            app:layout_constraintTop_toBottomOf="@id/til12" />
+            app:layout_constraintTop_toBottomOf="@id/reminderPassword" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

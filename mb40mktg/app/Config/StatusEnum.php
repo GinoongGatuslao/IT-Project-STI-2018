@@ -13,8 +13,8 @@ class StatusEnum {
     static function getStatus() {
         return [
             'status' => [
-                '0' => "In-Stock",
-                '1' => "Re-possessed",
+                '0' => "In Stock",
+                '1' => "Repossessed",
                 '2' => "Defective",
             ]
         ];

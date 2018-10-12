@@ -1,9 +1,12 @@
 package com.android.itproj.mb40marketing.view.activities;
 
+import android.content.DialogInterface;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -36,7 +39,8 @@ import butterknife.OnClick;
 public class ProfileActivity extends AppCompatActivity implements
         ProfileCallback.ProfileRequest,
         Validator.ValidationListener,
-        AuthenticationCallback.UserAccountUpdate {
+        AuthenticationCallback.UserAccountUpdate,
+        AuthenticationCallback.AuthLoginCallback {
 
     private static final String TAG = "ProfileActivity";
 
@@ -105,25 +109,12 @@ public class ProfileActivity extends AppCompatActivity implements
     public EditText occupationEditText;
 
     @NotEmpty
-    @BindView(R.id.income)
-    public EditText incomeEditText;
-
-    @NotEmpty
-    @BindView(R.id.est_monthly_expenses)
-    public EditText est_monthly_expensesEditText;
-
-    @NotEmpty
     @BindView(R.id.username)
     public EditText usernameEditText;
 
-    @NotEmpty
-    @Password(scheme = Password.Scheme.ALPHA_NUMERIC,
-            message = "Must contain alphanumeric characters")
     @BindView(R.id.password)
     public EditText passwordEditText;
 
-    @NotEmpty
-    @ConfirmPassword
     @BindView(R.id.confirm_password)
     public EditText confirm_passwordEditText;
 
@@ -135,6 +126,8 @@ public class ProfileActivity extends AppCompatActivity implements
     private Validator validator;
 
     private ProfileModel profileModel, newProfile;
+
+    private AlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -204,8 +197,6 @@ public class ProfileActivity extends AppCompatActivity implements
         newProfile.setContact(contactEditText.getText().toString());
         newProfile.setBirth(birthEditText.getText().toString());
         newProfile.setOccupation(occupationEditText.getText().toString());
-        newProfile.setIncome(incomeEditText.getText().toString());
-        newProfile.setEst_monthly_expenses(est_monthly_expensesEditText.getText().toString());
         newProfile.setGender(genderSpinner.getSelectedItem().toString());
         newProfile.setVerified(profileModel.getVerified());
         newProfile.setCredit_limit(profileModel.getCredit_limit());
@@ -219,15 +210,26 @@ public class ProfileActivity extends AppCompatActivity implements
                     .getProfileController()
                     .updateUserProfile(profileModel.getId(), profileModel, this);
         } else {
-            if (!usernameEditText.getText().toString().equals(profileModel.getUsername())) {
-                jsonObject.addProperty("username", usernameEditText.getText().toString());
-            }
-            if (!passwordEditText.getText().toString().equals(profileModel.getUsername())) {
-                jsonObject.addProperty("password", passwordEditText.getText().toString());
-            }
-            ((CoreApp) getApplication())
-                    .getAuthenticationController()
-                    .updateUserAccount(profileModel.getUser_id(), jsonObject, this);
+            View v = LayoutInflater.from(this).inflate(R.layout.dialog_confirm_password, null);
+            final EditText password = (EditText) v.findViewById(R.id.reconfirmPassword);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setView(v);
+            builder.setPositiveButton(getString(R.string.prompt_btn_confirm), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    ((CoreApp)ProfileActivity.this.getApplication())
+                            .getAuthenticationController()
+                            .login(usernameEditText.getText().toString(), password.getText().toString(), ProfileActivity.this);
+                }
+            });
+            builder.setNegativeButton(getString(R.string.prompt_btn_cancel), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                }
+            });
+            dialog = builder.create();
+            dialog.show();
         }
     }
 
@@ -244,6 +246,31 @@ public class ProfileActivity extends AppCompatActivity implements
                 Toast.makeText(this, message, Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    @Override
+    public void onLoginSuccess(UserModel model) {
+        if (dialog != null && dialog.isShowing()) {
+            dialog.dismiss();
+        } else {
+            Log.d(TAG, "onLoginSuccess: Unable to dismiss but was confirmed.");
+        }
+        JsonObject jsonObject = new JsonObject();
+        if (!usernameEditText.getText().toString().equals(profileModel.getUsername())) {
+            jsonObject.addProperty("username", usernameEditText.getText().toString());
+        }
+        if (!passwordEditText.getText().toString().equals(profileModel.getUsername())) {
+            jsonObject.addProperty("password", passwordEditText.getText().toString());
+        }
+        ((CoreApp) getApplication())
+                .getAuthenticationController()
+                .updateUserAccount(profileModel.getUser_id(), jsonObject, this);
+    }
+
+    @Override
+    public void onLoginFailed(Throwable e, int code) {
+        Log.d(TAG, "onLoginFailed: " + e.getMessage());
+        Toast.makeText(this, "Wrong credentials!", Toast.LENGTH_SHORT).show();
     }
 
     @OnClick(R.id.updateProfile)
@@ -267,8 +294,6 @@ public class ProfileActivity extends AppCompatActivity implements
         contactEditText.setText(profileModel.getContact());
         birthEditText.setText(profileModel.getBirth());
         occupationEditText.setText(profileModel.getOccupation());
-        incomeEditText.setText(profileModel.getIncome());
-        est_monthly_expensesEditText.setText(profileModel.getEst_monthly_expenses());
         usernameEditText.setText(profileModel.getUsername());
     }
 

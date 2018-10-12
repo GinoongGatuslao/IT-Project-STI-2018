@@ -78,8 +78,8 @@ public class LoanSpinnerAdapter extends ArrayAdapter<LoanModel> {
         viewHolder.loanStatusValue.setText((getLoanModels().get(position).getStatus_str()));
         setStatusColor(viewHolder.loanStatusValue, getLoanModels().get(position).getStatus());
         viewHolder.valueTerm.setText(
-                String.format(getContext().getString(R.string.loan_term_placeholder),
-                        getLoanModels().get(position).getTerm_length(),
+                String.format(
+                        getContext().getString(R.string.loan_term_placeholder),
                         getLoanModels().get(position).getAmortization()));
         viewHolder.valueAmount.setText(
                 String.format(context.getString(R.string.loan_amount_placeholder),

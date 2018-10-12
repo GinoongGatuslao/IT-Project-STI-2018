@@ -7,6 +7,7 @@ use App\Config\VerificationStatus;
 use App\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Loan;
 
 class ProfileController extends Controller
 {
@@ -19,18 +20,23 @@ class ProfileController extends Controller
         foreach ($profiles as $profile) {
             $profile->usertype_str = UserType::getUserTypeStr($profile->user_type);
             $profile->verified_str = VerificationStatus::getVerificationState($profile->verified);
+            $currentTotalAmortization = $this->getTotalExistingLoanAmortization($profile->id);
+            $profile->credit_rem = round($profile->credit_limit - $currentTotalAmortization, 2);
         }
         return $profiles;
     }
 
     public function getProfile($id)
     {
-        return $this->getByKeyProfile("profile.id", $id);
+        $profile = $this->getByKeyProfile("profile.id", $id);
+        $currentTotalAmortization = $this->getTotalExistingLoanAmortization($profile->id);
+        $profile->credit_rem = round($profile->credit_limit - $currentTotalAmortization, 2);
+        return response()->json($profile, 200);
     }
 
     public function getUserProfile($id)
     {
-        return $this->getByKeyProfile("profile.user_id", $id);
+        return response()->json($this->getByKeyProfile("profile.user_id", $id), 200);
     }
 
     public function getByKeyProfile($key, $id){
@@ -45,7 +51,7 @@ class ProfileController extends Controller
         }
 
         try {
-            return response()->json($profiles[0], 200);
+            return $profiles[0];
         } catch (\Exception $exception) {
             return $this->returnEmpty();
         }

@@ -85,33 +85,33 @@ class LoanController extends Controller
     public function storeLoan(Request $request)
     {
         //preloop for amortization computation
-        $totalValue = 0;
+        /*$totalValue = 0;
         $amortztn = 0;
         foreach ($request->get("loan_items") as $item) {
             $pI = ProductItem::where('id', $item["item_id"])->first();
             $pR = Price::where('id', $pI->price_id)->first();
             $totalValue += ($pR->price * (1 + $item["interest"]));
-        }
+        }*/
 
-        $timeNow = time();
+        /*$timeNow = time();
         $future = strtotime('+' . $request["term_length"] . ' months', time());
 
         $datediff = $future - $timeNow;
         $daysDiff = round($datediff / (60 * 60 * 24));
 
-        $amortztn = $totalValue / $daysDiff;
-        $amortztn_m = $totalValue / $request["term_length"];
+        $amortztn = $totalValue / $daysDiff;*/
+//        $amortztn_m = $totalValue / $request["term_length"];
 
 //        dd($amortztn, $totalValue, $daysDiff);
 
         //check first if still below credit limit
-        $previousLoan = $this->getTotalExistingLoans($request->get("profile_id"));
-        $valueWithExisting = $previousLoan + $totalValue;
+        $prevAmortizationTotal = $this->getTotalExistingLoanAmortization($request->get("profile_id"));
+        $valueWithExisting = $prevAmortizationTotal + $request["amortization"];
         $account = Profile::where("id", $request->get("profile_id"))->first();
         if ($account->credit_limit < $valueWithExisting) {
             return response()->json([
-                "requested_loan_amount" => $totalValue,
-                "previous_loan_amount" => $previousLoan,
+                "requested_amortization" => $request["amortization"],
+                "prev_total_amortization" => $prevAmortizationTotal,
                 "credit_limit" => $account->credit_limit,
                 "message" => "Exceeds Credit Limit"
             ], 406);
@@ -120,11 +120,10 @@ class LoanController extends Controller
         $loanItems = Array();
         $newLoan = Loan::create([
             "profile_id" => $request->get("profile_id"),
-            "term_length" => $daysDiff,
-            "loan_value" => $totalValue,
-            "amortization" => round($amortztn, 2),
-            "amortization_m" => round($amortztn_m, 2),
-            "remaining_balance" => round($totalValue, 2),
+            "term_length" => $request["term_length"],
+            "loan_value" => $request["loan_value"],
+            "amortization" => round($request["amortization"], 2), //daily amortization
+            "remaining_balance" => round($request["loan_value"], 2),
             "status" => $request->get("status")]);
 
         $loanItems["account"] = $newLoan;
@@ -136,6 +135,10 @@ class LoanController extends Controller
                 "item_status" => $item["item_status"],
                 "interest" => $item["interest"]
             ]);
+
+            $productItem = ProductItem::where('id', $item["item_id"])->first();
+            $productItem["stock_count"] = $productItem["stock_count"] - 1;
+            $productItem->update();
         }
 
         return response()->json($loanItems, 201);
@@ -145,27 +148,12 @@ class LoanController extends Controller
         return response()->json($newProduct, 201);*/
     }
 
-    public function getTotalExistingLoans($profile_id)
-    {
-        $loans = Loan::where("profile_id", $profile_id)->get();
-        $t_val = 0;
-        foreach ($loans as $loan) {
-            if ($loan["status"] == 1) {
-                $t_val += $loan["loan_value"];
-            } else {
-                continue;
-            }
-        }
-        return $t_val;
-    }
-
     //PUT loan/updateloan
     public function updateloan(Request $request, $id)
     {
         $product = Loan::findOrFail($id);
         $request["term_length"] = $product->term_length;
         $request["amortization"] = $product->amortization;
-        $request["amortization_m"] = $product->amortization_m;
         $request["running_balance"] = $product->running_balance;
         $product->update($request->all());
         return response()->json($product, 200);
