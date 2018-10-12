@@ -34,6 +34,7 @@
             this.loanmgt_btn = new System.Windows.Forms.Button();
             this.main_panel = new System.Windows.Forms.Panel();
             this.confirmclient_panel = new System.Windows.Forms.Panel();
+            this.mo_exp_cb = new System.Windows.Forms.ComboBox();
             this.mo_inc_cb = new System.Windows.Forms.ComboBox();
             this.label87 = new System.Windows.Forms.Label();
             this.ccancel_btn = new System.Windows.Forms.Button();
@@ -120,6 +121,34 @@
             this.client_name_tb = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
+            this.create_staff_panel = new System.Windows.Forms.Panel();
+            this.label86 = new System.Windows.Forms.Label();
+            this.stype_tb = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.genpass_tb = new System.Windows.Forms.TextBox();
+            this.username_tb = new System.Windows.Forms.TextBox();
+            this.label53 = new System.Windows.Forms.Label();
+            this.label52 = new System.Windows.Forms.Label();
+            this.sfemale_rb = new System.Windows.Forms.RadioButton();
+            this.smale_rb = new System.Windows.Forms.RadioButton();
+            this.label51 = new System.Windows.Forms.Label();
+            this.upstaff_btn = new System.Windows.Forms.Button();
+            this.ssave_btn = new System.Windows.Forms.Button();
+            this.scancel_btn = new System.Windows.Forms.Button();
+            this.sbday_tb = new System.Windows.Forms.DateTimePicker();
+            this.staff_pb = new System.Windows.Forms.PictureBox();
+            this.scn_tb = new System.Windows.Forms.TextBox();
+            this.saddress_tb = new System.Windows.Forms.TextBox();
+            this.lname_tb = new System.Windows.Forms.TextBox();
+            this.smname_tb = new System.Windows.Forms.TextBox();
+            this.sfname_tb = new System.Windows.Forms.TextBox();
+            this.label55 = new System.Windows.Forms.Label();
+            this.label59 = new System.Windows.Forms.Label();
+            this.label60 = new System.Windows.Forms.Label();
+            this.label61 = new System.Windows.Forms.Label();
+            this.label62 = new System.Windows.Forms.Label();
+            this.label63 = new System.Windows.Forms.Label();
+            this.label50 = new System.Windows.Forms.Label();
             this.profile_panel = new System.Windows.Forms.Panel();
             this.label88 = new System.Windows.Forms.Label();
             this.prof_female_rb = new System.Windows.Forms.RadioButton();
@@ -203,34 +232,6 @@
             this.label67 = new System.Windows.Forms.Label();
             this.label66 = new System.Windows.Forms.Label();
             this.label65 = new System.Windows.Forms.Label();
-            this.create_staff_panel = new System.Windows.Forms.Panel();
-            this.label86 = new System.Windows.Forms.Label();
-            this.stype_tb = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.genpass_tb = new System.Windows.Forms.TextBox();
-            this.username_tb = new System.Windows.Forms.TextBox();
-            this.label53 = new System.Windows.Forms.Label();
-            this.label52 = new System.Windows.Forms.Label();
-            this.sfemale_rb = new System.Windows.Forms.RadioButton();
-            this.smale_rb = new System.Windows.Forms.RadioButton();
-            this.label51 = new System.Windows.Forms.Label();
-            this.upstaff_btn = new System.Windows.Forms.Button();
-            this.ssave_btn = new System.Windows.Forms.Button();
-            this.scancel_btn = new System.Windows.Forms.Button();
-            this.sbday_tb = new System.Windows.Forms.DateTimePicker();
-            this.staff_pb = new System.Windows.Forms.PictureBox();
-            this.scn_tb = new System.Windows.Forms.TextBox();
-            this.saddress_tb = new System.Windows.Forms.TextBox();
-            this.lname_tb = new System.Windows.Forms.TextBox();
-            this.smname_tb = new System.Windows.Forms.TextBox();
-            this.sfname_tb = new System.Windows.Forms.TextBox();
-            this.label55 = new System.Windows.Forms.Label();
-            this.label59 = new System.Windows.Forms.Label();
-            this.label60 = new System.Windows.Forms.Label();
-            this.label61 = new System.Windows.Forms.Label();
-            this.label62 = new System.Windows.Forms.Label();
-            this.label63 = new System.Windows.Forms.Label();
-            this.label50 = new System.Windows.Forms.Label();
             this.batch_panel = new System.Windows.Forms.Panel();
             this.iadditem_tb = new System.Windows.Forms.Button();
             this.bsave_tb = new System.Windows.Forms.Button();
@@ -254,7 +255,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.edit_profile_btn = new System.Windows.Forms.Button();
             this.reports_panel = new System.Windows.Forms.Panel();
-            this.rep_stat = new System.Windows.Forms.Label();
             this.label85 = new System.Windows.Forms.Label();
             this.application_btn = new System.Windows.Forms.Button();
             this.sales_btn = new System.Windows.Forms.Button();
@@ -326,7 +326,6 @@
             this.transaction_btn = new System.Windows.Forms.Button();
             this.profile_btn = new System.Windows.Forms.Button();
             this.logout_btn = new System.Windows.Forms.Button();
-            this.mo_exp_cb = new System.Windows.Forms.ComboBox();
             this.main_panel.SuspendLayout();
             this.confirmclient_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -334,6 +333,8 @@
             this.addloan_panel.SuspendLayout();
             this.loan_items_fp.SuspendLayout();
             this.loanItem0.SuspendLayout();
+            this.create_staff_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.staff_pb)).BeginInit();
             this.profile_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.prof_pic_pbx)).BeginInit();
             this.trans_panel.SuspendLayout();
@@ -346,8 +347,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.loan_data)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.additem_panel.SuspendLayout();
-            this.create_staff_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.staff_pb)).BeginInit();
             this.batch_panel.SuspendLayout();
             this.items_fp.SuspendLayout();
             this.item_gb0.SuspendLayout();
@@ -403,23 +402,23 @@
             // 
             // main_panel
             // 
-            this.main_panel.Controls.Add(this.confirmclient_panel);
             this.main_panel.Controls.Add(this.addloan_panel);
+            this.main_panel.Controls.Add(this.trans_panel);
+            this.main_panel.Controls.Add(this.confirmclient_panel);
             this.main_panel.Controls.Add(this.create_staff_panel);
             this.main_panel.Controls.Add(this.profile_panel);
-            this.main_panel.Controls.Add(this.trans_panel);
             this.main_panel.Controls.Add(this.view_item_panel);
             this.main_panel.Controls.Add(this.view_acc_panel);
             this.main_panel.Controls.Add(this.viewloan_panel);
             this.main_panel.Controls.Add(this.menuStrip1);
             this.main_panel.Controls.Add(this.additem_panel);
             this.main_panel.Controls.Add(this.batch_panel);
-            this.main_panel.Controls.Add(this.profile_sidepanel);
-            this.main_panel.Controls.Add(this.reports_panel);
             this.main_panel.Controls.Add(this.trans_sidepanel);
             this.main_panel.Controls.Add(this.inventory_sidepanel);
             this.main_panel.Controls.Add(this.confirmclient_sidepanel);
             this.main_panel.Controls.Add(this.loan_sidepanel);
+            this.main_panel.Controls.Add(this.profile_sidepanel);
+            this.main_panel.Controls.Add(this.reports_panel);
             this.main_panel.Location = new System.Drawing.Point(1, 1);
             this.main_panel.Name = "main_panel";
             this.main_panel.Size = new System.Drawing.Size(799, 450);
@@ -468,6 +467,15 @@
             this.confirmclient_panel.Name = "confirmclient_panel";
             this.confirmclient_panel.Size = new System.Drawing.Size(586, 419);
             this.confirmclient_panel.TabIndex = 32;
+            // 
+            // mo_exp_cb
+            // 
+            this.mo_exp_cb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.mo_exp_cb.FormattingEnabled = true;
+            this.mo_exp_cb.Location = new System.Drawing.Point(220, 97);
+            this.mo_exp_cb.Name = "mo_exp_cb";
+            this.mo_exp_cb.Size = new System.Drawing.Size(196, 21);
+            this.mo_exp_cb.TabIndex = 75;
             // 
             // mo_inc_cb
             // 
@@ -555,7 +563,6 @@
             this.credit_limit_tb.Name = "credit_limit_tb";
             this.credit_limit_tb.Size = new System.Drawing.Size(196, 20);
             this.credit_limit_tb.TabIndex = 28;
-            this.credit_limit_tb.Text = "P50.00";
             this.credit_limit_tb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // up_photo_btn
@@ -1303,6 +1310,279 @@
             this.label14.TabIndex = 6;
             this.label14.Text = "ADD LOAN";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // create_staff_panel
+            // 
+            this.create_staff_panel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.create_staff_panel.Controls.Add(this.label86);
+            this.create_staff_panel.Controls.Add(this.stype_tb);
+            this.create_staff_panel.Controls.Add(this.label3);
+            this.create_staff_panel.Controls.Add(this.genpass_tb);
+            this.create_staff_panel.Controls.Add(this.username_tb);
+            this.create_staff_panel.Controls.Add(this.label53);
+            this.create_staff_panel.Controls.Add(this.label52);
+            this.create_staff_panel.Controls.Add(this.sfemale_rb);
+            this.create_staff_panel.Controls.Add(this.smale_rb);
+            this.create_staff_panel.Controls.Add(this.label51);
+            this.create_staff_panel.Controls.Add(this.upstaff_btn);
+            this.create_staff_panel.Controls.Add(this.ssave_btn);
+            this.create_staff_panel.Controls.Add(this.scancel_btn);
+            this.create_staff_panel.Controls.Add(this.sbday_tb);
+            this.create_staff_panel.Controls.Add(this.staff_pb);
+            this.create_staff_panel.Controls.Add(this.scn_tb);
+            this.create_staff_panel.Controls.Add(this.saddress_tb);
+            this.create_staff_panel.Controls.Add(this.lname_tb);
+            this.create_staff_panel.Controls.Add(this.smname_tb);
+            this.create_staff_panel.Controls.Add(this.sfname_tb);
+            this.create_staff_panel.Controls.Add(this.label55);
+            this.create_staff_panel.Controls.Add(this.label59);
+            this.create_staff_panel.Controls.Add(this.label60);
+            this.create_staff_panel.Controls.Add(this.label61);
+            this.create_staff_panel.Controls.Add(this.label62);
+            this.create_staff_panel.Controls.Add(this.label63);
+            this.create_staff_panel.Controls.Add(this.label50);
+            this.create_staff_panel.Location = new System.Drawing.Point(209, 27);
+            this.create_staff_panel.Name = "create_staff_panel";
+            this.create_staff_panel.Size = new System.Drawing.Size(586, 419);
+            this.create_staff_panel.TabIndex = 34;
+            // 
+            // label86
+            // 
+            this.label86.AutoSize = true;
+            this.label86.Location = new System.Drawing.Point(48, 242);
+            this.label86.Name = "label86";
+            this.label86.Size = new System.Drawing.Size(25, 13);
+            this.label86.TabIndex = 72;
+            this.label86.Text = "+63";
+            // 
+            // stype_tb
+            // 
+            this.stype_tb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.stype_tb.FormattingEnabled = true;
+            this.stype_tb.Location = new System.Drawing.Point(45, 317);
+            this.stype_tb.Name = "stype_tb";
+            this.stype_tb.Size = new System.Drawing.Size(291, 21);
+            this.stype_tb.TabIndex = 7;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(44, 301);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(44, 13);
+            this.label3.TabIndex = 68;
+            this.label3.Text = "Position";
+            // 
+            // genpass_tb
+            // 
+            this.genpass_tb.Location = new System.Drawing.Point(372, 278);
+            this.genpass_tb.Name = "genpass_tb";
+            this.genpass_tb.Size = new System.Drawing.Size(180, 20);
+            this.genpass_tb.TabIndex = 10;
+            // 
+            // username_tb
+            // 
+            this.username_tb.Location = new System.Drawing.Point(372, 239);
+            this.username_tb.Name = "username_tb";
+            this.username_tb.Size = new System.Drawing.Size(180, 20);
+            this.username_tb.TabIndex = 9;
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Location = new System.Drawing.Point(371, 262);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(109, 13);
+            this.label53.TabIndex = 65;
+            this.label53.Text = "Generated Password:";
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.Location = new System.Drawing.Point(371, 223);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(58, 13);
+            this.label52.TabIndex = 64;
+            this.label52.Text = "Username:";
+            // 
+            // sfemale_rb
+            // 
+            this.sfemale_rb.AutoSize = true;
+            this.sfemale_rb.Location = new System.Drawing.Point(121, 355);
+            this.sfemale_rb.Name = "sfemale_rb";
+            this.sfemale_rb.Size = new System.Drawing.Size(59, 17);
+            this.sfemale_rb.TabIndex = 63;
+            this.sfemale_rb.TabStop = true;
+            this.sfemale_rb.Text = "Female";
+            this.sfemale_rb.UseVisualStyleBackColor = true;
+            // 
+            // smale_rb
+            // 
+            this.smale_rb.AutoSize = true;
+            this.smale_rb.Location = new System.Drawing.Point(45, 355);
+            this.smale_rb.Name = "smale_rb";
+            this.smale_rb.Size = new System.Drawing.Size(48, 17);
+            this.smale_rb.TabIndex = 8;
+            this.smale_rb.TabStop = true;
+            this.smale_rb.Text = "Male";
+            this.smale_rb.UseVisualStyleBackColor = true;
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.Location = new System.Drawing.Point(44, 339);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(42, 13);
+            this.label51.TabIndex = 61;
+            this.label51.Text = "Gender";
+            // 
+            // upstaff_btn
+            // 
+            this.upstaff_btn.Location = new System.Drawing.Point(419, 189);
+            this.upstaff_btn.Name = "upstaff_btn";
+            this.upstaff_btn.Size = new System.Drawing.Size(82, 23);
+            this.upstaff_btn.TabIndex = 58;
+            this.upstaff_btn.Text = "Upload Photo";
+            this.upstaff_btn.UseVisualStyleBackColor = true;
+            // 
+            // ssave_btn
+            // 
+            this.ssave_btn.Location = new System.Drawing.Point(383, 389);
+            this.ssave_btn.Name = "ssave_btn";
+            this.ssave_btn.Size = new System.Drawing.Size(95, 23);
+            this.ssave_btn.TabIndex = 11;
+            this.ssave_btn.Text = "Save";
+            this.ssave_btn.UseVisualStyleBackColor = true;
+            this.ssave_btn.Click += new System.EventHandler(this.ssave_btn_Click);
+            // 
+            // scancel_btn
+            // 
+            this.scancel_btn.Location = new System.Drawing.Point(484, 389);
+            this.scancel_btn.Name = "scancel_btn";
+            this.scancel_btn.Size = new System.Drawing.Size(95, 23);
+            this.scancel_btn.TabIndex = 12;
+            this.scancel_btn.Text = "Cancel";
+            this.scancel_btn.UseVisualStyleBackColor = true;
+            this.scancel_btn.Click += new System.EventHandler(this.scancel_btn_Click);
+            // 
+            // sbday_tb
+            // 
+            this.sbday_tb.Location = new System.Drawing.Point(45, 278);
+            this.sbday_tb.Name = "sbday_tb";
+            this.sbday_tb.Size = new System.Drawing.Size(291, 20);
+            this.sbday_tb.TabIndex = 6;
+            this.sbday_tb.Value = new System.DateTime(2018, 9, 19, 19, 23, 11, 0);
+            // 
+            // staff_pb
+            // 
+            this.staff_pb.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.staff_pb.Location = new System.Drawing.Point(388, 53);
+            this.staff_pb.Name = "staff_pb";
+            this.staff_pb.Size = new System.Drawing.Size(141, 132);
+            this.staff_pb.TabIndex = 53;
+            this.staff_pb.TabStop = false;
+            // 
+            // scn_tb
+            // 
+            this.scn_tb.Location = new System.Drawing.Point(73, 239);
+            this.scn_tb.MaxLength = 10;
+            this.scn_tb.Name = "scn_tb";
+            this.scn_tb.Size = new System.Drawing.Size(263, 20);
+            this.scn_tb.TabIndex = 5;
+            // 
+            // saddress_tb
+            // 
+            this.saddress_tb.Location = new System.Drawing.Point(45, 170);
+            this.saddress_tb.Multiline = true;
+            this.saddress_tb.Name = "saddress_tb";
+            this.saddress_tb.Size = new System.Drawing.Size(291, 49);
+            this.saddress_tb.TabIndex = 4;
+            // 
+            // lname_tb
+            // 
+            this.lname_tb.Location = new System.Drawing.Point(45, 131);
+            this.lname_tb.Name = "lname_tb";
+            this.lname_tb.Size = new System.Drawing.Size(291, 20);
+            this.lname_tb.TabIndex = 3;
+            // 
+            // smname_tb
+            // 
+            this.smname_tb.Location = new System.Drawing.Point(45, 92);
+            this.smname_tb.Name = "smname_tb";
+            this.smname_tb.Size = new System.Drawing.Size(291, 20);
+            this.smname_tb.TabIndex = 2;
+            // 
+            // sfname_tb
+            // 
+            this.sfname_tb.Location = new System.Drawing.Point(45, 53);
+            this.sfname_tb.Name = "sfname_tb";
+            this.sfname_tb.Size = new System.Drawing.Size(291, 20);
+            this.sfname_tb.TabIndex = 1;
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Location = new System.Drawing.Point(44, 262);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(52, 13);
+            this.label55.TabIndex = 41;
+            this.label55.Text = "Birthdate:";
+            // 
+            // label59
+            // 
+            this.label59.AutoSize = true;
+            this.label59.Location = new System.Drawing.Point(44, 223);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(87, 13);
+            this.label59.TabIndex = 37;
+            this.label59.Text = "Contact Number:";
+            // 
+            // label60
+            // 
+            this.label60.AutoSize = true;
+            this.label60.Location = new System.Drawing.Point(44, 154);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(51, 13);
+            this.label60.TabIndex = 36;
+            this.label60.Text = "Address: ";
+            // 
+            // label61
+            // 
+            this.label61.AutoSize = true;
+            this.label61.Location = new System.Drawing.Point(44, 115);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(61, 13);
+            this.label61.TabIndex = 35;
+            this.label61.Text = "Last Name:";
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.Location = new System.Drawing.Point(44, 76);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(72, 13);
+            this.label62.TabIndex = 33;
+            this.label62.Text = "Middle Name:";
+            // 
+            // label63
+            // 
+            this.label63.AutoSize = true;
+            this.label63.Location = new System.Drawing.Point(44, 37);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(60, 13);
+            this.label63.TabIndex = 34;
+            this.label63.Text = "First Name:";
+            // 
+            // label50
+            // 
+            this.label50.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label50.Font = new System.Drawing.Font("Bookman Old Style", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label50.Location = new System.Drawing.Point(0, 0);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(582, 22);
+            this.label50.TabIndex = 8;
+            this.label50.Text = "CREATE STAFF ACCOUNT";
+            this.label50.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // profile_panel
             // 
@@ -2121,279 +2401,6 @@
             this.label65.Text = "ADD ITEM";
             this.label65.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // create_staff_panel
-            // 
-            this.create_staff_panel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.create_staff_panel.Controls.Add(this.label86);
-            this.create_staff_panel.Controls.Add(this.stype_tb);
-            this.create_staff_panel.Controls.Add(this.label3);
-            this.create_staff_panel.Controls.Add(this.genpass_tb);
-            this.create_staff_panel.Controls.Add(this.username_tb);
-            this.create_staff_panel.Controls.Add(this.label53);
-            this.create_staff_panel.Controls.Add(this.label52);
-            this.create_staff_panel.Controls.Add(this.sfemale_rb);
-            this.create_staff_panel.Controls.Add(this.smale_rb);
-            this.create_staff_panel.Controls.Add(this.label51);
-            this.create_staff_panel.Controls.Add(this.upstaff_btn);
-            this.create_staff_panel.Controls.Add(this.ssave_btn);
-            this.create_staff_panel.Controls.Add(this.scancel_btn);
-            this.create_staff_panel.Controls.Add(this.sbday_tb);
-            this.create_staff_panel.Controls.Add(this.staff_pb);
-            this.create_staff_panel.Controls.Add(this.scn_tb);
-            this.create_staff_panel.Controls.Add(this.saddress_tb);
-            this.create_staff_panel.Controls.Add(this.lname_tb);
-            this.create_staff_panel.Controls.Add(this.smname_tb);
-            this.create_staff_panel.Controls.Add(this.sfname_tb);
-            this.create_staff_panel.Controls.Add(this.label55);
-            this.create_staff_panel.Controls.Add(this.label59);
-            this.create_staff_panel.Controls.Add(this.label60);
-            this.create_staff_panel.Controls.Add(this.label61);
-            this.create_staff_panel.Controls.Add(this.label62);
-            this.create_staff_panel.Controls.Add(this.label63);
-            this.create_staff_panel.Controls.Add(this.label50);
-            this.create_staff_panel.Location = new System.Drawing.Point(209, 27);
-            this.create_staff_panel.Name = "create_staff_panel";
-            this.create_staff_panel.Size = new System.Drawing.Size(586, 419);
-            this.create_staff_panel.TabIndex = 34;
-            // 
-            // label86
-            // 
-            this.label86.AutoSize = true;
-            this.label86.Location = new System.Drawing.Point(48, 242);
-            this.label86.Name = "label86";
-            this.label86.Size = new System.Drawing.Size(25, 13);
-            this.label86.TabIndex = 72;
-            this.label86.Text = "+63";
-            // 
-            // stype_tb
-            // 
-            this.stype_tb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.stype_tb.FormattingEnabled = true;
-            this.stype_tb.Location = new System.Drawing.Point(45, 317);
-            this.stype_tb.Name = "stype_tb";
-            this.stype_tb.Size = new System.Drawing.Size(291, 21);
-            this.stype_tb.TabIndex = 7;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(44, 301);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 13);
-            this.label3.TabIndex = 68;
-            this.label3.Text = "Position";
-            // 
-            // genpass_tb
-            // 
-            this.genpass_tb.Location = new System.Drawing.Point(372, 278);
-            this.genpass_tb.Name = "genpass_tb";
-            this.genpass_tb.Size = new System.Drawing.Size(180, 20);
-            this.genpass_tb.TabIndex = 10;
-            // 
-            // username_tb
-            // 
-            this.username_tb.Location = new System.Drawing.Point(372, 239);
-            this.username_tb.Name = "username_tb";
-            this.username_tb.Size = new System.Drawing.Size(180, 20);
-            this.username_tb.TabIndex = 9;
-            // 
-            // label53
-            // 
-            this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(371, 262);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(109, 13);
-            this.label53.TabIndex = 65;
-            this.label53.Text = "Generated Password:";
-            // 
-            // label52
-            // 
-            this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(371, 223);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(58, 13);
-            this.label52.TabIndex = 64;
-            this.label52.Text = "Username:";
-            // 
-            // sfemale_rb
-            // 
-            this.sfemale_rb.AutoSize = true;
-            this.sfemale_rb.Location = new System.Drawing.Point(121, 355);
-            this.sfemale_rb.Name = "sfemale_rb";
-            this.sfemale_rb.Size = new System.Drawing.Size(59, 17);
-            this.sfemale_rb.TabIndex = 63;
-            this.sfemale_rb.TabStop = true;
-            this.sfemale_rb.Text = "Female";
-            this.sfemale_rb.UseVisualStyleBackColor = true;
-            // 
-            // smale_rb
-            // 
-            this.smale_rb.AutoSize = true;
-            this.smale_rb.Location = new System.Drawing.Point(45, 355);
-            this.smale_rb.Name = "smale_rb";
-            this.smale_rb.Size = new System.Drawing.Size(48, 17);
-            this.smale_rb.TabIndex = 8;
-            this.smale_rb.TabStop = true;
-            this.smale_rb.Text = "Male";
-            this.smale_rb.UseVisualStyleBackColor = true;
-            // 
-            // label51
-            // 
-            this.label51.AutoSize = true;
-            this.label51.Location = new System.Drawing.Point(44, 339);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(42, 13);
-            this.label51.TabIndex = 61;
-            this.label51.Text = "Gender";
-            // 
-            // upstaff_btn
-            // 
-            this.upstaff_btn.Location = new System.Drawing.Point(419, 189);
-            this.upstaff_btn.Name = "upstaff_btn";
-            this.upstaff_btn.Size = new System.Drawing.Size(82, 23);
-            this.upstaff_btn.TabIndex = 58;
-            this.upstaff_btn.Text = "Upload Photo";
-            this.upstaff_btn.UseVisualStyleBackColor = true;
-            // 
-            // ssave_btn
-            // 
-            this.ssave_btn.Location = new System.Drawing.Point(383, 389);
-            this.ssave_btn.Name = "ssave_btn";
-            this.ssave_btn.Size = new System.Drawing.Size(95, 23);
-            this.ssave_btn.TabIndex = 11;
-            this.ssave_btn.Text = "Save";
-            this.ssave_btn.UseVisualStyleBackColor = true;
-            this.ssave_btn.Click += new System.EventHandler(this.ssave_btn_Click);
-            // 
-            // scancel_btn
-            // 
-            this.scancel_btn.Location = new System.Drawing.Point(484, 389);
-            this.scancel_btn.Name = "scancel_btn";
-            this.scancel_btn.Size = new System.Drawing.Size(95, 23);
-            this.scancel_btn.TabIndex = 12;
-            this.scancel_btn.Text = "Cancel";
-            this.scancel_btn.UseVisualStyleBackColor = true;
-            this.scancel_btn.Click += new System.EventHandler(this.scancel_btn_Click);
-            // 
-            // sbday_tb
-            // 
-            this.sbday_tb.Location = new System.Drawing.Point(45, 278);
-            this.sbday_tb.Name = "sbday_tb";
-            this.sbday_tb.Size = new System.Drawing.Size(291, 20);
-            this.sbday_tb.TabIndex = 6;
-            this.sbday_tb.Value = new System.DateTime(2018, 9, 19, 19, 23, 11, 0);
-            // 
-            // staff_pb
-            // 
-            this.staff_pb.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.staff_pb.Location = new System.Drawing.Point(388, 53);
-            this.staff_pb.Name = "staff_pb";
-            this.staff_pb.Size = new System.Drawing.Size(141, 132);
-            this.staff_pb.TabIndex = 53;
-            this.staff_pb.TabStop = false;
-            // 
-            // scn_tb
-            // 
-            this.scn_tb.Location = new System.Drawing.Point(73, 239);
-            this.scn_tb.MaxLength = 10;
-            this.scn_tb.Name = "scn_tb";
-            this.scn_tb.Size = new System.Drawing.Size(263, 20);
-            this.scn_tb.TabIndex = 5;
-            // 
-            // saddress_tb
-            // 
-            this.saddress_tb.Location = new System.Drawing.Point(45, 170);
-            this.saddress_tb.Multiline = true;
-            this.saddress_tb.Name = "saddress_tb";
-            this.saddress_tb.Size = new System.Drawing.Size(291, 49);
-            this.saddress_tb.TabIndex = 4;
-            // 
-            // lname_tb
-            // 
-            this.lname_tb.Location = new System.Drawing.Point(45, 131);
-            this.lname_tb.Name = "lname_tb";
-            this.lname_tb.Size = new System.Drawing.Size(291, 20);
-            this.lname_tb.TabIndex = 3;
-            // 
-            // smname_tb
-            // 
-            this.smname_tb.Location = new System.Drawing.Point(45, 92);
-            this.smname_tb.Name = "smname_tb";
-            this.smname_tb.Size = new System.Drawing.Size(291, 20);
-            this.smname_tb.TabIndex = 2;
-            // 
-            // sfname_tb
-            // 
-            this.sfname_tb.Location = new System.Drawing.Point(45, 53);
-            this.sfname_tb.Name = "sfname_tb";
-            this.sfname_tb.Size = new System.Drawing.Size(291, 20);
-            this.sfname_tb.TabIndex = 1;
-            // 
-            // label55
-            // 
-            this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(44, 262);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(52, 13);
-            this.label55.TabIndex = 41;
-            this.label55.Text = "Birthdate:";
-            // 
-            // label59
-            // 
-            this.label59.AutoSize = true;
-            this.label59.Location = new System.Drawing.Point(44, 223);
-            this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(87, 13);
-            this.label59.TabIndex = 37;
-            this.label59.Text = "Contact Number:";
-            // 
-            // label60
-            // 
-            this.label60.AutoSize = true;
-            this.label60.Location = new System.Drawing.Point(44, 154);
-            this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(51, 13);
-            this.label60.TabIndex = 36;
-            this.label60.Text = "Address: ";
-            // 
-            // label61
-            // 
-            this.label61.AutoSize = true;
-            this.label61.Location = new System.Drawing.Point(44, 115);
-            this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(61, 13);
-            this.label61.TabIndex = 35;
-            this.label61.Text = "Last Name:";
-            // 
-            // label62
-            // 
-            this.label62.AutoSize = true;
-            this.label62.Location = new System.Drawing.Point(44, 76);
-            this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(72, 13);
-            this.label62.TabIndex = 33;
-            this.label62.Text = "Middle Name:";
-            // 
-            // label63
-            // 
-            this.label63.AutoSize = true;
-            this.label63.Location = new System.Drawing.Point(44, 37);
-            this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(60, 13);
-            this.label63.TabIndex = 34;
-            this.label63.Text = "First Name:";
-            // 
-            // label50
-            // 
-            this.label50.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label50.Font = new System.Drawing.Font("Bookman Old Style", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label50.Location = new System.Drawing.Point(0, 0);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(582, 22);
-            this.label50.TabIndex = 8;
-            this.label50.Text = "CREATE STAFF ACCOUNT";
-            this.label50.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // batch_panel
             // 
             this.batch_panel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -2614,7 +2621,6 @@
             // reports_panel
             // 
             this.reports_panel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.reports_panel.Controls.Add(this.rep_stat);
             this.reports_panel.Controls.Add(this.label85);
             this.reports_panel.Controls.Add(this.application_btn);
             this.reports_panel.Controls.Add(this.sales_btn);
@@ -2633,16 +2639,6 @@
             this.reports_panel.Name = "reports_panel";
             this.reports_panel.Size = new System.Drawing.Size(799, 450);
             this.reports_panel.TabIndex = 41;
-            // 
-            // rep_stat
-            // 
-            this.rep_stat.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.rep_stat.Location = new System.Drawing.Point(0, 423);
-            this.rep_stat.Name = "rep_stat";
-            this.rep_stat.Size = new System.Drawing.Size(795, 23);
-            this.rep_stat.TabIndex = 23;
-            this.rep_stat.Text = "stat";
-            this.rep_stat.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label85
             // 
@@ -3400,15 +3396,6 @@
             this.logout_btn.UseVisualStyleBackColor = true;
             this.logout_btn.Click += new System.EventHandler(this.logout_btn_Click);
             // 
-            // mo_exp_cb
-            // 
-            this.mo_exp_cb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.mo_exp_cb.FormattingEnabled = true;
-            this.mo_exp_cb.Location = new System.Drawing.Point(220, 97);
-            this.mo_exp_cb.Name = "mo_exp_cb";
-            this.mo_exp_cb.Size = new System.Drawing.Size(196, 21);
-            this.mo_exp_cb.TabIndex = 75;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3433,6 +3420,9 @@
             this.loan_items_fp.ResumeLayout(false);
             this.loanItem0.ResumeLayout(false);
             this.loanItem0.PerformLayout();
+            this.create_staff_panel.ResumeLayout(false);
+            this.create_staff_panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.staff_pb)).EndInit();
             this.profile_panel.ResumeLayout(false);
             this.profile_panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.prof_pic_pbx)).EndInit();
@@ -3448,9 +3438,6 @@
             this.menuStrip1.PerformLayout();
             this.additem_panel.ResumeLayout(false);
             this.additem_panel.PerformLayout();
-            this.create_staff_panel.ResumeLayout(false);
-            this.create_staff_panel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.staff_pb)).EndInit();
             this.batch_panel.ResumeLayout(false);
             this.batch_panel.PerformLayout();
             this.items_fp.ResumeLayout(false);
@@ -3770,7 +3757,6 @@
         private System.Windows.Forms.Button repossessed_btn;
         private System.Windows.Forms.Label label84;
         private System.Windows.Forms.Label label85;
-        private System.Windows.Forms.Label rep_stat;
         private System.Windows.Forms.Label label86;
         private System.Windows.Forms.Label label87;
         private System.Windows.Forms.Label label88;

@@ -17,8 +17,8 @@ namespace WindowsFormsApp1
         public string contact_num { get; set; }
         public string bday { get; set; }
         public string occupation { get; set; }
-        public double mo_income { get; set; }
-        public double mo_expense { get; set; }
+        public string mo_income { get; set; }
+        public string mo_expense { get; set; }
         public string path_id_pic { get; set; }
         public string path_house_sketch_pic { get; set; }
         public double credit_limit { get; set; }
@@ -28,5 +28,6 @@ namespace WindowsFormsApp1
         public string gender { get; set; }
         public string usertype_str { get; set; }
         public string verified_str { get; set; }
+        public double credit_rem { get; set; }
     }
 }

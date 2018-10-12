@@ -68,7 +68,7 @@ namespace WindowsFormsApp1
 
             //try
             //{
-            //    string response = string.Empty;
+                string response = string.Empty;
             //    Cursor.Current = Cursors.WaitCursor;
             //    restClient.endPoint = Settings.baseUrl.ToString()
             //        + "/api/loanstatus";
@@ -458,7 +458,7 @@ namespace WindowsFormsApp1
                     no_item_lbl.Visible = true;
                     item_data.Visible = false;
                 }
-               
+
             } catch (Exception ex)
             {
                 Console.WriteLine(ex.Message.ToString());
@@ -506,7 +506,7 @@ namespace WindowsFormsApp1
         {
             rightPanel[9].BringToFront();
             leftPanel[4].BringToFront();
-
+            Cursor.Current = Cursors.WaitCursor;
             try
             {
                 restClient.endPoint = Settings.baseUrl
@@ -533,6 +533,7 @@ namespace WindowsFormsApp1
             {
                 Console.WriteLine(ex.Message.ToString());
             }
+            Cursor.Current = Cursors.Default;
         }
 
         private void reportsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -550,7 +551,7 @@ namespace WindowsFormsApp1
             save_btn.Enabled = true;
             cancel_btn.Enabled = true;
         }
-        
+
         private void addloan_btn_Click(object sender, EventArgs e)
         {
             addLoanToolStripMenuItem_Click(sender, e);
@@ -558,20 +559,22 @@ namespace WindowsFormsApp1
 
         private void viewloan_btn_Click(object sender, EventArgs e)
         {
-             viewLoanToolStripMenuItem_Click(sender, e);
+            viewLoanToolStripMenuItem_Click(sender, e);
         }
-        
+
         private void save_loan_btn_Click(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
             loan.profile_id = Int32.Parse(account_id_tb.Text);
             loan.term_length = Int32.Parse(length_tb.Text);
             loan.status = loan_status_cb.SelectedIndex;
-            
+            loan.loan_value = Convert.ToDouble(total_amount_tb.Text.ToString());
+            loan.amortization = Convert.ToDouble(amortization_tb.Text.ToString());
+
             string response = string.Empty;
             try
             {
-                if (Convert.ToDouble(total_amount_tb.Text) <= Convert.ToDouble(cred_lmt_tb.Text))
+                if (Convert.ToDouble(amortization_tb.Text) <= Convert.ToDouble(cred_lmt_tb.Text))
                 {
                     if (!edit)
                     {
@@ -610,10 +613,10 @@ namespace WindowsFormsApp1
                         MessageBox.Show("Loan added successfully.", "Save Loan",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
+                        ClearTextBoxesInAddLoan(addloan_panel.Controls);
                     }
                     else //edit
                     {
-                        Console.WriteLine("HELLO WORLDsssss!");
                         loan.loan_value = Convert.ToDouble(total_amount_tb.Text.ToString());
 
                         restClient.endPoint = Settings.baseUrl.ToString()
@@ -634,6 +637,7 @@ namespace WindowsFormsApp1
                             MessageBoxIcon.Information);
                     }
                     Console.WriteLine("response : " + response);
+                    ClearTextBoxesInAddLoan(addloan_panel.Controls);
                 }
                 else
                 {
@@ -641,9 +645,7 @@ namespace WindowsFormsApp1
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                 }
-
                 Cursor.Current = Cursors.Default;
-                ClearTextBoxesInAddLoan(addloan_panel.Controls);
             } catch (Exception ex)
             {
                 Console.WriteLine(ex.Message.ToString());
@@ -652,9 +654,9 @@ namespace WindowsFormsApp1
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
-            
+
         }
-        
+
         private void add_item_btn_Click(object sender, EventArgs e)
         {
             GroupBox gb = new GroupBox();
@@ -737,12 +739,11 @@ namespace WindowsFormsApp1
             item_stat_cb.Location = new Point(424, 16);
             item_stat_cb.Name = "item_stat_cb";
             item_stat_cb.DropDownStyle = ComboBoxStyle.DropDownList;
-            for (int j = 0; j < statuslist.status.Length; j++)
-            {
-                item_stat_cb.Items.Add(statuslist.status[j]);
-            }
-            gb.Controls.Add(item_stat_cb);
+            item_stat_cb.Items.Add("In Stock");
+            item_stat_cb.Items.Add("Repossessed");
+            item_stat_cb.Items.Add("Damaged");
             item_stat_cb.SelectedIndex = 0;
+            gb.Controls.Add(item_stat_cb);
 
             TextBox item_price_tb = new TextBox();
             item_price_tb.Size = new Size(93, 20);
@@ -779,7 +780,7 @@ namespace WindowsFormsApp1
             add_item_btn.Visible = true;
             ClearTextBoxesInAddLoan(addloan_panel.Controls);
         }
-        
+
         private void search_item0_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
@@ -800,9 +801,9 @@ namespace WindowsFormsApp1
         {
             Cursor.Current = Cursors.WaitCursor;
             Search search = new Search();
-            search.tag = "CLIENT";
+            search.tag = "CLIENT_ID";
             search.Show();
-            tag = "CLIENT";
+            tag = "CLIENT_ID";
             Cursor.Current = Cursors.Default;
 
             search.FormClosed += new FormClosedEventHandler(Search_FormClosed);
@@ -889,7 +890,7 @@ namespace WindowsFormsApp1
                     newList.Add(l); //add all
                 }
             }
-            
+
             if (newList.Count != 0)
             {
                 loan_data.DataSource = newList;
@@ -991,7 +992,7 @@ namespace WindowsFormsApp1
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
-            
+
         }
 
         private void scancel_btn_Click(object sender, EventArgs e)
@@ -1040,7 +1041,7 @@ namespace WindowsFormsApp1
 
                             jsonStr = JsonConvert.SerializeObject(register);
                             restClient.postJSON = jsonStr;
-                            response = restClient.PostRequest();
+                             response = restClient.PostRequest();
                             Console.WriteLine(response);
 
                             restClient.endPoint = Settings.baseUrl
@@ -1060,8 +1061,8 @@ namespace WindowsFormsApp1
                             profile.contact_num = cn_tb.Text.ToString();
                             profile.bday = bday_picker.Value.ToString("MM/dd/yyyy");
                             profile.occupation = occu_tb.Text.ToString();
-                            //profile.mo_income = Convert.ToDouble(inc_tb.Text.ToString());
-                            //profile.mo_expense = Convert.ToDouble(exp_tb.Text.ToString());
+                            profile.mo_income = mo_inc_cb.SelectedItem.ToString();
+                            profile.mo_expense = mo_exp_cb.SelectedItem.ToString();
                             profile.credit_limit = Convert.ToDouble(credit_limit_tb.Text.ToString());
                             profile.verified = stat_cb.SelectedIndex;
                             //todo profile.path_id_pic = ;
@@ -1075,7 +1076,7 @@ namespace WindowsFormsApp1
                             Console.WriteLine(response);
                             MessageBox.Show("Account created successfully.", "Save Account",
                                 MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
+                                MessageBoxIcon.Information);
                         }
                         else //edit
                         {
@@ -1088,8 +1089,8 @@ namespace WindowsFormsApp1
                             profile.contact_num = cn_tb.Text.ToString();
                             profile.bday = bday_picker.Value.ToString("MM/dd/yyyy");
                             profile.occupation = occu_tb.Text.ToString();
-                            //profile.mo_income = Convert.ToDouble(inc_tb.Text.ToString());
-                            //profile.mo_expense = Convert.ToDouble(exp_tb.Text.ToString());
+                            profile.mo_income = mo_inc_cb.SelectedItem.ToString();
+                            profile.mo_expense = mo_exp_cb.SelectedItem.ToString();
                             profile.credit_limit = Convert.ToDouble(credit_limit_tb.Text.ToString());
                             profile.verified = 1; //verified
                                                   //todo profile.path_id_pic = ;
@@ -1603,8 +1604,8 @@ namespace WindowsFormsApp1
                     cn_tb.Text = accounts_data.Rows[e.RowIndex].Cells["contact_num"].Value.ToString();
                     bday_picker.Text = accounts_data.Rows[e.RowIndex].Cells["bday"].Value.ToString();
                     occu_tb.Text = accounts_data.Rows[e.RowIndex].Cells["occupation"].Value.ToString();
-                    //inc_tb.Text = Convert.ToDouble(accounts_data.Rows[e.RowIndex].Cells["mo_income"].Value).ToString("N1");
-                    //exp_tb.Text = Convert.ToDouble(accounts_data.Rows[e.RowIndex].Cells["mo_expense"].Value).ToString("N1");
+                    mo_inc_cb.SelectedIndex = mo_inc_cb.Items.IndexOf(accounts_data.Rows[e.RowIndex].Cells["mo_income"].Value.ToString());
+                    mo_exp_cb.SelectedIndex = mo_exp_cb.Items.IndexOf(accounts_data.Rows[e.RowIndex].Cells["mo_expense"].Value.ToString());
                     credit_limit_tb.Text = Convert.ToDouble(accounts_data.Rows[e.RowIndex].Cells["credit_limit"].Value).ToString("N1");
                     stat_cb.SelectedIndex = Convert.ToInt32(accounts_data.Rows[e.RowIndex].Cells["verified"].Value.ToString());
                     if (accounts_data.Rows[e.RowIndex].Cells["gender"].Value.ToString().Equals("Male"))
@@ -2173,25 +2174,25 @@ namespace WindowsFormsApp1
             switch(mo_inc_cb.SelectedIndex)
             {
                 case 0:
-                    credit_limit_tb.Text = "P50.00";
+                    credit_limit_tb.Text = "50.00";
                     break;
                 case 1:
-                    credit_limit_tb.Text = "P150.00";
+                    credit_limit_tb.Text = "150.00";
                     break;
                 case 2:
-                    credit_limit_tb.Text = "P250.00";
+                    credit_limit_tb.Text = "250.00";
                     break;
                 case 3:
-                    credit_limit_tb.Text = "P400.00";
+                    credit_limit_tb.Text = "400.00";
                     break;
                 case 4:
-                    credit_limit_tb.Text = "P500.00";
+                    credit_limit_tb.Text = "500.00";
                     break;
                 case 5:
-                    credit_limit_tb.Text = "P600.00";
+                    credit_limit_tb.Text = "600.00";
                     break;
                 case 6:
-                    credit_limit_tb.Text = "P1000.00";
+                    credit_limit_tb.Text = "1000.00";
                     break;
             }
         }
@@ -2219,7 +2220,6 @@ namespace WindowsFormsApp1
             loan_data.Columns[14].Visible = false;
             loan_data.Columns[15].Visible = false;
             loan_data.Columns[16].Visible = false;
-            loan_data.Columns[17].Visible = false;
             loan_data.Columns[0].Width = 35;
             loan_data.Columns[2].Width = 85;
             loan_data.Columns[4].Width = 85;
@@ -2256,6 +2256,7 @@ namespace WindowsFormsApp1
             accounts_data.Columns[15].Visible = false;
             accounts_data.Columns[16].Visible = false;
             accounts_data.Columns[17].Visible = false;
+            accounts_data.Columns[20].Visible = false;
             accounts_data.Columns[0].Width = 50;
         }
 
@@ -2311,7 +2312,7 @@ namespace WindowsFormsApp1
                     {
                         total_amount_tb.Text = "0";
                         amortization_tb.Text = "0";
-                        length_tb.Text = "12";
+                        length_tb.Text = "90";
                     }
                     else
                     {
@@ -2417,6 +2418,15 @@ namespace WindowsFormsApp1
                                 id_tb.Text = Search.itemId.ToString();
                             }
                         }
+                        break;
+                    }
+                case "CLIENT_ID":
+                    {
+                        client_name_tb.Text = Search.prof_fullname;
+                        address_tb.Text = Search.prof_add;
+                        account_id_tb.Text = Search.prof_id.ToString();
+                        contactnum_tb.Text = Search.prof_cn;
+                        cred_lmt_tb.Text = Search.prof_cred_rem.ToString("N1");
                         break;
                     }
                 case "CLIENT":

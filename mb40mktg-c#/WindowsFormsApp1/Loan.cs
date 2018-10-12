@@ -24,7 +24,6 @@ namespace WindowsFormsApp1
         public string contact_num { get; set; }
         public double credit_limit { get; set; }
         public double remaining_balance { get; set; }
-        public double amortization_m { get; set; }
         public double loan_rem { get; set; }
         public List<LoanItem> loan_items { get; set; }
     }

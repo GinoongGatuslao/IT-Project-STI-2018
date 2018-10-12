@@ -21,6 +21,7 @@ namespace WindowsFormsApp1
         public static string prof_cn = string.Empty;
         public static double prof_cred_limit = 0;
         public static string prof_stat = string.Empty;
+        public static double prof_cred_rem = 0;
         public static int price_id = 0;
         public static double price = 0;
         public List<Products> products = new List<Products>();
@@ -66,6 +67,7 @@ namespace WindowsFormsApp1
                         }
                         break;
                     }
+                case "CLIENT_ID":
                 case "CLIENT":
                     {
                         search_lbl.Text = "Search by client's last name:";
@@ -164,6 +166,7 @@ namespace WindowsFormsApp1
                         itemStockCount = Convert.ToInt32(datagrid.Rows[e.RowIndex].Cells["stock_count"].Value.ToString());
                         this.Close();
                         break;
+                    case "CLIENT_ID":
                     case "CLIENT":
                         if (datagrid.Rows[e.RowIndex].Cells["verified"].Value.ToString().Equals("1"))
                         {
@@ -176,6 +179,7 @@ namespace WindowsFormsApp1
                             prof_cred_limit = Convert.ToDouble(datagrid.Rows[e.RowIndex].Cells["credit_limit"].Value.ToString());
                             prof_add = datagrid.Rows[e.RowIndex].Cells["address"].Value.ToString();
                             prof_stat = datagrid.Rows[e.RowIndex].Cells["verified_str"].Value.ToString();
+                            prof_cred_rem = Convert.ToDouble(datagrid.Rows[e.RowIndex].Cells["credit_rem"].Value.ToString());
                             this.Close();
                         }
                         else
@@ -255,6 +259,7 @@ namespace WindowsFormsApp1
             datagrid.Columns[16].Visible = false;
             datagrid.Columns[17].Visible = false;
             datagrid.Columns[18].Visible = false;
+            datagrid.Columns[20].Visible = false;
             datagrid.Columns[13].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             datagrid.Columns[13].DefaultCellStyle.Format = "N1";
         }
