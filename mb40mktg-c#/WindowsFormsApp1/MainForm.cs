@@ -8,6 +8,12 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using WindowsFormsApp1;
+using Microsoft.Office.Interop.Excel;
+using GroupBox = System.Windows.Forms.GroupBox;
+using TextBox = System.Windows.Forms.TextBox;
+using Label = System.Windows.Forms.Label;
+using Point = System.Drawing.Point;
+using Button = System.Windows.Forms.Button;
 
 namespace WindowsFormsApp1
 {
@@ -311,33 +317,39 @@ namespace WindowsFormsApp1
         private void viewLoanToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
-            rightPanel[5].BringToFront();
-            leftPanel[1].BringToFront();
-            loansfilter_gb.Enabled = true;
-            search_gb.Enabled = true;
-
-            restClient.endPoint = Settings.baseUrl
-                + "/api/loan/getloans";
-
-            string response = string.Empty;
-            response = restClient.GetRequest();
-            Console.WriteLine("response : " + response);
-
-            loans = JsonConvert.DeserializeObject<List<Loan>>(response);
-            loan_data.DataSource = null;
-
-            if (loans.Count != 0)
+            try
             {
-                loan_data.DataSource = loans;
-                loan_data.Visible = true;
-                no_data_lbl.Visible = false;
-                format_loanDataTable();
-            }
-            else
+                rightPanel[5].BringToFront();
+                leftPanel[1].BringToFront();
+                loansfilter_gb.Enabled = true;
+                search_gb.Enabled = true;
+
+                restClient.endPoint = Settings.baseUrl
+                    + "/api/loan/getloans";
+
+                string response = string.Empty;
+                response = restClient.GetRequest();
+                Console.WriteLine("response : " + response);
+
+                loans = JsonConvert.DeserializeObject<List<Loan>>(response);
+                loan_data.DataSource = null;
+
+                if (loans.Count != 0)
+                {
+                    loan_data.DataSource = loans;
+                    loan_data.Visible = true;
+                    no_data_lbl.Visible = false;
+                    format_loanDataTable();
+                }
+                else
+                {
+                    no_data_lbl.Text = "No data.";
+                    no_data_lbl.Visible = true;
+                    loan_data.Visible = false;
+                }
+            } catch (Exception ex)
             {
-                no_data_lbl.Text = "No data.";
-                no_data_lbl.Visible = true;
-                loan_data.Visible = false;
+                Console.WriteLine(ex.Message.ToString());
             }
             Cursor.Current = Cursors.Default;
         }
@@ -1495,11 +1507,6 @@ namespace WindowsFormsApp1
            
         }
 
-        private void repossessed_btn_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void asearch_btn_Click(object sender, EventArgs e)
         {
             accounts_data.DataSource = null;
@@ -1581,6 +1588,169 @@ namespace WindowsFormsApp1
                 pictureBox1.Image = new Bitmap(open.FileName);
                 Console.WriteLine(open.FileName);
             }
+        }
+
+        private void stock_btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                restClient.endPoint = Settings.baseUrl
+                    + "/api/product/getitems";
+                string response = string.Empty;
+                response = restClient.GetRequest();
+                Console.WriteLine(response);
+
+                var item_rep = JsonConvert.DeserializeObject<List<Item_InStock>>(response);
+                item_data.DataSource = null;
+                if (item_rep.Count != 0)
+                {
+                    List<Item_InStock> new_item = new List<Item_InStock>();
+                    foreach (Item_InStock i in item_rep)
+                    {
+                        if (i.stock_count != 0)
+                        {
+                            new_item.Add(i);
+                        }
+                    }
+                    if (new_item.Count != 0)
+                    {
+                        item_data.DataSource = new_item;
+                        ImportDataGridViewDataToExcelSheet(item_data, "Item Inventory - In Stock", Item_InStock.headers);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No data.", "Report",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+                    }
+                }
+                Cursor.Current = Cursors.Default;
+            } catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+        }
+
+        private void repossessed_btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                restClient.endPoint = Settings.baseUrl
+                    + "/api/product/getitems";
+                string response = string.Empty;
+                response = restClient.GetRequest();
+                Console.WriteLine(response);
+
+                var item_rep = JsonConvert.DeserializeObject<List<Item_Repo>>(response);
+                item_data.DataSource = null;
+                if (item_rep.Count != 0)
+                {
+                    List<Item_Repo> new_item = new List<Item_Repo>();
+                    foreach (Item_Repo i in item_rep)
+                    {
+                        if (i.repossessed != 0)
+                        {
+                            new_item.Add(i);
+                        }
+                    }
+                    if (new_item.Count != 0)
+                    {
+                        item_data.DataSource = new_item;
+                        ImportDataGridViewDataToExcelSheet(item_data, "Item Inventory - Repossessed", Item_Repo.headers);
+                    } else
+                    {
+                        MessageBox.Show("No data.", "Report",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+                    }
+                }
+                Cursor.Current = Cursors.Default;
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+        }
+
+        private void damaged_btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                restClient.endPoint = Settings.baseUrl
+                    + "/api/product/getitems";
+                string response = string.Empty;
+                response = restClient.GetRequest();
+                Console.WriteLine(response);
+
+                var item_rep = JsonConvert.DeserializeObject<List<Item_Damaged>>(response);
+                item_data.DataSource = null;
+                if (item_rep.Count != 0)
+                {
+                    List<Item_Damaged> new_item = new List<Item_Damaged>();
+                    foreach (Item_Damaged i in item_rep)
+                    {
+                        if (i.damaged != 0)
+                        {
+                            new_item.Add(i);
+                        }
+                    }
+                    if (new_item.Count != 0)
+                    {
+                        item_data.DataSource = new_item;
+                        ImportDataGridViewDataToExcelSheet(item_data, "Item Inventory - Damaged", Item_Damaged.headers);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No data.", "Report",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+                    }
+                }
+                Cursor.Current = Cursors.Default;
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+        }
+
+        private void application_btn_Click(object sender, EventArgs e)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            try
+            {
+                restClient.endPoint = Settings.baseUrl
+                    + "/api/loan/getloans";
+
+                string response = string.Empty;
+                response = restClient.GetRequest();
+                Console.WriteLine("response : " + response);
+
+                var loans = JsonConvert.DeserializeObject<List<Loan_App>>(response);
+                loan_data.DataSource = null;
+
+                if (loans.Count != 0)
+                {
+                    loan_data.DataSource = loans;
+                    ImportDataGridViewDataToExcelSheet(loan_data, "Loan Application", Loan_App.headers);
+                }
+                else
+                {
+                    MessageBox.Show("No data.", "Report",
+                                   MessageBoxButtons.OK,
+                                   MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            Cursor.Current = Cursors.Default;
         }
 
         /**
@@ -2490,6 +2660,64 @@ namespace WindowsFormsApp1
                 }
             }
             return true;
+        }
+
+        private void releaseObject(object obj)
+        {
+            try
+            {
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
+                obj = null;
+            }
+            catch (Exception ex)
+            {
+                obj = null;
+                MessageBox.Show("Exception Occured while releasing object " + ex.ToString());
+            }
+            finally
+            {
+                GC.Collect();
+            }
+        }
+
+        private void ImportDataGridViewDataToExcelSheet(DataGridView datagrid, string filename, string[] headers)
+        {
+            Microsoft.Office.Interop.Excel.Application xlApp;
+            Workbook xlWorkBook;
+            Worksheet xlWorkSheet;
+            object misValue = System.Reflection.Missing.Value;
+
+            xlApp = new Microsoft.Office.Interop.Excel.Application();
+            xlWorkBook = xlApp.Workbooks.Add(misValue);
+            xlWorkSheet = (Worksheet)xlWorkBook.Worksheets.get_Item(1);
+
+            for (int x = 1; x < datagrid.Columns.Count + 1; x++)
+            {
+                xlWorkSheet.Cells[1, x] = headers[x];
+            }
+
+            for (int i = 0; i < datagrid.Rows.Count; i++)
+            {
+                for (int j = 0; j < datagrid.Columns.Count; j++)
+                {
+                    xlWorkSheet.Cells[i + 2, j + 1] = datagrid.Rows[i].Cells[j].Value.ToString();
+                }
+            }
+
+            var saveFileDialoge = new SaveFileDialog();
+            saveFileDialoge.FileName = filename;
+            saveFileDialoge.DefaultExt = ".xlsx";
+            if (saveFileDialoge.ShowDialog() == DialogResult.OK)
+            {
+                xlWorkBook.SaveAs(saveFileDialoge.FileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, XlSaveAsAccessMode.xlExclusive, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+            }
+
+            xlWorkBook.Close(true, misValue, misValue);
+            xlApp.Quit();
+
+            releaseObject(xlWorkSheet);
+            releaseObject(xlWorkBook);
+            releaseObject(xlApp);
         }
     }
 }
