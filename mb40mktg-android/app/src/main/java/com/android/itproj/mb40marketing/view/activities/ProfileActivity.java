@@ -269,6 +269,7 @@ public class ProfileActivity extends AppCompatActivity implements
 
     @Override
     public void onLoginFailed(Throwable e, int code) {
+        swipeRefreshLayout.setRefreshing(false);
         Log.d(TAG, "onLoginFailed: " + e.getMessage());
         Toast.makeText(this, "Wrong credentials!", Toast.LENGTH_SHORT).show();
     }
