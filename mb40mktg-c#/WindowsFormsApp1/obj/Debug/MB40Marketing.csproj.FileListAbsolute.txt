@@ -1,0 +1,16 @@
+V:\THEEEEEEEEESSSSIIIIIIIIIIS\sys\IT-Project-STI-2018-master_desktop_2\IT-Project-STI-2018-master_desktop\mb40mktg-c#\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
+V:\THEEEEEEEEESSSSIIIIIIIIIIS\sys\IT-Project-STI-2018-master_desktop_2\IT-Project-STI-2018-master_desktop\mb40mktg-c#\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
+V:\THEEEEEEEEESSSSIIIIIIIIIIS\sys\IT-Project-STI-2018-master_desktop_2\IT-Project-STI-2018-master_desktop\mb40mktg-c#\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
+V:\THEEEEEEEEESSSSIIIIIIIIIIS\sys\IT-Project-STI-2018-master_desktop_2\IT-Project-STI-2018-master_desktop\mb40mktg-c#\WindowsFormsApp1\bin\Debug\Newtonsoft.Json.dll
+V:\THEEEEEEEEESSSSIIIIIIIIIIS\sys\IT-Project-STI-2018-master_desktop_2\IT-Project-STI-2018-master_desktop\mb40mktg-c#\WindowsFormsApp1\bin\Debug\Newtonsoft.Json.xml
+V:\THEEEEEEEEESSSSIIIIIIIIIIS\sys\IT-Project-STI-2018-master_desktop_2\IT-Project-STI-2018-master_desktop\mb40mktg-c#\WindowsFormsApp1\obj\Debug\MB40Marketing.csprojResolveAssemblyReference.cache
+V:\THEEEEEEEEESSSSIIIIIIIIIIS\sys\IT-Project-STI-2018-master_desktop_2\IT-Project-STI-2018-master_desktop\mb40mktg-c#\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.AddPrice.resources
+V:\THEEEEEEEEESSSSIIIIIIIIIIS\sys\IT-Project-STI-2018-master_desktop_2\IT-Project-STI-2018-master_desktop\mb40mktg-c#\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Message.resources
+V:\THEEEEEEEEESSSSIIIIIIIIIIS\sys\IT-Project-STI-2018-master_desktop_2\IT-Project-STI-2018-master_desktop\mb40mktg-c#\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Search.resources
+V:\THEEEEEEEEESSSSIIIIIIIIIIS\sys\IT-Project-STI-2018-master_desktop_2\IT-Project-STI-2018-master_desktop\mb40mktg-c#\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.MainForm.resources
+V:\THEEEEEEEEESSSSIIIIIIIIIIS\sys\IT-Project-STI-2018-master_desktop_2\IT-Project-STI-2018-master_desktop\mb40mktg-c#\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Login.resources
+V:\THEEEEEEEEESSSSIIIIIIIIIIS\sys\IT-Project-STI-2018-master_desktop_2\IT-Project-STI-2018-master_desktop\mb40mktg-c#\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+V:\THEEEEEEEEESSSSIIIIIIIIIIS\sys\IT-Project-STI-2018-master_desktop_2\IT-Project-STI-2018-master_desktop\mb40mktg-c#\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Settings.resources
+V:\THEEEEEEEEESSSSIIIIIIIIIIS\sys\IT-Project-STI-2018-master_desktop_2\IT-Project-STI-2018-master_desktop\mb40mktg-c#\WindowsFormsApp1\obj\Debug\MB40Marketing.csproj.GenerateResource.Cache
+V:\THEEEEEEEEESSSSIIIIIIIIIIS\sys\IT-Project-STI-2018-master_desktop_2\IT-Project-STI-2018-master_desktop\mb40mktg-c#\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
+V:\THEEEEEEEEESSSSIIIIIIIIIIS\sys\IT-Project-STI-2018-master_desktop_2\IT-Project-STI-2018-master_desktop\mb40mktg-c#\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
