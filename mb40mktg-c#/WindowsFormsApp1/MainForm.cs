@@ -554,27 +554,6 @@ namespace WindowsFormsApp1
             reports_panel.BringToFront();
         }
 
-        private void daily_btn_Click(object sender, EventArgs e)
-        {
-            SummaryPrompt prompt = new SummaryPrompt();
-            prompt.tag = "DAILY";
-            prompt.Show();
-        }
-
-        private void weekly_btn_Click(object sender, EventArgs e)
-        {
-            SummaryPrompt prompt = new SummaryPrompt();
-            prompt.tag = "WEEKLY";
-            prompt.Show();
-        }
-
-        private void monthly_btn_Click(object sender, EventArgs e)
-        {
-            SummaryPrompt prompt = new SummaryPrompt();
-            prompt.tag = "MONTHLY";
-            prompt.Show();
-        }
-
         /**
          * CLICK EVENTS
          **/
@@ -1829,6 +1808,83 @@ namespace WindowsFormsApp1
                     MessageBox.Show("No data.", "Report",
                                    MessageBoxButtons.OK,
                                    MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+            Cursor.Current = Cursors.Default;
+        }
+
+        private void daily_btn_Click(object sender, EventArgs e)
+        {
+            SummaryPrompt prompt = new SummaryPrompt();
+            prompt.tag = "DAILY";
+            prompt.Show();
+        }
+
+        private void weekly_btn_Click(object sender, EventArgs e)
+        {
+            SummaryPrompt prompt = new SummaryPrompt();
+            prompt.tag = "WEEKLY";
+            prompt.Show();
+        }
+
+        private void monthly_btn_Click(object sender, EventArgs e)
+        {
+            SummaryPrompt prompt = new SummaryPrompt();
+            prompt.tag = "MONTHLY";
+            prompt.Show();
+        }
+
+        private void payment_btn_Click(object sender, EventArgs e)
+        {
+            SummaryPrompt prompt = new SummaryPrompt();
+            prompt.tag = "CUSTOMER";
+            prompt.Show();
+        }
+
+        private void sales_btn_Click(object sender, EventArgs e)
+        {
+            //all completed loans
+            Cursor.Current = Cursors.WaitCursor;
+            try
+            {
+                restClient.endPoint = Settings.baseUrl
+                    + "/api/loan/getloans";
+
+                string response = string.Empty;
+                response = restClient.GetRequest();
+                Console.WriteLine("response : " + response);
+
+                var loans = JsonConvert.DeserializeObject<List<LoanReport>>(response);
+                loan_data.DataSource = null;
+
+                if (loans.Count != 0)
+                {
+                    loan_data.DataSource = transactions;
+                    List<LoanReport> rep = new List<LoanReport>();
+                    foreach (LoanReport p in loans)
+                    {
+                        if (p.status_str.ToString().Equals("Completed"))
+                        {
+                            rep.Add(p);
+                        }
+                    }
+                    if (rep.Count != 0)
+                    {
+                        loan_data.DataSource = rep;
+                        ImportDataGridViewDataToExcelSheet(loan_data, "Summary of Sales", LoanReport.headers);
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No data.", "Report",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    }
+
                 }
             }
             catch (Exception ex)

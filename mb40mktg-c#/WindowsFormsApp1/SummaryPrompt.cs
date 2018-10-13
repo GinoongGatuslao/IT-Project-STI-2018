@@ -80,11 +80,43 @@ namespace WindowsFormsApp1
                         go = false;
                     }
                     break;
-            }
+                case "CUSTOMER":
+                    restClient.endPoint = Settings.baseUrl
+                        + "/api/transaction";
+                    response = restClient.GetRequest();
+                    Console.WriteLine(response);
+                    go = false;
 
-            var summary = JsonConvert.DeserializeObject<List<Summary>>(response);
+                    var transactions = JsonConvert.DeserializeObject<List<Payment>>(response);
+                    if (transactions.Count != 0)
+                    {
+                        summary_data.DataSource = transactions;
+                        List<Payment> payment = new List<Payment>();
+                        foreach (Payment p in transactions)
+                        {
+                            if (p.last_name.Equals(week_tb.Text.ToString()))
+                            {
+                                payment.Add(p);
+                            }
+                        }
+                        if (payment.Count != 0)
+                        {
+                            summary_data.DataSource = payment;
+                            ImportDataGridViewDataToExcelSheet(summary_data, "Customer Payment - " + week_tb.Text.ToString(), Payment.headers);
+                            this.Close();
+                        } else
+                        {
+                            MessageBox.Show("No data.", "Report",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+                        }
+                    }
+                    break;
+            }
+            
             if (go)
             {
+                var summary = JsonConvert.DeserializeObject<List<Summary>>(response);
                 if (summary != null && summary.Count != 0)
                 {
                     summary_data.DataSource = summary;
@@ -124,6 +156,13 @@ namespace WindowsFormsApp1
                     week_lbl.Visible = true;
                     week_tb.Visible = true;
                     week_lbl.Text = "Month (1-12):";
+                    break;
+                case "CUSTOMER":
+                    select_lbl.Text = "Enter Client Last Name:";
+                    dayPicker.Visible = false;
+                    week_lbl.Visible = true;
+                    week_tb.Visible = true;
+                    week_lbl.Text = "Last Name:";
                     break;
             }
         }

@@ -65,7 +65,6 @@
             this.label33 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.item_price_tb = new System.Windows.Forms.TextBox();
-            this.search_item0 = new System.Windows.Forms.Button();
             this.item_desc_tb = new System.Windows.Forms.TextBox();
             this.item_name_tb = new System.Windows.Forms.TextBox();
             this.item_id_tb = new System.Windows.Forms.TextBox();
@@ -89,7 +88,6 @@
             this.label27 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
-            this.client_search_btn = new System.Windows.Forms.Button();
             this.contactnum_tb = new System.Windows.Forms.TextBox();
             this.address_tb = new System.Windows.Forms.TextBox();
             this.account_id_tb = new System.Windows.Forms.TextBox();
@@ -117,9 +115,7 @@
             this.up_photo_btn = new System.Windows.Forms.Button();
             this.up_sketch_btn = new System.Windows.Forms.Button();
             this.save_acc_btn = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.bday_picker = new System.Windows.Forms.DateTimePicker();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.occu_tb = new System.Windows.Forms.TextBox();
             this.stat_cb = new System.Windows.Forms.ComboBox();
             this.cn_tb = new System.Windows.Forms.TextBox();
@@ -154,7 +150,6 @@
             this.ssave_btn = new System.Windows.Forms.Button();
             this.scancel_btn = new System.Windows.Forms.Button();
             this.sbday_tb = new System.Windows.Forms.DateTimePicker();
-            this.staff_pb = new System.Windows.Forms.PictureBox();
             this.scn_tb = new System.Windows.Forms.TextBox();
             this.saddress_tb = new System.Windows.Forms.TextBox();
             this.lname_tb = new System.Windows.Forms.TextBox();
@@ -174,7 +169,6 @@
             this.cancel_btn = new System.Windows.Forms.Button();
             this.save_btn = new System.Windows.Forms.Button();
             this.prof_upload_btn = new System.Windows.Forms.Button();
-            this.prof_pic_pbx = new System.Windows.Forms.PictureBox();
             this.prof_bdate_picker = new System.Windows.Forms.DateTimePicker();
             this.prof_address_tb = new System.Windows.Forms.TextBox();
             this.prof_cn_tb = new System.Windows.Forms.TextBox();
@@ -236,7 +230,6 @@
             this.label71 = new System.Windows.Forms.Label();
             this.icancel_btn = new System.Windows.Forms.Button();
             this.isave_btn = new System.Windows.Forms.Button();
-            this.search_price_btn = new System.Windows.Forms.Button();
             this.label70 = new System.Windows.Forms.Label();
             this.reorder_tb = new System.Windows.Forms.TextBox();
             this.price_tb = new System.Windows.Forms.TextBox();
@@ -253,7 +246,6 @@
             this.items_fp = new System.Windows.Forms.FlowLayoutPanel();
             this.item_gb0 = new System.Windows.Forms.GroupBox();
             this.iid_tb = new System.Windows.Forms.TextBox();
-            this.search_btn0 = new System.Windows.Forms.Button();
             this.iqty_tb = new System.Windows.Forms.TextBox();
             this.iname_tb = new System.Windows.Forms.TextBox();
             this.label77 = new System.Windows.Forms.Label();
@@ -267,15 +259,12 @@
             this.label68 = new System.Windows.Forms.Label();
             this.trans_sidepanel = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.sclient_btn = new System.Windows.Forms.Button();
             this.sclient_tb = new System.Windows.Forms.TextBox();
             this.label81 = new System.Windows.Forms.Label();
-            this.scname_btn = new System.Windows.Forms.Button();
             this.scname_tb = new System.Windows.Forms.TextBox();
             this.label80 = new System.Windows.Forms.Label();
             this.inventory_sidepanel = new System.Windows.Forms.Panel();
             this.isearch_gb = new System.Windows.Forms.GroupBox();
-            this.isearch_btn = new System.Windows.Forms.Button();
             this.isearch_tb = new System.Windows.Forms.TextBox();
             this.filter_items_gb = new System.Windows.Forms.GroupBox();
             this.iall_rb = new System.Windows.Forms.RadioButton();
@@ -287,7 +276,6 @@
             this.additem_btn = new System.Windows.Forms.Button();
             this.confirmclient_sidepanel = new System.Windows.Forms.Panel();
             this.asearch_gb = new System.Windows.Forms.GroupBox();
-            this.asearch_btn = new System.Windows.Forms.Button();
             this.asearch_tb = new System.Windows.Forms.TextBox();
             this.filter_cacc_gb = new System.Windows.Forms.GroupBox();
             this.unconf_rb = new System.Windows.Forms.RadioButton();
@@ -303,8 +291,6 @@
             this.confirm_btn = new System.Windows.Forms.Button();
             this.loan_sidepanel = new System.Windows.Forms.Panel();
             this.search_gb = new System.Windows.Forms.GroupBox();
-            this.slamount_btn = new System.Windows.Forms.Button();
-            this.slname_btn = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.slamount1_tb = new System.Windows.Forms.TextBox();
@@ -323,6 +309,20 @@
             this.dashboard_panel = new System.Windows.Forms.Panel();
             this.reports_btn = new System.Windows.Forms.Button();
             this.transaction_btn = new System.Windows.Forms.Button();
+            this.search_item0 = new System.Windows.Forms.Button();
+            this.client_search_btn = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.staff_pb = new System.Windows.Forms.PictureBox();
+            this.prof_pic_pbx = new System.Windows.Forms.PictureBox();
+            this.search_price_btn = new System.Windows.Forms.Button();
+            this.search_btn0 = new System.Windows.Forms.Button();
+            this.sclient_btn = new System.Windows.Forms.Button();
+            this.scname_btn = new System.Windows.Forms.Button();
+            this.isearch_btn = new System.Windows.Forms.Button();
+            this.asearch_btn = new System.Windows.Forms.Button();
+            this.slamount_btn = new System.Windows.Forms.Button();
+            this.slname_btn = new System.Windows.Forms.Button();
             this.profile_btn = new System.Windows.Forms.Button();
             this.logout_btn = new System.Windows.Forms.Button();
             this.main_panel.SuspendLayout();
@@ -333,12 +333,8 @@
             this.trans_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trans_data)).BeginInit();
             this.confirmclient_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.create_staff_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.staff_pb)).BeginInit();
             this.profile_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.prof_pic_pbx)).BeginInit();
             this.view_item_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.item_data)).BeginInit();
             this.view_acc_panel.SuspendLayout();
@@ -364,6 +360,10 @@
             this.loansfilter_gb.SuspendLayout();
             this.profile_sidepanel.SuspendLayout();
             this.dashboard_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.staff_pb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prof_pic_pbx)).BeginInit();
             this.SuspendLayout();
             // 
             // accountsmgt_btn
@@ -476,6 +476,7 @@
             this.sales_btn.TabIndex = 20;
             this.sales_btn.Text = "Summary of Sales";
             this.sales_btn.UseVisualStyleBackColor = true;
+            this.sales_btn.Click += new System.EventHandler(this.sales_btn_Click);
             // 
             // payment_btn
             // 
@@ -486,6 +487,7 @@
             this.payment_btn.TabIndex = 19;
             this.payment_btn.Text = "Customer Payments";
             this.payment_btn.UseVisualStyleBackColor = true;
+            this.payment_btn.Click += new System.EventHandler(this.payment_btn_Click);
             // 
             // damaged_btn
             // 
@@ -803,16 +805,6 @@
             this.item_price_tb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.item_price_tb.TextChanged += new System.EventHandler(this.item_price_tb_TextChanged);
             // 
-            // search_item0
-            // 
-            this.search_item0.Image = ((System.Drawing.Image)(resources.GetObject("search_item0.Image")));
-            this.search_item0.Location = new System.Drawing.Point(332, 14);
-            this.search_item0.Name = "search_item0";
-            this.search_item0.Size = new System.Drawing.Size(25, 25);
-            this.search_item0.TabIndex = 9;
-            this.search_item0.UseVisualStyleBackColor = true;
-            this.search_item0.Click += new System.EventHandler(this.search_item0_Click);
-            // 
             // item_desc_tb
             // 
             this.item_desc_tb.Enabled = false;
@@ -1021,16 +1013,6 @@
             this.label25.Size = new System.Drawing.Size(73, 13);
             this.label25.TabIndex = 17;
             this.label25.Text = "Total Amount:";
-            // 
-            // client_search_btn
-            // 
-            this.client_search_btn.Image = ((System.Drawing.Image)(resources.GetObject("client_search_btn.Image")));
-            this.client_search_btn.Location = new System.Drawing.Point(304, 40);
-            this.client_search_btn.Name = "client_search_btn";
-            this.client_search_btn.Size = new System.Drawing.Size(25, 25);
-            this.client_search_btn.TabIndex = 16;
-            this.client_search_btn.UseVisualStyleBackColor = true;
-            this.client_search_btn.Click += new System.EventHandler(this.client_search_btn_Click);
             // 
             // contactnum_tb
             // 
@@ -1325,15 +1307,6 @@
             this.save_acc_btn.UseVisualStyleBackColor = true;
             this.save_acc_btn.Click += new System.EventHandler(this.save_acc_btn_Click);
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox2.Location = new System.Drawing.Point(220, 214);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(346, 167);
-            this.pictureBox2.TabIndex = 24;
-            this.pictureBox2.TabStop = false;
-            // 
             // bday_picker
             // 
             this.bday_picker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
@@ -1342,15 +1315,6 @@
             this.bday_picker.Size = new System.Drawing.Size(196, 20);
             this.bday_picker.TabIndex = 23;
             this.bday_picker.Value = new System.DateTime(2018, 9, 19, 19, 23, 11, 0);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox1.Location = new System.Drawing.Point(425, 59);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(141, 132);
-            this.pictureBox1.TabIndex = 22;
-            this.pictureBox1.TabStop = false;
             // 
             // occu_tb
             // 
@@ -1677,15 +1641,6 @@
             this.sbday_tb.TabIndex = 6;
             this.sbday_tb.Value = new System.DateTime(2018, 9, 19, 19, 23, 11, 0);
             // 
-            // staff_pb
-            // 
-            this.staff_pb.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.staff_pb.Location = new System.Drawing.Point(388, 53);
-            this.staff_pb.Name = "staff_pb";
-            this.staff_pb.Size = new System.Drawing.Size(141, 132);
-            this.staff_pb.TabIndex = 53;
-            this.staff_pb.TabStop = false;
-            // 
             // scn_tb
             // 
             this.scn_tb.Location = new System.Drawing.Point(73, 239);
@@ -1879,16 +1834,6 @@
             this.prof_upload_btn.Text = "Upload Photo";
             this.prof_upload_btn.UseVisualStyleBackColor = true;
             this.prof_upload_btn.Click += new System.EventHandler(this.prof_upload_btn_Click);
-            // 
-            // prof_pic_pbx
-            // 
-            this.prof_pic_pbx.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.prof_pic_pbx.Location = new System.Drawing.Point(27, 61);
-            this.prof_pic_pbx.Name = "prof_pic_pbx";
-            this.prof_pic_pbx.Size = new System.Drawing.Size(131, 151);
-            this.prof_pic_pbx.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.prof_pic_pbx.TabIndex = 15;
-            this.prof_pic_pbx.TabStop = false;
             // 
             // prof_bdate_picker
             // 
@@ -2468,16 +2413,6 @@
             this.isave_btn.UseVisualStyleBackColor = true;
             this.isave_btn.Click += new System.EventHandler(this.isave_btn_Click);
             // 
-            // search_price_btn
-            // 
-            this.search_price_btn.Image = ((System.Drawing.Image)(resources.GetObject("search_price_btn.Image")));
-            this.search_price_btn.Location = new System.Drawing.Point(406, 139);
-            this.search_price_btn.Name = "search_price_btn";
-            this.search_price_btn.Size = new System.Drawing.Size(25, 25);
-            this.search_price_btn.TabIndex = 16;
-            this.search_price_btn.UseVisualStyleBackColor = true;
-            this.search_price_btn.Click += new System.EventHandler(this.search_price_btn_Click);
-            // 
             // label70
             // 
             this.label70.AutoSize = true;
@@ -2643,16 +2578,6 @@
             this.iid_tb.TabIndex = 7;
             this.iid_tb.Visible = false;
             // 
-            // search_btn0
-            // 
-            this.search_btn0.Image = ((System.Drawing.Image)(resources.GetObject("search_btn0.Image")));
-            this.search_btn0.Location = new System.Drawing.Point(297, 10);
-            this.search_btn0.Name = "search_btn0";
-            this.search_btn0.Size = new System.Drawing.Size(25, 25);
-            this.search_btn0.TabIndex = 6;
-            this.search_btn0.UseVisualStyleBackColor = true;
-            this.search_btn0.Click += new System.EventHandler(this.search_btn_Click);
-            // 
             // iqty_tb
             // 
             this.iqty_tb.Location = new System.Drawing.Point(419, 13);
@@ -2771,16 +2696,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Filter Collections";
             // 
-            // sclient_btn
-            // 
-            this.sclient_btn.Image = ((System.Drawing.Image)(resources.GetObject("sclient_btn.Image")));
-            this.sclient_btn.Location = new System.Drawing.Point(150, 79);
-            this.sclient_btn.Name = "sclient_btn";
-            this.sclient_btn.Size = new System.Drawing.Size(25, 25);
-            this.sclient_btn.TabIndex = 5;
-            this.sclient_btn.UseVisualStyleBackColor = true;
-            this.sclient_btn.Click += new System.EventHandler(this.sclient_btn_Click);
-            // 
             // sclient_tb
             // 
             this.sclient_tb.Location = new System.Drawing.Point(18, 81);
@@ -2796,16 +2711,6 @@
             this.label81.Size = new System.Drawing.Size(90, 13);
             this.label81.TabIndex = 3;
             this.label81.Text = "Client Last Name:";
-            // 
-            // scname_btn
-            // 
-            this.scname_btn.Image = ((System.Drawing.Image)(resources.GetObject("scname_btn.Image")));
-            this.scname_btn.Location = new System.Drawing.Point(150, 38);
-            this.scname_btn.Name = "scname_btn";
-            this.scname_btn.Size = new System.Drawing.Size(25, 25);
-            this.scname_btn.TabIndex = 2;
-            this.scname_btn.UseVisualStyleBackColor = true;
-            this.scname_btn.Click += new System.EventHandler(this.scname_btn_Click);
             // 
             // scname_tb
             // 
@@ -2846,16 +2751,6 @@
             this.isearch_gb.TabIndex = 4;
             this.isearch_gb.TabStop = false;
             this.isearch_gb.Text = "Search by Item Name";
-            // 
-            // isearch_btn
-            // 
-            this.isearch_btn.Image = ((System.Drawing.Image)(resources.GetObject("isearch_btn.Image")));
-            this.isearch_btn.Location = new System.Drawing.Point(150, 20);
-            this.isearch_btn.Name = "isearch_btn";
-            this.isearch_btn.Size = new System.Drawing.Size(25, 25);
-            this.isearch_btn.TabIndex = 1;
-            this.isearch_btn.UseVisualStyleBackColor = true;
-            this.isearch_btn.Click += new System.EventHandler(this.isearch_btn_Click);
             // 
             // isearch_tb
             // 
@@ -2980,16 +2875,6 @@
             this.asearch_gb.TabIndex = 6;
             this.asearch_gb.TabStop = false;
             this.asearch_gb.Text = "Filter by Last Name";
-            // 
-            // asearch_btn
-            // 
-            this.asearch_btn.Image = ((System.Drawing.Image)(resources.GetObject("asearch_btn.Image")));
-            this.asearch_btn.Location = new System.Drawing.Point(150, 19);
-            this.asearch_btn.Name = "asearch_btn";
-            this.asearch_btn.Size = new System.Drawing.Size(25, 25);
-            this.asearch_btn.TabIndex = 1;
-            this.asearch_btn.UseVisualStyleBackColor = true;
-            this.asearch_btn.Click += new System.EventHandler(this.asearch_btn_Click);
             // 
             // asearch_tb
             // 
@@ -3164,26 +3049,6 @@
             this.search_gb.TabIndex = 3;
             this.search_gb.TabStop = false;
             this.search_gb.Text = "Search Loans By";
-            // 
-            // slamount_btn
-            // 
-            this.slamount_btn.Image = ((System.Drawing.Image)(resources.GetObject("slamount_btn.Image")));
-            this.slamount_btn.Location = new System.Drawing.Point(144, 103);
-            this.slamount_btn.Name = "slamount_btn";
-            this.slamount_btn.Size = new System.Drawing.Size(25, 25);
-            this.slamount_btn.TabIndex = 7;
-            this.slamount_btn.UseVisualStyleBackColor = true;
-            this.slamount_btn.Click += new System.EventHandler(this.slamount_btn_Click);
-            // 
-            // slname_btn
-            // 
-            this.slname_btn.Image = ((System.Drawing.Image)(resources.GetObject("slname_btn.Image")));
-            this.slname_btn.Location = new System.Drawing.Point(144, 46);
-            this.slname_btn.Name = "slname_btn";
-            this.slname_btn.Size = new System.Drawing.Size(25, 25);
-            this.slname_btn.TabIndex = 6;
-            this.slname_btn.UseVisualStyleBackColor = true;
-            this.slname_btn.Click += new System.EventHandler(this.slname_btn_Click);
             // 
             // label13
             // 
@@ -3370,6 +3235,143 @@
             this.transaction_btn.UseVisualStyleBackColor = true;
             this.transaction_btn.Click += new System.EventHandler(this.transaction_btn_Click);
             // 
+            // search_item0
+            // 
+            this.search_item0.Image = ((System.Drawing.Image)(resources.GetObject("search_item0.Image")));
+            this.search_item0.Location = new System.Drawing.Point(332, 14);
+            this.search_item0.Name = "search_item0";
+            this.search_item0.Size = new System.Drawing.Size(25, 25);
+            this.search_item0.TabIndex = 9;
+            this.search_item0.UseVisualStyleBackColor = true;
+            this.search_item0.Click += new System.EventHandler(this.search_item0_Click);
+            // 
+            // client_search_btn
+            // 
+            this.client_search_btn.Image = ((System.Drawing.Image)(resources.GetObject("client_search_btn.Image")));
+            this.client_search_btn.Location = new System.Drawing.Point(304, 40);
+            this.client_search_btn.Name = "client_search_btn";
+            this.client_search_btn.Size = new System.Drawing.Size(25, 25);
+            this.client_search_btn.TabIndex = 16;
+            this.client_search_btn.UseVisualStyleBackColor = true;
+            this.client_search_btn.Click += new System.EventHandler(this.client_search_btn_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox2.Location = new System.Drawing.Point(220, 214);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(346, 167);
+            this.pictureBox2.TabIndex = 24;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox1.Location = new System.Drawing.Point(425, 59);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(141, 132);
+            this.pictureBox1.TabIndex = 22;
+            this.pictureBox1.TabStop = false;
+            // 
+            // staff_pb
+            // 
+            this.staff_pb.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.staff_pb.Location = new System.Drawing.Point(388, 53);
+            this.staff_pb.Name = "staff_pb";
+            this.staff_pb.Size = new System.Drawing.Size(141, 132);
+            this.staff_pb.TabIndex = 53;
+            this.staff_pb.TabStop = false;
+            // 
+            // prof_pic_pbx
+            // 
+            this.prof_pic_pbx.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.prof_pic_pbx.Location = new System.Drawing.Point(27, 61);
+            this.prof_pic_pbx.Name = "prof_pic_pbx";
+            this.prof_pic_pbx.Size = new System.Drawing.Size(131, 151);
+            this.prof_pic_pbx.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.prof_pic_pbx.TabIndex = 15;
+            this.prof_pic_pbx.TabStop = false;
+            // 
+            // search_price_btn
+            // 
+            this.search_price_btn.Image = ((System.Drawing.Image)(resources.GetObject("search_price_btn.Image")));
+            this.search_price_btn.Location = new System.Drawing.Point(406, 139);
+            this.search_price_btn.Name = "search_price_btn";
+            this.search_price_btn.Size = new System.Drawing.Size(25, 25);
+            this.search_price_btn.TabIndex = 16;
+            this.search_price_btn.UseVisualStyleBackColor = true;
+            this.search_price_btn.Click += new System.EventHandler(this.search_price_btn_Click);
+            // 
+            // search_btn0
+            // 
+            this.search_btn0.Image = ((System.Drawing.Image)(resources.GetObject("search_btn0.Image")));
+            this.search_btn0.Location = new System.Drawing.Point(297, 10);
+            this.search_btn0.Name = "search_btn0";
+            this.search_btn0.Size = new System.Drawing.Size(25, 25);
+            this.search_btn0.TabIndex = 6;
+            this.search_btn0.UseVisualStyleBackColor = true;
+            this.search_btn0.Click += new System.EventHandler(this.search_btn_Click);
+            // 
+            // sclient_btn
+            // 
+            this.sclient_btn.Image = ((System.Drawing.Image)(resources.GetObject("sclient_btn.Image")));
+            this.sclient_btn.Location = new System.Drawing.Point(150, 79);
+            this.sclient_btn.Name = "sclient_btn";
+            this.sclient_btn.Size = new System.Drawing.Size(25, 25);
+            this.sclient_btn.TabIndex = 5;
+            this.sclient_btn.UseVisualStyleBackColor = true;
+            this.sclient_btn.Click += new System.EventHandler(this.sclient_btn_Click);
+            // 
+            // scname_btn
+            // 
+            this.scname_btn.Image = ((System.Drawing.Image)(resources.GetObject("scname_btn.Image")));
+            this.scname_btn.Location = new System.Drawing.Point(150, 38);
+            this.scname_btn.Name = "scname_btn";
+            this.scname_btn.Size = new System.Drawing.Size(25, 25);
+            this.scname_btn.TabIndex = 2;
+            this.scname_btn.UseVisualStyleBackColor = true;
+            this.scname_btn.Click += new System.EventHandler(this.scname_btn_Click);
+            // 
+            // isearch_btn
+            // 
+            this.isearch_btn.Image = ((System.Drawing.Image)(resources.GetObject("isearch_btn.Image")));
+            this.isearch_btn.Location = new System.Drawing.Point(150, 20);
+            this.isearch_btn.Name = "isearch_btn";
+            this.isearch_btn.Size = new System.Drawing.Size(25, 25);
+            this.isearch_btn.TabIndex = 1;
+            this.isearch_btn.UseVisualStyleBackColor = true;
+            this.isearch_btn.Click += new System.EventHandler(this.isearch_btn_Click);
+            // 
+            // asearch_btn
+            // 
+            this.asearch_btn.Image = ((System.Drawing.Image)(resources.GetObject("asearch_btn.Image")));
+            this.asearch_btn.Location = new System.Drawing.Point(150, 19);
+            this.asearch_btn.Name = "asearch_btn";
+            this.asearch_btn.Size = new System.Drawing.Size(25, 25);
+            this.asearch_btn.TabIndex = 1;
+            this.asearch_btn.UseVisualStyleBackColor = true;
+            this.asearch_btn.Click += new System.EventHandler(this.asearch_btn_Click);
+            // 
+            // slamount_btn
+            // 
+            this.slamount_btn.Image = ((System.Drawing.Image)(resources.GetObject("slamount_btn.Image")));
+            this.slamount_btn.Location = new System.Drawing.Point(144, 103);
+            this.slamount_btn.Name = "slamount_btn";
+            this.slamount_btn.Size = new System.Drawing.Size(25, 25);
+            this.slamount_btn.TabIndex = 7;
+            this.slamount_btn.UseVisualStyleBackColor = true;
+            this.slamount_btn.Click += new System.EventHandler(this.slamount_btn_Click);
+            // 
+            // slname_btn
+            // 
+            this.slname_btn.Image = ((System.Drawing.Image)(resources.GetObject("slname_btn.Image")));
+            this.slname_btn.Location = new System.Drawing.Point(144, 46);
+            this.slname_btn.Name = "slname_btn";
+            this.slname_btn.Size = new System.Drawing.Size(25, 25);
+            this.slname_btn.TabIndex = 6;
+            this.slname_btn.UseVisualStyleBackColor = true;
+            this.slname_btn.Click += new System.EventHandler(this.slname_btn_Click);
+            // 
             // profile_btn
             // 
             this.profile_btn.Image = ((System.Drawing.Image)(resources.GetObject("profile_btn.Image")));
@@ -3416,14 +3418,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.trans_data)).EndInit();
             this.confirmclient_panel.ResumeLayout(false);
             this.confirmclient_panel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.create_staff_panel.ResumeLayout(false);
             this.create_staff_panel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.staff_pb)).EndInit();
             this.profile_panel.ResumeLayout(false);
             this.profile_panel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.prof_pic_pbx)).EndInit();
             this.view_item_panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.item_data)).EndInit();
             this.view_acc_panel.ResumeLayout(false);
@@ -3461,6 +3459,10 @@
             this.loansfilter_gb.PerformLayout();
             this.profile_sidepanel.ResumeLayout(false);
             this.dashboard_panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.staff_pb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.prof_pic_pbx)).EndInit();
             this.ResumeLayout(false);
 
         }
