@@ -27,7 +27,7 @@ class ReportController extends Controller
             }
         }
 
-        return $filtered;
+        return response()->json($filtered, 200);
     }
 
     public function getTransactionReportDaily(Request $request)
@@ -47,7 +47,7 @@ class ReportController extends Controller
             }
         }
 
-        return $filtered;
+        return response()->json($filtered, 200);
     }
 
     public function getTransactionReportMonthly(Request $request)
@@ -76,6 +76,6 @@ class ReportController extends Controller
 //            echo $month . "\n";
         }
 
-        return $filtered;
+        return response()->json($filtered, 200);
     }
 }
