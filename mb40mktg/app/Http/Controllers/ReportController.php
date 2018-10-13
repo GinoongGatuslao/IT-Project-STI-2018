@@ -5,12 +5,18 @@ namespace App\Http\Controllers;
 use App\Transaction;
 use Illuminate\Http\Request;
 use DateTime;
+use Illuminate\Support\Facades\DB;
 
 class ReportController extends Controller
 {
     public function getTransactionReportWeekly(Request $request)
     {
-        $transactions = Transaction::all();
+//        $transactions = Transaction::all();
+        $transactions = DB::select(DB::raw("
+        SELECT trans.*, profile.last_name
+        FROM tbl_transactions trans
+        INNER JOIN tbl_profiles profile ON profile.id = trans.collector_id
+        "));
         $filtered = Array();
         foreach ($transactions as $transaction) {
             $date = $transaction->created_at;
@@ -26,7 +32,11 @@ class ReportController extends Controller
 
     public function getTransactionReportDaily(Request $request)
     {
-        $transactions = Transaction::all();
+        $transactions = DB::select(DB::raw("
+        SELECT trans.*, profile.last_name
+        FROM tbl_transactions trans
+        INNER JOIN tbl_profiles profile ON profile.id = trans.collector_id
+        "));
         $filtered = Array();
         foreach ($transactions as $transaction) {
             $date = $transaction->created_at;
@@ -42,7 +52,11 @@ class ReportController extends Controller
 
     public function getTransactionReportMonthly(Request $request)
     {
-        $transactions = Transaction::all();
+        $transactions = DB::select(DB::raw("
+        SELECT trans.*, profile.last_name
+        FROM tbl_transactions trans
+        INNER JOIN tbl_profiles profile ON profile.id = trans.collector_id
+        "));
         $filtered = Array();
         foreach ($transactions as $transaction) {
             $date = $transaction->created_at;
