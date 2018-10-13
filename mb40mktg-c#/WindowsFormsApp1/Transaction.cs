@@ -21,6 +21,6 @@ namespace WindowsFormsApp1
         public string last_name { get; set; }
         public string c_fname { get; set; }
         public string c_mname { get; set; }
-        public string c_lnmae { get; set; }
+        public string c_lname { get; set; }
     }
 }

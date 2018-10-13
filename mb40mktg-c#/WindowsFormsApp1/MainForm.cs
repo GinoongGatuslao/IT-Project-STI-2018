@@ -33,6 +33,7 @@ namespace WindowsFormsApp1
         private List<Loan> loans;
         private List<Profile> profiles;
         private List<Item> items;
+        private List<Transaction> transactions;
         private static Random random = new Random();
         private bool edit = false;
         private int selected_loanid = 0;
@@ -527,7 +528,7 @@ namespace WindowsFormsApp1
                 response = restClient.GetRequest();
                 Console.WriteLine(response);
 
-                var transactions = JsonConvert.DeserializeObject<List<Transaction>>(response);
+                transactions = JsonConvert.DeserializeObject<List<Transaction>>(response);
                 trans_data.DataSource = null;
 
                 if (transactions.Count != 0)
@@ -1499,12 +1500,75 @@ namespace WindowsFormsApp1
 
         private void scname_btn_Click(object sender, EventArgs e)
         {
+            trans_data.DataSource = null;
+            if (transactions.Count != 0)
+            {
+                List<Transaction> new_trans = new List<Transaction>();
+                foreach (Transaction i in transactions)
+                {
+                    if (!scname_tb.Text.ToString().Equals(string.Empty))
+                    {
+                        if (i.last_name.ToString().Equals(scname_tb.Text.ToString(), StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            new_trans.Add(i);
+                        }
+                    } else
+                    {
+                        new_trans.Add(i);
+                    }
+                    
+                }
 
+                if (new_trans.Count != 0)
+                {
+                    trans_data.DataSource = new_trans;
+                    trans_data.Visible = true;
+                    no_trans.Visible = false;
+                    format_transDataTable();
+                }
+                else
+                {
+                    trans_data.Visible = false;
+                    no_trans.Visible = true;
+                }
+            }
         }
 
         private void sclient_btn_Click(object sender, EventArgs e)
         {
-           
+            trans_data.DataSource = null;
+            if (transactions.Count != 0)
+            {
+                List<Transaction> new_trans = new List<Transaction>();
+                foreach (Transaction i in transactions)
+                {
+                    if (!sclient_tb.Text.ToString().Equals(string.Empty))
+                    {
+                        if (i.c_lname.ToString().Equals(sclient_tb.Text.ToString(), StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            new_trans.Add(i);
+                        }
+                    }
+                    else
+                    {
+                        new_trans.Add(i);
+                    }
+
+                }
+
+                if (new_trans.Count != 0)
+                {
+                    trans_data.DataSource = new_trans;
+                    trans_data.Visible = true;
+                    no_trans.Visible = false;
+                    format_transDataTable();
+                }
+                else
+                {
+                    trans_data.Visible = false;
+                    no_trans.Visible = true;
+                }
+            }
         }
 
         private void asearch_btn_Click(object sender, EventArgs e)
@@ -2462,13 +2526,28 @@ namespace WindowsFormsApp1
 
         private void format_transDataTable()
         {
-            /**trans_data.Columns[0].HeaderText = "ID";
-            trans_data.Columns[].HeaderText = "";
-            trans_data.Columns[].HeaderText = "";
-            trans_data.Columns[].HeaderText = "";
-            trans_data.Columns[].HeaderText = "";
-            trans_data.Columns[].HeaderText = "";
-            trans_data.Columns[].HeaderText = "";**/
+            trans_data.Columns[0].HeaderText = "ID";
+            trans_data.Columns[2].HeaderText = "Loan ID";
+            trans_data.Columns[4].HeaderText = "Payment";
+            trans_data.Columns[5].HeaderText = "Balance";
+            trans_data.Columns[10].HeaderText = "Client";
+            trans_data.Columns[13].HeaderText = "Collected By";
+
+            trans_data.Columns[1].Visible = false;
+            trans_data.Columns[3].Visible = false;
+            trans_data.Columns[6].Visible = false;
+            trans_data.Columns[7].Visible = false;
+            trans_data.Columns[8].Visible = false;
+            trans_data.Columns[9].Visible = false;
+            trans_data.Columns[11].Visible = false;
+            trans_data.Columns[12].Visible = false;
+
+            trans_data.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            trans_data.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            trans_data.Columns[4].DefaultCellStyle.Format = "N1";
+            trans_data.Columns[5].DefaultCellStyle.Format = "N1";
+            trans_data.Columns[0].Width = 85;
+            trans_data.Columns[2].Width = 85;
         }
 
         public void ClearTextBoxesInAddLoan(Control.ControlCollection ctrlCollection)

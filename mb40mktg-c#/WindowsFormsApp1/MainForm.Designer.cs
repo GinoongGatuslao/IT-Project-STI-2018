@@ -33,6 +33,20 @@
             this.inventorymgt_btn = new System.Windows.Forms.Button();
             this.loanmgt_btn = new System.Windows.Forms.Button();
             this.main_panel = new System.Windows.Forms.Panel();
+            this.reports_panel = new System.Windows.Forms.Panel();
+            this.label85 = new System.Windows.Forms.Label();
+            this.application_btn = new System.Windows.Forms.Button();
+            this.sales_btn = new System.Windows.Forms.Button();
+            this.payment_btn = new System.Windows.Forms.Button();
+            this.damaged_btn = new System.Windows.Forms.Button();
+            this.stock_btn = new System.Windows.Forms.Button();
+            this.repossessed_btn = new System.Windows.Forms.Button();
+            this.label84 = new System.Windows.Forms.Label();
+            this.monthly_btn = new System.Windows.Forms.Button();
+            this.weekly_btn = new System.Windows.Forms.Button();
+            this.daily_btn = new System.Windows.Forms.Button();
+            this.label82 = new System.Windows.Forms.Label();
+            this.label83 = new System.Windows.Forms.Label();
             this.addloan_panel = new System.Windows.Forms.Panel();
             this.label89 = new System.Windows.Forms.Label();
             this.label58 = new System.Windows.Forms.Label();
@@ -306,26 +320,13 @@
             this.inactive_rb = new System.Windows.Forms.RadioButton();
             this.profile_sidepanel = new System.Windows.Forms.Panel();
             this.edit_profile_btn = new System.Windows.Forms.Button();
-            this.reports_panel = new System.Windows.Forms.Panel();
-            this.label85 = new System.Windows.Forms.Label();
-            this.application_btn = new System.Windows.Forms.Button();
-            this.sales_btn = new System.Windows.Forms.Button();
-            this.payment_btn = new System.Windows.Forms.Button();
-            this.damaged_btn = new System.Windows.Forms.Button();
-            this.stock_btn = new System.Windows.Forms.Button();
-            this.repossessed_btn = new System.Windows.Forms.Button();
-            this.label84 = new System.Windows.Forms.Label();
-            this.monthly_btn = new System.Windows.Forms.Button();
-            this.weekly_btn = new System.Windows.Forms.Button();
-            this.daily_btn = new System.Windows.Forms.Button();
-            this.label82 = new System.Windows.Forms.Label();
-            this.label83 = new System.Windows.Forms.Label();
             this.dashboard_panel = new System.Windows.Forms.Panel();
             this.reports_btn = new System.Windows.Forms.Button();
             this.transaction_btn = new System.Windows.Forms.Button();
             this.profile_btn = new System.Windows.Forms.Button();
             this.logout_btn = new System.Windows.Forms.Button();
             this.main_panel.SuspendLayout();
+            this.reports_panel.SuspendLayout();
             this.addloan_panel.SuspendLayout();
             this.loan_items_fp.SuspendLayout();
             this.loanItem0.SuspendLayout();
@@ -362,7 +363,6 @@
             this.search_gb.SuspendLayout();
             this.loansfilter_gb.SuspendLayout();
             this.profile_sidepanel.SuspendLayout();
-            this.reports_panel.SuspendLayout();
             this.dashboard_panel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -401,9 +401,8 @@
             // 
             // main_panel
             // 
-            this.main_panel.Controls.Add(this.reports_panel);
-            this.main_panel.Controls.Add(this.addloan_panel);
             this.main_panel.Controls.Add(this.trans_panel);
+            this.main_panel.Controls.Add(this.addloan_panel);
             this.main_panel.Controls.Add(this.confirmclient_panel);
             this.main_panel.Controls.Add(this.create_staff_panel);
             this.main_panel.Controls.Add(this.profile_panel);
@@ -418,11 +417,169 @@
             this.main_panel.Controls.Add(this.confirmclient_sidepanel);
             this.main_panel.Controls.Add(this.loan_sidepanel);
             this.main_panel.Controls.Add(this.profile_sidepanel);
+            this.main_panel.Controls.Add(this.reports_panel);
             this.main_panel.Location = new System.Drawing.Point(1, 1);
             this.main_panel.Name = "main_panel";
             this.main_panel.Size = new System.Drawing.Size(799, 450);
             this.main_panel.TabIndex = 3;
             this.main_panel.Visible = false;
+            // 
+            // reports_panel
+            // 
+            this.reports_panel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.reports_panel.Controls.Add(this.label85);
+            this.reports_panel.Controls.Add(this.application_btn);
+            this.reports_panel.Controls.Add(this.sales_btn);
+            this.reports_panel.Controls.Add(this.payment_btn);
+            this.reports_panel.Controls.Add(this.damaged_btn);
+            this.reports_panel.Controls.Add(this.stock_btn);
+            this.reports_panel.Controls.Add(this.repossessed_btn);
+            this.reports_panel.Controls.Add(this.label84);
+            this.reports_panel.Controls.Add(this.monthly_btn);
+            this.reports_panel.Controls.Add(this.weekly_btn);
+            this.reports_panel.Controls.Add(this.daily_btn);
+            this.reports_panel.Controls.Add(this.label82);
+            this.reports_panel.Controls.Add(this.label83);
+            this.reports_panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.reports_panel.Location = new System.Drawing.Point(0, 0);
+            this.reports_panel.Name = "reports_panel";
+            this.reports_panel.Size = new System.Drawing.Size(799, 450);
+            this.reports_panel.TabIndex = 41;
+            // 
+            // label85
+            // 
+            this.label85.AutoSize = true;
+            this.label85.Font = new System.Drawing.Font("Book Antiqua", 15.75F);
+            this.label85.Location = new System.Drawing.Point(609, 96);
+            this.label85.Name = "label85";
+            this.label85.Size = new System.Drawing.Size(130, 26);
+            this.label85.TabIndex = 22;
+            this.label85.Text = "Transactions";
+            // 
+            // application_btn
+            // 
+            this.application_btn.Font = new System.Drawing.Font("Book Antiqua", 12F);
+            this.application_btn.Location = new System.Drawing.Point(585, 204);
+            this.application_btn.Name = "application_btn";
+            this.application_btn.Size = new System.Drawing.Size(178, 30);
+            this.application_btn.TabIndex = 21;
+            this.application_btn.Text = "Loan Application";
+            this.application_btn.UseVisualStyleBackColor = true;
+            this.application_btn.Click += new System.EventHandler(this.application_btn_Click);
+            // 
+            // sales_btn
+            // 
+            this.sales_btn.Font = new System.Drawing.Font("Book Antiqua", 12F);
+            this.sales_btn.Location = new System.Drawing.Point(585, 167);
+            this.sales_btn.Name = "sales_btn";
+            this.sales_btn.Size = new System.Drawing.Size(178, 30);
+            this.sales_btn.TabIndex = 20;
+            this.sales_btn.Text = "Summary of Sales";
+            this.sales_btn.UseVisualStyleBackColor = true;
+            // 
+            // payment_btn
+            // 
+            this.payment_btn.Font = new System.Drawing.Font("Book Antiqua", 12F);
+            this.payment_btn.Location = new System.Drawing.Point(585, 130);
+            this.payment_btn.Name = "payment_btn";
+            this.payment_btn.Size = new System.Drawing.Size(178, 30);
+            this.payment_btn.TabIndex = 19;
+            this.payment_btn.Text = "Customer Payments";
+            this.payment_btn.UseVisualStyleBackColor = true;
+            // 
+            // damaged_btn
+            // 
+            this.damaged_btn.Font = new System.Drawing.Font("Book Antiqua", 12F);
+            this.damaged_btn.Location = new System.Drawing.Point(44, 205);
+            this.damaged_btn.Name = "damaged_btn";
+            this.damaged_btn.Size = new System.Drawing.Size(144, 30);
+            this.damaged_btn.TabIndex = 18;
+            this.damaged_btn.Text = "Damaged";
+            this.damaged_btn.UseVisualStyleBackColor = true;
+            this.damaged_btn.Click += new System.EventHandler(this.damaged_btn_Click);
+            // 
+            // stock_btn
+            // 
+            this.stock_btn.Font = new System.Drawing.Font("Book Antiqua", 12F);
+            this.stock_btn.Location = new System.Drawing.Point(44, 130);
+            this.stock_btn.Name = "stock_btn";
+            this.stock_btn.Size = new System.Drawing.Size(144, 30);
+            this.stock_btn.TabIndex = 17;
+            this.stock_btn.Text = "Current Stock";
+            this.stock_btn.UseVisualStyleBackColor = true;
+            this.stock_btn.Click += new System.EventHandler(this.stock_btn_Click);
+            // 
+            // repossessed_btn
+            // 
+            this.repossessed_btn.Font = new System.Drawing.Font("Book Antiqua", 12F);
+            this.repossessed_btn.Location = new System.Drawing.Point(44, 167);
+            this.repossessed_btn.Name = "repossessed_btn";
+            this.repossessed_btn.Size = new System.Drawing.Size(144, 30);
+            this.repossessed_btn.TabIndex = 16;
+            this.repossessed_btn.Text = "Repossessed";
+            this.repossessed_btn.UseVisualStyleBackColor = true;
+            this.repossessed_btn.Click += new System.EventHandler(this.repossessed_btn_Click);
+            // 
+            // label84
+            // 
+            this.label84.AutoSize = true;
+            this.label84.Font = new System.Drawing.Font("Book Antiqua", 15.75F);
+            this.label84.Location = new System.Drawing.Point(36, 96);
+            this.label84.Name = "label84";
+            this.label84.Size = new System.Drawing.Size(160, 26);
+            this.label84.TabIndex = 15;
+            this.label84.Text = "Items Inventory";
+            // 
+            // monthly_btn
+            // 
+            this.monthly_btn.Font = new System.Drawing.Font("Book Antiqua", 12F);
+            this.monthly_btn.Location = new System.Drawing.Point(355, 203);
+            this.monthly_btn.Name = "monthly_btn";
+            this.monthly_btn.Size = new System.Drawing.Size(86, 30);
+            this.monthly_btn.TabIndex = 14;
+            this.monthly_btn.Text = "Monthly";
+            this.monthly_btn.UseVisualStyleBackColor = true;
+            // 
+            // weekly_btn
+            // 
+            this.weekly_btn.Font = new System.Drawing.Font("Book Antiqua", 12F);
+            this.weekly_btn.Location = new System.Drawing.Point(355, 167);
+            this.weekly_btn.Name = "weekly_btn";
+            this.weekly_btn.Size = new System.Drawing.Size(86, 30);
+            this.weekly_btn.TabIndex = 13;
+            this.weekly_btn.Text = "Weekly";
+            this.weekly_btn.UseVisualStyleBackColor = true;
+            // 
+            // daily_btn
+            // 
+            this.daily_btn.Font = new System.Drawing.Font("Book Antiqua", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.daily_btn.Location = new System.Drawing.Point(355, 131);
+            this.daily_btn.Name = "daily_btn";
+            this.daily_btn.Size = new System.Drawing.Size(86, 30);
+            this.daily_btn.TabIndex = 12;
+            this.daily_btn.Text = "Daily";
+            this.daily_btn.UseVisualStyleBackColor = true;
+            // 
+            // label82
+            // 
+            this.label82.AutoSize = true;
+            this.label82.Font = new System.Drawing.Font("Book Antiqua", 15.75F);
+            this.label82.Location = new System.Drawing.Point(286, 96);
+            this.label82.Name = "label82";
+            this.label82.Size = new System.Drawing.Size(235, 26);
+            this.label82.TabIndex = 11;
+            this.label82.Text = "Summary of Collections";
+            // 
+            // label83
+            // 
+            this.label83.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label83.Font = new System.Drawing.Font("Bookman Old Style", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label83.Location = new System.Drawing.Point(0, 0);
+            this.label83.Name = "label83";
+            this.label83.Size = new System.Drawing.Size(795, 22);
+            this.label83.TabIndex = 10;
+            this.label83.Text = "GENERATE REPORTS";
+            this.label83.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // addloan_panel
             // 
@@ -3174,163 +3331,6 @@
             this.edit_profile_btn.UseVisualStyleBackColor = true;
             this.edit_profile_btn.Click += new System.EventHandler(this.edit_profile_btn_Click);
             // 
-            // reports_panel
-            // 
-            this.reports_panel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.reports_panel.Controls.Add(this.label85);
-            this.reports_panel.Controls.Add(this.application_btn);
-            this.reports_panel.Controls.Add(this.sales_btn);
-            this.reports_panel.Controls.Add(this.payment_btn);
-            this.reports_panel.Controls.Add(this.damaged_btn);
-            this.reports_panel.Controls.Add(this.stock_btn);
-            this.reports_panel.Controls.Add(this.repossessed_btn);
-            this.reports_panel.Controls.Add(this.label84);
-            this.reports_panel.Controls.Add(this.monthly_btn);
-            this.reports_panel.Controls.Add(this.weekly_btn);
-            this.reports_panel.Controls.Add(this.daily_btn);
-            this.reports_panel.Controls.Add(this.label82);
-            this.reports_panel.Controls.Add(this.label83);
-            this.reports_panel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.reports_panel.Location = new System.Drawing.Point(0, 24);
-            this.reports_panel.Name = "reports_panel";
-            this.reports_panel.Size = new System.Drawing.Size(799, 426);
-            this.reports_panel.TabIndex = 41;
-            // 
-            // label85
-            // 
-            this.label85.AutoSize = true;
-            this.label85.Font = new System.Drawing.Font("Book Antiqua", 15.75F);
-            this.label85.Location = new System.Drawing.Point(609, 96);
-            this.label85.Name = "label85";
-            this.label85.Size = new System.Drawing.Size(130, 26);
-            this.label85.TabIndex = 22;
-            this.label85.Text = "Transactions";
-            // 
-            // application_btn
-            // 
-            this.application_btn.Font = new System.Drawing.Font("Book Antiqua", 12F);
-            this.application_btn.Location = new System.Drawing.Point(585, 204);
-            this.application_btn.Name = "application_btn";
-            this.application_btn.Size = new System.Drawing.Size(178, 30);
-            this.application_btn.TabIndex = 21;
-            this.application_btn.Text = "Loan Application";
-            this.application_btn.UseVisualStyleBackColor = true;
-            this.application_btn.Click += new System.EventHandler(this.application_btn_Click);
-            // 
-            // sales_btn
-            // 
-            this.sales_btn.Font = new System.Drawing.Font("Book Antiqua", 12F);
-            this.sales_btn.Location = new System.Drawing.Point(585, 167);
-            this.sales_btn.Name = "sales_btn";
-            this.sales_btn.Size = new System.Drawing.Size(178, 30);
-            this.sales_btn.TabIndex = 20;
-            this.sales_btn.Text = "Summary of Sales";
-            this.sales_btn.UseVisualStyleBackColor = true;
-            // 
-            // payment_btn
-            // 
-            this.payment_btn.Font = new System.Drawing.Font("Book Antiqua", 12F);
-            this.payment_btn.Location = new System.Drawing.Point(585, 130);
-            this.payment_btn.Name = "payment_btn";
-            this.payment_btn.Size = new System.Drawing.Size(178, 30);
-            this.payment_btn.TabIndex = 19;
-            this.payment_btn.Text = "Customer Payments";
-            this.payment_btn.UseVisualStyleBackColor = true;
-            // 
-            // damaged_btn
-            // 
-            this.damaged_btn.Font = new System.Drawing.Font("Book Antiqua", 12F);
-            this.damaged_btn.Location = new System.Drawing.Point(44, 205);
-            this.damaged_btn.Name = "damaged_btn";
-            this.damaged_btn.Size = new System.Drawing.Size(144, 30);
-            this.damaged_btn.TabIndex = 18;
-            this.damaged_btn.Text = "Damaged";
-            this.damaged_btn.UseVisualStyleBackColor = true;
-            this.damaged_btn.Click += new System.EventHandler(this.damaged_btn_Click);
-            // 
-            // stock_btn
-            // 
-            this.stock_btn.Font = new System.Drawing.Font("Book Antiqua", 12F);
-            this.stock_btn.Location = new System.Drawing.Point(44, 130);
-            this.stock_btn.Name = "stock_btn";
-            this.stock_btn.Size = new System.Drawing.Size(144, 30);
-            this.stock_btn.TabIndex = 17;
-            this.stock_btn.Text = "Current Stock";
-            this.stock_btn.UseVisualStyleBackColor = true;
-            this.stock_btn.Click += new System.EventHandler(this.stock_btn_Click);
-            // 
-            // repossessed_btn
-            // 
-            this.repossessed_btn.Font = new System.Drawing.Font("Book Antiqua", 12F);
-            this.repossessed_btn.Location = new System.Drawing.Point(44, 167);
-            this.repossessed_btn.Name = "repossessed_btn";
-            this.repossessed_btn.Size = new System.Drawing.Size(144, 30);
-            this.repossessed_btn.TabIndex = 16;
-            this.repossessed_btn.Text = "Repossessed";
-            this.repossessed_btn.UseVisualStyleBackColor = true;
-            this.repossessed_btn.Click += new System.EventHandler(this.repossessed_btn_Click);
-            // 
-            // label84
-            // 
-            this.label84.AutoSize = true;
-            this.label84.Font = new System.Drawing.Font("Book Antiqua", 15.75F);
-            this.label84.Location = new System.Drawing.Point(36, 96);
-            this.label84.Name = "label84";
-            this.label84.Size = new System.Drawing.Size(160, 26);
-            this.label84.TabIndex = 15;
-            this.label84.Text = "Items Inventory";
-            // 
-            // monthly_btn
-            // 
-            this.monthly_btn.Font = new System.Drawing.Font("Book Antiqua", 12F);
-            this.monthly_btn.Location = new System.Drawing.Point(355, 203);
-            this.monthly_btn.Name = "monthly_btn";
-            this.monthly_btn.Size = new System.Drawing.Size(86, 30);
-            this.monthly_btn.TabIndex = 14;
-            this.monthly_btn.Text = "Monthly";
-            this.monthly_btn.UseVisualStyleBackColor = true;
-            // 
-            // weekly_btn
-            // 
-            this.weekly_btn.Font = new System.Drawing.Font("Book Antiqua", 12F);
-            this.weekly_btn.Location = new System.Drawing.Point(355, 167);
-            this.weekly_btn.Name = "weekly_btn";
-            this.weekly_btn.Size = new System.Drawing.Size(86, 30);
-            this.weekly_btn.TabIndex = 13;
-            this.weekly_btn.Text = "Weekly";
-            this.weekly_btn.UseVisualStyleBackColor = true;
-            // 
-            // daily_btn
-            // 
-            this.daily_btn.Font = new System.Drawing.Font("Book Antiqua", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.daily_btn.Location = new System.Drawing.Point(355, 131);
-            this.daily_btn.Name = "daily_btn";
-            this.daily_btn.Size = new System.Drawing.Size(86, 30);
-            this.daily_btn.TabIndex = 12;
-            this.daily_btn.Text = "Daily";
-            this.daily_btn.UseVisualStyleBackColor = true;
-            // 
-            // label82
-            // 
-            this.label82.AutoSize = true;
-            this.label82.Font = new System.Drawing.Font("Book Antiqua", 15.75F);
-            this.label82.Location = new System.Drawing.Point(286, 96);
-            this.label82.Name = "label82";
-            this.label82.Size = new System.Drawing.Size(235, 26);
-            this.label82.TabIndex = 11;
-            this.label82.Text = "Summary of Collections";
-            // 
-            // label83
-            // 
-            this.label83.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label83.Font = new System.Drawing.Font("Bookman Old Style", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label83.Location = new System.Drawing.Point(0, 0);
-            this.label83.Name = "label83";
-            this.label83.Size = new System.Drawing.Size(795, 22);
-            this.label83.TabIndex = 10;
-            this.label83.Text = "GENERATE REPORTS";
-            this.label83.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // dashboard_panel
             // 
             this.dashboard_panel.Controls.Add(this.reports_btn);
@@ -3402,6 +3402,8 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.main_panel.ResumeLayout(false);
             this.main_panel.PerformLayout();
+            this.reports_panel.ResumeLayout(false);
+            this.reports_panel.PerformLayout();
             this.addloan_panel.ResumeLayout(false);
             this.addloan_panel.PerformLayout();
             this.loan_items_fp.ResumeLayout(false);
@@ -3455,8 +3457,6 @@
             this.loansfilter_gb.ResumeLayout(false);
             this.loansfilter_gb.PerformLayout();
             this.profile_sidepanel.ResumeLayout(false);
-            this.reports_panel.ResumeLayout(false);
-            this.reports_panel.PerformLayout();
             this.dashboard_panel.ResumeLayout(false);
             this.ResumeLayout(false);
 
