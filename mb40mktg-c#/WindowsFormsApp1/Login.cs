@@ -7,8 +7,8 @@ namespace WindowsFormsApp1
 {
     public partial class Login : Form
     {
-        public static string api_token = "2tZegRSDH1is1I2Kxz19D21AJAf8kRn4Gbf1vtQNQP5OnObPn8NIHmKMIgEu";
-        public static int id = 4;
+        public static string api_token = string.Empty;
+        public static int id = 0;
         public static int user_type = 0;
 
         public Login()
