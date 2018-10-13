@@ -554,6 +554,27 @@ namespace WindowsFormsApp1
             reports_panel.BringToFront();
         }
 
+        private void daily_btn_Click(object sender, EventArgs e)
+        {
+            SummaryPrompt prompt = new SummaryPrompt();
+            prompt.tag = "DAILY";
+            prompt.Show();
+        }
+
+        private void weekly_btn_Click(object sender, EventArgs e)
+        {
+            SummaryPrompt prompt = new SummaryPrompt();
+            prompt.tag = "WEEKLY";
+            prompt.Show();
+        }
+
+        private void monthly_btn_Click(object sender, EventArgs e)
+        {
+            SummaryPrompt prompt = new SummaryPrompt();
+            prompt.tag = "MONTHLY";
+            prompt.Show();
+        }
+
         /**
          * CLICK EVENTS
          **/

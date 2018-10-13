@@ -10,6 +10,8 @@ namespace WindowsFormsApp1
         public string endPoint { get; set; }
         public string postJSON { get; set; }
         public bool login { get; set; }
+        public string header { get; set; }
+        public string tag { get; set; }
 
         public RestClient()
         {
@@ -128,6 +130,19 @@ namespace WindowsFormsApp1
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(endPoint);
             request.Method = "GET";
             request.Headers.Add("Authorization", "Bearer " + Login.api_token);
+
+            switch(tag)
+            {
+                case "daily":
+                    request.Headers.Add("day", header);
+                    break;
+                case "weekly":
+                    request.Headers.Add("week", header);
+                    break;
+                case "monthly":
+                    request.Headers.Add("month", header);
+                    break;
+            }
 
             HttpWebResponse response = null;
 

@@ -107,6 +107,12 @@
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
     <Compile Include="StatusList.cs" />
+    <Compile Include="SummaryPrompt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SummaryPrompt.Designer.cs">
+      <DependentUpon>SummaryPrompt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Transaction.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserType.cs" />
@@ -132,6 +138,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SummaryPrompt.resx">
+      <DependentUpon>SummaryPrompt.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

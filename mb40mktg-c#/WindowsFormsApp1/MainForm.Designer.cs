@@ -401,6 +401,7 @@
             // 
             // main_panel
             // 
+            this.main_panel.Controls.Add(this.reports_panel);
             this.main_panel.Controls.Add(this.trans_panel);
             this.main_panel.Controls.Add(this.addloan_panel);
             this.main_panel.Controls.Add(this.confirmclient_panel);
@@ -417,7 +418,6 @@
             this.main_panel.Controls.Add(this.confirmclient_sidepanel);
             this.main_panel.Controls.Add(this.loan_sidepanel);
             this.main_panel.Controls.Add(this.profile_sidepanel);
-            this.main_panel.Controls.Add(this.reports_panel);
             this.main_panel.Location = new System.Drawing.Point(1, 1);
             this.main_panel.Name = "main_panel";
             this.main_panel.Size = new System.Drawing.Size(799, 450);
@@ -441,9 +441,9 @@
             this.reports_panel.Controls.Add(this.label82);
             this.reports_panel.Controls.Add(this.label83);
             this.reports_panel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.reports_panel.Location = new System.Drawing.Point(0, 0);
+            this.reports_panel.Location = new System.Drawing.Point(0, 24);
             this.reports_panel.Name = "reports_panel";
-            this.reports_panel.Size = new System.Drawing.Size(799, 450);
+            this.reports_panel.Size = new System.Drawing.Size(799, 426);
             this.reports_panel.TabIndex = 41;
             // 
             // label85
@@ -539,6 +539,7 @@
             this.monthly_btn.TabIndex = 14;
             this.monthly_btn.Text = "Monthly";
             this.monthly_btn.UseVisualStyleBackColor = true;
+            this.monthly_btn.Click += new System.EventHandler(this.monthly_btn_Click);
             // 
             // weekly_btn
             // 
@@ -549,6 +550,7 @@
             this.weekly_btn.TabIndex = 13;
             this.weekly_btn.Text = "Weekly";
             this.weekly_btn.UseVisualStyleBackColor = true;
+            this.weekly_btn.Click += new System.EventHandler(this.weekly_btn_Click);
             // 
             // daily_btn
             // 
@@ -559,6 +561,7 @@
             this.daily_btn.TabIndex = 12;
             this.daily_btn.Text = "Daily";
             this.daily_btn.UseVisualStyleBackColor = true;
+            this.daily_btn.Click += new System.EventHandler(this.daily_btn_Click);
             // 
             // label82
             // 

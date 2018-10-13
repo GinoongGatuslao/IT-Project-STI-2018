@@ -62,4 +62,16 @@ namespace WindowsFormsApp1
         public double credit_limit { get; set; }
         public double remaining_balance { get; set; }
     }
+
+    class Summary
+    {
+        public static string[] headers = {"", "ID", "LOAN ID", "PAYMENT", "BALANCE"
+                , "DATE", "COLLECTOR"};
+        public int id { get; set; }
+        public int loan_id { get; set; }
+        public double payment { get; set; }
+        public double remaining_balance { get; set; }
+        public string created_at { get; set; }
+        public string last_name { get; set; }
+    }
 }
