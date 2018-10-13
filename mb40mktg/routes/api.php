@@ -74,6 +74,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('loan/getloans', 'LoanController@getAllLoan');
     Route::get('loan/getloan/{account_id}', 'LoanController@getLoan');
     Route::get('loan/getloanbyid/{loan_id}', 'LoanController@getLoanById');
+    Route::get('loan/getloanbystatus/{status}', 'LoanController@getLoanByStatus');
     Route::get('loan/getloanitems/{loan_id}', 'LoanController@getLoanItems');
     Route::post('loan/addloan', 'LoanController@storeLoan');
     Route::put('loan/updateloan/{id}', 'LoanController@updateLoan');
@@ -89,4 +90,11 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('transaction/collector/{id}', 'TransactionController@getTransactionByCollector');
     Route::get('transaction/loan/{id}', 'TransactionController@getTransactionByLoan');
     Route::get('transaction/pay_range', 'TransactionController@getTransactionByPaymentRange');
+
+    /**
+     * REPORTS
+     */
+    Route::get('reports/week', 'ReportController@getTransactionReportWeekly');
+    Route::get('reports/day', 'ReportController@getTransactionReportDaily');
+    Route::get('reports/month', 'ReportController@getTransactionReportMonthly');
 });

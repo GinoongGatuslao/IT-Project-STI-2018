@@ -58,6 +58,22 @@ class LoanController extends Controller
         return response()->json($loan[0], 200);
     }
 
+    public function getLoanByStatus($status)
+    {
+        $loan = DB::select(DB::raw("
+        SELECT loan.*, 
+            profile.first_name, profile.middle_name, 
+            profile.last_name, profile.contact_num, 
+            profile.address, profile.credit_limit
+        FROM tbl_loans loan
+        INNER JOIN tbl_profiles profile ON loan.profile_id = profile.id
+        WHERE loan.status = :loan_id"), array("loan_id" => $status));
+        foreach ($loan as $l) {
+            $l->status_str = LoanStatus::getStatusStr($l->status);
+        }
+        return response()->json($loan, 200);
+    }
+
     public function getLoanItems($loan_id)
     {
         $loanitems = DB::select(DB::raw(
