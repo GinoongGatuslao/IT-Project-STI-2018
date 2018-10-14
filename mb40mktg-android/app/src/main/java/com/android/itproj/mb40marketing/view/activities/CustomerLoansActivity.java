@@ -276,12 +276,14 @@ public class CustomerLoansActivity extends AppCompatActivity implements
         addPaymentButton.setEnabled(false);
         viewLoansBtn.setEnabled(false);
         LoanModel model = (LoanModel) loanSpinner.getSelectedItem();
+        Log.d(TAG, "addPayment: " + model.toString());
         ProfileModel profile = ((CoreApp) getApplication()).getProfileController().getProfile();
         AddPaymentDialogFragment addPaymentDialogFragment = AddPaymentDialogFragment.newInstance(
                 model.getCreated_at(),
                 model.getProfile_id(),
                 model.getId(),
                 profile.getId(),
+                model.getAmortization(),
                 getCustomerProfile().getLast_name() + ", " + getCustomerProfile().getFirst_name() + " " + getCustomerProfile().getMiddle_name(),
                 profile.getLast_name() + ", " + profile.getFirst_name());
         addPaymentDialogFragment.setOnNewTransactionCallback(this);

@@ -92,6 +92,7 @@
         android:inputType="numberDecimal"
         android:textColor="@color/colorMaterialGrey800"
         android:textStyle="italic"
+        android:enabled="false"
         app:layout_constraintBottom_toBottomOf="@id/labelPayment"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintLeft_toRightOf="@id/labelPayment"

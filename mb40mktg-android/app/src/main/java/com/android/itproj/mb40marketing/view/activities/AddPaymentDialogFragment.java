@@ -37,6 +37,7 @@ public class AddPaymentDialogFragment extends DialogFragment implements Validato
     private static final String BUNDLE_KEY_PROFILE_ID = "profile_id";
     private static final String BUNDLE_KEY_LOAN_ID = "loan_id";
     private static final String BUNDLE_KEY_COLLECTOR_ID = "collector_id";
+    private static final String BUNDLE_KEY_AMORTIZATION_VALUE = "amortization";
     private static final String BUNDLE_KEY_PAYEE_NAME = "payee_name";
     private static final String BUNDLE_KEY_COLLECTOR_NAME = "collector_name";
 
@@ -79,6 +80,9 @@ public class AddPaymentDialogFragment extends DialogFragment implements Validato
     private int collectorId = 0;
 
     @Getter
+    private float amortizationValue = 0.0f;
+
+    @Getter
     private String payeeName;
 
     @Getter
@@ -89,13 +93,21 @@ public class AddPaymentDialogFragment extends DialogFragment implements Validato
 
     private Validator validator;
 
-    public static AddPaymentDialogFragment newInstance(String loanTitle, int profileId, int loanId, int collectorId, String payee, String collector) {
+    public static AddPaymentDialogFragment newInstance(
+            String loanTitle,
+            int profileId,
+            int loanId,
+            int collectorId,
+            float amortization,
+            String payee,
+            String collector) {
 
         Bundle args = new Bundle();
         args.putString(BUNDLE_KEY_LOAN_TITLE, loanTitle);
         args.putInt(BUNDLE_KEY_PROFILE_ID, profileId);
         args.putInt(BUNDLE_KEY_LOAN_ID, loanId);
         args.putInt(BUNDLE_KEY_COLLECTOR_ID, collectorId);
+        args.putFloat(BUNDLE_KEY_AMORTIZATION_VALUE,amortization);
         args.putString(BUNDLE_KEY_PAYEE_NAME, payee);
         args.putString(BUNDLE_KEY_COLLECTOR_NAME, collector);
 
@@ -116,6 +128,7 @@ public class AddPaymentDialogFragment extends DialogFragment implements Validato
             profileId = getArguments().getInt(BUNDLE_KEY_PROFILE_ID);
             loanId = getArguments().getInt(BUNDLE_KEY_LOAN_ID);
             collectorId = getArguments().getInt(BUNDLE_KEY_COLLECTOR_ID);
+            amortizationValue = getArguments().getFloat(BUNDLE_KEY_AMORTIZATION_VALUE);
             payeeName = getArguments().getString(BUNDLE_KEY_PAYEE_NAME);
             collectorName = getArguments().getString(BUNDLE_KEY_COLLECTOR_NAME);
         }
@@ -135,6 +148,7 @@ public class AddPaymentDialogFragment extends DialogFragment implements Validato
         loanTitleText.setText(getLoanTitle());
         payeeNameText.setText(getPayeeName());
         collectorNameText.setText(getCollectorName());
+        paymentEditText.setText(String.valueOf(amortizationValue));
     }
 
     @OnClick(R.id.transactionSubmit)
@@ -155,7 +169,7 @@ public class AddPaymentDialogFragment extends DialogFragment implements Validato
         model.setProfile_id(profileId);
         model.setLoan_id(loanId);
         model.setCollector_id(collectorId);
-        model.setPayment(Double.valueOf(paymentEditText.getText().toString()));
+        model.setPayment(amortizationValue);
         ((CoreApp) getActivity().getApplication())
                 .getTransactionController()
                 .createTransaction(model, getTransactionCallback());
